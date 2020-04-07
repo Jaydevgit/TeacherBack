@@ -1,0 +1,249 @@
+package com.teacher.scholat.service.impl;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.teacher.scholat.dao.ManagerDao;
+import com.teacher.scholat.model.Teacher;
+import com.teacher.scholat.service.ManagerService;
+import com.teacher.scholat.util.CommonUtil;
+import com.teacher.scholat.util.GetScholatProfile;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+/**
+ * @author: sansen
+ * @date: 2017/10/24 16:07
+ */
+@Service
+public class ManagerServiceImpl implements ManagerService {
+
+    @Resource
+    private ManagerDao managerDao;
+
+    /**
+     * 新增教师
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int addTeacher(Teacher teacher) {
+        int id = managerDao.addTeacher(teacher);
+        System.out.println(id);
+        return id;
+    }
+
+    @Override
+    public int deleteTeacher(JSONObject jsonObject) {
+        return managerDao.deleteTeacher(jsonObject);
+    }
+
+    @Override
+    public List<JSONObject> selectAll() {
+
+        return managerDao.selectAllTeacher();
+    }
+
+    @Override
+    public int judgeEmailExist(JSONObject jsonObject) {
+        int i = managerDao.judgeEmailExist(jsonObject);
+        return i;
+    }
+
+    /**
+     * 教师列表
+     *
+     * @TODO: 加入一个统计有多少用户的学者网简介更新了信息
+     */
+    @Override
+    public JSONObject listTeacher(JSONObject jsonObject) {
+        System.out.println("前端传过来的教师列表要求为: ");
+        CommonUtil.fillPageParam(jsonObject);
+        long unitId = jsonObject.getLongValue("unitId");
+        int count = managerDao.countTeacher(unitId);
+        //System.out.println("........有"+count+"位教师");
+
+
+        // 搜索列表, 对加入进来的信息加入在线搜索的user_profile: introUpdateTime信息
+        //List<JSONObject> list = managerDao.listTeacher(jsonObject);
+        List<JSONObject> listLocal = managerDao.listTeacherLocal(jsonObject);
+        for (JSONObject jsonObject1 : listLocal) {
+            String username = jsonObject1.getString("scholat_username");
+            String email = jsonObject1.getString("email"); // 通过email搜索
+            JSONArray jsonArray = GetScholatProfile.getScholatProfileByUserName(username);
+            JSONObject jsonObject2 = new JSONObject();
+            if(jsonArray!= null && jsonArray.size()>0){
+                jsonObject2= jsonArray.getJSONObject(0);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                SimpleDateFormat strFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                String str = jsonObject2.getString("introUpdateTime");
+                Date date = new Date();
+                String time;
+                try {
+                    date = strFormat.parse(str);
+                    time = dateFormat.format(date); //可以把日期转换转指定格式的字符串
+                } catch (ParseException e) {
+                    time = str;
+                    // e.printStackTrace();
+                }
+                jsonObject1.put("scholat_update_time",time);
+                //jsonObject1.put("real_scholat_username", jsonObject2.getString("acc_name"));
+            }else {
+                jsonObject1.put("scholat_update_time", "");
+                jsonObject1.put("real_scholat_username", "");
+            }
+        }
+        // 需要 u.introUpdateTime 和 u.acc_name	当 (t.scholat_username = u.acc_name) or (t.email=u.work_email)
+        System.out.println("后台查询到的教师数据为: " + listLocal);
+
+//        System.out.println("看下是JOSN信息：" + listLocal.get(0).getString(("email")));
+        //managerDao.whetherScholatUser(jsonObject);
+        //managerDao.insertScholatName(listLocal);
+        return CommonUtil.successPage(jsonObject, listLocal, count);
+    }
+
+    /**
+     * 更新教师
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public JSONObject updateTeacher(JSONObject jsonObject) {
+        managerDao.updateTeacher(jsonObject);
+        return CommonUtil.successJson();
+    }
+
+    @Override
+    public JSONObject getTeacherByKey(JSONObject object) {
+        List<JSONObject> teacherByName = managerDao.getTeacherByKey(object);
+        return CommonUtil.successPage(teacherByName);
+    }
+
+    @Override
+    public JSONObject searchTeacher(JSONObject jsonObject) {
+        System.out.println("搜索 ==========> 前端传过来的教师列表要求为: ");
+        System.out.println(jsonObject);
+        CommonUtil.fillPageParam(jsonObject);
+		/*String key = jsonObject.getString("key");
+
+		String result = "";
+		String temp = "";
+		for (int i=0; i<key.length(); i++) {
+			temp = String.valueOf(key.charAt(i));
+			if (!temp.equals(" ")) {
+				result += "%" + temp;
+			}
+		}
+		result += "%";
+		jsonObject.put("key",result);*/
+
+        int count = managerDao.countKeyTeacher(jsonObject);
+        System.out.println("........有" + count + "位教师");
+
+
+        List<JSONObject> list = managerDao.searchTeacher(jsonObject);
+        for(JSONObject jsonObject1:list){
+            String username = jsonObject1.getString("scholat_username");
+            String email = jsonObject1.getString("email");
+            JSONArray jsonArray = GetScholatProfile.getScholatProfileByUserName(username);
+            JSONObject jsonObject2 = new JSONObject();
+            if(jsonArray!=null && jsonArray.size()>0){
+                jsonObject2 = jsonArray.getJSONObject(0);
+                System.out.println(jsonObject2);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                SimpleDateFormat strFormat = new SimpleDateFormat("yyyyMMddHHmm");
+                String str = jsonObject2.getString("introUpdateTime");
+                Date date = new Date();
+                String time;
+                try {
+                    date = strFormat.parse(str);
+                    time = dateFormat.format(date); //可以把日期转换转指定格式的字符串
+                } catch (ParseException e) {
+                    time = str;
+                    // e.printStackTrace();
+                }
+                jsonObject1.put("scholat_update_time",time);
+                jsonObject1.put("real_scholat_username", jsonObject2.getString("acc_name"));
+            }else {
+                jsonObject1.put("scholat_update_time", "");
+                jsonObject1.put("real_scholat_username", "");
+            }
+        }
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public JSONObject searchScholatList(JSONObject jsonObject) {
+        System.out.println("=============准备获取学者网数据==============");
+        CommonUtil.fillPageParam(jsonObject);
+        int count = 0;
+        String chineseName = jsonObject.getString("name");
+        String username = jsonObject.getString("username");
+        String email = jsonObject.getString("email");
+        System.out.println(chineseName + " " + username + " " + email);
+        JSONArray jsonArray = new JSONArray();
+        if (email != null && email != "") {
+            jsonArray = GetScholatProfile.getScholatProfileByEmail(email);
+        } else if (chineseName != null && chineseName != "") {
+            jsonArray = GetScholatProfile.getScholatProfileByChineseName(chineseName);
+        }else if(username != null && username != ""){
+            jsonArray = GetScholatProfile.getScholatProfileByUserName(username);
+        }
+        count = jsonArray.size();
+        List<JSONObject> list = new ArrayList<JSONObject>();
+        // 读取url传回来的学者网数据
+        for (int i = 0; i < count; i++) {
+            JSONObject jsonObject1 = new JSONObject();
+            JSONObject tempJSONObject = jsonArray.getJSONObject(i);
+            jsonObject1.put("scholat_username", tempJSONObject.getString("user"));
+            jsonObject1.put("username", tempJSONObject.getString("userChineseName"));
+            jsonObject1.put("unit_name", tempJSONObject.getString("workUnit"));
+            jsonObject1.put("department_name", tempJSONObject.getString("workDepartment"));
+            jsonObject1.put("avatar", tempJSONObject.getString("userPictureUrl"));
+            String scholat_email = tempJSONObject.getString("workEmail");
+            // 判断是否已经存在该邮箱用户
+            JSONObject requestJson = new JSONObject();
+            requestJson.put("email",scholat_email);
+            int whetherHasEmail = managerDao.judgeEmailExist(requestJson);
+            if(whetherHasEmail!=0){
+                jsonObject1.put("email_exist", true);
+            }else{
+                jsonObject1.put("email_exist", false);
+            }
+            jsonObject1.put("email", tempJSONObject.getString("workEmail"));
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            SimpleDateFormat strFormat = new SimpleDateFormat("yyyyMMddHHmm");
+            String str = tempJSONObject.getString("introUpdateTime");
+            Date date = new Date();
+            try {
+                date = strFormat.parse(str);
+            } catch (ParseException e) {
+                //e.printStackTrace();
+            }
+            String time = dateFormat.format(date); //可以把日期转换转指定格式的字符串
+            jsonObject1.put("update_time", time);
+            String scholatIntro = tempJSONObject.getString("introduction");
+            jsonObject1.put("intro", scholatIntro);
+            jsonObject1.put("degree", tempJSONObject.getString("degree"));
+            jsonObject1.put("post", tempJSONObject.getString("scholarTitle"));
+            jsonObject1.put("qrcode", tempJSONObject.getString("qrcodeUrl"));
+            list.add(jsonObject1);
+        }
+        //count =managerDao.countScholat(jsonObject);
+        System.out.println("编辑界面根据邮箱或姓名查询学者网账号结果: 有" + count + "位教师");
+
+/*		if(count!=0){
+			list = managerDao.searchScholat(jsonObject);
+			System.out.println("后台查询到的教师数据为: "+list);
+		}else{
+			System.out.println("并没有找到学者网对应的学者数据");
+		}*/
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
+
+}

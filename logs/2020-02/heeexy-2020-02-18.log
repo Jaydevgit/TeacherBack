@@ -1,0 +1,35 @@
+2020-02-18 02:42:30.246 WARN  --- [HikariPool.java:766][HikariPool-1 housekeeper] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h19s602ms).
+2020-02-18 10:06:51.341 WARN  --- [HikariPool.java:766][HikariPool-1 housekeeper] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=46s625ms).
+2020-02-18 10:50:28.082 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2020-02-18 10:50:28.082 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, a.state state, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY seq , subSeq,a.update_time DESC 
+2020-02-18 10:50:28.082 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, a.state state, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY seq , subSeq,a.update_time DESC 
+2020-02-18 10:50:28.082 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2020-02-18 10:50:28.108 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: 1(String)
+2020-02-18 10:50:28.108 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==> Parameters: 1(String)
+2020-02-18 10:50:28.108 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==> Parameters: 1(Long)
+2020-02-18 10:50:28.108 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==> Parameters: 1(String)
+2020-02-18 10:50:28.199 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2020-02-18 10:50:28.200 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==> Parameters: 1(String)
+2020-02-18 10:50:28.201 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2020-02-18 10:50:28.204 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: 1(Long)
+2020-02-18 10:50:29.031 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 1
+2020-02-18 10:50:29.031 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - <==      Total: 1
+2020-02-18 10:50:29.219 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - <==      Total: 1
+2020-02-18 10:50:29.220 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2020-02-18 10:50:29.221 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==> Parameters: 1(Long), 0(Integer), 21(Integer)
+2020-02-18 10:50:29.227 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - <==      Total: 10
+2020-02-18 10:50:29.227 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - <==      Total: 10
+2020-02-18 10:50:29.339 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 1
+2020-02-18 10:50:29.339 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2020-02-18 10:50:29.340 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: 1(Long), 0(Integer), 21(Integer)
+2020-02-18 10:50:29.340 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - <==      Total: 21
+2020-02-18 10:50:29.343 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 21
+2020-02-18 12:32:25.063 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 2861 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2020-02-18 12:32:25.068 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2020-02-18 12:32:30.400 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 6.069 seconds (JVM running for 8.771)
+2020-02-18 14:42:19.746 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 4183 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2020-02-18 14:42:19.758 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2020-02-18 14:42:25.483 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 6.913 seconds (JVM running for 8.647)
+2020-02-18 17:28:25.990 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 2398 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2020-02-18 17:28:25.996 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2020-02-18 17:28:32.510 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 7.429 seconds (JVM running for 10.082)

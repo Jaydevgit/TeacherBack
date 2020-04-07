@@ -1,0 +1,13 @@
+2019-12-04 00:23:51.669 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1h47m17s718ms).
+2019-12-04 00:57:54.656 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m31s347ms).
+2019-12-04 01:18:26.316 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m31s663ms).
+2019-12-04 01:39:26.829 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m30s365ms).
+2019-12-04 01:59:57.676 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m30s847ms).
+2019-12-04 02:20:28.223 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m30s547ms).
+2019-12-04 04:37:25.300 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=2h16m26s716ms).
+2019-12-04 06:37:54.154 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=2h28s875ms).
+2019-12-04 08:00:04.118 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1h22m9s972ms).
+2019-12-04 09:38:04.733 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1h38m639ms).
+2019-12-04 09:58:35.880 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m31s147ms).
+2019-12-04 10:04:34.246 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=5m58s366ms).
+2019-12-04 10:09:33.378 WARN  --- [HikariPool.java:758][HikariPool-2 housekeeper] - HikariPool-2 - Retrograde clock change detected (housekeeper delta=29s93ms), soft-evicting connections from pool.

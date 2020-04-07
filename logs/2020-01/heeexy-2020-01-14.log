@@ -1,0 +1,51 @@
+2020-01-14 00:15:53.232 WARN  --- [HikariPool.java:766][HikariPool-18 housekeeper] - HikariPool-18 - Thread starvation or clock leap detected (housekeeper delta=1h13m45s307ms).
+2020-01-14 00:20:06.973 WARN  --- [HikariPool.java:766][HikariPool-18 housekeeper] - HikariPool-18 - Thread starvation or clock leap detected (housekeeper delta=3m13s622ms).
+2020-01-14 01:53:50.298 WARN  --- [HikariPool.java:766][HikariPool-18 housekeeper] - HikariPool-18 - Thread starvation or clock leap detected (housekeeper delta=18m12s659ms).
+2020-01-14 09:00:11.153 WARN  --- [HikariPool.java:766][HikariPool-18 housekeeper] - HikariPool-18 - Thread starvation or clock leap detected (housekeeper delta=1m14s777ms).
+2020-01-14 09:02:30.199 WARN  --- [HikariPool.java:766][HikariPool-18 housekeeper] - HikariPool-18 - Thread starvation or clock leap detected (housekeeper delta=45s692ms).
+2020-01-14 09:23:59.671 WARN  --- [HikariPool.java:766][HikariPool-18 housekeeper] - HikariPool-18 - Thread starvation or clock leap detected (housekeeper delta=20m29s296ms).
+2020-01-14 09:37:20.790 WARN  --- [HikariPool.java:766][HikariPool-18 housekeeper] - HikariPool-18 - Thread starvation or clock leap detected (housekeeper delta=12m51s113ms).
+2020-01-14 12:00:12.706 WARN  --- [HikariPool.java:766][HikariPool-18 housekeeper] - HikariPool-18 - Thread starvation or clock leap detected (housekeeper delta=14m19s49ms).
+2020-01-14 14:00:47.475 WARN  --- [HikariPool.java:766][HikariPool-18 housekeeper] - HikariPool-18 - Thread starvation or clock leap detected (housekeeper delta=2h4s719ms).
+2020-01-14 14:25:37.360 WARN  --- [HikariPool.java:766][HikariPool-18 housekeeper] - HikariPool-18 - Thread starvation or clock leap detected (housekeeper delta=24m49s882ms).
+2020-01-14 14:32:24.006 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, a.state state, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY seq , subSeq,a.update_time DESC 
+2020-01-14 14:32:24.006 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2020-01-14 14:32:24.006 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2020-01-14 14:32:24.105 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: 1(Long)
+2020-01-14 14:32:24.111 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==> Parameters: 1(String)
+2020-01-14 14:32:24.111 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==> Parameters: 1(String)
+2020-01-14 14:32:24.156 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 1
+2020-01-14 14:32:24.157 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - <==      Total: 1
+2020-01-14 14:32:24.161 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2020-01-14 14:32:24.163 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: 1(Long), 0(Integer), 21(Integer)
+2020-01-14 14:32:24.163 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - <==      Total: 10
+2020-01-14 14:32:24.187 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 21
+2020-01-14 14:41:49.598 INFO  --- [HikariDataSource.java:350][Thread-167] - HikariPool-18 - Shutdown initiated...
+2020-01-14 14:41:49.636 INFO  --- [HikariDataSource.java:352][Thread-167] - HikariPool-18 - Shutdown completed.
+2020-01-14 14:41:51.483 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 9515 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2020-01-14 14:41:51.484 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2020-01-14 14:41:53.656 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 2.254 seconds (JVM running for 155698.539)
+2020-01-14 14:42:17.677 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 9515 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2020-01-14 14:42:17.678 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2020-01-14 14:42:18.769 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 1.137 seconds (JVM running for 155723.651)
+2020-01-14 14:42:38.602 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 9515 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2020-01-14 14:42:38.602 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2020-01-14 14:42:39.699 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 1.138 seconds (JVM running for 155744.582)
+2020-01-14 14:42:57.802 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 37094 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2020-01-14 14:42:57.807 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2020-01-14 14:43:01.390 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 4.123 seconds (JVM running for 5.375)
+2020-01-14 14:45:23.283 INFO  --- [HikariDataSource.java:110][http-nio-8088-exec-1] - HikariPool-1 - Starting...
+2020-01-14 14:45:23.703 INFO  --- [HikariDataSource.java:123][http-nio-8088-exec-1] - HikariPool-1 - Start completed.
+2020-01-14 14:45:23.716 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, a.state state, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY seq , subSeq,a.update_time DESC 
+2020-01-14 14:45:23.788 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==> Parameters: 1(String)
+2020-01-14 14:45:23.827 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2020-01-14 14:45:23.827 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==> Parameters: 1(String)
+2020-01-14 14:45:23.843 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - <==      Total: 1
+2020-01-14 14:45:23.847 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2020-01-14 14:45:23.847 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - <==      Total: 10
+2020-01-14 14:45:23.847 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==> Parameters: 1(Long)
+2020-01-14 14:45:23.862 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - <==      Total: 1
+2020-01-14 14:45:23.863 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2020-01-14 14:45:23.864 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==> Parameters: 1(Long), 0(Integer), 21(Integer)
+2020-01-14 14:45:23.880 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - <==      Total: 21
+2020-01-14 16:44:50.506 WARN  --- [HikariPool.java:766][HikariPool-1 housekeeper] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m54s534ms).

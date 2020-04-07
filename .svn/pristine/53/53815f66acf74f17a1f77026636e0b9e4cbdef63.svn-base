@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dc261fcf-3434-43b2-a53c-03076fd50913" name="Merge from teacherHome-back (2)" comment="连善淳2019年08月13日提交" />
+    <list id="e990732f-8656-413a-aac6-be00a41e5fad" name="Default Changelist" comment="" />
+    <list id="27ba5d38-ff39-4989-9d85-86377deb0089" name="Merge from teacherHome-back" comment="619merge" />
+    <list id="a5592474-f8f4-470f-9c58-c72821694cb1" name="Merge from teacherHome-back (1)" comment="2019年6月25日14:00:27&#10;Merge all from teacherHome-back" />
+    <list id="d72fa663-d5a7-4e7d-ba57-4bce769731a3" name="Merge from teacherHome-back (3)" comment="Merged from teacherHome-back&#10;清除unit_profile 无效字段 [from revision 134]" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Tag Library Descriptor" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectId" id="1QNhvOb12FRRqdIyqaOw1d8PCFX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="GO_FMT" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561949115406" />
+    <property name="go.gopath.indexing.explicitly.defined" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.heeexy.example.model" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Hiu\Desktop\teacherHome-back\src\main\resources\mapper" />
+      <recent name="C:\SVN\trunk-back\src\main\resources\mapper" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.heeexy.example.service" />
+      <recent name="com.heeexy.example.dao" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.heeexy.example.service.impl" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.MyApplication">
+    <configuration name="MyApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.heeexy.example.MyApplication" />
+      <module name="example" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.heeexy.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MyApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="example" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.heeexy.example.MyApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MyApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\Administrator\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+    <option name="FORCE_UPDATE" value="true" />
+    <option name="IGNORE_EXTERNALS" value="true" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e990732f-8656-413a-aac6-be00a41e5fad" name="Default Changelist" comment="" />
+      <created>1559969398069</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1559969398069</updated>
+      <workItem from="1559969400998" duration="958000" />
+      <workItem from="1559973782925" duration="34784000" />
+      <workItem from="1560150035156" duration="28010000" />
+      <workItem from="1560338785854" duration="1287000" />
+      <workItem from="1560342834483" duration="49322000" />
+      <workItem from="1560569022250" duration="2530000" />
+      <workItem from="1560571631969" duration="330000" />
+      <workItem from="1560572005702" duration="39234000" />
+      <workItem from="1560856819517" duration="979000" />
+      <workItem from="1560858056309" duration="71664000" />
+      <workItem from="1561440814057" duration="40318000" />
+      <workItem from="1561902547249" duration="1051000" />
+      <workItem from="1561947806648" duration="3827000" />
+      <workItem from="1561957850507" duration="242000" />
+      <workItem from="1564121790926" duration="2127000" />
+      <workItem from="1564208242807" duration="1065000" />
+      <workItem from="1564274024825" duration="2911000" />
+      <workItem from="1564371639688" duration="61000" />
+      <workItem from="1564543528286" duration="663000" />
+      <workItem from="1565677538082" duration="20205000" />
+      <workItem from="1565746162887" duration="8760000" />
+      <workItem from="1566217956431" duration="6000" />
+      <workItem from="1567128914601" duration="147000" />
+      <workItem from="1567129126960" duration="2089000" />
+    </task>
+    <task id="LOCAL-00001" summary="三大">
+      <created>1559974041221</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1559974041221</updated>
+    </task>
+    <task id="LOCAL-00002" summary="2019年6月8日14:45:35&#10;连善淳">
+      <created>1559976356218</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1559976356218</updated>
+    </task>
+    <task id="LOCAL-00003" summary="2019年6月8日14:58:12&#10;连善淳">
+      <created>1559977116976</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1559977116976</updated>
+    </task>
+    <task id="LOCAL-00004" summary="时间2019年6月10日23:04:42">
+      <created>1560183572747</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1560183572747</updated>
+    </task>
+    <task id="LOCAL-00005" summary="wangeditor&#10;2019年6月13日09:22:34">
+      <created>1560388977366</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560388977366</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Merged from teacherHome-back&#10; [from revision 102]&#10; [from revision 103]&#10; [from revision 107]&#10;aaaa [from revision 108]&#10;啊啊啊 [from revision 110]&#10;学院单位Id查教师 [from revision 111]&#10; [from revision 120]&#10; [from revision 121]&#10;权限管理----2019年6月14日16:43:19 [from revision 122]&#10;Merge from teacherHome-back [from revision 123]&#10;小修小补 [from revision 124]">
+      <created>1560569081181</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1560569081181</updated>
+    </task>
+    <task id="LOCAL-00007" summary="连善淳6.15提交文件">
+      <created>1560569486317</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1560569486317</updated>
+    </task>
+    <task id="LOCAL-00008" summary="连善淳6.15更新">
+      <created>1560569571583</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1560569571583</updated>
+    </task>
+    <task id="LOCAL-00009" summary="删除多余的表和字段">
+      <created>1560573335853</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1560573335853</updated>
+    </task>
+    <task id="LOCAL-00010" summary="619 跳转和首页">
+      <created>1560906726334</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1560906726334</updated>
+    </task>
+    <task id="LOCAL-00011" summary="619merge">
+      <created>1560935072215</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1560935072215</updated>
+    </task>
+    <task id="LOCAL-00012" summary="2019年6月25日14:00:27&#10;Merge all from teacherHome-back">
+      <created>1561442448369</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1561442448369</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Merged from teacherHome-back&#10;Merge all from lsc:学者网后台,正在写,先提交 [from revision 197]&#10;Merged from lsc 0626 替换了文件，开完会 [from revision 198]">
+      <created>1561533446006</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1561533446007</updated>
+    </task>
+    <task id="LOCAL-00014" summary="栏目排序、添加教师问题解决">
+      <created>1561877559012</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1561877559012</updated>
+    </task>
+    <task id="LOCAL-00015" summary="修复小BUG">
+      <created>1561878018401</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1561878018401</updated>
+    </task>
+    <task id="LOCAL-00016" summary="连善淳2019年08月13日提交">
+      <created>1565704107034</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1565704107034</updated>
+    </task>
+    <task id="LOCAL-00017" summary="连善淳2019年08月14日提交">
+      <created>1565746340034</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1565746340034</updated>
+    </task>
+    <task id="LOCAL-00018" summary="连善淳2019年08月15日10:50:12提交&#10;读取采用url,舍弃user_profile&#10;修改邮箱验证错误&#10;后台管理点击错误&#10;列表scholat_username写入bug">
+      <created>1565837463031</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1565837463031</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="312570000" />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="这是后端" />
+    <MESSAGE value="这是后端。。。&#10;" />
+    <MESSAGE value="这是后端。。。&#10;2019年6月8日13:58:21&#10;" />
+    <MESSAGE value="三大" />
+    <MESSAGE value="2019年6月8日14:45:35&#10;连善淳" />
+    <MESSAGE value="2019年6月8日14:58:12&#10;连善淳" />
+    <MESSAGE value="时间2019年6月10日23:04:42" />
+    <MESSAGE value="时间2019年6月11日14:55:59" />
+    <MESSAGE value="时间2019年6月11日14:59:36" />
+    <MESSAGE value="wangeditor&#10;2019年6月13日09:22:34" />
+    <MESSAGE value="Merged from teacherHome-back&#10; [from revision 102]&#10; [from revision 103]&#10; [from revision 107]&#10;aaaa [from revision 108]&#10;啊啊啊 [from revision 110]&#10;学院单位Id查教师 [from revision 111]&#10; [from revision 120]&#10; [from revision 121]&#10;权限管理----2019年6月14日16:43:19 [from revision 122]&#10;Merge from teacherHome-back [from revision 123]&#10;小修小补 [from revision 124]" />
+    <MESSAGE value="连善淳6.15提交文件" />
+    <MESSAGE value="连善淳6.15更新" />
+    <MESSAGE value="删除多余的表和字段" />
+    <MESSAGE value="619 跳转和首页" />
+    <MESSAGE value="619merge" />
+    <MESSAGE value="2019年6月25日14:00:27&#10;Merge all from teacherHome-back" />
+    <MESSAGE value="Merged from teacherHome-back&#10;Merge all from lsc:学者网后台,正在写,先提交 [from revision 197]&#10;Merged from lsc 0626 替换了文件，开完会 [from revision 198]" />
+    <MESSAGE value="栏目排序、添加教师问题解决" />
+    <MESSAGE value="修复小BUG" />
+    <MESSAGE value="连善淳2019年08月13日提交" />
+    <MESSAGE value="连善淳2019年08月14日提交" />
+    <MESSAGE value="连善淳2019年08月15日10:50:12提交&#10;读取采用url,舍弃user_profile&#10;修改邮箱验证错误&#10;后台管理点击错误&#10;列表scholat_username写入bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="连善淳2019年08月15日10:50:12提交&#10;读取采用url,舍弃user_profile&#10;修改邮箱验证错误&#10;后台管理点击错误&#10;列表scholat_username写入bug" />
+  </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+  </component>
+</project>

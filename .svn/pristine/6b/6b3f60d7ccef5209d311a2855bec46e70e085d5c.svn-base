@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.teacher.scholat.dao.CatalogueDao">
+        <insert id="addCatalogue" useGeneratedKeys="true" keyProperty="id">
+            INSERT INTO  catalogue
+            (unit_id , catalogue_name , seq, parent_id , update_time)
+            VALUES
+            (#{unitId} , #{catalogue} , #{seq} , #{parentId} ,#{updateTime})
+
+        </insert>
+
+        <insert id="addSubCatalogue" useGeneratedKeys="true" keyProperty="id">
+            INSERT INTO  catalogue
+            (unit_id , catalogue_name , seq, parent_id , update_time)
+            VALUES
+            (#{unitId} , #{catalogue} , #{seq} , #{parentId} ,#{updateTime})
+
+        </insert>
+
+        <update id="deleteCatalogue" parameterType="com.alibaba.fastjson.JSONObject">
+            UPDATE catalogue
+            SET  is_deleted = 1
+            WHERE id = #{cId}
+        </update>
+
+        <update id="updateCatalogue" parameterType="com.alibaba.fastjson.JSONObject">
+            UPDATE catalogue
+            SET catalogue_name = #{newName}
+            WHERE id = #{cId}
+        </update>
+         <select id="countTeacher" resultType="Integer">
+             SELECT COUNT(1) FROM catalogue_teacher c
+             WHERE c.catalogue_id = #{cId} and (c.is_deleted is null OR
+            c.is_deleted !=1)
+         </select>
+
+         <select id="countLetterTeacher" resultType="Integer">
+             SELECT COUNT(1) FROM catalogue_teacher c INNER JOIN teacher_profile t ON c.teacher_id = t.id
+             WHERE c.catalogue_id = #{cId} and (c.is_deleted is null OR
+            c.is_deleted !=1) and t.pinyin LIKE #{letter}"%"
+         </select>
+
+         <select id="getTeacherByCatalogue" resultType="com.alibaba.fastjson.JSONObject">
+            SELECT
+            ct.id         ctId,
+            ct.seq        tSeq,
+            t.id         tId,
+            t.username   tName,
+            t.avatar     tAvatar,
+            t.post       tPost
+            FROM catalogue_teacher ct LEFT JOIN teacher_profile t ON t.id = ct.teacher_id
+            WHERE ct.catalogue_id = #{id} AND t.state = 1 AND (ct.is_deleted is null OR
+            ct.is_deleted !=1) ORDER BY tSeq,t.pinyin
+        </select>
+
+        <select id="getTeacherByCatalogueAndPage" resultType="com.alibaba.fastjson.JSONObject">
+            SELECT
+            ct.id         ctId,
+            ct.seq        tSeq,
+            t.id         tId,
+            t.username   tName,
+            t.avatar     tAvatar,
+            t.post       tPost
+            FROM catalogue_teacher ct LEFT JOIN teacher_profile t ON t.id = ct.teacher_id
+            WHERE ct.catalogue_id = #{cId} AND t.state = 1 AND (ct.is_deleted is null OR
+            ct.is_deleted !=1) ORDER BY tSeq,t.pinyin  LIMIT #{offSet},#{pageRow}
+        </select>
+
+        <select id="getByCatalogueAndLetterAndPage" resultType="com.alibaba.fastjson.JSONObject">
+            SELECT
+            ct.id         ctId,
+            ct.seq        tSeq,
+            t.id         tId,
+            t.username   tName,
+            t.avatar     tAvatar,
+            t.post       tPost
+            FROM catalogue_teacher ct LEFT JOIN teacher_profile t ON t.id = ct.teacher_id
+            WHERE ct.catalogue_id = #{cId} AND t.pinyin LIKE #{letter}"%" AND t.state = 1 AND (ct.is_deleted is null OR
+            ct.is_deleted !=1) ORDER BY t.pinyin  LIMIT #{offSet},#{pageRow}
+        </select>
+
+
+        <select id="getSubIdByCatalogue" resultType="Integer">
+            SELECT
+            id
+            FROM catalogue
+            WHERE parent_id = #{id} ORDER BY seq
+        </select>
+
+        <select id="judgeIsParentById" resultType="Integer">
+            SELECT
+            parent_id
+            FROM catalogue
+            WHERE id = #{id}
+        </select>
+
+        <select id="getDepartSubjectByUnit" resultType="com.alibaba.fastjson.JSONObject">
+            SELECT
+            c.id                  id,
+            c.catalogue_name    name,
+            c.parent_id          pId
+            FROM catalogue c
+            WHERE parent_id =
+            (SELECT catalogue.id FROM  catalogue WHERE unit_id = #{unitId} AND state = #{state})
+        </select>
+
+        <resultMap id="catalogueMap" type="com.teacher.scholat.util.model.One2Many">
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="seq" property="seq"/>
+            <result column="state" property="state"/>
+            <collection property="subCatalogueList" ofType="com.teacher.scholat.model.SubCatalogue">
+                <id column="subId" property="id"/>
+                <result column="subName" property="name"/>
+                <result column="subSeq" property="seq"/>
+                <!--<result column="id" property="parentId"/>-->
+            </collection>
+        </resultMap>
+
+        <select id="findCatalogueByUnit" resultMap="catalogueMap">
+            SELECT a.id               id,
+                   a.catalogue_name   name,
+                   a.seq              seq,
+                   a.state            state,
+                   t.id               subId,
+                   t.catalogue_name   subName,
+                   t.seq              subSeq
+            FROM (SELECT  c.* FROM catalogue c
+            WHERE c.unit_id = #{unitId} AND (c.is_deleted is null OR c.is_deleted !=1  )AND
+            c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR
+            t.is_deleted !=1  ))ORDER BY seq , subSeq,a.update_time DESC
+
+        </select>
+
+        <update id="topTeacher">
+            UPDATE catalogue_teacher
+            SET seq = #{tSeq}
+            WHERE id = #{ctId}
+        </update>
+
+        <update id="topCatalogue">
+            UPDATE catalogue
+            SET seq = #{seq}
+            WHERE id = #{cId}
+        </update>
+
+        <update id="removeTeacher">
+            UPDATE catalogue_teacher
+            SET is_deleted = 1
+            WHERE id = #{ctId}
+        </update>
+
+        <insert id="addCatalogueTeacher" useGeneratedKeys="true">
+            INSERT INTO catalogue_teacher
+            (teacher_id ,catalogue_id)
+            VALUES
+            (#{tId},#{cId})
+        </insert>
+        
+        <update id="sortUnitTeacher">
+            UPDATE teacher_profile
+            SET seq = #{seq}
+            WHERE id = #{tId}
+        </update>
+</mapper>

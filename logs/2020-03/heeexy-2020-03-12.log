@@ -1,0 +1,13 @@
+2020-03-12 15:39:44.332 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 8264 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2020-03-12 15:39:44.336 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2020-03-12 15:39:48.002 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 4.429 seconds (JVM running for 6.294)
+2020-03-12 15:40:02.003 INFO  --- [HikariDataSource.java:110][http-nio-8088-exec-1] - HikariPool-1 - Starting...
+2020-03-12 15:40:02.581 INFO  --- [HikariDataSource.java:123][http-nio-8088-exec-1] - HikariPool-1 - Start completed.
+2020-03-12 15:40:02.590 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2020-03-12 15:40:02.630 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==> Parameters: null
+2020-03-12 15:40:02.750 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - <==      Total: 0
+2020-03-12 15:40:07.535 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2020-03-12 15:40:07.535 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==> Parameters: null
+2020-03-12 15:40:07.537 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - <==      Total: 0
+2020-03-12 17:47:04.012 INFO  --- [HikariDataSource.java:350][Thread-22] - HikariPool-1 - Shutdown initiated...
+2020-03-12 17:47:04.028 INFO  --- [HikariDataSource.java:352][Thread-22] - HikariPool-1 - Shutdown completed.

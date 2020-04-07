@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.teacher.scholat.dao.TeacherDao">
+
+    <select id="getTeacherInfo" resultType="com.alibaba.fastjson.JSONObject">
+      select * from teacher_profile u where u.id=#{0}
+    </select>
+
+    <select id="countKeyTeacher" resultType="Integer">
+        SELECT count(0)
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId}
+        AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
+    </select>
+
+    <select id="getUpdatedTeacherList"
+            resultType="com.alibaba.fastjson.JSONObject">
+      SELECT  t.id          tId,
+              t.username    tName,
+              t.post        tPost,
+              t.avatar      tAvatar
+      FROM    teacher_profile t
+      WHERE   t.unit_id = #{unitId}
+      ORDER BY t.update_time DESC LIMIT 10
+    </select>
+
+    <select id="getHotTeacherList"
+            resultType="com.alibaba.fastjson.JSONObject">
+      SELECT  t.id          tId,
+              t.username    tName,
+              t.post        tPost,
+              t.avatar      tAvatar
+      FROM    teacher_profile t
+      WHERE   t.unit_id = #{unitId}
+      ORDER BY t.views DESC LIMIT 10
+    </select>
+
+    <select id="getTeacherByKey" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.id             tId,
+        t.username       tName,
+        t.avatar         tAvatar,
+        t.post           tPost
+        FROM teacher_profile t
+        WHERE t.unit_id = #{unitId}
+        AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
+        ORDER BY t.seq LIMIT #{offSet},#{pageRow}
+    </select>
+
+    <select id="listTeacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          tId,
+                  t.username    tName,
+                  t.post        tPost,
+                  t.avatar      tAvatar,
+                  t.email       tEmail,
+                  t.department_name     tDepartment_name,
+                  t.work_place      tWork_place,
+                  t.degree      tDegree
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY t.seq, update_time DESC  LIMIT
+            #{offSet},#{pageRow}
+    </select>
+
+    <select id="letterTeacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          tId,
+                  t.username    tName,
+                  t.post        tPost,
+                  t.avatar      tAvatar,
+                  t.email       tEmail,
+                  t.department_name     tDepartment_name,
+                  t.work_place      tWork_place,
+                  t.degree      tDegree
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId} AND t.pinyin LIKE #{letter}"%" ORDER BY t.pinyin, update_time
+        DESC
+         LIMIT
+            #{offSet},#{pageRow}
+    </select>
+
+    <select id="listTeacherAll" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          tId,
+                  t.username    tName,
+                  t.post        tPost,
+                  t.avatar      tAvatar
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY t.seq,CONVERT(t.username  USING gbk)
+    </select>
+    <!--注：此处和上面函数只是别名的区别-->
+    <select id="listTeacherAllTWO" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          id,
+                  t.username    name,
+                  t.post        post,
+                  t.avatar      avatar
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY t.seq,CONVERT(t.username  USING gbk)
+    </select>
+
+    <select id="getUnitIdBytId" resultType="Integer">
+        SELECT  t.unit_id unitId
+        FROM teacher_profile t
+        WHERE t.id = #{id}
+    </select>
+
+</mapper>

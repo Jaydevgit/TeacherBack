@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学院师资栏目申请修改邮件</title>
+</head>
+<body>
+您好，我们是学院师资队伍团队,我们已收到您的加入申请<br>
+经过审核,您填写的信息证明有误,请点击下方的链接进行重新申请提交<br>
+我们将尽快为您进行审核<br>
+<a href="#" th:href="@{http://localhost:9520/unitApply/{token}(token=${token})}">修改申请信息</a>
+</body>
+</html>

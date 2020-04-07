@@ -1,0 +1,98 @@
+package com.teacher.scholat.service.impl;
+
+import com.alibaba.fastjson.JSONObject;
+import com.teacher.scholat.dao.ManagerDao;
+import com.teacher.scholat.dao.TeacherDao;
+import com.teacher.scholat.service.TeacherService;
+import com.teacher.scholat.util.CommonUtil;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@Service
+public class TeacherServiceImpl implements TeacherService {
+    @Resource
+    private TeacherDao teacherDao;
+
+    @Resource
+    private ManagerDao managerDao;
+    /**
+     * 获取教师信息
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public JSONObject getTeacherInfo(Long id) {
+        System.out.println("....进到到获取教师信息阶段, 教师id为: "+id);
+        JSONObject jsonObject = teacherDao.getTeacherInfo(id);
+        System.out.println("....获到到的教师信息为..."+jsonObject);
+        return jsonObject;
+    }
+
+    @Override
+    public List<JSONObject> getUpdatedTeacherList(Long unitId) {
+        List<JSONObject> jsonObject = teacherDao.getUpdatedTeacherList(unitId);
+        return jsonObject;
+    }
+
+    @Override
+    public List<JSONObject> getHotTeacherList(Long unitId) {
+        List<JSONObject> jsonObject = teacherDao.getHotTeacherList(unitId);
+        return jsonObject;
+    }
+
+
+    @Override
+    public JSONObject listTeacher(JSONObject jsonObject) {
+        System.out.println("前端传过来的教师列表要求为: ");
+        CommonUtil.fillPageParam(jsonObject);
+        long unitId = jsonObject.getLongValue("unitId");
+        int count = managerDao.countTeacher(unitId);
+        System.out.println("........有"+count+"位教师");
+        List<JSONObject> list = teacherDao.listTeacher(jsonObject);
+        System.out.println("后台查询到的教师数据为: "+list);
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
+
+    @Override
+    public JSONObject listTeacherAll(JSONObject jsonObject) {
+        System.out.println("前端传过来的教师列表要求为: "+jsonObject);
+
+        Long unitId = jsonObject.getLongValue("unitId");
+        jsonObject.put("unitId", unitId);
+        List<JSONObject> list = teacherDao.listTeacherAll(jsonObject);
+        return CommonUtil.successPage(list);
+    }
+
+    @Override
+    public JSONObject letterTeacher(JSONObject jsonObject) {
+        System.out.println("前端传过来的教师列表要求为: ");
+        CommonUtil.fillPageParam(jsonObject);
+        int count = managerDao.countLetterUnitTeacher(jsonObject);
+        System.out.println("........有"+count+"位教师");
+        List<JSONObject> list = teacherDao.letterTeacher(jsonObject);
+        System.out.println("后台查询到的教师数据为: "+list);
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
+
+    @Override
+    public JSONObject searchTeacher(JSONObject jsonObject)
+    {
+        System.out.println("搜索-----------前端传过来的教师列表要求为: ");
+        System.out.println(jsonObject);
+        CommonUtil.fillPageParam(jsonObject);
+        int count = teacherDao.countKeyTeacher(jsonObject);
+        System.out.println("........有"+count+"位教师");
+        List<JSONObject> list = teacherDao.getTeacherByKey(jsonObject);
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
+
+    @Override
+    public JSONObject getUnitIdBytId(JSONObject jsonObject) {
+        Integer unitId = teacherDao.getUnitIdBytId(jsonObject);
+        JSONObject jo = new JSONObject();
+        jo.put("unitId",unitId);
+        return CommonUtil.successJson(jo);
+    }
+}

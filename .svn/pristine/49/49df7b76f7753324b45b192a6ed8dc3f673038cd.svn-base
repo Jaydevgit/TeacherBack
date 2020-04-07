@@ -1,0 +1,16 @@
+spring:
+  datasource:
+      url: jdbc:mysql://222.201.80.72:3306/teacherHome?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: root
+      password: "#scholat123"
+mybatis:
+   mapperLocations: classpath:/mapper/*.xml
+#spring:
+#  datasource:
+#      url: jdbc:mysql://localhost:3306/teacherHome?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+#      username: root
+#      password: "#Password123"
+#mybatis:
+#   mapperLocations: classpath:/mapper/*.xml
+
+

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.teacher.scholat.dao.TeacherDao">
+
+    <select id="getTeacherInfo" resultType="com.alibaba.fastjson.JSONObject">
+      select * from teacher_profile u where u.id=#{0}
+    </select>
+
+    <select id="countKeyTeacher" resultType="Integer">
+        SELECT count(0)
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId}
+        AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
+    </select>
+
+    <select id="getUpdatedTeacherList"
+            resultType="com.alibaba.fastjson.JSONObject">
+      SELECT  t.id          tId,
+              t.username    tName,
+              t.post        tPost,
+              t.avatar      tAvatar
+      FROM    teacher_profile t
+      WHERE   t.unit_id = #{unitId}
+      ORDER BY t.update_time DESC LIMIT 10
+    </select>
+
+    <select id="getHotTeacherList"
+            resultType="com.alibaba.fastjson.JSONObject">
+      SELECT  t.id          tId,
+              t.username    tName,
+              t.post        tPost,
+              t.avatar      tAvatar
+      FROM    teacher_profile t
+      WHERE   t.unit_id = #{unitId}
+      ORDER BY t.views DESC LIMIT 10
+    </select>
+
+    <select id="getTeacherByKey" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.id             tId,
+        t.username       tName,
+        t.avatar         tAvatar,
+        t.post           tPost
+        FROM teacher_profile t
+        WHERE t.unit_id = #{unitId}
+        AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
+        ORDER BY t.seq LIMIT #{offSet},#{pageRow}
+    </select>
+
+    <select id="listTeacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          tId,
+                  t.username    tName,
+                  t.post        tPost,
+                  t.avatar      tAvatar,
+                  t.email       tEmail,
+                  t.department_name     tDepartment_name,
+                  t.work_place      tWork_place,
+                  t.degree      tDegree
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY t.seq, update_time DESC  LIMIT
+            #{offSet},#{pageRow}
+    </select>
+
+    <select id="letterTeacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          tId,
+                  t.username    tName,
+                  t.post        tPost,
+                  t.avatar      tAvatar,
+                  t.email       tEmail,
+                  t.department_name     tDepartment_name,
+                  t.work_place      tWork_place,
+                  t.degree      tDegree
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId} AND t.pinyin LIKE #{letter}"%" ORDER BY t.pinyin, update_time
+        DESC
+         LIMIT
+            #{offSet},#{pageRow}
+    </select>
+
+    <select id="listTeacherAll" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          tId,
+                  t.username    tName,
+                  t.post        tPost,
+                  t.avatar      tAvatar
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY t.seq,CONVERT(t.username  USING gbk)
+    </select>
+    <!--注：此处和上面函数只是别名的区别-->
+    <select id="listTeacherAllTWO" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          id,
+                  t.username    name,
+                  t.post        post,
+                  t.avatar      avatar
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY t.seq,CONVERT(t.username  USING gbk)
+    </select>
+
+    <select id="getUnitIdBytId" resultType="Integer">
+        SELECT  t.unit_id unitId
+        FROM teacher_profile t
+        WHERE t.id = #{id}
+    </select>
+
+    <select id="getScholatUername" resultType="String">
+        SELECT  t.scholat_username
+        FROM teacher_profile t
+        WHERE t.id = #{id}
+    </select>
+
+    <select id="getScholatInfo" resultType="com.alibaba.fastjson.JSONObject">
+        select * from user_profile u
+        where u.acc_name = #{username}
+    </select>
+    <select id="getScholatID" resultType="Long">
+        select acc_id from user_profile where acc_name = #{username}
+    </select>
+    <select id="getLocalScholatFriends" resultType="com.alibaba.fastjson.JSONObject">
+        select
+        u.acc_id                id,
+        u.acc_name			scholat_username,
+        u.chinese_name 	    chinese_name,
+        u.degree			degree,
+        u.work_unit			work_unit,
+         u.address			address,
+        u.scholar_title     scholat_title,
+        u.scholar_field     scholat_field,
+        u.picture_url       picture_url,
+        u.work_email		email
+        from user_profile u join
+        (select user2 friends from friends_relation where user1 = #{arg0}
+        union
+        select user1 from friends_relation where user2 = #{arg0})
+        as a
+        on a.friends = u.acc_id
+    </select>
+    <select id="getLocalScholatFans" resultType="com.alibaba.fastjson.JSONObject">
+        select
+        u.acc_id                id,
+        u.acc_name			scholat_username,
+        u.chinese_name 	chinese_name,
+        u.degree				degree,
+        u.work_unit			work_unit,
+          u.address			address,
+        u.scholar_title     scholat_title,
+        u.scholar_field     scholat_field,
+        u.picture_url       picture_url,
+        u.work_email		email
+        from user_profile u join
+        (
+        SELECT sender fans from pending_request where receiver=#{arg0}
+        )
+        as a
+        on a.fans = u.acc_id
+    </select>
+    <select id="getLocalScholatWatchs" resultType="com.alibaba.fastjson.JSONObject">
+        select
+        u.acc_id                id,
+        u.acc_name			scholat_username,
+        u.chinese_name 	    chinese_name,
+        u.degree		    degree,
+        u.work_unit			work_unit,
+       u.address			address,
+        u.scholar_title     scholat_title,
+        u.scholar_field     scholat_field,
+        u.picture_url       picture_url,
+        u.work_email		email
+        from user_profile u join
+        (
+        SELECT receiver fans from pending_request where sender=#{arg0}
+        )
+        as a
+        on a.fans = u.acc_id
+    </select>
+    <select id="getLocalScholatPaper" resultType="com.alibaba.fastjson.JSONObject">
+        select * from scholar_paper where acc_id = #{scholatID}
+    </select>
+
+    <select id="getScholatPersona_keywords" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT paper_keywords,intro_keywords from persona_user_scholat where scholat_username = #{username}
+    </select>
+
+    <select id="getLocalInfo" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT * from teacher_profile where id = #{arg1}
+    </select>
+
+    <select id="getLocalKeywords" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT keywords from persona_user_local where user_id = #{arg0}
+    </select>
+    <select id="getPersonaRecommendUsers" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT recommend_user from persona_user_scholat where scholat_id = (select id from account where username = #{username})
+    </select>
+    <select id="getScholatUernameByScholatID" resultType="String">
+        SELECT username from account where id = #{l}
+    </select>
+    <select id="getScholatInfoSimple" resultType="com.alibaba.fastjson.JSONObject">
+        select
+        u.acc_id                id,
+        u.acc_name			scholat_username,
+        u.chinese_name 	    chinese_name,
+        u.degree		    degree,
+        u.work_unit			work_unit,
+       u.address			address,
+        u.scholar_title     scholat_title,
+        u.scholar_field     scholat_field,
+        u.picture_url       picture_url,
+        u.work_email		email
+        from user_profile u
+        where acc_name=#{scholat_username}
+    </select>
+    <select id="getLocalRecommendUsers" resultType="com.alibaba.fastjson.JSONObject">
+        select recommend_user from persona_user_local u where u.user_id=#{local_id}
+    </select>
+    <select id="getUnionRecommendUsers" resultType="com.alibaba.fastjson.JSONObject">
+        select recommend_union from persona_user_local u where u.user_id=#{local_id}
+    </select>
+    <select id="getLocalScholatFriends_trust1" resultType="com.alibaba.fastjson.JSONObject">
+        select *  from local_scholat_relation where sender =#{arg0} and receiver=#{arg1}
+    </select>
+    <select id="getLocalScholatFriends_trust2" resultType="com.alibaba.fastjson.JSONObject">
+        select *  from local_scholat_relation where sender =#{arg1} and receiver=#{arg0}
+    </select>
+    <select id="getLocalScholatFans_trust" resultType="com.alibaba.fastjson.JSONObject">
+        select *  from local_scholat_relation where sender =#{arg1} and receiver=#{arg0}
+    </select>
+    <select id="getLocalScholatWatchs_trust" resultType="com.alibaba.fastjson.JSONObject">
+        select *  from local_scholat_relation where sender =#{arg0} and receiver=#{arg1}
+    </select>
+    <select id="getFirstLetterFromTeacher" resultType="com.alibaba.fastjson.JSONObject">
+        select t.pinyin pinyin,
+         t.unit_id unitId
+         from teacher_profile t where t.id=#{tId}
+    </select>
+    <select id="listTeacherByletter" resultType="com.alibaba.fastjson.JSONObject">
+                    SELECT
+            t.id         tId,
+            t.username   tName,
+            t.avatar     tAvatar,
+            t.post       tPost,
+            t.email       tEmail,
+						t.department_name     tDepartment_name,
+						t.work_place      tWork_place,
+						t.degree      tDegree,
+						t.scholat_username        tScholat_username,
+						t.qrcode      tQrcode
+            FROM teacher_profile t
+            WHERE  t.pinyin LIKE #{letter}"%"  AND t.unit_id = #{unitId} And t.id !=#{tId}
+            ORDER BY t.pinyin LIMIT #{offSet},#{pageRow}
+    </select>
+    <select id="listScholatTeacherRecommend" resultType="com.alibaba.fastjson.JSONObject">
+           select recommend_union from persona_user_local u where u.user_id=#{tId}
+    </select>
+    <select id="getLocalInfoByID" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+            t.id         tId,
+            t.username   tName,
+            t.avatar     tAvatar,
+            t.post       tPost,
+            t.email       tEmail,
+						t.department_name     tDepartment_name,
+						t.work_place      tWork_place,
+						t.degree      tDegree,
+						t.scholat_username        tScholat_username,
+						t.qrcode      tQrcode
+            FROM teacher_profile t
+             where t.id = #{arg0}
+    </select>
+
+</mapper>

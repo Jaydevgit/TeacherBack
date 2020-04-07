@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.teacher.scholat.controller.ManagerController</OriginalElement>
+  <nodes>
+    <node x="1.25" y="269.0">com.teacher.scholat.controller.ManagerController</node>
+    <node x="178.0" y="0.0">org.springframework.web.bind.annotation.RequestMapping</node>
+    <node x="0.0" y="80.5">org.springframework.web.bind.annotation.RestController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.teacher.scholat.controller.ManagerController" target="org.springframework.web.bind.annotation.RequestMapping">
+      <point x="89.5" y="-121.5" />
+      <point x="269.75" y="244.0" />
+      <point x="281.5" y="244.0" />
+      <point x="0.0" y="109.5" />
+    </edge>
+    <edge source="com.teacher.scholat.controller.ManagerController" target="org.springframework.web.bind.annotation.RestController">
+      <point x="-89.5" y="-121.5" />
+      <point x="90.75" y="244.0" />
+      <point x="79.0" y="244.0" />
+      <point x="0.0" y="29.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="541.0" y="327.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

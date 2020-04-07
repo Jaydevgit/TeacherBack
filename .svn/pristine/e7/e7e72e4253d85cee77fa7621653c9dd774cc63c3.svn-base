@@ -1,0 +1,92 @@
+Index: src/main/java/com/heeexy/example/controller/ManagerController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/heeexy/example/controller/ManagerController.java	(revision 119)
++++ src/main/java/com/heeexy/example/controller/ManagerController.java	(date 1560563903314)
+@@ -12,8 +12,7 @@
+ import javax.servlet.http.HttpServletRequest;
+ import java.text.ParseException;
+ import java.text.SimpleDateFormat;
+-import java.util.Date;
+-import java.util.List;
++import java.util.*;
+ 
+ /**
+  * @author:
+@@ -48,46 +47,33 @@
+ 	public JSONObject addTeacher(@RequestBody JSONObject requestJson) {
+ 		System.out.println("........新增中");
+ 		System.out.println("前台传过来的新增数据为: "+requestJson);
+-		CommonUtil.hasAllRequired(requestJson, "name");
+-		CommonUtil.hasAllRequired(requestJson, "sex");
++		CommonUtil.hasAllRequired(requestJson, "username");
+ 		CommonUtil.hasAllRequired(requestJson, "email");
+-		CommonUtil.hasAllRequired(requestJson, "phone");
+ 		CommonUtil.hasAllRequired(requestJson, "post");
+ 		CommonUtil.hasAllRequired(requestJson, "create_time");
+-		CommonUtil.hasAllRequired(requestJson, "intro");
+-		CommonUtil.hasAllRequired(requestJson, "avatar");
++		CommonUtil.hasAllRequired(requestJson, "state");
+ 		System.out.println("........验证完毕, 有必填字段");
+-		/*int teacher_id = managerService.addTeacher(requestJson);
+-		System.out.println("找到自增id....."+ teacher_id);*/
+-		Teacher teacher = new Teacher();
+-		teacher.setUsername(requestJson.get("name").toString());
++
++/*		Teacher teacher = new Teacher();
++		teacher.setUsername(requestJson.get("username").toString());
+ 		teacher.setAvatar(requestJson.get("avatar").toString());
+ 		teacher.setSex(Integer.parseInt(requestJson.get("sex").toString()));
+ 		teacher.setPost(requestJson.get("post").toString());
+ 		teacher.setIntro(requestJson.get("intro").toString());
+ 		teacher.setEmail(requestJson.get("email").toString());
+-		teacher.setViews(Integer.parseInt(requestJson.get("views").toString()));
+-		teacher.setPhone(Long.parseLong(requestJson.get("phone").toString()));
+-		teacher.setDepartment_id(Integer.parseInt(requestJson.get("department_id").toString()));
+-		/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+-		try {
+-			System.out.println(">>>>>>>>>>未格式化教师的创建时间为...."+requestJson.get("create_time").toString());
+-			Date utilDate = sdf.parse(requestJson.get("create_time").toString());
+-			Date date = new java.sql.Date(utilDate.getTime());
+-			teacher.setCreate_time(date);
+-			System.out.println("教师的创建时间为...."+date);
+-		} catch (ParseException e) {
+-			e.printStackTrace();
+-		}*/
+ 		teacher.setCreate_time(requestJson.get("create_time").toString());
+-		teacher.setDepartment_name(requestJson.get("department_name").toString());
++		teacher.setDepartment_name(requestJson.get("department_name").toString());*/
++        Teacher teacher = JSONObject.toJavaObject(requestJson,Teacher.class);
++        System.out.println("*************************************");
++        System.out.println("********"+teacher.getUsername());
+ 
+-		managerService.addTeacher(teacher);
++		//managerService.addTeacher(teacher);
++        managerService.addTeacher(teacher);
+ 
+-		System.out.println("___________________________"+teacher.getId());
+-		requestJson.put("teacher_id",teacher.getId());
++        System.out.println("___________________________"+teacher.getId());
++        requestJson.put("teacher_id",teacher.getId());
+ 
+-		return managerService.addUnitTeacherRelationship(requestJson);
++        return CommonUtil.successJson();
+ 	}
+ 
+ 	/**
+Index: src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>GBK
+===================================================================
+--- src/main/resources/application.properties	(revision 119)
++++ src/main/resources/application.properties	(date 1560389304975)
+@@ -1,5 +1,5 @@
+ #起别名。可省略写mybatis的xml中的resultType的全路径
+-mybatis.type-aliases-package=com.zhu.pojo
++mybatis.type-aliases-package=com.alibaba.fastjson.JSONObject
+ #ftp相关配置
+ FTP.ADDRESS=192.168.66.175
+ FTP.PORT=21

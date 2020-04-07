@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heeexy.example.dao.ScholatDao">
+
+    <select id="countApply" resultType="Integer">
+        SELECT count(0)
+        FROM unit_apply u
+        WHERE u.state =  #{state}
+    </select>
+
+    <select id="countUnit" resultType="Integer">
+        SELECT count(0)
+        FROM unit_profile u
+        where u.role_id = "1"
+    </select>
+    <select id="countUnitBlack" resultType="Integer">
+        SELECT count(0)
+        FROM unit_profile u
+        where u.role_id = "1" and u.state = "-1"
+    </select>
+
+    <select id="listApply" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.id                                      id,
+        t.school_name                             school_name,
+        t.unit_name                               unit_name,
+        t.school_eng					          school_eng,
+        t.unit_eng					              unit_eng,
+        t.certificate_logo                        certificate_logo,
+        t.certificate_front                       certificate_front,
+        t.certificate_back                        certificate_back,
+        t.certificate_working                     certificate_working,
+        t.phone                                   phone,
+        t.email                                   email,
+        t.state                                   state,
+        t.chinese_name                            chinese_name,
+        t.token                                   token,
+        date_format(t.update_time, '%Y.%m.%d %T') update_time
+        FROM unit_apply t
+        WHERE t.state = #{state}
+        ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
+    </select>
+
+    <select id="listUnitAll" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.id                                          id,
+        t.nickname                                    nickname,
+        t.username                                    username,
+        t.unit_id                                     unitId,
+        school_unit.school_name						  school_name,
+        school_unit.unit_name						  unit_name,
+        school_unit.school_eng						  school_eng,
+        school_unit.unit_eng						  unit_eng,
+        school_unit.college_url						  college_url,
+        school_unit.logo_url						  logo_url,
+        t.role_id                                     roleId,
+        sys_role.role_name                            roleName,
+        t.state                                       state,
+        date_format(t.update_time, '%Y.%m.%d %T')     update_time
+		from
+        (select * FROM unit_profile u where u.role_id = "1") t  LEFT JOIN sys_role ON t.role_id = sys_role.id
+        left join school_unit on school_unit.id = t.unit_id
+        ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
+    </select>
+    <select id="listUnitBlack" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.id                                          id,
+        t.nickname                                    nickname,
+        t.username                                    username,
+        t.unit_id                                     unitId,
+        school_unit.school_name						  school_name,
+        school_unit.unit_name						  unit_name,
+        school_unit.college_url						  college_url,
+        school_unit.logo_url						  logo_url,
+        t.role_id                                     roleId,
+        sys_role.role_name                            roleName,
+        t.state                                       state,
+        date_format(t.update_time, '%Y.%m.%d %T')     update_time
+		from
+        (select * FROM unit_profile u where u.role_id = "1" and  u.state = "-1") t
+        LEFT JOIN sys_role ON t.role_id = sys_role.id
+        left join school_unit on school_unit.id = t.unit_id
+        ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
+    </select>
+    <select id="getApplyInfo" resultType="com.alibaba.fastjson.JSONObject">
+        select *
+        from unit_apply
+        where id = #{apply_id}
+    </select>
+
+    <insert id="addApplyToSchoolUnit" useGeneratedKeys="true"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO school_unit
+        (school_name,
+        unit_name)
+        VALUES
+        (#{school_name},
+        #{unit_name})
+        <selectKey resultType="int" keyProperty="unit_id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <insert id="addApplyToUnitProfile" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO unit_profile
+        (nickname,
+        username,
+        password,
+        unit_id,
+        role_id,
+        state,
+        create_time,
+        update_time,
+        certificate_front,
+        certificate_back,
+        certificate_working,
+        phone,
+        email)
+        VALUES
+        (#{chinese_name},
+        #{username},
+        #{password},
+        #{unit_id},
+        1,
+        1,
+        #{update_time},
+        #{update_time},
+        #{certificate_front},
+        #{certificate_back},
+        #{certificate_working},
+        #{phone},
+        #{email})
+        <selectKey resultType="int" keyProperty="unit_profile_id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <insert id="addApplyToLogin" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO login
+        (user_id,
+        role,
+        username,
+        nickname,
+        password,
+        state,
+        update_time)
+        VALUES
+        (#{unit_profile_id},
+        "unit",
+        #{username},
+        #{chinese_name},
+        #{password},
+        1,
+        #{update_time})
+        <selectKey resultType="int" keyProperty="login_id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <select id="applyValidateUnitApply" resultType="Integer">
+        select count(0)
+        from unit_apply
+        where username = #{username}
+    </select>
+    <select id="applyValidateUnitProfile" resultType="Integer">
+        select count(0)
+        from unit_profile
+        where username = #{username}
+    </select>
+    <update id="updateApplySuccess" >
+        update unit_apply
+        set state = 0
+        where id = #{id}
+    </update>
+    <update id="updateApplyModify" >
+        update unit_apply
+        set state = 2
+        where id = #{id}
+    </update>
+    <update id="updateApplyBlack" >
+        update unit_apply
+        set state = -1
+        where id = #{id}
+    </update>
+    <update id="updateCancelBlackApply" >
+        update unit_apply
+        set state = 1
+        where id = #{id}
+    </update>
+
+</mapper>

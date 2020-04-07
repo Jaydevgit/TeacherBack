@@ -1,0 +1,33 @@
+package com.teacher.scholat.service;
+
+import com.alibaba.fastjson.JSONObject;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+
+public interface TeacherService {
+    // 询询教师信息
+    JSONObject getTeacherInfo(Long id);
+
+    // 获取最新更新教师List
+    List<JSONObject> getUpdatedTeacherList(Long unitId);
+
+    // 获取热门教师List
+    List<JSONObject> getHotTeacherList(Long unitId);
+
+
+    //获取学院教师(分页)
+    JSONObject listTeacher(JSONObject jsonObject);
+
+    //获取学院教师(不分页)
+    JSONObject listTeacherAll(JSONObject jsonObject);
+
+    //获取首字母学院教师（分页）
+    JSONObject letterTeacher(JSONObject jsonObject);
+
+    //搜索教师
+    JSONObject searchTeacher(JSONObject jsonObject);
+
+    JSONObject getUnitIdBytId(JSONObject jsonObject);
+}

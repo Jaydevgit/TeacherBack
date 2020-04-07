@@ -1,0 +1,7 @@
+2019-12-27 01:15:45.086 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=3h18s936ms).
+2019-12-27 02:15:43.458 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=59m58s389ms).
+2019-12-27 05:15:53.115 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=3h9s619ms).
+2019-12-27 08:45:46.092 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=3h29m53s4ms).
+2019-12-27 13:16:00.825 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=4h30m14s744ms).
+2019-12-27 14:42:34.195 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1h26m33s368ms).
+2019-12-27 14:47:02.466 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2m24s194ms).

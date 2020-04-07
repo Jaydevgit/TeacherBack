@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.teacher.scholat.dao.RegisterDao">
+
+    <insert id="addApply" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO unit_apply
+        (school_name,
+        unit_name,
+        school_eng,
+        unit_eng,
+        certificate_front,
+        certificate_back,
+        certificate_working,
+        username,
+        certificate_logo,
+        chinese_name,
+        phone,
+        email,
+        state,
+        token,
+        update_time,
+        password)
+        VALUES
+        (#{school_name},
+        #{unit_name},
+        #{school_eng},
+        #{unit_eng},
+        #{certificate_front},
+        #{certificate_back},
+        #{certificate_working},
+        #{username},
+        #{certificate_logo},
+        #{chinese_name},
+        #{phone},
+        #{email},
+        #{state},
+        #{token},
+        #{update_time},
+        #{password})
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+
+
+    <select id="judgeUnitExist" resultType="Integer">
+        select count(0)
+        from unit_apply
+        where school_name = #{school_name} and unit_name = #{unit_name}
+    </select>
+    <select id="judgeSchoolUnitExist" resultType="Integer">
+        select count(0)
+        from school_unit
+        where school_name = #{school_name} and unit_name = #{unit_name}
+    </select>
+
+    <select id="getApplyInfo" resultType="com.alibaba.fastjson.JSONObject">
+        select
+        id,school_name,unit_name,certificate_front,certificate_back,
+        certificate_working,phone,email,chinese_name,username
+        from unit_apply
+        where token = #{token}
+    </select>
+
+
+</mapper>

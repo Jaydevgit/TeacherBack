@@ -1,0 +1,412 @@
+2019-06-23 01:16:42.740 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 01:16:42.740 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(String)
+2019-06-23 01:16:42.775 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-06-23 01:16:42.961 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 01:16:42.962 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(Long)
+2019-06-23 01:16:42.963 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-06-23 01:16:42.963 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 01:16:42.964 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 01:16:42.965 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 8
+2019-06-23 16:07:48.122 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:07:48.123 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(String), 计算机科学系(String)
+2019-06-23 16:07:48.228 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 2
+2019-06-23 16:07:49.721 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:07:49.722 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(Long)
+2019-06-23 16:07:49.724 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-06-23 16:07:49.724 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:07:49.724 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:07:49.728 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 8
+2019-06-23 16:07:58.446 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:07:58.446 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long)
+2019-06-23 16:07:58.447 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-06-23 16:07:58.447 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:07:58.447 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:07:58.448 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 8
+2019-06-23 16:07:59.144 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:07:59.145 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(String), 计算机科学系(String)
+2019-06-23 16:07:59.145 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 2
+2019-06-23 16:08:00.142 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:08:00.142 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long)
+2019-06-23 16:08:00.143 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-06-23 16:08:00.143 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:08:00.143 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:08:00.144 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 8
+2019-06-23 16:12:51.016 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:12:51.016 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(String)
+2019-06-23 16:12:51.064 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-06-23 16:12:51.239 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:12:51.240 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long)
+2019-06-23 16:12:51.243 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-06-23 16:12:51.243 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:12:51.243 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:12:51.248 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 8
+2019-06-23 16:12:56.174 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:12:56.174 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:12:56.174 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(Long)
+2019-06-23 16:12:56.174 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(String)
+2019-06-23 16:12:56.176 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-06-23 16:12:56.176 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-06-23 16:12:56.179 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:12:56.180 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:12:56.182 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 8
+2019-06-23 16:12:56.473 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.college_url collegeUrl, u.pic_url picUrl FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:12:56.474 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(String)
+2019-06-23 16:12:56.475 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-06-23 16:19:49.692 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:19:49.692 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(String)
+2019-06-23 16:19:49.694 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-06-23 16:19:49.892 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:19:49.893 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long)
+2019-06-23 16:19:49.894 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-06-23 16:19:49.895 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:19:49.895 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:19:49.897 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 8
+2019-06-23 16:41:57.252 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:41:57.252 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(String)
+2019-06-23 16:41:57.253 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-06-23 16:41:57.458 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:41:57.458 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long)
+2019-06-23 16:41:57.465 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-06-23 16:41:57.466 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:41:57.467 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:41:57.469 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 8
+2019-06-23 16:42:18.229 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:42:18.229 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(String), 计算机科学系(String)
+2019-06-23 16:42:18.231 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 2
+2019-06-23 16:42:18.893 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:42:18.894 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(String), 计算机应用系(String)
+2019-06-23 16:42:18.896 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 4
+2019-06-23 16:42:19.851 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:42:19.852 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(String), 计算机网络系(String)
+2019-06-23 16:42:19.853 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 0
+2019-06-23 16:42:21.421 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:42:21.421 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(Long)
+2019-06-23 16:42:21.423 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-06-23 16:42:21.423 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:42:21.423 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:42:21.425 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 8
+2019-06-23 16:42:23.219 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:42:23.219 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(String), 计算机科学系(String)
+2019-06-23 16:42:23.220 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 2
+2019-06-23 16:42:23.757 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:42:23.757 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(String), 计算机应用系(String)
+2019-06-23 16:42:23.758 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 4
+2019-06-23 16:42:24.554 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:42:24.554 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(String), 计算机网络系(String)
+2019-06-23 16:42:24.556 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 0
+2019-06-23 16:51:46.516 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:51:46.517 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(String)
+2019-06-23 16:51:46.518 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-06-23 16:51:46.752 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:51:46.753 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(String)
+2019-06-23 16:51:46.754 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-06-23 16:51:46.815 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:51:46.815 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long)
+2019-06-23 16:51:46.816 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-06-23 16:51:46.817 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:51:46.817 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:51:46.818 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 8
+2019-06-23 16:52:09.913 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:52:09.914 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(String)
+2019-06-23 16:52:09.914 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-06-23 16:52:10.146 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:52:10.146 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(String)
+2019-06-23 16:52:10.147 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-06-23 16:52:10.214 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:52:10.215 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long)
+2019-06-23 16:52:10.216 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-06-23 16:52:10.216 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:52:10.217 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:52:10.218 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 8
+2019-06-23 16:53:16.730 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:53:16.730 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(String)
+2019-06-23 16:53:16.731 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-06-23 16:53:16.966 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:53:16.966 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(String)
+2019-06-23 16:53:16.968 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-06-23 16:53:17.031 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:53:17.031 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(Long)
+2019-06-23 16:53:17.032 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-06-23 16:53:17.032 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:53:17.033 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:53:17.034 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 8
+2019-06-23 16:53:22.515 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:53:22.516 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(String)
+2019-06-23 16:53:22.516 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.college_url collegeUrl, u.pic_url picUrl FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:53:22.516 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(String)
+2019-06-23 16:53:22.517 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-06-23 16:53:22.564 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-06-23 16:53:22.815 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:53:22.815 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(String)
+2019-06-23 16:53:22.817 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-06-23 16:53:22.819 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:53:22.819 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long)
+2019-06-23 16:53:22.822 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-06-23 16:53:22.823 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:53:22.824 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:53:22.826 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 8
+2019-06-23 16:53:24.309 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:24.309 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(String), 软件工程(String)
+2019-06-23 16:53:24.311 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 2
+2019-06-23 16:53:24.958 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:24.958 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(String), 网络工程(String)
+2019-06-23 16:53:24.963 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-06-23 16:53:25.803 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:25.803 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(String), 大数据(String)
+2019-06-23 16:53:25.804 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 0
+2019-06-23 16:53:26.053 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:26.053 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(String), 数据挖掘(String)
+2019-06-23 16:53:26.054 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 0
+2019-06-23 16:53:26.508 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:26.508 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(String), 人工智能(String)
+2019-06-23 16:53:26.510 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 0
+2019-06-23 16:53:27.266 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:27.267 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(String), 大数据(String)
+2019-06-23 16:53:27.268 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 0
+2019-06-23 16:53:27.539 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:27.539 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(String), 网络工程(String)
+2019-06-23 16:53:27.540 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-06-23 16:53:28.370 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:28.371 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(String), 软件工程(String)
+2019-06-23 16:53:28.372 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 2
+2019-06-23 16:53:29.700 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:29.701 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(String), 计算机科学系(String)
+2019-06-23 16:53:29.702 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 2
+2019-06-23 16:53:30.604 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:30.604 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(String), 计算机应用系(String)
+2019-06-23 16:53:30.606 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 4
+2019-06-23 16:53:30.931 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:30.931 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(String), 计算机网络系(String)
+2019-06-23 16:53:30.933 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 0
+2019-06-23 16:53:32.780 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:53:32.780 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long)
+2019-06-23 16:53:32.782 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-06-23 16:53:32.782 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:53:32.782 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:53:32.783 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 8
+2019-06-23 16:53:44.546 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:53:44.547 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long)
+2019-06-23 16:53:44.548 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-06-23 16:53:44.548 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 16:53:44.548 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 16:53:44.549 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 8
+2019-06-23 16:53:45.974 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:45.975 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(String), 计算机科学系(String)
+2019-06-23 16:53:45.982 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 2
+2019-06-23 16:53:47.074 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:47.074 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(String), 计算机应用系(String)
+2019-06-23 16:53:47.079 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 4
+2019-06-23 16:53:47.403 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:53:47.404 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(String), 计算机科学系(String)
+2019-06-23 16:53:47.405 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 2
+2019-06-23 16:53:59.432 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT u.id userId, u.username username, u.password password FROM unit_profile u WHERE u.username = ? AND u.password = ? AND u.state = '1' 
+2019-06-23 16:53:59.433 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: scnu(String), 123456(String)
+2019-06-23 16:53:59.556 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-06-23 16:53:59.569 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-06-23 16:53:59.571 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: scnu(String)
+2019-06-23 16:53:59.697 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 11
+2019-06-23 16:54:00.121 INFO  --- [UserRealm.java:36][http-nio-8080-exec-3] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"nick1","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-06-23 16:54:00.122 INFO  --- [UserRealm.java:37][http-nio-8080-exec-3] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-06-23 16:54:00.123 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 16:54:00.123 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(Long)
+2019-06-23 16:54:00.124 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-06-23 16:54:00.125 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT t.id id, t.username name, t.avatar avatar, t.state state, t.views views, date_format(u.introUpdateTime , '%Y.%m.%d %T') scholat_update_time, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t left join `user_profile` u on t.scholat_username = u.acc_name and t.unit_id = ? ORDER BY scholat_update_time desc LIMIT ?,? 
+2019-06-23 16:54:00.125 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-06-23 16:54:00.936 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY a.id 
+2019-06-23 16:54:00.936 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(String)
+2019-06-23 16:54:00.964 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 5
+2019-06-23 16:54:01.999 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 8
+2019-06-23 16:54:02.260 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT ct.id ctId, ct.seq tSeq, t.id tId, t.username tName, t.avatar tAvatar, t.post tPost FROM catalogue_teacher ct LEFT JOIN teacher_profile t ON t.id = ct.teacher_id WHERE ct.catalogue_id = ? AND t.state = 1 AND (ct.is_deleted is null OR ct.is_deleted !=1) 
+2019-06-23 16:54:02.261 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 7(String)
+2019-06-23 16:54:02.298 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 3
+2019-06-23 16:54:03.850 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT ct.id ctId, ct.seq tSeq, t.id tId, t.username tName, t.avatar tAvatar, t.post tPost FROM catalogue_teacher ct LEFT JOIN teacher_profile t ON t.id = ct.teacher_id WHERE ct.catalogue_id = ? AND t.state = 1 AND (ct.is_deleted is null OR ct.is_deleted !=1) 
+2019-06-23 16:54:03.850 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 9(String)
+2019-06-23 16:54:03.875 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 4
+2019-06-23 16:54:05.534 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 16:54:05.535 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(String)
+2019-06-23 16:54:05.536 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-06-23 16:54:05.851 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:54:05.851 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(String), 计算机科学系(String)
+2019-06-23 16:54:05.852 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 2
+2019-06-23 16:54:06.837 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:54:06.837 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(String), 计算机应用系(String)
+2019-06-23 16:54:06.839 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 4
+2019-06-23 16:54:08.163 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 16:54:08.164 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(String), 计算机网络系(String)
+2019-06-23 16:54:08.165 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 0
+2019-06-23 16:54:15.447 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY a.id 
+2019-06-23 16:54:15.447 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(String)
+2019-06-23 16:54:15.449 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 5
+2019-06-23 17:10:26.612 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:10:26.612 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.college_url collegeUrl, u.pic_url picUrl FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:10:26.614 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(String)
+2019-06-23 17:10:26.614 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(String)
+2019-06-23 17:10:26.616 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:10:26.616 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(String)
+2019-06-23 17:10:26.619 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 17:10:26.620 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(Long)
+2019-06-23 17:10:26.649 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-06-23 17:10:26.649 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 17:10:26.650 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 17:10:26.651 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 8
+2019-06-23 17:10:26.653 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-06-23 17:10:26.655 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-06-23 17:10:26.655 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-06-23 17:10:33.797 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 17:10:33.797 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(String), 计算机科学系(String)
+2019-06-23 17:10:33.798 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 2
+2019-06-23 17:11:34.788 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-06-23 17:11:34.789 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: scnu(String)
+2019-06-23 17:11:34.790 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 11
+2019-06-23 17:11:34.852 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.college_url collegeUrl, u.pic_url picUrl FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:11:34.853 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(String)
+2019-06-23 17:11:34.854 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:11:34.854 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(String)
+2019-06-23 17:11:34.855 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-06-23 17:11:34.855 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-06-23 17:11:35.156 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:11:35.156 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 17:11:35.156 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(String)
+2019-06-23 17:11:35.156 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long)
+2019-06-23 17:11:35.158 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-06-23 17:11:35.199 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-06-23 17:11:35.199 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 17:11:35.199 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 17:11:35.201 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 8
+2019-06-23 17:13:28.921 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-06-23 17:13:28.921 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: scnu(String)
+2019-06-23 17:13:28.970 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 11
+2019-06-23 17:13:29.028 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.college_url collegeUrl, u.pic_url picUrl FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:13:29.028 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(String)
+2019-06-23 17:13:29.030 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-06-23 17:13:29.237 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:13:29.237 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(String)
+2019-06-23 17:13:29.238 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-06-23 17:13:29.330 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 17:13:29.330 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long)
+2019-06-23 17:13:29.330 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:13:29.330 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(String)
+2019-06-23 17:13:29.331 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-06-23 17:13:29.331 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-06-23 17:13:29.331 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 17:13:29.331 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 17:13:29.333 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 8
+2019-06-23 17:16:07.833 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-06-23 17:16:07.833 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: scnu(String)
+2019-06-23 17:16:07.835 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 11
+2019-06-23 17:16:07.895 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.college_url collegeUrl, u.pic_url picUrl FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:16:07.896 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(String)
+2019-06-23 17:16:07.898 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-06-23 17:16:08.139 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:16:08.139 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(String)
+2019-06-23 17:16:08.140 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-06-23 17:16:08.195 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:16:08.196 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(String)
+2019-06-23 17:16:08.197 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-06-23 17:16:08.198 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 17:16:08.199 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long)
+2019-06-23 17:16:08.200 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-06-23 17:16:08.201 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 17:16:08.202 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 17:16:08.203 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 8
+2019-06-23 17:16:14.691 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 17:16:14.691 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(String), 软件工程(String)
+2019-06-23 17:16:14.693 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 2
+2019-06-23 17:16:15.873 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 17:16:15.873 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(String), 网络工程(String)
+2019-06-23 17:16:15.913 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-06-23 17:16:16.692 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 17:16:16.692 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(String), 计算机网络系(String)
+2019-06-23 17:16:16.694 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 0
+2019-06-23 17:16:19.041 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 17:16:19.041 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(String), 计算机科学系(String)
+2019-06-23 17:16:19.042 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 2
+2019-06-23 17:16:20.562 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 17:16:20.563 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(String), 计算机应用系(String)
+2019-06-23 17:16:20.564 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 4
+2019-06-23 17:16:22.863 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 17:16:22.864 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(String), 软件工程(String)
+2019-06-23 17:16:22.865 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 2
+2019-06-23 17:16:24.770 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 17:16:24.771 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(String), 大数据(String)
+2019-06-23 17:16:24.772 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 0
+2019-06-23 17:17:02.234 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-06-23 17:17:02.235 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: scnu(String)
+2019-06-23 17:17:02.277 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 11
+2019-06-23 17:17:02.327 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.college_url collegeUrl, u.pic_url picUrl FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:17:02.328 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(String)
+2019-06-23 17:17:02.329 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-06-23 17:17:02.546 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:17:02.546 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(String)
+2019-06-23 17:17:02.547 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-06-23 17:17:02.629 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:17:02.629 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 17:17:02.629 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(String)
+2019-06-23 17:17:02.629 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(Long)
+2019-06-23 17:17:02.631 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-06-23 17:17:02.631 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 17:17:02.631 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 17:17:02.633 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 8
+2019-06-23 17:17:02.640 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-06-23 17:17:06.539 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-06-23 17:17:06.540 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: scnu(String)
+2019-06-23 17:17:06.544 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 11
+2019-06-23 17:17:06.602 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.college_url collegeUrl, u.pic_url picUrl FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:17:06.602 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(String)
+2019-06-23 17:17:06.604 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-06-23 17:17:06.901 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:17:06.902 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(String)
+2019-06-23 17:17:06.903 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-06-23 17:17:06.904 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 17:17:06.904 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 17:17:06.905 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(String)
+2019-06-23 17:17:06.905 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(Long)
+2019-06-23 17:17:06.907 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-06-23 17:17:06.907 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-06-23 17:17:06.907 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 17:17:06.908 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 17:17:06.911 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 8
+2019-06-23 19:52:50.927 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT u.id userId, u.username username, u.password password FROM unit_profile u WHERE u.username = ? AND u.password = ? AND u.state = '1' 
+2019-06-23 19:52:50.927 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: scnu(String), 123456(String)
+2019-06-23 19:52:50.953 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-06-23 19:52:50.967 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-06-23 19:52:50.968 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: scnu(String)
+2019-06-23 19:52:50.976 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 11
+2019-06-23 19:52:51.405 INFO  --- [UserRealm.java:36][http-nio-8080-exec-3] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"nick1","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-06-23 19:52:51.406 INFO  --- [UserRealm.java:37][http-nio-8080-exec-3] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-06-23 19:52:51.406 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 19:52:51.407 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(Long)
+2019-06-23 19:52:51.408 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-06-23 19:52:51.408 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT t.id id, t.username name, t.avatar avatar, t.state state, t.views views, date_format(u.introUpdateTime , '%Y.%m.%d %T') scholat_update_time, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t left join `user_profile` u on t.scholat_username = u.acc_name and t.unit_id = ? ORDER BY scholat_update_time desc LIMIT ?,? 
+2019-06-23 19:52:51.409 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-06-23 19:52:51.634 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 8
+2019-06-23 19:52:53.548 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 19:52:53.548 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(String)
+2019-06-23 19:52:53.550 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-06-23 19:52:53.566 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.subject LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 19:52:53.567 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(String), 软件工程(String)
+2019-06-23 19:52:53.568 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 2
+2019-06-23 19:52:54.582 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 19:52:54.582 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(String)
+2019-06-23 19:52:54.583 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-06-23 19:52:54.834 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.unit_id = ? AND t.department_name LIKE CONCAT(CONCAT('%', ?), '%'); 
+2019-06-23 19:52:54.834 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(String), 计算机科学系(String)
+2019-06-23 19:52:54.835 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 2
+2019-06-23 19:52:54.912 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY a.id 
+2019-06-23 19:52:54.913 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(String)
+2019-06-23 19:52:54.915 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 5
+2019-06-23 19:52:56.472 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.college_url collegeUrl, u.pic_url picUrl FROM school_unit u WHERE u.id = ? 
+2019-06-23 19:52:56.472 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(String)
+2019-06-23 19:52:56.473 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-06-23 19:52:56.491 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT u.department_list departmentList FROM school_unit u WHERE u.id = ? 
+2019-06-23 19:52:56.492 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(String)
+2019-06-23 19:52:56.493 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT u.subject_list subjectList FROM school_unit u WHERE u.id = ? 
+2019-06-23 19:52:56.495 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(String)
+2019-06-23 19:52:56.495 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-06-23 19:52:56.495 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long)
+2019-06-23 19:52:56.495 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-06-23 19:52:56.497 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-06-23 19:52:56.498 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tTitle, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.id LIMIT ?,? 
+2019-06-23 19:52:56.498 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long), 0(Integer), 20(Integer)
+2019-06-23 19:52:56.507 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 8
+2019-06-23 19:52:56.517 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1

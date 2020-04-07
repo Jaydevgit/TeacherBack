@@ -1,0 +1,12 @@
+2019-11-30 00:24:38.332 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=2h17s156ms).
+2019-11-30 00:39:39.205 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=15m801ms).
+2019-11-30 02:40:49.215 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=2h8s899ms).
+2019-11-30 04:41:50.125 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=2h30s104ms).
+2019-11-30 06:42:13.296 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=1h59m52s612ms).
+2019-11-30 08:42:26.700 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=2h13s405ms).
+2019-11-30 08:45:05.179 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=2m38s454ms).
+2019-11-30 09:05:37.871 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=20m32s718ms).
+2019-11-30 09:26:09.434 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=20m31s563ms).
+2019-11-30 09:47:10.188 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=20m30s747ms).
+2019-11-30 10:07:40.545 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=20m30s357ms).
+2019-11-30 10:25:32.217 WARN  --- [HikariPool.java:766][HikariPool-7 housekeeper] - HikariPool-7 - Thread starvation or clock leap detected (housekeeper delta=17m51s672ms).

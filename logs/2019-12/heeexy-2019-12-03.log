@@ -1,0 +1,170 @@
+2019-12-03 00:11:40.864 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m30s477ms).
+2019-12-03 00:32:41.912 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m30s760ms).
+2019-12-03 00:53:13.490 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m31s578ms).
+2019-12-03 01:13:44.590 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m31s100ms).
+2019-12-03 03:30:37.881 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=2h16m22s515ms).
+2019-12-03 05:31:05.292 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=2h28s64ms).
+2019-12-03 07:31:34.662 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=2h28s960ms).
+2019-12-03 08:30:11.407 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=58m6s95ms).
+2019-12-03 08:51:43.203 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m30s951ms).
+2019-12-03 09:00:21.368 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=8m38s165ms).
+2019-12-03 09:20:51.078 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=20m29s710ms).
+2019-12-03 09:48:37.080 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=27m15s993ms).
+2019-12-03 09:53:19.125 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=4m12s37ms).
+2019-12-03 10:50:14.890 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-12-03 10:50:14.915 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: null
+2019-12-03 10:50:16.594 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 0
+2019-12-03 10:50:54.314 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==>  Preparing: SELECT u.user_id userId, u.username username, u.password password, u.role role FROM login u WHERE u.username = ? AND u.password = ? AND u.state = '1' AND u.role = ? 
+2019-12-03 10:50:54.324 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==> Parameters: scnu(String), 1cd61bb103149a08c529c96a31effae2(String), unit(String)
+2019-12-03 10:50:54.641 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - <==      Total: 1
+2019-12-03 10:50:54.712 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-12-03 10:50:54.714 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==> Parameters: scnu(String)
+2019-12-03 10:50:54.851 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - <==      Total: 11
+2019-12-03 10:50:55.302 INFO  --- [UserRealm.java:50][http-nio-8088-exec-7] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-12-03 10:50:55.306 INFO  --- [UserRealm.java:51][http-nio-8088-exec-7] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-12-03 10:50:55.412 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-12-03 10:50:55.413 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==> Parameters: 1(Long)
+2019-12-03 10:50:56.830 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - <==      Total: 1
+2019-12-03 10:50:56.833 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-12-03 10:50:56.835 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-12-03 10:50:56.941 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - <==      Total: 10
+2019-12-03 10:51:33.218 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-12-03 10:51:33.219 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==> Parameters: scnu(String)
+2019-12-03 10:51:33.262 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - <==      Total: 11
+2019-12-03 10:51:33.456 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-12-03 10:51:33.457 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: 124(String)
+2019-12-03 10:51:33.470 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-12-03 10:51:33.471 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==> Parameters: 1(Long)
+2019-12-03 10:51:33.548 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-12-03 10:51:33.548 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==> Parameters: 124(Long)
+2019-12-03 10:51:33.553 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 1
+2019-12-03 10:51:33.638 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - <==      Total: 1
+2019-12-03 10:51:33.639 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-12-03 10:51:33.639 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-12-03 10:51:33.761 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - <==      Total: 1
+2019-12-03 10:51:33.963 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - <==      Total: 15
+2019-12-03 10:51:35.776 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==>  Preparing: select * from user_profile u where u.acc_name = ? 
+2019-12-03 10:51:35.777 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==> Parameters: zhudingju(String)
+2019-12-03 10:51:35.817 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - <==      Total: 1
+2019-12-03 10:51:35.820 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==>  Preparing: SELECT * from teacher_profile where id = ? 
+2019-12-03 10:51:35.821 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==> Parameters: 124(String)
+2019-12-03 10:51:35.864 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - <==      Total: 1
+2019-12-03 10:51:35.866 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==>  Preparing: SELECT keywords from persona_user_local where user_id = ? 
+2019-12-03 10:51:35.866 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==> Parameters: 124(String)
+2019-12-03 10:51:35.909 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - <==      Total: 1
+2019-12-03 10:51:35.909 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==>  Preparing: SELECT paper_keywords,intro_keywords from persona_user_scholat where scholat_username = ? 
+2019-12-03 10:51:35.910 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==> Parameters: zhudingju(String)
+2019-12-03 10:51:36.194 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - <==      Total: 1
+2019-12-03 10:51:37.874 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==>  Preparing: select acc_id from user_profile where acc_name = ? 
+2019-12-03 10:51:37.875 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==> Parameters: zhudingju(String)
+2019-12-03 10:51:37.877 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - <==      Total: 1
+2019-12-03 10:51:37.878 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 friends from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ?) as a on a.friends = u.acc_id 
+2019-12-03 10:51:37.879 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==> Parameters: 2015(Long), 2015(Long)
+2019-12-03 10:51:38.188 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - <==      Total: 224
+2019-12-03 10:51:38.189 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 fans from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ? union SELECT sender fans from pending_request where receiver=? ) as a on a.fans = u.acc_id 
+2019-12-03 10:51:38.189 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==> Parameters: 2015(Long), 2015(Long), 2015(Long)
+2019-12-03 10:51:38.558 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - <==      Total: 278
+2019-12-03 10:51:38.559 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 fans from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ? union SELECT receiver fans from pending_request where sender=? ) as a on a.fans = u.acc_id 
+2019-12-03 10:51:38.559 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==> Parameters: 2015(Long), 2015(Long), 2015(Long)
+2019-12-03 10:51:38.656 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - <==      Total: 299
+2019-12-03 10:59:22.615 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: select acc_id from user_profile where acc_name = ? 
+2019-12-03 10:59:22.630 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: zhudingju(String)
+2019-12-03 10:59:23.178 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 1
+2019-12-03 10:59:23.182 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 friends from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ?) as a on a.friends = u.acc_id 
+2019-12-03 10:59:23.183 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: 2015(Long), 2015(Long)
+2019-12-03 10:59:23.640 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 224
+2019-12-03 10:59:23.641 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 fans from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ? union SELECT sender fans from pending_request where receiver=? ) as a on a.fans = u.acc_id 
+2019-12-03 10:59:23.642 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: 2015(Long), 2015(Long), 2015(Long)
+2019-12-03 10:59:23.785 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 278
+2019-12-03 10:59:23.786 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 fans from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ? union SELECT receiver fans from pending_request where sender=? ) as a on a.fans = u.acc_id 
+2019-12-03 10:59:23.787 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: 2015(Long), 2015(Long), 2015(Long)
+2019-12-03 10:59:23.833 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 299
+2019-12-03 11:11:36.962 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-12-03 11:11:36.969 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==> Parameters: scnu(String)
+2019-12-03 11:11:38.029 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - <==      Total: 11
+2019-12-03 11:11:39.232 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==>  Preparing: select * from user_profile u where u.acc_name = ? 
+2019-12-03 11:11:39.233 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==> Parameters: zhudingju(String)
+2019-12-03 11:11:39.248 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - <==      Total: 1
+2019-12-03 11:11:39.251 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==>  Preparing: SELECT * from teacher_profile where id = ? 
+2019-12-03 11:11:39.252 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==> Parameters: 124(String)
+2019-12-03 11:11:39.506 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - <==      Total: 1
+2019-12-03 11:11:39.508 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==>  Preparing: SELECT keywords from persona_user_local where user_id = ? 
+2019-12-03 11:11:39.510 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==> Parameters: 124(String)
+2019-12-03 11:11:39.517 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - <==      Total: 1
+2019-12-03 11:11:39.518 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==>  Preparing: SELECT paper_keywords,intro_keywords from persona_user_scholat where scholat_username = ? 
+2019-12-03 11:11:39.520 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==> Parameters: zhudingju(String)
+2019-12-03 11:11:39.655 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - <==      Total: 1
+2019-12-03 11:12:32.634 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-12-03 11:12:32.635 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==> Parameters: scnu(String)
+2019-12-03 11:12:32.742 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - <==      Total: 11
+2019-12-03 17:32:14.366 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-12-03 17:32:14.383 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==> Parameters: null
+2019-12-03 17:32:14.440 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - <==      Total: 0
+2019-12-03 17:32:28.888 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: SELECT u.user_id userId, u.username username, u.password password, u.role role FROM login u WHERE u.username = ? AND u.password = ? AND u.state = '1' AND u.role = ? 
+2019-12-03 17:32:28.891 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: sunu(String), 1cd61bb103149a08c529c96a31effae2(String), unit(String)
+2019-12-03 17:32:28.934 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 0
+2019-12-03 17:32:40.896 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==>  Preparing: SELECT u.user_id userId, u.username username, u.password password, u.role role FROM login u WHERE u.username = ? AND u.password = ? AND u.state = '1' AND u.role = ? 
+2019-12-03 17:32:40.897 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==> Parameters: scnu(String), 1cd61bb103149a08c529c96a31effae2(String), unit(String)
+2019-12-03 17:32:40.899 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - <==      Total: 1
+2019-12-03 17:32:40.939 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-12-03 17:32:40.940 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==> Parameters: scnu(String)
+2019-12-03 17:32:40.990 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - <==      Total: 11
+2019-12-03 17:32:41.299 INFO  --- [UserRealm.java:50][http-nio-8088-exec-2] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-12-03 17:32:41.302 INFO  --- [UserRealm.java:51][http-nio-8088-exec-2] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-12-03 17:32:41.305 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-12-03 17:32:41.306 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==> Parameters: 1(Long)
+2019-12-03 17:32:41.309 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - <==      Total: 1
+2019-12-03 17:32:41.310 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-12-03 17:32:41.310 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-12-03 17:32:41.391 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - <==      Total: 10
+2019-12-03 17:32:46.636 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-12-03 17:32:46.637 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==> Parameters: scnu(String)
+2019-12-03 17:32:46.639 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - <==      Total: 11
+2019-12-03 17:32:46.820 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-12-03 17:32:46.821 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: 141(String)
+2019-12-03 17:32:46.863 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 1
+2019-12-03 17:32:47.087 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-12-03 17:32:47.089 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==> Parameters: 141(Long)
+2019-12-03 17:32:47.094 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-12-03 17:32:47.096 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==> Parameters: 1(Long)
+2019-12-03 17:32:47.126 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - <==      Total: 1
+2019-12-03 17:32:47.310 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - <==      Total: 1
+2019-12-03 17:32:47.312 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-12-03 17:32:47.318 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-12-03 17:32:47.827 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - <==      Total: 15
+2019-12-03 17:32:49.121 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==>  Preparing: select * from user_profile u where u.acc_name = ? 
+2019-12-03 17:32:49.122 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==> Parameters: ytang(String)
+2019-12-03 17:32:49.169 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - <==      Total: 1
+2019-12-03 17:32:49.169 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==>  Preparing: SELECT * from teacher_profile where id = ? 
+2019-12-03 17:32:49.170 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==> Parameters: 141(String)
+2019-12-03 17:32:49.171 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - <==      Total: 1
+2019-12-03 17:32:49.172 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==>  Preparing: SELECT keywords from persona_user_local where user_id = ? 
+2019-12-03 17:32:49.172 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==> Parameters: 141(String)
+2019-12-03 17:32:49.173 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - <==      Total: 1
+2019-12-03 17:32:49.173 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==>  Preparing: SELECT paper_keywords,intro_keywords from persona_user_scholat where scholat_username = ? 
+2019-12-03 17:32:49.174 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==> Parameters: ytang(String)
+2019-12-03 17:32:49.408 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - <==      Total: 1
+2019-12-03 17:32:51.512 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==>  Preparing: select acc_id from user_profile where acc_name = ? 
+2019-12-03 17:32:51.513 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==> Parameters: ytang(String)
+2019-12-03 17:32:51.515 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - <==      Total: 1
+2019-12-03 17:32:51.516 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 friends from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ?) as a on a.friends = u.acc_id 
+2019-12-03 17:32:51.516 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==> Parameters: 17(Long), 17(Long)
+2019-12-03 17:32:55.575 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - <==      Total: 1002
+2019-12-03 17:32:55.576 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 fans from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ? union SELECT sender fans from pending_request where receiver=? ) as a on a.fans = u.acc_id 
+2019-12-03 17:32:55.576 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==> Parameters: 17(Long), 17(Long), 17(Long)
+2019-12-03 17:32:55.752 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - <==      Total: 1567
+2019-12-03 17:32:55.752 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 fans from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ? union SELECT receiver fans from pending_request where sender=? ) as a on a.fans = u.acc_id 
+2019-12-03 17:32:55.753 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==> Parameters: 17(Long), 17(Long), 17(Long)
+2019-12-03 17:32:55.779 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - <==      Total: 1025
+2019-12-03 18:36:26.413 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: select acc_id from user_profile where acc_name = ? 
+2019-12-03 18:36:26.414 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: ytang(String)
+2019-12-03 18:36:26.468 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 1
+2019-12-03 18:36:26.469 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 friends from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ?) as a on a.friends = u.acc_id 
+2019-12-03 18:36:26.470 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: 17(Long), 17(Long)
+2019-12-03 18:36:26.509 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 1002
+2019-12-03 18:36:26.511 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 fans from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ? union SELECT sender fans from pending_request where receiver=? ) as a on a.fans = u.acc_id 
+2019-12-03 18:36:26.511 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: 17(Long), 17(Long), 17(Long)
+2019-12-03 18:36:26.599 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 1567
+2019-12-03 18:36:26.600 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: select u.acc_id id, u.acc_name scholat_username, u.chinese_name chinese_name, u.degree degree, u.work_unit work_unit, u.address address, u.scholar_title scholat_title, u.scholar_field scholat_field, u.picture_url picture_url, u.work_email email from user_profile u join (select user2 fans from friends_relation where user1 = ? union select user1 from friends_relation where user2 = ? union SELECT receiver fans from pending_request where sender=? ) as a on a.fans = u.acc_id 
+2019-12-03 18:36:26.600 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: 17(Long), 17(Long), 17(Long)
+2019-12-03 18:36:26.775 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 1025

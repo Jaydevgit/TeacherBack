@@ -1,0 +1,798 @@
+2019-11-06 00:44:16.011 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=44m54s159ms).
+2019-11-06 01:14:52.354 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=30m36s302ms).
+2019-11-06 03:15:11.411 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=2h19s84ms).
+2019-11-06 04:15:00.440 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=59m49s43ms).
+2019-11-06 07:15:06.184 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=3h5s685ms).
+2019-11-06 08:15:08.008 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1h1s882ms).
+2019-11-06 08:30:11.470 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=15m3s462ms).
+2019-11-06 08:59:32.891 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=29m21s422ms).
+2019-11-06 09:00:49.004 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m16s112ms).
+2019-11-06 09:13:34.940 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=12m15s935ms).
+2019-11-06 09:15:29.892 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m24s946ms).
+2019-11-06 09:18:16.293 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m37s961ms).
+2019-11-06 09:20:05.004 WARN  --- [HikariPool.java:766][HikariPool-2 housekeeper] - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1m18s707ms).
+2019-11-06 09:29:54.293 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-11-06 09:29:54.297 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: null
+2019-11-06 09:29:54.375 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 0
+2019-11-06 09:29:57.619 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT u.user_id userId, u.username username, u.password password, u.role role FROM login u WHERE u.username = ? AND u.password = ? AND u.state = '1' AND u.role = ? 
+2019-11-06 09:29:57.620 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: scnu(String), 1cd61bb103149a08c529c96a31effae2(String), unit(String)
+2019-11-06 09:29:57.673 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-11-06 09:29:57.726 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 09:29:57.727 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: scnu(String)
+2019-11-06 09:29:57.786 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 11
+2019-11-06 09:29:58.015 INFO  --- [UserRealm.java:50][http-nio-8080-exec-8] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 09:29:58.016 INFO  --- [UserRealm.java:51][http-nio-8080-exec-8] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 09:29:58.029 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 09:29:58.030 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long)
+2019-11-06 09:29:58.077 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-11-06 09:29:58.079 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-11-06 09:29:58.079 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-11-06 09:29:58.084 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 10
+2019-11-06 09:30:01.923 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 09:30:01.925 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: scnu(String)
+2019-11-06 09:30:01.932 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 11
+2019-11-06 09:30:02.043 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:30:02.044 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 09:30:02.044 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 09:30:02.044 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 130(Long)
+2019-11-06 09:30:02.045 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 130(String)
+2019-11-06 09:30:02.045 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(Long)
+2019-11-06 09:30:02.086 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-11-06 09:30:02.086 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-11-06 09:30:02.087 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 09:30:02.087 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-11-06 09:30:02.088 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 09:30:02.091 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 15
+2019-11-06 09:30:07.929 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:30:07.930 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 141(Long)
+2019-11-06 09:30:07.937 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-11-06 09:30:08.396 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 09:30:08.396 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: (String)
+2019-11-06 09:30:08.398 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-11-06 09:30:24.821 INFO  --- [UserRealm.java:50][http-nio-8080-exec-6] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 09:30:24.821 INFO  --- [UserRealm.java:51][http-nio-8080-exec-6] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 09:30:24.822 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 09:30:24.823 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(Long)
+2019-11-06 09:30:24.824 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-11-06 09:30:24.826 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-11-06 09:30:24.826 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-11-06 09:30:24.830 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 10
+2019-11-06 09:30:29.812 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:30:29.813 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 141(Long)
+2019-11-06 09:30:29.815 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-11-06 09:30:30.006 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 09:30:30.008 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: (String)
+2019-11-06 09:30:30.011 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-11-06 09:37:27.430 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:37:27.431 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 141(Long)
+2019-11-06 09:37:27.432 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-11-06 09:37:27.491 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 09:37:27.492 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: (String)
+2019-11-06 09:37:27.493 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-11-06 09:37:50.647 INFO  --- [UserRealm.java:50][http-nio-8080-exec-4] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 09:37:50.647 INFO  --- [UserRealm.java:51][http-nio-8080-exec-4] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 09:37:50.655 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 09:37:50.656 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(Long)
+2019-11-06 09:37:50.669 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-11-06 09:37:50.670 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-11-06 09:37:50.670 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-11-06 09:37:50.684 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 10
+2019-11-06 09:37:54.180 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:37:54.180 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 141(Long)
+2019-11-06 09:37:54.227 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-11-06 09:37:54.466 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 09:37:54.467 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: (String)
+2019-11-06 09:37:54.490 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-11-06 09:47:50.433 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:47:50.433 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 141(Long)
+2019-11-06 09:47:50.435 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-11-06 09:47:50.475 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 09:47:50.476 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: (String)
+2019-11-06 09:47:50.477 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-11-06 09:48:41.021 INFO  --- [HikariDataSource.java:350][Thread-30] - HikariPool-2 - Shutdown initiated...
+2019-11-06 09:48:41.027 INFO  --- [HikariDataSource.java:352][Thread-30] - HikariPool-2 - Shutdown completed.
+2019-11-06 09:48:41.555 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 8250 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2019-11-06 09:48:41.556 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2019-11-06 09:48:42.966 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 1.466 seconds (JVM running for 10162.414)
+2019-11-06 09:48:44.411 INFO  --- [UserRealm.java:50][http-nio-8080-exec-1] - permission的值为:{"menuList":["user","teacher","role"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 09:48:44.412 INFO  --- [UserRealm.java:51][http-nio-8080-exec-1] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 09:48:44.435 INFO  --- [HikariDataSource.java:110][http-nio-8080-exec-1] - HikariPool-3 - Starting...
+2019-11-06 09:48:44.479 INFO  --- [HikariDataSource.java:123][http-nio-8080-exec-1] - HikariPool-3 - Start completed.
+2019-11-06 09:48:44.480 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 09:48:44.480 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long)
+2019-11-06 09:48:44.485 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-11-06 09:48:44.486 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-11-06 09:48:44.487 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-11-06 09:48:44.492 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 10
+2019-11-06 09:48:48.261 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:48:48.262 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 141(Long)
+2019-11-06 09:48:48.267 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-11-06 09:48:48.377 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 09:48:48.378 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: (String)
+2019-11-06 09:48:48.382 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-11-06 09:48:50.514 INFO  --- [UserRealm.java:50][http-nio-8080-exec-4] - permission的值为:{"menuList":["user","teacher","role"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 09:48:50.515 INFO  --- [UserRealm.java:51][http-nio-8080-exec-4] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 09:48:50.517 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 09:48:50.518 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(Long)
+2019-11-06 09:48:50.521 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-11-06 09:48:50.522 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-11-06 09:48:50.524 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-11-06 09:48:50.529 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 10
+2019-11-06 09:48:53.075 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 09:48:53.075 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: scnu(String)
+2019-11-06 09:48:53.078 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 11
+2019-11-06 09:48:53.215 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 09:48:53.216 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 130(String)
+2019-11-06 09:48:53.220 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-11-06 09:48:53.222 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:48:53.223 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 130(Long)
+2019-11-06 09:48:53.229 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 09:48:53.230 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long)
+2019-11-06 09:48:53.231 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-11-06 09:48:53.232 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 09:48:53.234 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 09:48:53.235 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 15
+2019-11-06 09:48:53.269 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-11-06 09:49:15.927 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:49:15.928 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 141(Long)
+2019-11-06 09:49:15.931 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-11-06 09:49:16.081 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 09:49:16.081 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: (String)
+2019-11-06 09:49:16.082 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-11-06 09:51:25.352 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:51:25.353 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 141(Long)
+2019-11-06 09:51:25.354 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-11-06 09:51:25.395 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 09:51:25.396 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: (String)
+2019-11-06 09:51:25.398 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-11-06 09:51:35.849 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 09:51:35.850 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: scnu(String)
+2019-11-06 09:51:35.852 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 11
+2019-11-06 09:51:36.664 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:51:36.665 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 141(Long)
+2019-11-06 09:51:36.667 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-11-06 09:51:38.260 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 09:51:38.262 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: (String)
+2019-11-06 09:51:38.275 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-11-06 09:51:43.676 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 09:51:43.677 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: (String)
+2019-11-06 09:51:43.679 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 09:51:43.680 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-11-06 09:51:43.680 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: ytang4@qq.com(String)
+2019-11-06 09:51:43.686 INFO  --- [UserRealm.java:50][http-nio-8080-exec-10] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 09:51:43.687 INFO  --- [UserRealm.java:51][http-nio-8080-exec-10] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 09:51:43.688 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-11-06 09:51:43.743 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: UPDATE teacher_profile SET username=?, sex=?, avatar=?, state=?, email=?, degree=?, phone=NULL, qrcode=?, work_place=?, label=?, subject=?, department_name=?, scholat_username=?, post=?, graduateFrom=?, intro=?, research_direction=?, unit_id=?, views=?, pinyin=? WHERE id = ? 
+2019-11-06 09:51:43.745 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 汤庸(String), 0(String), resources/s_icon/ytang_1572315228591.jpg(String), 1(String), ytang4@qq.com(String), 博士研究生(String), /QRCodeIMG/ytang_1572315261340_verson2.png(String), 计算机学院230(String), 国务院特殊津贴专家，教育部新世纪优秀人才(String), (String), 计算机软件系(String), ytang(String), 教授(String), 中国科学技术大学(String), <p><font face="宋体"><font face="宋体"><span>&nbsp;&nbsp; 汤庸</span><span>，</span><span><a href="http://www.scholat.com/team/scholatTeam" target="_blank"><b><span><span>学者网</span></span></b></a></span><span>创始人，<span>二级教授，现任</span>华南师范大学学位评定委员会副主席、<a href="http://cs.scnu.edu.cn/" target="_blank">计算机学院</a>院长，<span>广东省服务计算工程研究开发中心主任，中国计算机学会理事、协同计算专委主任、YOCSEF广州创建主席，ACM广州分部主席，广东省计算机学会常务副理事长等</span>。获<span>国务院政府特殊津贴、教育部新世纪优秀人才、</span><span>宝钢教育奖、丁颖科技奖、<span>南粤教坛新秀、中山大学教学名师，以第一完成人获广东省科学技术一等奖、教育部科技进步二等奖、省教学成果一等奖等10多项省部级成果</span></span><span>。</span></span></font></font></p><p>&nbsp; &nbsp; <font face="宋体"><font face="宋体"><span><span><span><a href="http://www.whu.edu.cn" target="_blank">获武汉大学</a></span><span>学士和硕士、<a href="http://www.ustc.edu.cn" target="_blank">中国科学技术大学</a></span><span>博士。</span>曾任教于</span><span><a href="http://www.csu.edu.cn/" target="_blank"><span><span>长沙铁道学院</span></span></a></span><span>（现中南大学）、武汉大学和广东工业大学，</span><span>2002</span><span>年入选<a href="http://www.sysu.edu.cn" target="_blank">中山大学</a></span><span>百人计划并任计算机系主任、信息学院副院长，</span><span>2009</span><span>年底受聘<a href="http://www.scnu.edu.cn" target="_blank">华南师范大学</a></span><span>特聘教授。</span><span>主持<span>国家自然科学基金重点项目（大数据中心项目）、</span><span><span>广东省自然科学基金研究团队、广东省重大专项、教育厅创新团队以及省教学团队、教育部</span><span>-</span><span>微软精品课程、省精品课程和研究生示范课程等<span>省部级科研教学项目40多项，</span></span></span>取得一批理论和应用成果，在<span>IEEE Trans,AAAI，</span><span>SIGIR,VLDB,IJCAI</span>等重要期刊和会议发表<span>100</span>多篇<span>论文</span><span>(多篇</span><span>ESI</span>高被引<span>),</span>在<span>Springer</span>等出版著作<span>10</span>多部<span>(</span>含国内首部时态数据库著作和国家级规划教材<span>)；</span><span>指导博士(后)50余名，硕士近200名，毕业<span>学生大多在国内外著名IT企业任职，也有</span></span></span><span>985和211高校教授博导、</span><span>教育部新世纪优秀人才、珠江学者特聘教授等</span><span>。</span></span></font></font></p><p><font face="宋体"><span><b>&nbsp;&nbsp; 学术兼职</b>：中国计算机学会首批杰出会员、第<span>8,9</span>届理事、<a href="http://www.scholat.com/team/TCCC" target="_blank">协同计算专业委员会</a></span><span>主任、青工委荣誉委员、出版工委执委、</span><span><a href="http://scholat.com/team/yocsefgz" target="_blank">YOCSEF<span>广州</span></a></span><span>首届主席；广东省计算机学会</span><span>常务副理事长、广东省网络文化协会副会长，ACM广州分部主席；担任多个国际国内学术会议主席和期刊编委，多个国家和省部级重点实验室<span>(</span>工程中心<span>)</span>专家委员会委员或主任，国内外多所高校计算机学院名誉院长或客座教授；参与国家自然科学基金会议评审，科技部香山会议主题评审、国家重点研发计划会评<font color="#000000" face="Georgia" size="3">、</font>教育部长江学者及全国学科评估通讯评审、广东省科学技术特等奖与突出贡献奖会议评审等。</span><br></font></p>(String), (String), 1(String), 0(String), tangyong(String), 141(String)
+2019-11-06 09:51:43.796 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==    Updates: 1
+2019-11-06 09:51:44.796 INFO  --- [UserRealm.java:50][http-nio-8080-exec-1] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 09:51:44.796 INFO  --- [UserRealm.java:51][http-nio-8080-exec-1] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 09:51:44.797 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 09:51:44.798 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long)
+2019-11-06 09:51:44.800 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-11-06 09:51:44.801 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-11-06 09:51:44.801 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-11-06 09:51:44.811 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 10
+2019-11-06 09:51:48.010 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 09:51:48.011 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: scnu(String)
+2019-11-06 09:51:48.014 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 11
+2019-11-06 09:51:48.117 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 09:51:48.117 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 141(String)
+2019-11-06 09:51:48.120 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-11-06 09:51:48.124 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:51:48.125 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 141(Long)
+2019-11-06 09:51:48.130 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-11-06 09:51:48.132 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 09:51:48.133 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long)
+2019-11-06 09:51:48.135 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-11-06 09:51:48.136 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 09:51:48.136 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 09:51:48.139 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 15
+2019-11-06 09:52:01.588 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 09:52:01.589 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 141(String)
+2019-11-06 09:52:01.591 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 09:52:01.592 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 09:52:01.592 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-11-06 09:52:01.592 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long)
+2019-11-06 09:52:01.592 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 141(Long)
+2019-11-06 09:52:01.595 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-11-06 09:52:01.596 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-11-06 09:52:01.596 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 09:52:01.597 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 09:52:01.601 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 15
+2019-11-06 09:54:00.662 ERROR --- [GlobalExceptionHandler.java:42][http-nio-8080-exec-9] - 异常
+java.lang.NumberFormatException: For input string: "ytang"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Long.parseLong(Long.java:589)
+	at java.lang.Long.parseLong(Long.java:631)
+	at com.teacher.scholat.controller.TeacherController.getScholatUername(TeacherController.java:33)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:215)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:142)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:998)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:890)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:875)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)
+	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)
+	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:770)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-11-06 09:54:00.664 WARN  --- [AbstractHandlerExceptionResolver.java:194][http-nio-8080-exec-9] - Resolved [java.lang.NumberFormatException: For input string: "ytang"]
+2019-11-06 09:54:00.677 ERROR --- [GlobalExceptionHandler.java:42][http-nio-8080-exec-10] - 异常
+java.lang.NumberFormatException: For input string: "ytang"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Long.parseLong(Long.java:589)
+	at java.lang.Long.parseLong(Long.java:631)
+	at com.teacher.scholat.controller.TeacherController.getScholatUername(TeacherController.java:33)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:215)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:142)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:998)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:890)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:875)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)
+	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)
+	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:770)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-11-06 09:54:00.679 WARN  --- [AbstractHandlerExceptionResolver.java:194][http-nio-8080-exec-10] - Resolved [java.lang.NumberFormatException: For input string: "ytang"]
+2019-11-06 09:57:05.319 INFO  --- [HikariDataSource.java:350][Thread-37] - HikariPool-3 - Shutdown initiated...
+2019-11-06 09:57:05.326 INFO  --- [HikariDataSource.java:352][Thread-37] - HikariPool-3 - Shutdown completed.
+2019-11-06 09:57:05.610 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 8250 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2019-11-06 09:57:05.611 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2019-11-06 09:57:06.530 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 0.958 seconds (JVM running for 10665.976)
+2019-11-06 09:57:13.684 ERROR --- [GlobalExceptionHandler.java:42][http-nio-8080-exec-1] - 异常
+org.springframework.web.bind.MissingPathVariableException: Missing URI template variable 'id' for method parameter of type String
+	at org.springframework.web.servlet.mvc.method.annotation.PathVariableMethodArgumentResolver.handleMissingValue(PathVariableMethodArgumentResolver.java:101)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.handleMissingValue(AbstractNamedValueMethodArgumentResolver.java:221)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:113)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:124)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:165)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:998)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:890)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:875)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)
+	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)
+	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:770)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-11-06 09:57:13.687 WARN  --- [AbstractHandlerExceptionResolver.java:194][http-nio-8080-exec-1] - Resolved [org.springframework.web.bind.MissingPathVariableException: Missing URI template variable 'id' for method parameter of type String]
+2019-11-06 09:57:17.297 INFO  --- [HikariDataSource.java:110][http-nio-8080-exec-2] - HikariPool-4 - Starting...
+2019-11-06 09:57:17.307 INFO  --- [HikariDataSource.java:123][http-nio-8080-exec-2] - HikariPool-4 - Start completed.
+2019-11-06 09:57:17.307 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 09:57:17.307 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: scnu(String)
+2019-11-06 09:57:17.310 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 11
+2019-11-06 09:57:17.603 ERROR --- [GlobalExceptionHandler.java:42][http-nio-8080-exec-3] - 异常
+org.springframework.web.bind.MissingPathVariableException: Missing URI template variable 'id' for method parameter of type String
+	at org.springframework.web.servlet.mvc.method.annotation.PathVariableMethodArgumentResolver.handleMissingValue(PathVariableMethodArgumentResolver.java:101)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.handleMissingValue(AbstractNamedValueMethodArgumentResolver.java:221)
+	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:113)
+	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:124)
+	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:165)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:102)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:800)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1038)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:998)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:890)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:875)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:61)
+	at org.apache.shiro.web.servlet.AdviceFilter.executeChain(AdviceFilter.java:108)
+	at org.apache.shiro.web.servlet.AdviceFilter.doFilterInternal(AdviceFilter.java:137)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.shiro.web.servlet.ProxiedFilterChain.doFilter(ProxiedFilterChain.java:66)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.executeChain(AbstractShiroFilter.java:449)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter$1.call(AbstractShiroFilter.java:365)
+	at org.apache.shiro.subject.support.SubjectCallable.doCall(SubjectCallable.java:90)
+	at org.apache.shiro.subject.support.SubjectCallable.call(SubjectCallable.java:83)
+	at org.apache.shiro.subject.support.DelegatingSubject.execute(DelegatingSubject.java:387)
+	at org.apache.shiro.web.servlet.AbstractShiroFilter.doFilterInternal(AbstractShiroFilter.java:362)
+	at org.apache.shiro.web.servlet.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:125)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:490)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:770)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1415)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+2019-11-06 09:57:17.605 WARN  --- [AbstractHandlerExceptionResolver.java:194][http-nio-8080-exec-3] - Resolved [org.springframework.web.bind.MissingPathVariableException: Missing URI template variable 'id' for method parameter of type String]
+2019-11-06 09:57:45.409 INFO  --- [HikariDataSource.java:350][Thread-44] - HikariPool-4 - Shutdown initiated...
+2019-11-06 09:57:45.422 INFO  --- [HikariDataSource.java:352][Thread-44] - HikariPool-4 - Shutdown completed.
+2019-11-06 09:57:45.791 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 8250 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2019-11-06 09:57:45.792 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2019-11-06 09:57:47.012 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 1.259 seconds (JVM running for 10706.458)
+2019-11-06 09:57:47.350 INFO  --- [HikariDataSource.java:110][http-nio-8080-exec-1] - HikariPool-5 - Starting...
+2019-11-06 09:57:47.360 INFO  --- [HikariDataSource.java:123][http-nio-8080-exec-1] - HikariPool-5 - Start completed.
+2019-11-06 09:57:47.360 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 09:57:47.361 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: scnu(String)
+2019-11-06 09:57:47.364 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 11
+2019-11-06 09:57:47.461 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: select * from user_profile u where u.acc_name = ? 
+2019-11-06 09:57:47.462 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: ytang(String)
+2019-11-06 09:57:47.478 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-11-06 10:01:03.233 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:01:03.233 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 130(Long)
+2019-11-06 10:01:03.276 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-11-06 10:01:03.393 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 10:01:03.394 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: (String)
+2019-11-06 10:01:03.398 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-11-06 10:01:14.368 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 10:01:14.369 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 10:01:14.370 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: (String)
+2019-11-06 10:01:14.370 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: buzzingbee@163.com(String)
+2019-11-06 10:01:14.372 INFO  --- [UserRealm.java:50][http-nio-8080-exec-7] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 10:01:14.373 INFO  --- [UserRealm.java:51][http-nio-8080-exec-7] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 10:01:14.373 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-11-06 10:01:14.373 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-11-06 10:01:14.384 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: UPDATE teacher_profile SET username=?, sex=?, avatar=?, state=?, email=?, degree=?, phone=NULL, qrcode=?, work_place=?, label=?, subject=?, department_name=?, scholat_username=?, post=?, graduateFrom=?, intro=?, research_direction=?, unit_id=?, views=?, pinyin=? WHERE id = ? 
+2019-11-06 10:01:14.386 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 柳薇(String), 1(String), resources/s_icon/buzzingbee_1492784099963.jpg(String), 1(String), buzzingbee@163.com(String), 博士研究生(String), /QRCodeIMG/buzzingbee_1541642812031_verson2.png(String), (String), (String), (String), (String), buzzingbee(String), 副教授(String), 中山大学(String), <p><br></p>(String), (String), 1(String), 0(String), liuwei(String), 130(Integer)
+2019-11-06 10:01:14.389 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==    Updates: 1
+2019-11-06 10:01:15.010 INFO  --- [UserRealm.java:50][http-nio-8080-exec-8] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 10:01:15.011 INFO  --- [UserRealm.java:51][http-nio-8080-exec-8] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 10:01:15.013 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:01:15.014 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long)
+2019-11-06 10:01:15.017 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-11-06 10:01:15.018 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-11-06 10:01:15.019 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-11-06 10:01:15.023 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 10
+2019-11-06 10:01:18.631 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 10:01:18.632 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: scnu(String)
+2019-11-06 10:01:18.635 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 11
+2019-11-06 10:01:18.737 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 10:01:18.740 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 130(String)
+2019-11-06 10:01:18.740 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:01:18.740 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:01:18.741 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(Long)
+2019-11-06 10:01:18.741 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 130(Long)
+2019-11-06 10:01:18.743 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-11-06 10:01:18.743 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-11-06 10:01:18.743 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-11-06 10:01:18.744 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 10:01:18.744 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 10:01:18.751 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 15
+2019-11-06 10:02:22.649 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 10:02:22.650 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: scnu(String)
+2019-11-06 10:02:22.651 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 11
+2019-11-06 10:02:22.737 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 10:02:22.738 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 130(String)
+2019-11-06 10:02:22.743 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:02:22.744 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-11-06 10:02:22.744 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long)
+2019-11-06 10:02:22.744 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:02:22.745 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 130(Long)
+2019-11-06 10:02:22.745 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-11-06 10:02:22.746 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 10:02:22.747 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 10:02:22.747 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-11-06 10:02:22.753 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 15
+2019-11-06 10:03:29.572 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:03:29.573 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 130(Long)
+2019-11-06 10:03:29.575 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-11-06 10:03:29.698 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 10:03:29.699 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: (String)
+2019-11-06 10:03:29.700 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-11-06 10:07:39.342 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:07:39.342 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 130(Long)
+2019-11-06 10:07:39.343 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-11-06 10:07:39.422 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 10:07:39.423 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: (String)
+2019-11-06 10:07:39.424 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-11-06 10:10:18.457 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 10:10:18.458 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: scnu(String)
+2019-11-06 10:10:18.467 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 11
+2019-11-06 10:10:19.188 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:10:19.189 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 130(Long)
+2019-11-06 10:10:19.193 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-11-06 10:10:20.048 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 10:10:20.049 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: (String)
+2019-11-06 10:10:20.053 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-11-06 10:17:06.543 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:17:06.543 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 130(Long)
+2019-11-06 10:17:06.545 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-11-06 10:17:06.615 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 10:17:06.616 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: (String)
+2019-11-06 10:17:06.617 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-11-06 10:17:17.697 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 10:17:17.698 INFO  --- [UserRealm.java:50][http-nio-8080-exec-8] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 10:17:17.698 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 10:17:17.698 INFO  --- [UserRealm.java:51][http-nio-8080-exec-8] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 10:17:17.698 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: buzzingbee@163.com(String)
+2019-11-06 10:17:17.698 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: (String)
+2019-11-06 10:17:17.699 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-11-06 10:17:17.699 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-11-06 10:17:17.700 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: UPDATE teacher_profile SET username=?, sex=?, avatar=?, state=?, email=?, degree=?, phone=NULL, qrcode=?, work_place=?, label=?, subject=?, department_name=?, scholat_username=?, post=?, graduateFrom=?, intro=?, research_direction=?, unit_id=?, views=?, pinyin=? WHERE id = ? 
+2019-11-06 10:17:17.701 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 柳薇(String), 1(String), resources/s_icon/buzzingbee_1492784099963.jpg(String), 1(String), buzzingbee@163.com(String), 博士研究生(String), /QRCodeIMG/buzzingbee_1541642812031_verson2.png(String), (String), (String), (String), (String), buzzingbee(String), 副教授(String), 中山大学(String), <p><br></p>(String), (String), 1(String), 0(String), liuwei(String), 130(String)
+2019-11-06 10:17:17.703 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==    Updates: 1
+2019-11-06 10:17:18.681 INFO  --- [UserRealm.java:50][http-nio-8080-exec-9] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 10:17:18.682 INFO  --- [UserRealm.java:51][http-nio-8080-exec-9] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 10:17:18.718 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:17:18.719 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(Long)
+2019-11-06 10:17:18.727 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-11-06 10:17:18.728 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-11-06 10:17:18.729 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-11-06 10:17:18.735 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 10
+2019-11-06 10:17:22.772 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 10:17:22.772 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: scnu(String)
+2019-11-06 10:17:22.776 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 11
+2019-11-06 10:17:22.875 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 10:17:22.876 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 130(String)
+2019-11-06 10:17:22.881 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-11-06 10:17:22.883 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:17:22.884 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 130(Long)
+2019-11-06 10:17:22.888 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-11-06 10:17:22.893 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:17:22.894 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(Long)
+2019-11-06 10:17:22.897 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-11-06 10:17:22.898 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 10:17:22.899 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 10:17:22.901 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 15
+2019-11-06 10:17:49.380 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:17:49.380 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 130(Long)
+2019-11-06 10:17:49.383 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-11-06 10:17:49.596 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 10:17:49.597 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: (String)
+2019-11-06 10:17:49.599 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-11-06 10:18:25.371 INFO  --- [UserRealm.java:50][http-nio-8080-exec-7] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 10:18:25.372 INFO  --- [UserRealm.java:51][http-nio-8080-exec-7] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 10:18:25.381 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:18:25.381 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long)
+2019-11-06 10:18:25.384 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-11-06 10:18:25.385 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-11-06 10:18:25.386 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-11-06 10:18:25.410 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 10
+2019-11-06 10:18:29.889 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 10:18:29.890 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: scnu(String)
+2019-11-06 10:18:29.892 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 11
+2019-11-06 10:18:30.016 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 10:18:30.017 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 128(String)
+2019-11-06 10:18:30.019 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-11-06 10:18:30.021 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:18:30.022 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long)
+2019-11-06 10:18:30.024 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:18:30.024 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 128(Long)
+2019-11-06 10:18:30.026 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-11-06 10:18:30.027 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-11-06 10:18:30.027 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 10:18:30.028 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 10:18:30.030 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 15
+2019-11-06 10:19:13.073 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 10:19:13.073 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: scnu(String)
+2019-11-06 10:19:13.075 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 11
+2019-11-06 10:19:13.175 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 10:19:13.175 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:19:13.175 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 128(String)
+2019-11-06 10:19:13.176 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:19:13.176 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 128(Long)
+2019-11-06 10:19:13.176 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(Long)
+2019-11-06 10:19:13.177 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-11-06 10:19:13.177 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-11-06 10:19:13.178 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-11-06 10:19:13.179 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 10:19:13.180 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 10:19:13.188 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 15
+2019-11-06 10:20:24.469 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 10:20:24.469 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: scnu(String)
+2019-11-06 10:20:24.471 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 11
+2019-11-06 10:20:24.569 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:20:24.569 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 10:20:24.570 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 128(String)
+2019-11-06 10:20:24.570 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(Long)
+2019-11-06 10:20:24.571 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:20:24.571 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-11-06 10:20:24.571 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-11-06 10:20:24.572 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 128(Long)
+2019-11-06 10:20:24.572 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 10:20:24.573 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 10:20:24.576 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 15
+2019-11-06 10:20:24.576 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-11-06 10:20:26.409 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 10:20:26.410 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: scnu(String)
+2019-11-06 10:20:26.412 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 11
+2019-11-06 10:20:26.548 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 10:20:26.549 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 128(String)
+2019-11-06 10:20:26.549 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:20:26.549 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(Long)
+2019-11-06 10:20:26.549 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:20:26.550 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 128(Long)
+2019-11-06 10:20:26.551 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-11-06 10:20:26.551 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-11-06 10:20:26.552 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 10:20:26.552 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 10:20:26.555 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-11-06 10:20:26.557 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 15
+2019-11-06 10:21:44.733 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:21:44.734 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 141(Long)
+2019-11-06 10:21:44.750 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-11-06 10:21:45.566 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.email = ? 
+2019-11-06 10:21:45.567 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: (String)
+2019-11-06 10:21:45.587 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-11-06 10:22:05.044 INFO  --- [UserRealm.java:50][http-nio-8080-exec-5] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"asd","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-11-06 10:22:05.044 INFO  --- [UserRealm.java:51][http-nio-8080-exec-5] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-11-06 10:22:05.046 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:22:05.047 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long)
+2019-11-06 10:22:05.048 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-11-06 10:22:05.049 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: select t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t WHERE t.unit_id = ? ORDER BY update_time desc LIMIT ?,? 
+2019-11-06 10:22:05.050 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-11-06 10:22:05.052 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 10
+2019-11-06 10:22:08.784 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-11-06 10:22:08.785 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: scnu(String)
+2019-11-06 10:22:08.787 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 11
+2019-11-06 10:22:08.878 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-11-06 10:22:08.879 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long)
+2019-11-06 10:22:08.881 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.id = ?) 
+2019-11-06 10:22:08.882 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: 141(String)
+2019-11-06 10:22:08.882 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-11-06 10:22:08.882 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: select * from teacher_profile u where u.id=? 
+2019-11-06 10:22:08.883 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-11-06 10:22:08.883 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 141(Long)
+2019-11-06 10:22:08.883 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 1(Long), 0(Integer), 15(Integer)
+2019-11-06 10:22:08.885 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-11-06 10:22:08.886 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 1
+2019-11-06 10:22:08.894 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 15
+2019-11-06 10:22:11.544 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: select * from user_profile u where u.acc_name = ? 
+2019-11-06 10:22:11.544 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: ytang(String)
+2019-11-06 10:22:11.551 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-11-06 10:22:25.999 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: select * from user_profile u where u.acc_name = ? 
+2019-11-06 10:22:26.000 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: ytang(String)
+2019-11-06 10:22:26.005 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-11-06 10:22:28.042 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: select * from user_profile u where u.acc_name = ? 
+2019-11-06 10:22:28.042 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: ytang(String)
+2019-11-06 10:22:28.046 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 1
+2019-11-06 10:22:29.710 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: select * from user_profile u where u.acc_name = ? 
+2019-11-06 10:22:29.710 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: ytang(String)
+2019-11-06 10:22:29.715 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-11-06 10:30:27.588 INFO  --- [HikariDataSource.java:350][Thread-51] - HikariPool-5 - Shutdown initiated...
+2019-11-06 10:30:27.600 INFO  --- [HikariDataSource.java:352][Thread-51] - HikariPool-5 - Shutdown completed.
+2019-11-06 10:30:27.972 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 8250 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2019-11-06 10:30:27.973 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2019-11-06 10:30:29.018 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 1.081 seconds (JVM running for 12668.461)
+2019-11-06 10:33:23.327 INFO  --- [HikariDataSource.java:110][http-nio-8080-exec-1] - HikariPool-6 - Starting...
+2019-11-06 10:33:23.346 INFO  --- [HikariDataSource.java:123][http-nio-8080-exec-1] - HikariPool-6 - Start completed.
+2019-11-06 10:33:23.346 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: select * from user_profile u where u.acc_name = ? 
+2019-11-06 10:33:23.346 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: ytang(String)
+2019-11-06 10:33:23.351 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-11-06 10:43:20.510 INFO  --- [HikariDataSource.java:350][Thread-58] - HikariPool-6 - Shutdown initiated...
+2019-11-06 10:43:20.518 INFO  --- [HikariDataSource.java:352][Thread-58] - HikariPool-6 - Shutdown completed.
+2019-11-06 10:43:20.855 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 8250 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2019-11-06 10:43:20.856 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2019-11-06 10:43:20.935 WARN  --- [AbstractApplicationContext.java:554][restartedMain] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.teacher.scholat.MyApplication]; nested exception is java.io.FileNotFoundException: class path resource [com/teacher/scholat/service/impl/TeacherServiceImpl.class] cannot be opened because it does not exist
+2019-11-06 10:43:20.951 ERROR --- [SpringApplication.java:858][restartedMain] - Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.teacher.scholat.MyApplication]; nested exception is java.io.FileNotFoundException: class path resource [com/teacher/scholat/service/impl/TeacherServiceImpl.class] cannot be opened because it does not exist
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:181)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:315)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:232)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:275)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:95)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:691)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:528)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at com.teacher.scholat.MyApplication.main(MyApplication.java:22)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.io.FileNotFoundException: class path resource [com/teacher/scholat/service/impl/TeacherServiceImpl.class] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:180)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.<init>(SimpleMetadataReader.java:51)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:103)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.createMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:88)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.getMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:75)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:81)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:190)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:295)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:242)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:199)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:167)
+	... 16 common frames omitted
+2019-11-06 10:43:22.420 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 8250 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2019-11-06 10:43:22.421 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2019-11-06 10:43:23.679 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 1.285 seconds (JVM running for 13443.119)

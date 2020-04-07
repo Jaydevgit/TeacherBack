@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heeexy.example.dao.UnitDao">
+
+    <!--获取主页基本信息-->
+    <select id="getUnitInfo" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+            u.school_name    schoolName,
+            u.unit_name      unitName,
+            u.school_eng     schoolEng,
+            u.unit_eng       unitEng,
+            u.college_url    collegeUrl,
+            u.logo_url       logoUrl
+        FROM
+            school_unit u
+        WHERE u.id = #{unitId}
+    </select>
+
+    <update id="updateUnitInfo">
+        update school_unit
+        SET college_url = #{collegeUrl},
+            logo_url = #{logoUrl}
+            WHERE id = #{unitId}
+    </update>
+
+
+</mapper>

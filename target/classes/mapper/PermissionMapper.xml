@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.teacher.scholat.dao.PermissionDao">
+
+    <resultMap id="permissionMap" type="com.teacher.scholat.util.model.One2Many">
+        <id column="userId" property="userId"/>
+        <result column="username" property="username"/>
+        <result column="nickname" property="nickname"/>
+        <result column="roleId" property="roleId"/>
+        <result column="unitName" property="unitName"/>
+        <result column="unitId" property="unitId"/>
+        <result column="roleName" property="roleName"/>
+        <collection property="menuList" ofType="String">
+            <id column="menuCode" property="menuCode"/>
+        </collection>
+        <collection property="permissionList" ofType="String">
+            <id column="permissionCode" property="permissionCode"/>
+        </collection>
+    </resultMap>
+
+    <select id="getUserPermission" resultMap="permissionMap">
+    SELECT
+          k.id                       userId,
+          k.nickname               nickname,
+          k.username               username,
+          k.role_id                  roleId,
+          k.unit_id                  unitId,
+          k.role_name              roleName,
+          p.menu_code              menuCode,
+          p.permission_code   permissionCode
+    FROM(select  a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId
+    from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT
+            u.id,
+            u.nickname,
+            u.username,
+            u.role_id,
+            u.unit_id
+    FROM unit_profile u  WHERE u.username = #{username} AND u.state = '1')t
+    LEFT JOIN sys_role ON t.role_id = sys_role.id) a   join  mysql.help_topic b  on b.help_topic_id &lt;
+    (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id
+    </select>
+    <select id="getScholatPermission" resultMap="permissionMap">
+    SELECT
+          k.id                       userId,
+          k.nickname               nickname,
+          k.username               username,
+          k.role_id                  roleId,
+          k.avatar                    avatar,
+          k.role_name              roleName,
+          p.menu_code              menuCode,
+          p.permission_code   permissionCode
+    FROM(select  a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId
+    from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT
+            u.id,
+            u.nickname,
+            u.username,
+            u.role_id,
+            u.avatar
+    FROM scholat_user u  WHERE u.username = #{username} AND u.state = '1')t
+    LEFT JOIN sys_role ON t.role_id = sys_role.id) a   join  mysql.help_topic b  on b.help_topic_id &lt;
+    (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id
+    </select>
+
+    <select id="getAllPermission" resultType="String">
+        SELECT p.permission_code permissionCode
+        FROM sys_permission p
+        ORDER BY p.id
+    </select>
+    <select id="getAllMenu" resultType="String">
+        SELECT p.menu_code menuCode
+        FROM sys_permission p
+        ORDER BY p.id
+    </select>
+</mapper>

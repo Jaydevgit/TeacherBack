@@ -1,0 +1,49 @@
+2020-03-19 14:26:18.687 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on AchunOrigin-2.local with PID 20568 (/Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back/target/classes started by achunorigin in /Users/achunorigin/project/A_Postgraduate/persona-teacher/persona-teacherHome-back)
+2020-03-19 14:26:18.751 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2020-03-19 14:26:25.490 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 8.064 seconds (JVM running for 11.984)
+2020-03-19 14:28:08.489 INFO  --- [HikariDataSource.java:110][http-nio-8088-exec-1] - HikariPool-1 - Starting...
+2020-03-19 14:28:09.567 INFO  --- [HikariDataSource.java:123][http-nio-8088-exec-1] - HikariPool-1 - Start completed.
+2020-03-19 14:28:09.574 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2020-03-19 14:28:09.614 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==> Parameters: null
+2020-03-19 14:28:09.777 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - <==      Total: 0
+2020-03-19 14:35:46.724 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2020-03-19 14:35:46.724 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, a.state state, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY seq , subSeq,a.update_time DESC 
+2020-03-19 14:35:46.735 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==> Parameters: 1(String)
+2020-03-19 14:35:46.735 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==> Parameters: 1(String)
+2020-03-19 14:35:46.787 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2020-03-19 14:35:46.788 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: 1(Long)
+2020-03-19 14:35:47.505 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - <==      Total: 1
+2020-03-19 14:35:48.026 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 1
+2020-03-19 14:35:48.028 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2020-03-19 14:35:48.029 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: 1(Long), 0(Integer), 21(Integer)
+2020-03-19 14:35:48.036 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - <==      Total: 10
+2020-03-19 14:35:48.047 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 21
+2020-03-19 14:35:58.287 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2020-03-19 14:35:58.288 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==> Parameters: null
+2020-03-19 14:35:58.289 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - <==      Total: 0
+2020-03-19 15:15:36.671 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, a.state state, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY seq , subSeq,a.update_time DESC 
+2020-03-19 15:15:36.671 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2020-03-19 15:15:36.685 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==> Parameters: 1(String)
+2020-03-19 15:15:36.685 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==> Parameters: 1(String)
+2020-03-19 15:15:36.687 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2020-03-19 15:15:36.688 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==> Parameters: 1(Long)
+2020-03-19 15:15:36.860 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - <==      Total: 10
+2020-03-19 15:15:36.892 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - <==      Total: 1
+2020-03-19 15:15:36.976 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - <==      Total: 1
+2020-03-19 15:15:36.977 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2020-03-19 15:15:36.978 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - ==> Parameters: 1(Long), 0(Integer), 21(Integer)
+2020-03-19 15:15:36.984 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-8] - <==      Total: 21
+2020-03-19 15:15:47.743 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: SELECT COUNT(1) FROM catalogue_teacher c WHERE c.catalogue_id = ? and (c.is_deleted is null OR c.is_deleted !=1) 
+2020-03-19 15:15:47.744 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: 61(String)
+2020-03-19 15:15:47.808 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 1
+2020-03-19 15:15:47.812 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: SELECT ct.id ctId, ct.seq tSeq, t.id tId, t.username tName, t.avatar tAvatar, t.post tPost, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree, t.scholat_username tScholat_username, t.qrcode tQrcode FROM catalogue_teacher ct LEFT JOIN teacher_profile t ON t.id = ct.teacher_id WHERE ct.catalogue_id = ? AND t.state = 1 AND (ct.is_deleted is null OR ct.is_deleted !=1) ORDER BY tSeq,t.pinyin LIMIT ?,? 
+2020-03-19 15:15:47.814 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: 61(String), 0(Integer), 21(Integer)
+2020-03-19 15:15:47.837 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 0
+2020-03-19 15:15:49.042 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==>  Preparing: SELECT COUNT(1) FROM catalogue_teacher c WHERE c.catalogue_id = ? and (c.is_deleted is null OR c.is_deleted !=1) 
+2020-03-19 15:15:49.043 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==> Parameters: 62(String)
+2020-03-19 15:15:49.046 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - <==      Total: 1
+2020-03-19 15:15:49.048 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==>  Preparing: SELECT ct.id ctId, ct.seq tSeq, t.id tId, t.username tName, t.avatar tAvatar, t.post tPost, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree, t.scholat_username tScholat_username, t.qrcode tQrcode FROM catalogue_teacher ct LEFT JOIN teacher_profile t ON t.id = ct.teacher_id WHERE ct.catalogue_id = ? AND t.state = 1 AND (ct.is_deleted is null OR ct.is_deleted !=1) ORDER BY tSeq,t.pinyin LIMIT ?,? 
+2020-03-19 15:15:49.049 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==> Parameters: 62(String), 0(Integer), 21(Integer)
+2020-03-19 15:15:49.093 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - <==      Total: 14
+2020-03-19 15:37:05.215 INFO  --- [HikariDataSource.java:350][Thread-31] - HikariPool-1 - Shutdown initiated...
+2020-03-19 15:37:05.219 INFO  --- [HikariDataSource.java:352][Thread-31] - HikariPool-1 - Shutdown completed.

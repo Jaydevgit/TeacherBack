@@ -1,0 +1,157 @@
+Index: src/main/java/com/heeexy/example/service/impl/ManagerServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/heeexy/example/service/impl/ManagerServiceImpl.java	(revision 119)
++++ src/main/java/com/heeexy/example/service/impl/ManagerServiceImpl.java	(date 1560560455729)
+@@ -10,7 +10,9 @@
+ import org.springframework.stereotype.Service;
+ import org.springframework.transaction.annotation.Transactional;
+ 
++import javax.annotation.Resource;
+ import java.util.List;
++import java.util.Map;
+ 
+ /**
+  * @author: hxy
+@@ -19,9 +21,18 @@
+ @Service
+ public class ManagerServiceImpl implements ManagerService {
+ 
+-	@Autowired
++	@Resource
+ 	private ManagerDao managerDao;
+ 
++	@Override
++	@Transactional(rollbackFor = Exception.class)
++	public JSONObject addTeacherJSONObject(Map<String,Object>map) {
++		System.out.println("这个是进入到了新的创建教师部分");
++		int id = managerDao.addTeacherJSONObject(map);
++		System.out.println(id);
++		return CommonUtil.successJson();
++	}
++
+ 	/**
+ 	 * 新增教师
+ 	 */
+Index: src/main/java/com/heeexy/example/controller/TeacherController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/heeexy/example/controller/TeacherController.java	(revision 119)
++++ src/main/java/com/heeexy/example/controller/TeacherController.java	(date 1560499447025)
+@@ -22,7 +22,7 @@
+     @GetMapping("/{id}")
+     public JSONObject getTeacherInfo(@PathVariable("id") Long id){
+         // howHttpRequestContent(request);
+-        System.out.println("传来来的参数id为。。。。。。"+id);
++        System.out.println("准备获取教师信息...前台传来来的参数id为。。。。。。"+id);
+         return CommonUtil.successJson(teacherService.getTeacherInfo(id));
+     }
+ 
+Index: src/main/java/com/heeexy/example/service/ManagerService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/heeexy/example/service/ManagerService.java	(revision 119)
++++ src/main/java/com/heeexy/example/service/ManagerService.java	(date 1560560455294)
+@@ -3,14 +3,17 @@
+ import com.alibaba.fastjson.JSONObject;
+ import com.heeexy.example.model.Teacher;
+ 
++import java.util.Map;
++
+ /**
+  * @author:
+  * @date:
+  */
+ public interface ManagerService {
+ 	/**
+-	 * 新增文章
++	 * 新增教师
+ 	 */
++	public JSONObject addTeacherJSONObject(Map<String,Object> map);
+ 	public int addTeacher(Teacher teacher);
+ 	/*
+ 	* 新增单位教师关系
+Index: src/main/resources/mapper/ManagerMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/mapper/ManagerMapper.xml	(revision 119)
++++ src/main/resources/mapper/ManagerMapper.xml	(date 1560563545071)
+@@ -4,11 +4,39 @@
+ <mapper namespace="com.heeexy.example.dao.ManagerDao">
+ 
+     <insert id="addTeacher" useGeneratedKeys="true" keyProperty="id"  keyColumn="id" parameterType="com.alibaba.fastjson.JSONObject">
+-
+         INSERT INTO teacher_profile
+-            (username,state,sex,avatar,post,intro,email,phone,create_time,views,department_id,department_name)
++        (username,state,sex,avatar,post,intro,email,phone,
++        create_time,update_time,views,department_id,department_name,
++        degree,title,label,subject,research_direction,scholat_username,
++        scholat_update_time,unit_id)
+         VALUES
+-            (#{username},1,#{sex},#{avatar},#{post},#{intro},#{email},#{phone},#{create_time},#{views},#{department_id},#{department_name})
++        (#{username},#{state},#{sex},#{avatar},#{post},#{intro},#{email},#{phone},
++        #{create_time},#{create_time},#{views},#{department_id},#{department_name},
++        #{degree},#{title},#{label},#{subject},#{research_direction},#{scholat_username},
++        #{scholat_update_time},#{unit_id})
++        <selectKey resultType="int" keyProperty="id" order="AFTER">
++            SELECT LAST_INSERT_ID()
++        </selectKey>
++    </insert>
++
++    <insert id="addTeacherJSONObject" useGeneratedKeys="true" keyProperty="id"  keyColumn="id" parameterType="com.alibaba.fastjson.JSONObject">
++        INSERT INTO teacher_profile(
++        <foreach collection="requestJson" index="key" item="item"  separator=",">
++            #{key}
++        </foreach>
++        )
++        VALUES       (
++        <foreach collection="requestJson" index="key" item="item" separator=",">
++            <choose>
++                <when test="item==null">
++                    NULL
++                </when>
++                <otherwise>
++                    '#{item}'
++                </otherwise>
++            </choose>
++        </foreach>      )
++
+         <selectKey resultType="int" keyProperty="id" order="AFTER">
+             SELECT LAST_INSERT_ID()
+         </selectKey>
+Index: src/main/java/com/heeexy/example/dao/ManagerDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/com/heeexy/example/dao/ManagerDao.java	(revision 119)
++++ src/main/java/com/heeexy/example/dao/ManagerDao.java	(date 1560560455744)
+@@ -4,6 +4,7 @@
+ import com.heeexy.example.model.Teacher;
+ 
+ import java.util.List;
++import java.util.Map;
+ 
+ /**
+  * @author:
+@@ -15,10 +16,11 @@
+ 	 * 新增教师
+ 	 */
+ 	int addTeacher(Teacher teacher);
++	int addTeacherJSONObject(Map<String,Object> map);
+ 	/*
+ 	* 新增单位教师关系
+ 	* */
+-    int addUnitTeacherRelationship(JSONObject jsonObject);
++    int addUnitTeacherRelationship(Map<String,Object> map);
+ 	/**
+ 	 * 统计教师总数
+ 	 */

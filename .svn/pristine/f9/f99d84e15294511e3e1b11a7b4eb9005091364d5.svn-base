@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heeexy.example.dao.UserDao">
+
+    <select id="countUser" resultType="Integer">
+        SELECT count(0)
+        FROM unit_profile u
+        WHERE u.state = '1' AND u.unit_id = #{unitId} AND u.role_id != 1
+    </select>
+
+    <!--<resultMap id="userMap" type="com.heeexy.example.util.model.One2Many">
+        <id column="userId" property="userId"/>
+        <result column="username" property="username"/>
+        <result column="nickname" property="nickname"/>
+        <result column="roleId" property="roleId"/>
+        <result column="roleName" property="roleName"/>
+        <result column="createTime" property="createTime"/>
+        <result column="updateTime" property="updateTime"/>
+        <result column="lastLoginTime" property="lastLoginTime"/>
+        <result column="deleteStatus" property="deleteStatus"/>
+        <collection property="permissionList" ofType="String">
+            <id column="permissionName" property="permissionName"/>
+        </collection>
+    </resultMap>-->
+
+    <resultMap id="userMap" type="com.heeexy.example.util.model.One2Many">
+        <id column="userId" property="userId"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="nickname" property="nickname"/>
+        <result column="roleId" property="roleId"/>
+        <result column="roleName" property="roleName"/>
+        <result column="deleteStatus" property="deleteStatus"/>
+        <collection property="menus" ofType="com.heeexy.example.util.model.One2Many">
+            <id column="menuCode" property="menuCode"/>
+            <result column="menuName" property="menuName"/>
+            <collection property="permissions" ofType="com.alibaba.fastjson.JSONObject">
+                <id column="permissionId" property="permissionId"/>
+                <result column="permissionName" property="permissionName"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="listUser" resultMap="userMap">
+    SELECT 		y.id                	  userId,
+                y.role_id                 roleId,
+                y.role_name             roleName,
+                y.username              username,
+                y.password              password,
+                y.nickname              nickname,
+                y.state                    state,
+                p.id                permissionId,
+                p.menu_code             menuCode,
+                p.menu_name             menuName,
+                p.permission_name permissionName
+    FROM
+    (SELECT a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId
+    FROM
+    (SELECT t.id,t.username,t.`password`,t.nickname,t.role_id,t.state, s.role_name,s.permission_ids FROM
+    (SELECT u.* FROM unit_profile u WHERE u.unit_id = #{unitId} AND u.role_id != 1 AND u.state = 1)t
+    LEFT JOIN sys_role s ON t.role_id = s.id) a join mysql.help_topic b
+    on b.help_topic_id &lt; (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)
+    order by a.id) y LEFT JOIN sys_permission p ON y.pId = p.id
+    </select>
+
+    <select id="getAllRoles" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+            id        roleId,
+            role_name roleName
+        FROM sys_role
+        WHERE delete_status='1'
+    </select>
+
+    <select id="getRolesByUnitId" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+            id        roleId,
+            role_name roleName
+        FROM sys_role s
+        WHERE s.delete_status='1' AND  s.unit_id = #{unitId} AND s.id !=1
+    </select>
+
+    <insert id="addUser" useGeneratedKeys="true">
+        INSERT INTO unit_profile
+        (username, password, nickname, role_id, unit_id, state) VALUES
+            (#{username}, #{password}, #{nickname}, #{roleId}, #{unitId}, 1)
+        <selectKey resultType="int" keyProperty="userId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+    <insert id="addUserToLogin" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO login
+        (username, password, nickname, user_id, role,state,update_time) VALUES
+            (#{username}, #{password}, #{nickname}, #{userId}, "unit",1,#{updateTime})
+    </insert>
+
+
+   <update id="updateUser">
+        UPDATE unit_profile
+        SET
+        nickname = #{nickname}
+        <if test="password !='' and password !=null">
+            , password = #{password}
+        </if>
+
+        , role_id = #{roleId}
+        , state = #{state}
+        WHERE id = #{userId} and id != 10001
+    </update>
+    <update id="updateUserToLogin">
+        UPDATE login
+        SET
+        nickname = #{nickname}
+        <if test="password !='' and password !=null">
+            , password = #{password}
+        </if>
+        , state = #{state}
+        WHERE user_id = #{userId} and role="unit"
+    </update>
+
+    <resultMap id="roleMap" type="com.heeexy.example.util.model.One2Many">
+        <id column="roleId" property="roleId"/>
+        <result column="roleName" property="roleName"/>
+        <collection property="users" ofType="com.alibaba.fastjson.JSONObject">
+            <result column="nickName" property="nickName"/>
+            <result column="userName" property="userName"/>
+            <result column="passWord" property="passWord"/>
+        </collection>
+        <collection property="menus" ofType="com.heeexy.example.util.model.One2Many">
+            <id column="menuCode" property="menuCode"/>
+            <result column="menuName" property="menuName"/>
+            <collection property="permissions" ofType="com.alibaba.fastjson.JSONObject">
+                <id column="permissionId" property="permissionId"/>
+                <result column="permissionName" property="permissionName"/>
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="listRole" resultMap="roleMap">
+        SELECT 					y.id                	  roleId,
+                                y.role_name             roleName,
+                                y.username              userName,
+                                y.password              passWord,
+                                y.nickname              nickName,
+                                p.id                permissionId,
+                                p.menu_code             menuCode,
+                                p.menu_name             menuName,
+                                p.permission_name permissionName
+        FROM
+        (SELECT a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId
+        from (SELECT t.*,s.id, s.role_name,s.permission_ids
+        FROM (SELECT u.username,u.`password`,u.nickname,u.role_id
+        FROM unit_profile u WHERE  u.state = 1) t
+        RIGHT JOIN sys_role s ON t.role_id = s.id WHERE s.unit_id = #{unitId} AND s.delete_status = 1 AND s.id != 1) a
+        join  mysql.help_topic b  on
+        b.help_topic_id  &lt; (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) y
+        LEFT JOIN sys_permission p ON y.pId = p.id
+    </select>
+
+
+    <resultMap id="permissionMap" type="com.heeexy.example.util.model.One2Many">
+        <id column="menuName" property="menuName"/>
+        <collection property="permissions" ofType="com.alibaba.fastjson.JSONObject">
+            <id column="id" property="id"/>
+            <result column="permissionName" property="permissionName"/>
+            <result column="requiredPerm" property="requiredPerm" javaType="Integer"/>
+        </collection>
+    </resultMap>
+    <select id="listAllPermission" resultMap="permissionMap">
+        SELECT
+            p.id                  id,
+            p.menu_name           menuName,
+            p.permission_name     permissionName,
+            p.required_permission requiredPerm
+        FROM sys_permission p;
+    </select>
+
+    <select id="findUsersByRoleId" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT u.* FROM unit_profile u WHERE u.role_id = #{roleId} AND u.state = 1
+
+    </select>
+
+
+    <insert id="insertRole" useGeneratedKeys="true" keyProperty="roleId">
+        INSERT INTO sys_role
+        (role_name, create_time, update_time, delete_status, unit_id, permission_ids)
+        VALUES (#{roleName}, #{createTime}, #{updateTime}, 1, #{unitId}, #{permissions})
+    </insert>
+
+
+
+
+
+
+
+    <!--<resultMap id="aRole" type="com.heeexy.example.util.model.One2Many">
+        <id column="roleId" property="roleId"/>
+        <result column="roleName" property="roleName"/>
+        <collection property="users" ofType="com.alibaba.fastjson.JSONObject">
+            <id column="userId" property="userId"/>
+        </collection>
+        <collection property="permissionIds" ofType="Integer">
+            <id column="permissionId" property="permissionId"/>
+        </collection>
+    </resultMap>-->
+
+
+
+
+    <update id="removeRole">
+        UPDATE sys_role
+        SET
+            delete_status = '2'
+        WHERE id = #{roleId} and id !=1
+    </update>
+
+    <update id="updateRole">
+        UPDATE    sys_role
+        SET       role_name = #{roleName} , permission_ids = #{permissions}
+        WHERE      id = #{roleId}
+    </update>
+    <select id="queryExistUsername" resultType="int">
+        select count(0)
+         from unit_profile
+         WHERE username=#{username}
+         AND state='1';
+    </select>
+</mapper>

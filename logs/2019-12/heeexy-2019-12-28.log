@@ -1,0 +1,61 @@
+2019-12-28 00:33:44.371 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2h27s675ms).
+2019-12-28 00:48:46.846 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=15m2s496ms).
+2019-12-28 00:58:27.309 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=9m40s466ms).
+2019-12-28 01:00:30.178 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1m32s847ms).
+2019-12-28 01:50:11.927 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-12-28 01:50:11.947 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==> Parameters: null
+2019-12-28 01:50:12.924 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - <==      Total: 0
+2019-12-28 01:50:13.511 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-12-28 01:50:13.511 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: null
+2019-12-28 01:50:13.512 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 0
+2019-12-28 01:50:20.673 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-12-28 01:50:20.674 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - ==> Parameters: null
+2019-12-28 01:50:20.757 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-10] - <==      Total: 0
+2019-12-28 01:50:35.574 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-12-28 01:50:35.576 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==> Parameters: 1(String)
+2019-12-28 01:50:35.585 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, a.state state, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY seq , subSeq,a.update_time DESC 
+2019-12-28 01:50:35.588 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: 1(String)
+2019-12-28 01:50:35.594 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-12-28 01:50:35.596 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==> Parameters: 1(Long)
+2019-12-28 01:50:35.644 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - <==      Total: 1
+2019-12-28 01:50:36.175 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - <==      Total: 1
+2019-12-28 01:50:36.180 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-12-28 01:50:36.181 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - ==> Parameters: 1(Long), 0(Integer), 21(Integer)
+2019-12-28 01:50:36.224 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 10
+2019-12-28 01:50:36.596 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-7] - <==      Total: 21
+2019-12-28 02:13:31.865 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=20m31s58ms).
+2019-12-28 02:34:02.005 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=20m30s140ms).
+2019-12-28 02:54:32.846 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=20m30s841ms).
+2019-12-28 03:15:34.249 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=20m31s387ms).
+2019-12-28 03:36:05.379 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=20m31s130ms).
+2019-12-28 05:52:48.693 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2h16m42s797ms).
+2019-12-28 07:53:16.189 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=2h27s988ms).
+2019-12-28 08:53:19.774 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1h3s609ms).
+2019-12-28 09:38:14.290 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-12-28 09:38:14.312 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - ==> Parameters: null
+2019-12-28 09:38:14.953 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-3] - <==      Total: 0
+2019-12-28 09:38:16.154 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-12-28 09:38:16.155 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - ==> Parameters: null
+2019-12-28 09:38:16.196 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-2] - <==      Total: 0
+2019-12-28 09:38:16.254 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-12-28 09:38:16.255 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - ==> Parameters: 1(String)
+2019-12-28 09:38:16.274 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, a.state state, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY seq , subSeq,a.update_time DESC 
+2019-12-28 09:38:16.275 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - ==> Parameters: 1(String)
+2019-12-28 09:38:16.622 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-12-28 09:38:16.624 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: 1(Long)
+2019-12-28 09:38:16.784 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-12-28 09:38:16.784 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - ==> Parameters: null
+2019-12-28 09:38:17.037 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-6] - <==      Total: 0
+2019-12-28 09:38:17.044 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 1
+2019-12-28 09:38:17.041 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-1] - <==      Total: 1
+2019-12-28 09:38:18.580 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar, t.email tEmail, t.department_name tDepartment_name, t.work_place tWork_place, t.degree tDegree FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC LIMIT ?,? 
+2019-12-28 09:38:18.256 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-5] - <==      Total: 10
+2019-12-28 09:38:18.580 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - ==> Parameters: 1(Long), 0(Integer), 21(Integer)
+2019-12-28 09:38:19.466 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-4] - <==      Total: 21
+2019-12-28 09:38:24.056 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==>  Preparing: SELECT u.school_name schoolName, u.unit_name unitName, u.school_eng schoolEng, u.unit_eng unitEng, u.college_url collegeUrl, u.logo_url logoUrl, u.state state, u.background_url backgroundUrl FROM school_unit u WHERE u.id = ? 
+2019-12-28 09:38:24.057 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - ==> Parameters: null
+2019-12-28 09:38:24.060 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8088-exec-9] - <==      Total: 0
+2019-12-28 21:31:43.484 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=1h10m15s191ms).
+2019-12-28 23:26:45.118 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=20m29s332ms).
+2019-12-28 23:47:46.728 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=20m31s595ms).
+2019-12-28 23:56:23.969 WARN  --- [HikariPool.java:766][HikariPool-5 housekeeper] - HikariPool-5 - Thread starvation or clock leap detected (housekeeper delta=8m37s241ms).

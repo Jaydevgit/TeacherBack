@@ -1,0 +1,215 @@
+2019-07-01 13:13:20.373 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on DESKTOP-QFITQPB with PID 23644 (C:\SVN\newhello\teacherHome-back\target\classes started by achun in C:\SVN\newhello\teacherHome-back)
+2019-07-01 13:13:20.379 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2019-07-01 13:13:25.056 WARN  --- [OptionalLiveReloadServer.java:61][restartedMain] - Unable to start LiveReload server
+2019-07-01 13:13:25.090 ERROR --- [DirectJDKLog.java:175][restartedMain] - Failed to start component [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:960)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:259)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:197)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:300)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:162)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at com.heeexy.example.MyApplication.main(MyApplication.java:22)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:433)
+	at sun.nio.ch.Net.bind(Net.java:425)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:236)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1108)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:550)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:957)
+	... 17 common frames omitted
+2019-07-01 13:13:25.111 ERROR --- [LoggingFailureAnalysisReporter.java:42][restartedMain] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
+2019-07-01 13:14:20.354 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on DESKTOP-QFITQPB with PID 27496 (C:\SVN\newhello\teacherHome-back\target\classes started by achun in C:\SVN\newhello\teacherHome-back)
+2019-07-01 13:14:20.360 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2019-07-01 13:14:24.122 WARN  --- [OptionalLiveReloadServer.java:61][restartedMain] - Unable to start LiveReload server
+2019-07-01 13:14:24.152 ERROR --- [DirectJDKLog.java:175][restartedMain] - Failed to start component [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:960)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:225)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:259)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:197)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:300)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:162)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:775)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:397)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:316)
+	at com.heeexy.example.MyApplication.main(MyApplication.java:22)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:433)
+	at sun.nio.ch.Net.bind(Net.java:425)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:236)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:210)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1108)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:550)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:957)
+	... 17 common frames omitted
+2019-07-01 13:14:24.172 ERROR --- [LoggingFailureAnalysisReporter.java:42][restartedMain] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
+2019-07-01 13:15:46.102 INFO  --- [StartupInfoLogger.java:50][restartedMain] - Starting MyApplication on DESKTOP-QFITQPB with PID 25564 (C:\SVN\newhello\teacherHome-back\target\classes started by achun in C:\SVN\newhello\teacherHome-back)
+2019-07-01 13:15:46.109 INFO  --- [SpringApplication.java:675][restartedMain] - No active profile set, falling back to default profiles: default
+2019-07-01 13:15:49.867 INFO  --- [StartupInfoLogger.java:59][restartedMain] - Started MyApplication in 4.449 seconds (JVM running for 5.843)
+2019-07-01 13:17:10.853 INFO  --- [HikariDataSource.java:110][http-nio-8080-exec-1] - HikariPool-1 - Starting...
+2019-07-01 13:17:11.216 INFO  --- [HikariDataSource.java:123][http-nio-8080-exec-1] - HikariPool-1 - Start completed.
+2019-07-01 13:17:11.222 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT u.user_id userId, u.username username, u.password password, u.role role FROM login u WHERE u.username = ? AND u.password = ? AND u.state = '1' AND u.role = ? 
+2019-07-01 13:17:11.245 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: scnu(String), 123456(String), unit(String)
+2019-07-01 13:17:11.726 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 1
+2019-07-01 13:17:11.837 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.unit_id unitId, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.unit_id FROM unit_profile u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-07-01 13:17:11.838 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: scnu(String)
+2019-07-01 13:17:12.865 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 11
+2019-07-01 13:17:13.086 INFO  --- [UserRealm.java:50][http-nio-8080-exec-3] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"nick1","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-07-01 13:17:13.086 INFO  --- [UserRealm.java:51][http-nio-8080-exec-3] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-07-01 13:17:13.142 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT count(0) FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? 
+2019-07-01 13:17:13.142 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(Long)
+2019-07-01 13:17:13.313 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 1
+2019-07-01 13:17:13.314 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT t.id id, t.username name, t.email email, t.avatar avatar, t.state state, t.views views, t.post post, date_format(u.introUpdateTime , '%Y.%m.%d %T') scholat_update_time, t.scholat_username scholat_username, date_format(t.update_time, '%Y.%m.%d %T') update_time, date_format(t.create_time, '%Y.%m.%d %T') create_time FROM teacher_profile t left join `user_profile` u on t.scholat_username = u.acc_name and t.unit_id = ? ORDER BY scholat_update_time desc LIMIT ?,? 
+2019-07-01 13:17:13.314 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: 1(Long), 0(Integer), 10(Integer)
+2019-07-01 13:17:17.368 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 10
+2019-07-01 13:17:19.128 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, a.state state, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY seq , a.update_time DESC 
+2019-07-01 13:17:19.129 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 1(String)
+2019-07-01 13:17:19.139 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT t.id tId, t.username tName, t.post tPost, t.avatar tAvatar FROM teacher_profile t WHERE t.state = '1' AND t.unit_id = ? ORDER BY t.seq, update_time DESC 
+2019-07-01 13:17:19.140 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long)
+2019-07-01 13:17:19.337 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 18
+2019-07-01 13:17:19.380 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 9
+2019-07-01 13:17:24.280 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT ct.id ctId, ct.seq tSeq, t.id tId, t.username tName, t.avatar tAvatar, t.post tPost FROM catalogue_teacher ct LEFT JOIN teacher_profile t ON t.id = ct.teacher_id WHERE ct.catalogue_id = ? AND t.state = 1 AND (ct.is_deleted is null OR ct.is_deleted !=1) ORDER BY tSeq , ct.update_time DESC 
+2019-07-01 13:17:24.281 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 7(String)
+2019-07-01 13:17:24.281 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==>  Preparing: SELECT ct.id ctId, ct.seq tSeq, t.id tId, t.username tName, t.avatar tAvatar, t.post tPost FROM catalogue_teacher ct LEFT JOIN teacher_profile t ON t.id = ct.teacher_id WHERE ct.catalogue_id = ? AND t.state = 1 AND (ct.is_deleted is null OR ct.is_deleted !=1) ORDER BY tSeq , ct.update_time DESC 
+2019-07-01 13:17:24.282 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - ==> Parameters: 7(String)
+2019-07-01 13:17:24.419 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-9] - <==      Total: 0
+2019-07-01 13:17:24.419 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 0
+2019-07-01 13:17:26.430 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, a.state state, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY seq , a.update_time DESC 
+2019-07-01 13:17:26.430 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(Integer)
+2019-07-01 13:17:26.440 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==      Total: 9
+2019-07-01 13:17:26.440 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: UPDATE catalogue SET seq = ? WHERE id = ? 
+2019-07-01 13:17:26.440 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 9999(Integer), 2(Long)
+2019-07-01 13:17:26.818 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==    Updates: 1
+2019-07-01 13:17:26.818 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: UPDATE catalogue SET seq = ? WHERE id = ? 
+2019-07-01 13:17:26.819 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 9999(Integer), 3(Long)
+2019-07-01 13:17:26.845 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==    Updates: 1
+2019-07-01 13:17:26.846 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: UPDATE catalogue SET seq = ? WHERE id = ? 
+2019-07-01 13:17:26.846 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 9999(Integer), 7(Long)
+2019-07-01 13:17:26.847 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==    Updates: 1
+2019-07-01 13:17:26.848 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: UPDATE catalogue SET seq = ? WHERE id = ? 
+2019-07-01 13:17:26.848 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 9999(Integer), 32(Long)
+2019-07-01 13:17:26.849 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==    Updates: 1
+2019-07-01 13:17:26.849 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: UPDATE catalogue SET seq = ? WHERE id = ? 
+2019-07-01 13:17:26.850 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 9999(Integer), 1(Long)
+2019-07-01 13:17:26.851 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==    Updates: 1
+2019-07-01 13:17:26.851 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: UPDATE catalogue SET seq = ? WHERE id = ? 
+2019-07-01 13:17:26.851 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 9999(Integer), 27(Long)
+2019-07-01 13:17:26.873 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==    Updates: 1
+2019-07-01 13:17:26.874 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: UPDATE catalogue SET seq = ? WHERE id = ? 
+2019-07-01 13:17:26.874 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 1(Integer), 3(String)
+2019-07-01 13:17:26.911 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==    Updates: 1
+2019-07-01 13:17:26.912 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==>  Preparing: UPDATE catalogue SET seq = ? WHERE id = ? 
+2019-07-01 13:17:26.912 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - ==> Parameters: 2(Integer),  7(String)
+2019-07-01 13:17:26.934 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-10] - <==    Updates: 1
+2019-07-01 13:17:26.963 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==>  Preparing: SELECT a.id id, a.catalogue_name name, a.seq seq, a.state state, t.id subId, t.catalogue_name subName, t.seq subSeq FROM (SELECT c.* FROM catalogue c WHERE c.unit_id = ? AND (c.is_deleted is null OR c.is_deleted !=1 )AND c.parent_id is null) a LEFT JOIN catalogue t ON (a.id = t.parent_id AND (t.is_deleted is null OR t.is_deleted !=1 ))ORDER BY seq , a.update_time DESC 
+2019-07-01 13:17:26.964 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - ==> Parameters: 1(String)
+2019-07-01 13:17:26.967 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-1] - <==      Total: 9
+2019-07-01 13:17:45.239 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==>  Preparing: SELECT u.user_id userId, u.username username, u.password password, u.role role FROM login u WHERE u.username = ? AND u.password = ? AND u.state = '1' AND u.role = ? 
+2019-07-01 13:17:45.239 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - ==> Parameters: scholat(String), 123456(String), scholat(String)
+2019-07-01 13:17:45.240 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-2] - <==      Total: 1
+2019-07-01 13:17:45.260 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==>  Preparing: SELECT k.id userId, k.nickname nickname, k.username username, k.role_id roleId, k.avatar avatar, k.role_name roleName, p.menu_code menuCode, p.permission_code permissionCode FROM(select a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT u.id, u.nickname, u.username, u.role_id, u.avatar FROM scholat_user u WHERE u.username = ? AND u.state = '1')t LEFT JOIN sys_role ON t.role_id = sys_role.id) a join mysql.help_topic b on b.help_topic_id < (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id 
+2019-07-01 13:17:45.260 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - ==> Parameters: scholat(String)
+2019-07-01 13:17:45.298 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-3] - <==      Total: 4
+2019-07-01 13:17:45.471 INFO  --- [UserRealm.java:50][http-nio-8080-exec-5] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"nick1","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-07-01 13:17:45.472 INFO  --- [UserRealm.java:51][http-nio-8080-exec-5] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-07-01 13:17:45.472 INFO  --- [ScholatRealm.java:51][http-nio-8080-exec-5] - permission的值为:{"menuList":["unit"],"roleId":0,"nickname":"连善淳测试","roleName":"学者网管理员","permissionList":["unit:list","unit:update","unit:add","unit:delete"],"userId":1,"username":"scholat"}
+2019-07-01 13:17:45.472 INFO  --- [ScholatRealm.java:52][http-nio-8080-exec-5] - 本用户权限为:[unit:list, unit:update, unit:add, unit:delete]
+2019-07-01 13:17:45.474 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT count(0) FROM unit_apply u WHERE u.state = ? 
+2019-07-01 13:17:45.474 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(Long)
+2019-07-01 13:17:45.528 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 1
+2019-07-01 13:17:45.529 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==>  Preparing: SELECT t.id id, t.school_name school_name, t.unit_name unit_name, t.certificate_front certificate_front, t.certificate_back certificate_back, t.certificate_working certificate_working, t.phone phone, t.email email, t.state state, t.chinese_name chinese_name, date_format(t.update_time, '%Y.%m.%d %T') update_time FROM unit_apply t WHERE t.state = ? ORDER BY update_time desc LIMIT ?,? 
+2019-07-01 13:17:45.530 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - ==> Parameters: 1(String), 0(Integer), 10(Integer)
+2019-07-01 13:17:45.533 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-5] - <==      Total: 4
+2019-07-01 13:17:47.165 INFO  --- [UserRealm.java:50][http-nio-8080-exec-4] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"nick1","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-07-01 13:17:47.165 INFO  --- [UserRealm.java:51][http-nio-8080-exec-4] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-07-01 13:17:47.166 INFO  --- [ScholatRealm.java:51][http-nio-8080-exec-4] - permission的值为:{"menuList":["unit"],"roleId":0,"nickname":"连善淳测试","roleName":"学者网管理员","permissionList":["unit:list","unit:update","unit:add","unit:delete"],"userId":1,"username":"scholat"}
+2019-07-01 13:17:47.166 INFO  --- [ScholatRealm.java:52][http-nio-8080-exec-4] - 本用户权限为:[unit:list, unit:update, unit:add, unit:delete]
+2019-07-01 13:17:47.167 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT count(0) FROM unit_apply u WHERE u.state = ? 
+2019-07-01 13:17:47.167 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 2(Long)
+2019-07-01 13:17:47.185 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 1
+2019-07-01 13:17:47.186 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==>  Preparing: SELECT t.id id, t.school_name school_name, t.unit_name unit_name, t.certificate_front certificate_front, t.certificate_back certificate_back, t.certificate_working certificate_working, t.phone phone, t.email email, t.state state, t.chinese_name chinese_name, date_format(t.update_time, '%Y.%m.%d %T') update_time FROM unit_apply t WHERE t.state = ? ORDER BY update_time desc LIMIT ?,? 
+2019-07-01 13:17:47.187 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - ==> Parameters: 2(String), 0(Integer), 10(Integer)
+2019-07-01 13:17:47.189 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-4] - <==      Total: 0
+2019-07-01 13:17:47.504 INFO  --- [UserRealm.java:50][http-nio-8080-exec-6] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"nick1","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-07-01 13:17:47.505 INFO  --- [UserRealm.java:51][http-nio-8080-exec-6] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-07-01 13:17:47.505 INFO  --- [ScholatRealm.java:51][http-nio-8080-exec-6] - permission的值为:{"menuList":["unit"],"roleId":0,"nickname":"连善淳测试","roleName":"学者网管理员","permissionList":["unit:list","unit:update","unit:add","unit:delete"],"userId":1,"username":"scholat"}
+2019-07-01 13:17:47.506 INFO  --- [ScholatRealm.java:52][http-nio-8080-exec-6] - 本用户权限为:[unit:list, unit:update, unit:add, unit:delete]
+2019-07-01 13:17:47.506 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT count(0) FROM unit_apply u WHERE u.state = ? 
+2019-07-01 13:17:47.507 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: -2(Long)
+2019-07-01 13:17:47.508 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 1
+2019-07-01 13:17:47.508 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==>  Preparing: SELECT t.id id, t.school_name school_name, t.unit_name unit_name, t.certificate_front certificate_front, t.certificate_back certificate_back, t.certificate_working certificate_working, t.phone phone, t.email email, t.state state, t.chinese_name chinese_name, date_format(t.update_time, '%Y.%m.%d %T') update_time FROM unit_apply t WHERE t.state = ? ORDER BY update_time desc LIMIT ?,? 
+2019-07-01 13:17:47.509 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - ==> Parameters: -2(String), 0(Integer), 10(Integer)
+2019-07-01 13:17:47.510 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-6] - <==      Total: 0
+2019-07-01 13:17:50.266 INFO  --- [UserRealm.java:50][http-nio-8080-exec-7] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"nick1","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-07-01 13:17:50.267 INFO  --- [UserRealm.java:51][http-nio-8080-exec-7] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-07-01 13:17:50.267 INFO  --- [ScholatRealm.java:51][http-nio-8080-exec-7] - permission的值为:{"menuList":["unit"],"roleId":0,"nickname":"连善淳测试","roleName":"学者网管理员","permissionList":["unit:list","unit:update","unit:add","unit:delete"],"userId":1,"username":"scholat"}
+2019-07-01 13:17:50.267 INFO  --- [ScholatRealm.java:52][http-nio-8080-exec-7] - 本用户权限为:[unit:list, unit:update, unit:add, unit:delete]
+2019-07-01 13:17:50.268 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT count(0) FROM unit_profile u where u.role_id = "1" 
+2019-07-01 13:17:50.268 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 
+2019-07-01 13:17:50.269 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 1
+2019-07-01 13:17:50.270 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==>  Preparing: SELECT t.id id, t.nickname nickname, t.username username, t.unit_id unitId, school_unit.school_name school_name, school_unit.unit_name unit_name, school_unit.department_list department_list, school_unit.subject_list subject_list, school_unit.college_url college_url, school_unit.pic_url pic_url, t.role_id roleId, sys_role.role_name roleName, t.state state, date_format(t.update_time, '%Y.%m.%d %T') update_time from (select * FROM unit_profile u where u.role_id = "1") t LEFT JOIN sys_role ON t.role_id = sys_role.id left join school_unit on school_unit.id = t.unit_id ORDER BY update_time desc LIMIT ?,? 
+2019-07-01 13:17:50.271 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - ==> Parameters: 0(Integer), 10(Integer)
+2019-07-01 13:17:50.274 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-7] - <==      Total: 2
+2019-07-01 13:17:50.835 INFO  --- [UserRealm.java:50][http-nio-8080-exec-8] - permission的值为:{"menuList":["teacher","role","user"],"roleId":1,"nickname":"nick1","roleName":"高级管理员","unitId":1,"permissionList":["user:list","user:add","role:update","teacher:list","teacher:update","role:list","teacher:add","user:update","role:delete","role:add","teacher:delete"],"userId":1,"username":"scnu"}
+2019-07-01 13:17:50.835 INFO  --- [UserRealm.java:51][http-nio-8080-exec-8] - 本用户权限为:[user:list, user:add, role:update, teacher:list, teacher:update, role:list, teacher:add, user:update, role:delete, role:add, teacher:delete]
+2019-07-01 13:17:50.835 INFO  --- [ScholatRealm.java:51][http-nio-8080-exec-8] - permission的值为:{"menuList":["unit"],"roleId":0,"nickname":"连善淳测试","roleName":"学者网管理员","permissionList":["unit:list","unit:update","unit:add","unit:delete"],"userId":1,"username":"scholat"}
+2019-07-01 13:17:50.835 INFO  --- [ScholatRealm.java:52][http-nio-8080-exec-8] - 本用户权限为:[unit:list, unit:update, unit:add, unit:delete]
+2019-07-01 13:17:50.837 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT count(0) FROM unit_profile u where u.role_id = "1" and u.state = "-1" 
+2019-07-01 13:17:50.837 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 
+2019-07-01 13:17:50.838 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 1
+2019-07-01 13:17:50.840 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==>  Preparing: SELECT t.id id, t.nickname nickname, t.username username, t.unit_id unitId, school_unit.school_name school_name, school_unit.unit_name unit_name, school_unit.department_list department_list, school_unit.subject_list subject_list, school_unit.college_url college_url, school_unit.pic_url pic_url, t.role_id roleId, sys_role.role_name roleName, t.state state, date_format(t.update_time, '%Y.%m.%d %T') update_time from (select * FROM unit_profile u where u.role_id = "1" and u.state = "-1") t LEFT JOIN sys_role ON t.role_id = sys_role.id left join school_unit on school_unit.id = t.unit_id ORDER BY update_time desc LIMIT ?,? 
+2019-07-01 13:17:50.840 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - ==> Parameters: 0(Integer), 10(Integer)
+2019-07-01 13:17:50.842 DEBUG --- [BaseJdbcLogger.java:159][http-nio-8080-exec-8] - <==      Total: 0

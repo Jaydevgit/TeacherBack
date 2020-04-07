@@ -1,0 +1,289 @@
+package com.teacher.scholat.service.impl;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.teacher.scholat.dao.ManagerDao;
+import com.teacher.scholat.dao.TeacherDao;
+import com.teacher.scholat.service.LoginService;
+import com.teacher.scholat.service.TeacherService;
+import com.teacher.scholat.util.CommonUtil;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@Service
+public class TeacherServiceImpl implements TeacherService {
+    @Resource
+    private TeacherDao teacherDao;
+
+    @Resource
+    private ManagerDao managerDao;
+    /**
+     * 获取教师信息
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public JSONObject getTeacherInfo(Long id) {
+        System.out.println("....进到到获取教师信息阶段, 教师id为: "+id);
+        JSONObject jsonObject = teacherDao.getTeacherInfo(id);
+        System.out.println("....获到到的教师信息为..."+jsonObject);
+        return jsonObject;
+    }
+
+    @Override
+    public List<JSONObject> getUpdatedTeacherList(Long unitId) {
+        List<JSONObject> jsonObject = teacherDao.getUpdatedTeacherList(unitId);
+        return jsonObject;
+    }
+
+    @Override
+    public List<JSONObject> getHotTeacherList(Long unitId) {
+        List<JSONObject> jsonObject = teacherDao.getHotTeacherList(unitId);
+        return jsonObject;
+    }
+
+
+    @Override
+    public JSONObject listTeacher(JSONObject jsonObject) {
+        System.out.println("前端传过来的教师列表要求为: ");
+        CommonUtil.fillPageParam(jsonObject);
+        // 按照拼音排序
+        long unitId = jsonObject.getLongValue("unitId");
+        int count = managerDao.countTeacher(unitId);
+        System.out.println("........有"+count+"位教师");
+        List<JSONObject> list = teacherDao.listTeacher(jsonObject);
+
+        System.out.println("后台查询到的教师数据为: "+list);
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
+
+    @Override
+    public JSONObject listTeacherAll(JSONObject jsonObject) {
+        System.out.println("前端传过来的教师列表要求为: "+jsonObject);
+
+        Long unitId = jsonObject.getLongValue("unitId");
+        jsonObject.put("unitId", unitId);
+        List<JSONObject> list = teacherDao.listTeacherAll(jsonObject);
+        return CommonUtil.successPage(list);
+    }
+
+    @Override
+    public JSONObject letterTeacher(JSONObject jsonObject) {
+        System.out.println("前端传过来的教师列表要求为: ");
+        CommonUtil.fillPageParam(jsonObject);
+        int count = managerDao.countLetterUnitTeacher(jsonObject);
+        System.out.println("........有"+count+"位教师");
+        List<JSONObject> list = teacherDao.letterTeacher(jsonObject);
+        System.out.println("后台查询到的教师数据为: "+list);
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
+
+    @Override
+    public JSONObject searchTeacher(JSONObject jsonObject)
+    {
+        System.out.println("搜索-----------前端传过来的教师列表要求为: ");
+        System.out.println(jsonObject);
+        CommonUtil.fillPageParam(jsonObject);
+        int count = teacherDao.countKeyTeacher(jsonObject);
+        System.out.println("........有"+count+"位教师");
+        List<JSONObject> list = teacherDao.getTeacherByKey(jsonObject);
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
+
+    @Override
+    public JSONObject getUnitIdBytId(JSONObject jsonObject) {
+        Integer unitId = teacherDao.getUnitIdBytId(jsonObject);
+        JSONObject jo = new JSONObject();
+        jo.put("unitId",unitId);
+        return CommonUtil.successJson(jo);
+    }
+
+
+    @Override
+    public String getScholatUername(Long id) {
+        String scholat_username= teacherDao.getScholatUername(id);
+        if(scholat_username!=null)return scholat_username;
+        return null;
+    }
+
+    @Override
+    public JSONObject getScholatInfo(String username) {
+        JSONObject profile = teacherDao.getScholatInfo(username);
+        JSONObject schoalt_profile = new JSONObject();
+        schoalt_profile.put("scholat_profile",profile);
+        return schoalt_profile;
+    }
+    // ------------------- [学者画像]   获取本地数据库学者关系 ----------------
+    @Override
+    public List<JSONObject> getLocalScholatFriends(String username,Long scholatID) {
+        List<JSONObject> jsonObject = teacherDao.getLocalScholatFriends(scholatID);
+        // 查找信任度
+        for (int i = 0; i < jsonObject.size(); i++) {
+            String scholat_id = jsonObject.get(i).getString("id");
+            JSONObject jsonObject1 = teacherDao.getLocalScholatFriends_trust1(scholatID,scholat_id);
+            String trust1 = jsonObject1.getString("trust");
+            String team_cnt = jsonObject1.getString("team");
+            String lda_sim = jsonObject1.getString("lda_sim");
+            String res_score = jsonObject1.getString("res_score");
+            jsonObject.get(i).put("team_cnt",team_cnt);
+            jsonObject.get(i).put("lda_sim",lda_sim);
+            jsonObject.get(i).put("res_score",res_score);
+            JSONObject jsonObject2 = teacherDao.getLocalScholatFriends_trust2(scholatID,scholat_id);
+            String trust2 = jsonObject2.getString("trust");
+            Float trust_t = Float.parseFloat(trust1)+Float.parseFloat(trust2);
+            jsonObject.get(i).put("trust",trust_t);
+        }
+        return jsonObject;
+    }
+    @Override
+    public List<JSONObject> getLocalScholatFans(String username,Long scholatID) {
+        /*
+         select
+        u.acc_id                id,
+        u.acc_name			scholat_username,
+        u.chinese_name 	    chinese_name,
+        u.degree		    degree,
+        u.work_unit			work_unit,
+       u.address			address,
+        u.scholar_title     scholat_title,
+        u.scholar_field     scholat_field,
+        u.picture_url       picture_url,
+        u.work_email		email
+        from user_profile u join
+        (select user2 fans from friends_relation where user1 = #{scholatID}
+        union
+        select user1 from friends_relation where user2 = #{scholatID}
+        union
+        SELECT receiver fans from pending_request where sender=#{scholatID}
+        )
+        as a
+        on a.fans = u.acc_id
+        */
+        List<JSONObject> jsonObject = teacherDao.getLocalScholatFans(scholatID);
+        // 查找信任度
+        for (int i = 0; i < jsonObject.size(); i++) {
+            String scholat_id = jsonObject.get(i).getString("id");
+            JSONObject jsonObject1 = teacherDao.getLocalScholatFans_trust(scholatID,scholat_id);
+            String trust = jsonObject1.getString("trust");
+            String team_cnt = jsonObject1.getString("team");
+            String lda_sim = jsonObject1.getString("lda_sim");
+            String res_score = jsonObject1.getString("res_score");
+            jsonObject.get(i).put("team_cnt",team_cnt);
+            jsonObject.get(i).put("lda_sim",lda_sim);
+            jsonObject.get(i).put("res_score",res_score);
+            Float trust_t = Float.parseFloat(trust);
+            jsonObject.get(i).put("trust",trust_t);
+        }
+        return jsonObject;
+    }
+    @Override
+    public List<JSONObject> getLocalScholatWatchs(String username,Long scholatID) {
+        List<JSONObject> jsonObject = teacherDao.getLocalScholatWatchs(scholatID);
+        // 查找信任度
+        for (int i = 0; i < jsonObject.size(); i++) {
+            String scholat_id = jsonObject.get(i).getString("id");
+            JSONObject jsonObject1 = teacherDao.getLocalScholatWatchs_trust(scholatID,scholat_id);
+            String trust = jsonObject1.getString("trust");
+            String team_cnt = jsonObject1.getString("team");
+            String lda_sim = jsonObject1.getString("lda_sim");
+            String res_score = jsonObject1.getString("res_score");
+            jsonObject.get(i).put("team_cnt",team_cnt);
+            jsonObject.get(i).put("lda_sim",lda_sim);
+            jsonObject.get(i).put("res_score",res_score);
+            Float trust_t = Float.parseFloat(trust);
+            jsonObject.get(i).put("trust",trust_t);
+        }
+        return jsonObject;
+    }
+
+    @Override
+    public Long getScholatID(String username) {
+        Long id= teacherDao.getScholatID(username);
+        if(id!=null)return id;
+        return null;
+    }
+
+    @Override
+    public List<JSONObject> getLocalScholatPaper(String username, Long scholatID) {
+        List<JSONObject> jsonObject = teacherDao.getLocalScholatPaper(scholatID);
+        return jsonObject;
+    }
+
+    @Override
+    public JSONObject getScholatPersona_keywords(String username) {
+        JSONObject jsonObject = teacherDao.getScholatPersona_keywords(username);
+        return jsonObject;
+    }
+
+    @Override
+    public JSONObject getLocalInfo(String username, String user_id) {
+        JSONObject jsonObject = teacherDao.getLocalInfo(username,user_id);
+        return jsonObject;
+    }
+
+    @Override
+    public JSONObject getLocalKeywords(String username, String user_id) {
+        JSONObject jsonObject = teacherDao.getLocalKeywords(user_id);
+        return jsonObject;
+    }
+
+    @Override
+    public JSONObject getPersonaRecommendUsers(String username) {
+        JSONObject jsonObjects =teacherDao.getPersonaRecommendUsers(username);
+        return jsonObjects;
+    }
+
+    @Override
+    public JSONObject getScholatInfoByID(int i) {
+        JSONObject jsonObject = teacherDao.getScholatInfoByID(i);
+        return jsonObject;
+    }
+
+    @Override
+    public String getScholatUernameByScholatID(long l) {
+        String str = teacherDao.getScholatUernameByScholatID(l);
+        return str;
+    }
+
+    @Override
+    public JSONObject getScholatInfoSimple(String scholat_username) {
+        JSONObject jsonObject = teacherDao.getScholatInfoSimple(scholat_username);
+        return jsonObject;
+    }
+
+    @Override
+    public JSONObject getLocalRecommendUsers(String local_id) {
+        JSONObject jsonObject = teacherDao.getLocalRecommendUsers(local_id);
+        return jsonObject;
+    }
+
+    @Override
+    public JSONObject getUnionRecommendUsers(String local_id) {
+        JSONObject jsonObject = teacherDao.getUnionRecommendUsers(local_id);
+        return jsonObject;
+    }
+
+    @Override
+    public JSONObject listTeacherRecommend(JSONObject jsonObject) {
+
+
+        CommonUtil.fillPageParam(jsonObject);
+        // 按照拼音排序
+        JSONObject jsonObject1 = teacherDao.getFirstLetterFromTeacher(jsonObject);
+        System.out.println(jsonObject1);
+        jsonObject.put("letter",jsonObject1.getString("pinyin").charAt(0));
+        jsonObject.put("unitId",jsonObject1.getString("unitId"));
+        List<JSONObject> list = teacherDao.listTeacherByletter(jsonObject);
+        int count = 8;
+        System.out.println("........有"+count+"位教师");
+
+        System.out.println("后台查询到的教师数据为: "+list);
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
+
+
+    // ------------------- [学者画像]   获取本地数据库学者关系 [end] ----------------
+
+}

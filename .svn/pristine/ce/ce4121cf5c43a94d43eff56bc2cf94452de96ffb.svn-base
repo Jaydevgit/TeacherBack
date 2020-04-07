@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.heeexy.example.dao.ManagerDao">
+
+    <insert id="addTeacher" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO teacher_profile
+        (username,state,sex,avatar,post,graduateFrom,intro,email,phone,
+        create_time,update_time,views,department_name,
+        degree,work_place,label,subject,research_direction,scholat_username,unit_id,
+        scholat_update_time)
+        VALUES
+        (#{username},#{state},#{sex},#{avatar},#{post},#{graduateFrom},#{intro},#{email},#{phone},
+        #{create_time},#{create_time},#{views},#{department_name},
+        #{degree},#{work_place},#{label},#{subject},#{research_direction},#{scholat_username},#{unit_id},
+        <!-- 如果有传入有时间，则正常赋值 -->
+        <if test="scholat_update_time != null and scholat_update_time != ''">#{scholat_update_time}</if>
+        <!-- 如果传入时间为空，则赋NULL值 -->
+        <if test="scholat_update_time != null and scholat_update_time == ''">NULL</if>
+        )
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <update id="insertScholatName">
+        <foreach collection="list" item="item" index="index" separator=";">
+            update  teacher_profile
+            set scholat_username = #{item.real_scholat_username}
+            where id = #{item.id}
+        </foreach>
+    </update>
+
+
+    <select id="judgeEmailExist" resultType="Integer">
+        SELECT count(0)
+        FROM teacher_profile t
+        WHERE t.email = #{email}
+    </select>
+
+
+
+    <select id="countKeyTeacher" resultType="Integer">
+        SELECT count(0)
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId}
+        AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
+    </select>
+
+<!--    &lt;!&ndash; 统计有多少学者网用户更新了 &ndash;&gt;
+    <select id="countScholatUpdate" resultType="Integer">
+        SELECT count(0)
+        FROM (
+        select
+        t.id                                      id,
+        t.username                                name,
+        t.avatar                                  avatar,
+        t.state                                   state,
+        t.views                                   views,
+        date_format(u.introUpdateTime , '%Y.%m.%d %T') scholat_update_time,
+        t.scholat_username                        scholat_username,
+        date_format(t.update_time, '%Y.%m.%d %T') update_time,
+        date_format(t.create_time, '%Y.%m.%d %T') create_time
+        FROM teacher_profile t
+        left join `user_profile` u
+        on  t.scholat_username = u.acc_name and t.unit_id = #{unitId}
+        ) ts
+        WHERE ts.scholat_update_time > ts.update_time
+    </select>-->
+
+    <select id="countTeacher" resultType="Integer">
+        SELECT count(0)
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId}
+    </select>
+
+<!--    <select id="listTeacher" resultType="com.alibaba.fastjson.JSONObject">
+        select
+	    t.id                                      id,
+        t.username                                name,
+        t.email                                   email,
+        t.avatar                                  avatar,
+        t.state                                   state,
+        t.views                                   views,
+        t.post                                    post,
+        date_format(u.introUpdateTime , '%Y.%m.%d %T') scholat_update_time,
+		u.acc_name								  real_scholat_username,
+        t.scholat_username                        scholat_username,
+        date_format(t.update_time, '%Y.%m.%d %T') update_time,
+        date_format(t.create_time, '%Y.%m.%d %T') create_time
+        FROM teacher_profile t
+        left join `user_profile` u
+        on  (t.scholat_username = u.acc_name) or (t.email=u.work_email)
+		and t.unit_id = #{unitId}
+		ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
+    </select>-->
+    <select id="listTeacherLocal" resultType="com.alibaba.fastjson.JSONObject">
+        select
+	    t.id                                      id,
+        t.username                                name,
+        t.email                                   email,
+        t.avatar                                  avatar,
+        t.state                                   state,
+        t.views                                   views,
+        t.post                                    post,
+        t.scholat_username                        scholat_username,
+        date_format(t.update_time, '%Y.%m.%d %T') update_time,
+        date_format(t.create_time, '%Y.%m.%d %T') create_time
+        FROM teacher_profile t
+		WHERE t.unit_id = #{unitId}
+		ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
+    </select>
+
+   <!-- <select id="searchTeacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.id                                      id,
+        t.username                                name,
+        t.email                                   email,
+        t.avatar                                  avatar,
+        t.state                                   state,
+        t.views                                   views,
+        t.post                                    post,
+        date_format(u.introUpdateTime , '%Y.%m.%d %T') scholat_update_time,
+        t.scholat_username                        scholat_username,
+        date_format(t.update_time, '%Y.%m.%d %T') update_time,
+        date_format(t.create_time, '%Y.%m.%d %T') create_time
+        FROM teacher_profile t
+        left join `user_profile` u
+        on  t.scholat_username = u.acc_name WHERE
+        t.unit_id = #{unitId}
+        AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
+        ORDER BY scholat_update_time desc
+        LIMIT #{offSet},#{pageRow}
+    </select>-->
+    <select id="searchTeacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.id                                      id,
+        t.username                                name,
+        t.email                                   email,
+        t.avatar                                  avatar,
+        t.state                                   state,
+        t.views                                   views,
+        t.post                                    post,
+        t.scholat_username                        scholat_username,
+        date_format(t.update_time, '%Y.%m.%d %T') update_time,
+        date_format(t.create_time, '%Y.%m.%d %T') create_time
+        FROM teacher_profile t
+        WHERE
+        t.unit_id = #{unitId}
+        AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
+        ORDER BY scholat_update_time desc
+        LIMIT #{offSet},#{pageRow}
+    </select>
+
+    <select id="getTeacherByKey" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.id             tId,
+        t.username       tName,
+        t.avatar         tAvatar,
+        t.post           tPost
+        FROM teacher_profile t
+        WHERE t.unit_id = #{unitId}
+        AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
+        ORDER BY t.seq
+
+    </select>
+
+    <delete id="deleteTeacher">
+        delete from teacher_profile where id = #{teacherId}
+    </delete>
+
+    <update id="updateTeacher" parameterType="com.alibaba.fastjson.JSONObject">
+        UPDATE teacher_profile
+        SET
+        username=#{username},
+        sex=#{sex},
+        avatar=#{avatar},
+        state=#{state},
+        email=#{email},
+        degree=#{degree},
+        <choose>
+            <when test="phone != null and phone != ''">
+                phone=#{phone},
+            </when>
+        <otherwise>
+            phone=NULL,
+        </otherwise>
+        </choose>
+        work_place=#{work_place},
+        label=#{label},
+        subject=#{subject},
+        department_name=#{department_name},
+        scholat_username=#{scholat_username},
+<!--        &lt;!&ndash; 如果有传入有时间，则正常赋值 &ndash;&gt;
+        <if test="scholat_update_time != null and scholat_update_time != ''">
+            scholat_update_time=#{scholat_update_time},
+        </if>
+        &lt;!&ndash; 如果传入时间为空，则赋NULL值 &ndash;&gt;
+        <if test="scholat_update_time != null and scholat_update_time == ''">scholat_update_time=NULL,</if>-->
+        post=#{post},
+        graduateFrom=#{graduateFrom},
+        intro=#{intro},
+        research_direction=#{research_direction},
+        create_time=#{create_time},
+        unit_id=#{unit_id},
+        views=#{views}
+        WHERE id = #{id}
+    </update>
+
+
+
+<!--    <select id="countScholat" resultType="Integer">
+        SELECT count(0)
+      from user_profile
+      where acc_name=#{username} or chinese_name=#{name} or work_email=#{email}
+    </select>
+    <select id="searchScholat" resultType="com.alibaba.fastjson.JSONObject">
+      select
+      u.acc_name        scholat_username,
+      u.chinese_name    username,
+      u.work_unit       unit_name,
+      u.work_department department_name,
+      u.picture_url     avatar,
+      u.work_email      email,
+      u.introUpdateTime update_time,
+      u.introduction    intro,
+      u.degree          degree,
+      u.scholar_title   post
+      from user_profile u
+      where u.acc_name=#{username} or u.chinese_name=#{name} or u.work_email=#{email}
+    </select>-->
+
+</mapper>
