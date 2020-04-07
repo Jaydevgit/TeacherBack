@@ -39,12 +39,12 @@ public class ManagerController {
 		return managerService.listTeacher(CommonUtil.request2Json(request));
 	}
 
-	@GetMapping("/listTeacherNoState")
-	public JSONObject listTeacherNoState(HttpServletRequest request) {
-		System.out.println("......开始查询未在岗教师成员列表");
-		System.out.println(CommonUtil.request2Json(request));
-		return managerService.listTeacherNoState(CommonUtil.request2Json(request));
-	}
+//	@GetMapping("/listTeacherNoState")
+//	public JSONObject listTeacherNoState(HttpServletRequest request) {
+//		System.out.println("......开始查询未在岗教师成员列表");
+//		System.out.println(CommonUtil.request2Json(request));
+//		return managerService.listTeacherNoState(CommonUtil.request2Json(request));
+//	}
 
 	@GetMapping("/getTeacherByKey")
 	public JSONObject getTeacherByName(HttpServletRequest request) {

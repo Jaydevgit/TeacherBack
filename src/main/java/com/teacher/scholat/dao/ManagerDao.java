@@ -37,10 +37,10 @@ public interface ManagerDao {
     List<JSONObject> listTeacher(JSONObject jsonObject);
     List<JSONObject> listTeacherLocal(JSONObject jsonObject);
 
-	/**
-	 * 除去在岗教师列表
-	 */
-	List<JSONObject> listTeacherNoLocal(JSONObject jsonObject);
+//	/**
+//	 * 除去在岗教师列表
+//	 */
+//	List<JSONObject> listTeacherNoLocal(JSONObject jsonObject);
 
     /**
      * 教师文章

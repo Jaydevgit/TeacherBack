@@ -121,31 +121,48 @@
         t.views                                   views,
         t.post                                    post,
         t.scholat_username                        scholat_username,
+        t.pinyin                                  pinyin,
         date_format(t.update_time, '%Y.%m.%d %T') update_time,
         date_format(t.create_time, '%Y.%m.%d %T') create_time
         FROM teacher_profile t
 		WHERE t.unit_id = #{unitId}
-		and t.state=1
-		ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
+        <if test="state == 1">
+            and t.state=1
+        </if>
+        <if test="state != 1">
+            and t.state!=1
+        </if>
+        <if test="key == 'pinyin'">
+            ORDER BY
+            pinyin
+        </if>
+        <if test="key == 'update_time'">
+            ORDER BY
+            update_time
+        </if>
+        <if test="sort == 'desc'">
+            desc
+        </if>
+		  LIMIT #{offSet},#{pageRow}
     </select>
 
-    <select id="listTeacherNoLocal" resultType="com.alibaba.fastjson.JSONObject">
-        select
-	    t.id                                      id,
-        t.username                                name,
-        t.email                                   email,
-        t.avatar                                  avatar,
-        t.degree                                  degree,
-        t.state                                   state,
-        t.views                                   views,
-        t.post                                    post,
-        t.scholat_username                        scholat_username,
-        date_format(t.update_time, '%Y.%m.%d %T') update_time,
-        date_format(t.create_time, '%Y.%m.%d %T') create_time
-        FROM teacher_profile t
-		WHERE t.unit_id = #{unitId} and t.state!=1
-		ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
-    </select>
+<!--    <select id="listTeacherNoLocal" resultType="com.alibaba.fastjson.JSONObject">-->
+<!--        select-->
+<!--	    t.id                                      id,-->
+<!--        t.username                                name,-->
+<!--        t.email                                   email,-->
+<!--        t.avatar                                  avatar,-->
+<!--        t.degree                                  degree,-->
+<!--        t.state                                   state,-->
+<!--        t.views                                   views,-->
+<!--        t.post                                    post,-->
+<!--        t.scholat_username                        scholat_username,-->
+<!--        date_format(t.update_time, '%Y.%m.%d %T') update_time,-->
+<!--        date_format(t.create_time, '%Y.%m.%d %T') create_time-->
+<!--        FROM teacher_profile t-->
+<!--		WHERE t.unit_id = #{unitId} and t.state!=1-->
+<!--		ORDER BY update_time desc LIMIT #{offSet},#{pageRow}-->
+<!--    </select>-->
 
    <!-- <select id="searchTeacher" resultType="com.alibaba.fastjson.JSONObject">
         SELECT

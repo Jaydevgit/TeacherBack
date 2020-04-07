@@ -31,10 +31,10 @@ public interface ManagerService {
 	 */
 	JSONObject listTeacher(JSONObject jsonObject);
 
-	/**
-	 * 未在岗教师列表
-	 */
-	JSONObject listTeacherNoState(JSONObject jsonObject);
+//	/**
+//	 * 未在岗教师列表
+//	 */
+//	JSONObject listTeacherNoState(JSONObject jsonObject);
 
 	/**
 	 * 更新教师
