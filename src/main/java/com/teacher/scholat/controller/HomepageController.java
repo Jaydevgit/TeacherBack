@@ -52,6 +52,16 @@ public class HomepageController {
         System.out.println(CommonUtil.request2Json(request));
         return teacherService.listTeacher(CommonUtil.request2Json(request));
     }
+
+    /**
+     * 查询教师列表
+     */
+    @GetMapping("/listTeacherAll")
+    public JSONObject listTeacherAll(HttpServletRequest request) {
+        System.out.println("......开始查询教师成员列表");
+        System.out.println(CommonUtil.request2Json(request));
+        return teacherService.listTeacherAll(CommonUtil.request2Json(request));
+    }
     /**
      * 查询教师个人主页推荐教师
      */
