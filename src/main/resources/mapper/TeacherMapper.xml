@@ -99,9 +99,10 @@
                   t.id          tId,
                   t.username    tName,
                   t.post        tPost,
-                  t.avatar      tAvatar
+                  t.avatar      tAvatar,
+                  t.pinyin      tPinyin
         FROM teacher_profile t
-        WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY t.seq,CONVERT(t.username  USING gbk)
+        WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY tPinyin
     </select>
     <!--注：此处和上面函数只是别名的区别-->
     <select id="listTeacherAllTWO" resultType="com.alibaba.fastjson.JSONObject">
