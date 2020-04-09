@@ -64,8 +64,8 @@ public class ManagerServiceImpl implements ManagerService {
     public JSONObject listTeacher(JSONObject jsonObject) {
         System.out.println("前端传过来的教师列表要求为: ");
         CommonUtil.fillPageParam(jsonObject);
-        long unitId = jsonObject.getLongValue("unitId");
-        int count = managerDao.countTeacher(unitId);
+        //long unitId = jsonObject.getLongValue("unitId");
+        int count = managerDao.countTeacher(jsonObject);
         //System.out.println("........有"+count+"位教师");
 
 

@@ -81,7 +81,19 @@
     <select id="countTeacher" resultType="Integer">
         SELECT count(0)
         FROM teacher_profile t
-        WHERE t.state = '1' AND t.unit_id = #{unitId}
+        WHERE t.unit_id = #{unitId}
+        <if test="scholatUsernameFlag == 'true'">
+            and t.scholat_username!=''
+        </if>
+        <if test="scholatUsernameFlag == 'false'">
+            and t.scholat_username=''
+        </if>
+        <if test="state == 1">
+            and t.state=1
+        </if>
+        <if test="state != 1">
+            and t.state!=1
+        </if>
     </select>
 
     <select id="countLetterUnitTeacher" resultType="Integer">
@@ -126,6 +138,12 @@
         date_format(t.create_time, '%Y.%m.%d %T') create_time
         FROM teacher_profile t
 		WHERE t.unit_id = #{unitId}
+        <if test="scholatUsernameFlag == 'true'">
+            and t.scholat_username!=''
+        </if>
+        <if test="scholatUsernameFlag == 'false'">
+            and t.scholat_username=''
+        </if>
         <if test="state == 1">
             and t.state=1
         </if>

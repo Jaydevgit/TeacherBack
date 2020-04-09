@@ -28,7 +28,7 @@ public interface ManagerDao {
 
 
 	//统计教师总数
-    int countTeacher(long unitId);
+    int countTeacher(JSONObject jsonObject);
 
 	int countLetterUnitTeacher(JSONObject jsonObject);
     /**
