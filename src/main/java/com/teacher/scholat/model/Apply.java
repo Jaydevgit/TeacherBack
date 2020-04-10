@@ -20,6 +20,15 @@ public class Apply {
     private String chinese_name;
     private String username;
     private String token;
+    private String domain_name;
+
+    public String getDomain_name() {
+        return domain_name;
+    }
+
+    public void setDomain_name(String domain_name) {
+        this.domain_name = domain_name;
+    }
 
     // 数据库外的
     private Integer unit_profile_id;

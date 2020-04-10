@@ -21,7 +21,8 @@
         state,
         token,
         update_time,
-        password)
+        password,
+        domain_name)
         VALUES
         (#{school_name},
         #{unit_name},
@@ -38,7 +39,8 @@
         #{state},
         #{token},
         #{update_time},
-        #{password})
+        #{password},
+        #{domain_name})
         <selectKey resultType="int" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>

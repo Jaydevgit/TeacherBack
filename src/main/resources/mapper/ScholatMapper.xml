@@ -93,10 +93,12 @@
             parameterType="com.alibaba.fastjson.JSONObject">
         INSERT INTO school_unit
         (school_name,
-        unit_name)
+        unit_name,
+        domain_name)
         VALUES
         (#{school_name},
-        #{unit_name})
+        #{unit_name},
+        #{domain_name})
         <selectKey resultType="int" keyProperty="unit_id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
