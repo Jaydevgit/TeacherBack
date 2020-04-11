@@ -11,6 +11,7 @@
         <result column="unitName" property="unitName"/>
         <result column="unitId" property="unitId"/>
         <result column="roleName" property="roleName"/>
+        <result column="domainName" property="domainName"/>
         <collection property="menuList" ofType="String">
             <id column="menuCode" property="menuCode"/>
         </collection>
@@ -27,6 +28,7 @@
           k.role_id                  roleId,
           k.unit_id                  unitId,
           k.role_name              roleName,
+          k.domain_name          domainName,
           p.menu_code              menuCode,
           p.permission_code   permissionCode
     FROM(select  a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId
@@ -35,7 +37,8 @@
             u.nickname,
             u.username,
             u.role_id,
-            u.unit_id
+            u.unit_id,
+            u.domain_name
     FROM unit_profile u  WHERE u.username = #{username} AND u.state = '1')t
     LEFT JOIN sys_role ON t.role_id = sys_role.id) a   join  mysql.help_topic b  on b.help_topic_id &lt;
     (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id
