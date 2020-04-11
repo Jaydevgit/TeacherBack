@@ -16,6 +16,8 @@ public interface UnitService {
 
 	JSONObject getUnitInfo(JSONObject object);
 
+	JSONObject getUnitInfo2(JSONObject object);
+
 	JSONObject updateUnitInfo(JSONObject object);
 
 	JSONObject getUnitBytId(JSONObject object);

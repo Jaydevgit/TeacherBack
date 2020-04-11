@@ -13,6 +13,9 @@ public interface UnitDao {
 	//获取学院基本信息
 	JSONObject getUnitInfo(JSONObject object);
 
+	//获取学院基本信息
+	JSONObject getUnitInfo2(JSONObject object);
+
 	void updateUnitInfo(JSONObject object);
 
 	JSONObject getUnitBytId(JSONObject object);

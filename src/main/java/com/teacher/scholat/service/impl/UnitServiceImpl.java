@@ -29,6 +29,13 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
+    public JSONObject getUnitInfo2(JSONObject object)
+    {   JSONObject unit = unitDao.getUnitInfo2(object);
+        System.out.println("获取到的unit------"+unit);
+        return CommonUtil.successJson(unit);
+    }
+
+    @Override
     public JSONObject updateUnitInfo(JSONObject object) {
         unitDao.updateUnitInfo(object);
         return CommonUtil.successJson();

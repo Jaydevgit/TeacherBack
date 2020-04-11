@@ -14,6 +14,25 @@
         u.college_url collegeUrl,
         u.logo_url logoUrl,
         u.state state,
+        u.domain_name domainName,
+        u.background_url backgroundUrl
+    FROM
+        school_unit u
+    WHERE
+        u.id = #{unitId}
+    </select>
+
+    <!--获取主页基本信息-->
+    <select id="getUnitInfo2" resultType="com.alibaba.fastjson.JSONObject">
+         SELECT
+				u.id        Id,
+        u.school_name schoolName,
+        u.unit_name unitName,
+        u.school_eng schoolEng,
+        u.unit_eng unitEng,
+        u.college_url collegeUrl,
+        u.logo_url logoUrl,
+        u.state state,
         u.background_url backgroundUrl,
         u.domain_name domainName,
         t.unit_id unitId

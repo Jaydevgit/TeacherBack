@@ -87,5 +87,16 @@ public class HomepageController {
         return object;
     }
 
+    /**
+     * 依据域名查询学院基础信息
+     */
+    @GetMapping("/getUnitInfo2")
+    public JSONObject getUnit2(HttpServletRequest request){
+        System.out.println("...开始查询学院基础信息");
+        JSONObject object = unitService.getUnitInfo2(CommonUtil.request2Json(request));
+        System.out.println("object....." + object);
+        return object;
+    }
+
 
 }
