@@ -118,7 +118,8 @@
         certificate_back,
         certificate_working,
         phone,
-        email)
+        email,
+        domain_name)
         VALUES
         (#{chinese_name},
         #{username},
@@ -132,7 +133,8 @@
         #{certificate_back},
         #{certificate_working},
         #{phone},
-        #{email})
+        #{email},
+        #{domain_name})
         <selectKey resultType="int" keyProperty="unit_profile_id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>

@@ -13,7 +13,8 @@
             u.college_url       collegeUrl,
             u.logo_url          logoUrl,
             u.state             state,
-            u.background_url    backgroundUrl
+            u.background_url    backgroundUrl,
+            u.domain_name       domainName
         FROM
             school_unit u
         WHERE u.id = #{unitId}
@@ -28,7 +29,8 @@
             u.college_url       collegeUrl,
             u.logo_url          logoUrl,
             u.state             state,
-            u.background_url    backgroundUrl
+            u.background_url    backgroundUrl,
+            u.domain_name       domainName
         FROM
             school_unit u
         WHERE u.id = (SELECT  t.unit_id  FROM teacher_profile t WHERE t.id = #{id})
