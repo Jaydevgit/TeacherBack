@@ -26,6 +26,11 @@ public interface ManagerService {
 	* */
 	int judgeEmailExist(JSONObject jsonObject);
 
+	/*
+	 * 查询教师域名是否已经存在
+	 * */
+	int judgeDomainExist(JSONObject jsonObject);
+
 	/**
 	 * 教师列表
 	 */

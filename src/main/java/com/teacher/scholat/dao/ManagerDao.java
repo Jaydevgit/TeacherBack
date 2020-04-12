@@ -74,4 +74,8 @@ public interface ManagerDao {
 	int countKeyTeacher(JSONObject object);
 
 	List<JSONObject> selectAllTeacher();
+
+
+	//域名是否存在
+	int judgeDomainExist(JSONObject jsonObject);
 }

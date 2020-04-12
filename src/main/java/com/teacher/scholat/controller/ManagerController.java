@@ -39,6 +39,16 @@ public class ManagerController {
 		return managerService.listTeacher(CommonUtil.request2Json(request));
 	}
 
+	/**
+	 * 查询教师域名是否存在
+	 */
+	@RequestMapping("/judgeDomainExist")
+	public int judgeDomainExist(@RequestBody JSONObject requestJson) {
+		System.out.println("......开始查询教师域名是否存在");
+		System.out.println(requestJson);
+		return managerService.judgeDomainExist(requestJson);
+	}
+
 //	@GetMapping("/listTeacherNoState")
 //	public JSONObject listTeacherNoState(HttpServletRequest request) {
 //		System.out.println("......开始查询未在岗教师成员列表");

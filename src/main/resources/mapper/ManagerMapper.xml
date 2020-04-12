@@ -8,12 +8,12 @@
         INSERT INTO teacher_profile
         (username,state,sex,avatar,post,graduateFrom,intro,email,phone,qrcode,
         create_time,update_time,views,department_name,
-        degree,work_place,label,subject,research_direction,scholat_username,unit_id,pinyin,
+        degree,work_place,label,subject,research_direction,scholat_username,unit_id,pinyin,domain_name,
         scholat_update_time)
         VALUES
         (#{username},#{state},#{sex},#{avatar},#{post},#{graduateFrom},#{intro},#{email},#{phone},#{qrcode},
         #{create_time},#{create_time},#{views},#{department_name},
-        #{degree},#{work_place},#{label},#{subject},#{research_direction},#{scholat_username},#{unit_id},#{pinyin},
+        #{degree},#{work_place},#{label},#{subject},#{research_direction},#{scholat_username},#{unit_id},#{pinyin},#{domain_name},
         <!-- 如果有传入有时间，则正常赋值 -->
         <if test="scholat_update_time != null and scholat_update_time != ''">#{scholat_update_time}</if>
         <!-- 如果传入时间为空，则赋NULL值 -->
@@ -37,6 +37,12 @@
         SELECT count(0)
         FROM teacher_profile t
         WHERE t.email = #{email}
+    </select>
+
+    <select id="judgeDomainExist" resultType="Integer">
+        SELECT count(0)
+        FROM teacher_profile t
+        WHERE t.domain_name = #{domain_name}
     </select>
 
     <select id="selectAllTeacher" resultType="com.alibaba.fastjson.JSONObject">
@@ -134,6 +140,7 @@
         t.post                                    post,
         t.scholat_username                        scholat_username,
         t.pinyin                                  pinyin,
+        t.domain_name                             domainName,
         date_format(t.update_time, '%Y.%m.%d %T') update_time,
         date_format(t.create_time, '%Y.%m.%d %T') create_time
         FROM teacher_profile t
@@ -296,7 +303,8 @@
         research_direction=#{research_direction},
         unit_id=#{unit_id},
         views=#{views},
-        pinyin=#{pinyin}
+        pinyin=#{pinyin},
+        domain_name=#{domain_name}
         WHERE id = #{id}
     </update>
 
