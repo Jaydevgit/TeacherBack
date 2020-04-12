@@ -56,9 +56,9 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public int judgeDomainExist(JSONObject jsonObject) {
-        int i = managerDao.judgeDomainExist(jsonObject);
-        return i;
+    public List<JSONObject> judgeDomainExist(JSONObject jsonObject) {
+
+        return managerDao.judgeDomainExist(jsonObject);
     }
 
     /**

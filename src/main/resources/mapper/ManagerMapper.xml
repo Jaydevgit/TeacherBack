@@ -39,8 +39,8 @@
         WHERE t.email = #{email}
     </select>
 
-    <select id="judgeDomainExist" resultType="Integer">
-        SELECT count(0)
+    <select id="judgeDomainExist" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT count(0) as flag,t.id
         FROM teacher_profile t
         WHERE t.domain_name = #{domain_name}
     </select>

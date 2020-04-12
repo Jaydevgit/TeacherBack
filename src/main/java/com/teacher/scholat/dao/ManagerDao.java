@@ -77,5 +77,5 @@ public interface ManagerDao {
 
 
 	//域名是否存在
-	int judgeDomainExist(JSONObject jsonObject);
+	List<JSONObject> judgeDomainExist(JSONObject jsonObject);
 }

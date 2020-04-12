@@ -43,7 +43,7 @@ public class ManagerController {
 	 * 查询教师域名是否存在
 	 */
 	@RequestMapping("/judgeDomainExist")
-	public int judgeDomainExist(@RequestBody JSONObject requestJson) {
+	public List<JSONObject> judgeDomainExist(@RequestBody JSONObject requestJson) {
 		System.out.println("......开始查询教师域名是否存在");
 		System.out.println(requestJson);
 		return managerService.judgeDomainExist(requestJson);

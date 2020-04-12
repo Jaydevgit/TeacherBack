@@ -29,7 +29,7 @@ public interface ManagerService {
 	/*
 	 * 查询教师域名是否已经存在
 	 * */
-	int judgeDomainExist(JSONObject jsonObject);
+	List<JSONObject> judgeDomainExist(JSONObject jsonObject);
 
 	/**
 	 * 教师列表
