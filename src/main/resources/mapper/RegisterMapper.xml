@@ -53,6 +53,12 @@
         from unit_apply
         where school_name = #{school_name} and unit_name = #{unit_name}
     </select>
+    <select id="judgeUserNameExist" resultType="Integer">
+        select count(0)
+        from unit_apply
+        where username = #{username} and unit_name = #{unit_name}
+    </select>
+
     <select id="judgeSchoolUnitExist" resultType="Integer">
         select count(0)
         from school_unit

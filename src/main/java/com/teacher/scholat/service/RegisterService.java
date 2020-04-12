@@ -7,4 +7,5 @@ public interface RegisterService {
     int addApply(Apply applay);
     JSONObject getApplyInfo(JSONObject jsonObject);
     int judgeUnitExist(JSONObject jsonObject);
+    int judgeUserNameExist(JSONObject jsonObject);
 }
