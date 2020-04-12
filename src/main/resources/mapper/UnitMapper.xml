@@ -63,6 +63,8 @@
     <update id="updateUnitInfo">
         update school_unit
         SET college_url = #{collegeUrl},
+        school_eng=#{schoolEng},
+        unit_eng=#{unitEng},
             logo_url = #{logoUrl},
             state = #{state},
             background_url = #{backgroundUrl}
