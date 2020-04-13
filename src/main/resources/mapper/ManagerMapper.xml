@@ -8,12 +8,12 @@
         INSERT INTO teacher_profile
         (username,state,sex,avatar,post,graduateFrom,intro,email,phone,qrcode,
         create_time,update_time,views,department_name,
-        degree,work_place,label,subject,research_direction,scholat_username,unit_id,pinyin,domain_name,
+        degree,work_place,label,subject,research_direction,scholat_username,unit_id,pinyin,domain_name,edit_name,
         scholat_update_time)
         VALUES
         (#{username},#{state},#{sex},#{avatar},#{post},#{graduateFrom},#{intro},#{email},#{phone},#{qrcode},
         #{create_time},#{create_time},#{views},#{department_name},
-        #{degree},#{work_place},#{label},#{subject},#{research_direction},#{scholat_username},#{unit_id},#{pinyin},#{domain_name},
+        #{degree},#{work_place},#{label},#{subject},#{research_direction},#{scholat_username},#{unit_id},#{pinyin},#{domain_name},#{edit_name},
         <!-- 如果有传入有时间，则正常赋值 -->
         <if test="scholat_update_time != null and scholat_update_time != ''">#{scholat_update_time}</if>
         <!-- 如果传入时间为空，则赋NULL值 -->
@@ -141,6 +141,7 @@
         t.scholat_username                        scholat_username,
         t.pinyin                                  pinyin,
         t.domain_name                             domainName,
+        t.edit_name                             editName,
         date_format(t.update_time, '%Y.%m.%d %T') update_time,
         date_format(t.create_time, '%Y.%m.%d %T') create_time
         FROM teacher_profile t
@@ -304,7 +305,8 @@
         unit_id=#{unit_id},
         views=#{views},
         pinyin=#{pinyin},
-        domain_name=#{domain_name}
+        domain_name=#{domain_name},
+        edit_name=#{edit_name}
         WHERE id = #{id}
     </update>
 

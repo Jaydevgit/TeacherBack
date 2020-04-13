@@ -31,6 +31,15 @@ public class Teacher {
     private Integer views;
     private String pinyin;
     private String domain_name;
+    private String edit_name;
+
+    public String getEdit_name() {
+        return edit_name;
+    }
+
+    public void setEdit_name(String edit_name) {
+        this.edit_name = edit_name;
+    }
 
     public String getDomain_name() {
         return domain_name;
