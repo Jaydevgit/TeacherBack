@@ -65,6 +65,12 @@
         where school_name = #{school_name} and unit_name = #{unit_name}
     </select>
 
+    <select id="judgeDomainNameExist" resultType="Integer">
+        select count(0)
+        from school_unit
+        where domain_name = #{domain_name}
+    </select>
+
     <select id="getApplyInfo" resultType="com.alibaba.fastjson.JSONObject">
         select
         id,school_name,unit_name,certificate_front,certificate_back,

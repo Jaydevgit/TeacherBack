@@ -41,9 +41,10 @@ public class RegisterController {
         CommonUtil.hasAllRequired(requestJson, "create_time");
         CommonUtil.hasAllRequired(requestJson, "state");*/
         int existUsername = registerService.judgeUserNameExist(requestJson);
+        int existDomainName = registerService.judgeDomainNameExist(requestJson);
         // 去看下有没有重复的申请信息, 主要是去校验有没有相同的学校和学院
         int exist = registerService.judgeUnitExist(requestJson);
-        System.out.println("看看该学院是否已经发起过申请：" + exist+"---"+existUsername);
+        System.out.println("看看该学院是否已经发起过申请：" + exist+"---"+existUsername+"---"+existDomainName);
         if (exist != 0) {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("exist", "该学院已发起过申请");
@@ -53,7 +54,12 @@ public class RegisterController {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("existName", "该用户名已存在");
             return CommonUtil.successJson(jsonObject);
-        } else{
+        } else if(existDomainName!=0){
+            System.out.println("看看该域名是否注册：" + existDomainName);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("existDomainName", "该域名已存在");
+            return CommonUtil.successJson(jsonObject);
+        }else{
             Apply apply = JSONObject.toJavaObject(requestJson, Apply.class);
             System.out.println("发起申请的学院为：" + apply.getSchool_name() + " " + apply.getUnit_name() + ".......");
             // -----------------------对输入的数据进行处理------------------------------

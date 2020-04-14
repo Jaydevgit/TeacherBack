@@ -10,4 +10,5 @@ public interface RegisterDao {
     int judgeSchoolUnitExist(JSONObject jsonObject);
 
     int judgeUserNameExist(JSONObject jsonObject);
+    int judgeDomainNameExist(JSONObject jsonObject);
 }
