@@ -61,7 +61,9 @@
 
     <select id="getUnitInfoByUnitId" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
-            u.username userName
+            u.username userName,
+            u.nickname nickName,
+            u.email email
         FROM
             unit_profile u
         WHERE u.unit_id = #{id}
