@@ -30,6 +30,23 @@ public class RegisterController {
         System.out.println(jsonObject);
         return CommonUtil.successJson(jsonObject);
     }
+    @PostMapping("/judgeDomainNameExist")
+    public JSONObject judgeDomainNameExist(@RequestBody JSONObject requestJson) {
+        System.out.println("domain==="+requestJson);
+        int existDomainName = registerService.judgeDomainNameExist(requestJson);
+        if(existDomainName!=0) {
+            System.out.println("看看该域名是注册：" + existDomainName);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("existDomain",true);
+            return CommonUtil.successJson(jsonObject);
+        }else{
+            System.out.println("看看该域名否注册：" + existDomainName);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("existDomain",false);
+            return CommonUtil.successJson(jsonObject);
+        }
+
+    }
 
     @PostMapping("/apply")
     public JSONObject apply(@RequestBody JSONObject requestJson) {

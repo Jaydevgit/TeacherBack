@@ -53,10 +53,10 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public int judgeDomainNameExist(JSONObject jsonObject) {
-        int exist = registerDao.judgeUserNameExist(jsonObject);
+      //  int exist = registerDao.judgeUserNameExist(jsonObject);
        // int school_unit_exist = registerDao.judgeSchoolUnitExist(jsonObject);
         int domain_name_exist = registerDao.judgeDomainNameExist(jsonObject);
-        if(domain_name_exist == 0&&exist==0){
+        if(domain_name_exist == 0){
             // 表示没有找到相同的学院域名，那就可以添加
             return 0;
         }else{
