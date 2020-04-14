@@ -7,6 +7,10 @@
       select * from teacher_profile u where u.id=#{0}
     </select>
 
+    <select id="getTeacherInfoByDomainName" resultType="com.alibaba.fastjson.JSONObject">
+      select * from teacher_profile u where u.domain_name=#{0}
+    </select>
+
     <select id="countKeyTeacher" resultType="Integer">
         SELECT count(0)
         FROM teacher_profile t
@@ -247,8 +251,9 @@
     </select>
     <select id="getFirstLetterFromTeacher" resultType="com.alibaba.fastjson.JSONObject">
         select t.pinyin pinyin,
-         t.unit_id unitId
-         from teacher_profile t where t.id=#{tId}
+         t.unit_id unitId,
+         t.id tId
+         from teacher_profile t where t.domain_name=#{tDomainName}
     </select>
     <select id="listTeacherByletter" resultType="com.alibaba.fastjson.JSONObject">
                     SELECT
@@ -257,6 +262,7 @@
             t.avatar     tAvatar,
             t.post       tPost,
             t.email       tEmail,
+            t.domain_name       tDomainName,
 						t.department_name     tDepartment_name,
 						t.work_place      tWork_place,
 						t.degree      tDegree,
@@ -276,6 +282,7 @@
             t.avatar     tAvatar,
             t.post       tPost,
             t.email       tEmail,
+            t.domain_name       tDomainName,
 						t.department_name     tDepartment_name,
 						t.work_place      tWork_place,
 						t.degree      tDegree,

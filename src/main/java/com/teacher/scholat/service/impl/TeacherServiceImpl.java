@@ -32,6 +32,17 @@ public class TeacherServiceImpl implements TeacherService {
         System.out.println("....获到到的教师信息为..."+jsonObject);
         return jsonObject;
     }
+    /**
+     * 通过域名获取教师信息
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public JSONObject getTeacherInfoByDomainName(String tDomainName) {
+        System.out.println("....进到到获取教师信息阶段, 教师域名为: "+tDomainName);
+        JSONObject jsonObject = teacherDao.getTeacherInfoByDomainName(tDomainName);
+        System.out.println("....获到到的教师信息为..."+jsonObject);
+        return jsonObject;
+    }
 
     @Override
     public List<JSONObject> getUpdatedTeacherList(Long unitId) {
@@ -276,6 +287,7 @@ public class TeacherServiceImpl implements TeacherService {
         char c = jsonObject1.getString("pinyin").charAt(0);
         List<JSONObject> list = new ArrayList<JSONObject>();
         jsonObject.put("unitId",jsonObject1.getString("unitId"));
+        jsonObject.put("tId",jsonObject1.getString("tId"));
         // 先去看下有没有综合推荐
         List<JSONObject> listScholatTemp = teacherDao.listScholatTeacherRecommend(jsonObject);
         System.out.println(listScholatTemp);

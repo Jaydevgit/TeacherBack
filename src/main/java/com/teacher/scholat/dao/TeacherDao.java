@@ -9,6 +9,9 @@ public interface TeacherDao {
     // 获取教师信息
     JSONObject getTeacherInfo(Long id);
 
+    // 通过域名获取教师信息
+    JSONObject getTeacherInfoByDomainName(String tDomainName);
+
     // 获取最新更新教师列表
     List<JSONObject> getUpdatedTeacherList(Long unitId);
 
