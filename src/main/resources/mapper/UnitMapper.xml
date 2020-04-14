@@ -59,6 +59,14 @@
         WHERE u.id = (SELECT  t.unit_id  FROM teacher_profile t WHERE t.id = #{id})
     </select>
 
+    <select id="getUnitInfoByUnitId" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+            u.username userName
+        FROM
+            unit_profile u
+        WHERE u.unit_id = #{id}
+    </select>
+
 
     <update id="updateUnitInfo">
         update school_unit

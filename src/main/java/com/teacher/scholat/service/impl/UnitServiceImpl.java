@@ -7,6 +7,7 @@ import com.teacher.scholat.util.CommonUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class UnitServiceImpl implements UnitService {
@@ -46,6 +47,14 @@ public class UnitServiceImpl implements UnitService {
         System.out.println("查查object" + object);
         JSONObject unitBytId = unitDao.getUnitBytId(object);
         return CommonUtil.successJson(unitBytId);
+    }
+
+    @Override
+    public List<JSONObject> getUnitInfoByUnitId(JSONObject object) {
+        System.out.println("查查UnitId---object" + object);
+        List<JSONObject> unitBytIdObject = unitDao.getUnitInfoByUnitId(object);
+        System.out.println("查查UnitId---object" + unitBytIdObject);
+        return unitBytIdObject;
     }
 
 }

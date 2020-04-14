@@ -3,6 +3,8 @@ package com.teacher.scholat.dao;
 import com.alibaba.fastjson.JSONObject;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * @author:
  * @description: schoolUnit表相关dao
@@ -19,4 +21,6 @@ public interface UnitDao {
 	void updateUnitInfo(JSONObject object);
 
 	JSONObject getUnitBytId(JSONObject object);
+
+	List<JSONObject> getUnitInfoByUnitId(JSONObject object);
 }

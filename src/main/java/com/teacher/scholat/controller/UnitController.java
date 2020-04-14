@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("/unit")
@@ -43,6 +44,19 @@ public class UnitController {
         JSONObject jsonObject = CommonUtil.request2Json(request);
         System.out.println("requestJson-----"+jsonObject);
         return unitService.getUnitInfo(jsonObject);
+    }
+
+    @GetMapping("/getUnitInfoByUnitId")
+    public JSONObject getUnitInfoByUnitId(HttpServletRequest request) {
+
+        JSONObject jsonObject = CommonUtil.request2Json(request);
+        System.out.println("requestJson-----"+jsonObject);
+        List<JSONObject> list =unitService.getUnitInfoByUnitId(jsonObject);
+
+        JSONObject jsonObject2 = new JSONObject();
+        jsonObject2.put("listSubName",list);
+        System.out.println("看看所有用户账号：" + jsonObject2);
+        return CommonUtil.successJson(jsonObject2);
     }
 
     @GetMapping("/getUnitBytId")
