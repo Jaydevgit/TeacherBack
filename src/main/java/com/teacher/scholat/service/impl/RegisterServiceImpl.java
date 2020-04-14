@@ -43,9 +43,8 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public int judgeUserNameExist(JSONObject jsonObject) {
         int exist = registerDao.judgeUserNameExist(jsonObject);
-        int school_unit_exist = registerDao.judgeSchoolUnitExist(jsonObject);
-        if(exist == 0&& school_unit_exist==0){
-            // 表示没有找到相同的学院，那就可以添加
+        if(exist == 0){
+            // 表示没有找到相同的用户名，那就可以添加
             return 0;
         }else{
             return 1;

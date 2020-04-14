@@ -55,8 +55,8 @@
     </select>
     <select id="judgeUserNameExist" resultType="Integer">
         select count(0)
-        from unit_apply
-        where username = #{username} and unit_name = #{unit_name}
+        from login
+        where username = #{username}
     </select>
 
     <select id="judgeSchoolUnitExist" resultType="Integer">
