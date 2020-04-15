@@ -95,11 +95,13 @@
         INSERT INTO school_unit
         (school_name,
         unit_name,
-        domain_name)
+        domain_name,
+        logo_url)
         VALUES
         (#{school_name},
         #{unit_name},
-        #{domain_name})
+        #{domain_name},
+        #{certificate_logo})
         <selectKey resultType="int" keyProperty="unit_id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
