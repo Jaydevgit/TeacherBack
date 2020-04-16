@@ -67,6 +67,7 @@ public class CatalogueController {
 
     @PostMapping("/updateCatalogue")
     public JSONObject updateCatalogue(@RequestBody JSONObject requestJson){
+        System.out.println("修改栏目名为"+(requestJson));
         CommonUtil.hasAllRequired(requestJson,"cId,newName");
         return catalogueService.updateCatalogue(requestJson);
     }

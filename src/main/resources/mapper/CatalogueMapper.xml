@@ -190,8 +190,9 @@
         </update>
 
         <update id="updateCatalogueTeacher">
-            UPDATE catalogue_teacher
-            SET catalogue_id = #{cId}
-            WHERE id = #{ctId}
+            UPDATE catalogue
+            SET
+            catalogue_name=#{newName}
+            WHERE id = #{cId}
         </update>
 </mapper>
