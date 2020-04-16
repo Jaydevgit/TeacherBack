@@ -11,18 +11,21 @@ import java.net.URL;
 public class InviteToScholat {
     public static String inviteToScholat(JSONObject jsonObject) {
         System.out.println("-------------------- 请求开始：进入到邀请加入学者网 --------------------");
+
         JSONObject params = new JSONObject();
         // params.put("token", "14da67741f1ae95eb1f8e0795aeb8152"); // dxm
         params.put("token", "14da67741f1ae95eb1f8e0795aeb8152");
         params.put("appid", "2");
-        params.put("name", "dxm测试");
+        params.put("name", "aaa测试");
         //params.put("email", "413459865@qq.com");
-        params.put("email", "489572627@qq.com");
+        params.put("email", "495102181@qq.com");
         params.put("workUnit", "华南师范大学");
         params.put("title", "");
         params.put("degree", "Master");
         params.put("introduction", "");
         params.put("avatar", "");
+//        jsonObject.put("token", "14da67741f1ae95eb1f8e0795aeb8152");
+//        jsonObject.put("appid", "2");
         System.out.println("准备发送邀请到学者网邀请的信息为：");
         System.out.println(params.toString());
 //		String params = "{\"token\":\"14da67741f1ae95eb1f8e0795aeb8152\",\"appid\":\"2\",\"name\":\"Ronghua Lin\","

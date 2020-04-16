@@ -76,7 +76,7 @@ public class ManagerController {
 	public JSONObject addTeacher(@RequestBody JSONObject requestJson) {
         System.out.println("........新增中");
         System.out.println("前台传过来的新增数据为: "+requestJson);
-        CommonUtil.hasAllRequired(requestJson, "avatar,username,email,post,create_time,state");
+        CommonUtil.hasAllRequired(requestJson, "avatar,username,email,create_time,state");
 		String username = (String)requestJson.get("username");
 		String pinyin = PinyinUtil.getPinyinString(username);
 		System.out.println("----------pinyin-------------"+pinyin);
