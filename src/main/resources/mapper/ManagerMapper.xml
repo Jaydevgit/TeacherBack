@@ -152,11 +152,11 @@
         <if test="scholatUsernameFlag == 'false'">
             and t.scholat_username=''
         </if>
-        <if test="state == 1">
-            and t.state=1
+        <if test="state == 1 or state == 2">
+            and (t.state=1 or t.state = 2)
         </if>
-        <if test="state != 1">
-            and t.state!=1
+        <if test="state != 1 and state != 2">
+            and t.state!=1 and t.state != 2
         </if>
         <if test="key == 'pinyin'">
             ORDER BY
