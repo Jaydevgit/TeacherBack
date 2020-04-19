@@ -38,7 +38,7 @@
         t.unit_id unitId
     FROM
         school_unit u,
-        (SELECT unit_id,domain_name FROM unit_profile WHERE domain_name = #{domainName} ) t
+        (SELECT unit_id,domain_name FROM unit_profile WHERE domain_name = #{domainName} group by unit_id ) t
     WHERE
         u.id = t.unit_id
     </select>
