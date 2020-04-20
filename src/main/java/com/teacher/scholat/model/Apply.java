@@ -21,6 +21,15 @@ public class Apply {
     private String username;
     private String token;
     private String domain_name;
+    private String tag_state;
+
+    public String getTag_state() {
+        return tag_state;
+    }
+
+    public void setTag_state(String tag_state) {
+        this.tag_state = tag_state;
+    }
 
     public String getDomain_name() {
         return domain_name;

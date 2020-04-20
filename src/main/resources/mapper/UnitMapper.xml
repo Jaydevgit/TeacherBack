@@ -15,6 +15,7 @@
         u.logo_url logoUrl,
         u.state state,
         u.domain_name domainName,
+         u.tag_state tagState,
         u.background_url backgroundUrl
     FROM
         school_unit u
@@ -77,6 +78,7 @@
         unit_eng=#{unitEng},
             logo_url = #{logoUrl},
             state = #{state},
+            tag_state=#{tagState},
             background_url = #{backgroundUrl}
             WHERE id = #{unitId}
     </update>
