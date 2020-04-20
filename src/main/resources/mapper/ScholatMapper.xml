@@ -96,11 +96,13 @@
         (school_name,
         unit_name,
         domain_name,
+        tag_state,
         logo_url)
         VALUES
         (#{school_name},
         #{unit_name},
         #{domain_name},
+        'abcdefghijklmno',
         #{certificate_logo})
         <selectKey resultType="int" keyProperty="unit_id" order="AFTER">
             SELECT LAST_INSERT_ID()
