@@ -36,10 +36,11 @@
         u.state state,
         u.background_url backgroundUrl,
         u.domain_name domainName,
+        u.tag_state tagState,
         t.unit_id unitId
     FROM
         school_unit u,
-        (SELECT unit_id,domain_name FROM unit_profile WHERE domain_name = #{domainName} group by unit_id ) t
+        (SELECT unit_id,domain_name FROM unit_profile WHERE domain_name = #{domainName} limit 1 ) t
     WHERE
         u.id = t.unit_id
     </select>

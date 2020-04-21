@@ -228,6 +228,7 @@
         t.views                                   views,
         t.post                                    post,
         t.scholat_username                        scholat_username,
+        t.domain_name                        domainName,
         date_format(t.update_time, '%Y.%m.%d %T') update_time,
         date_format(t.create_time, '%Y.%m.%d %T') create_time
         FROM teacher_profile t

@@ -12,6 +12,7 @@
         <result column="unitId" property="unitId"/>
         <result column="roleName" property="roleName"/>
         <result column="domainName" property="domainName"/>
+        <result column="tagState" property="tagState"/>
         <collection property="menuList" ofType="String">
             <id column="menuCode" property="menuCode"/>
         </collection>
@@ -21,27 +22,49 @@
     </resultMap>
 
     <select id="getUserPermission" resultMap="permissionMap">
-    SELECT
-          k.id                       userId,
-          k.nickname               nickname,
-          k.username               username,
-          k.role_id                  roleId,
-          k.unit_id                  unitId,
-          k.role_name              roleName,
-          k.domain_name          domainName,
-          p.menu_code              menuCode,
-          p.permission_code   permissionCode
-    FROM(select  a.*,substring_index(substring_index(a.permission_ids,',',b.help_topic_id+1),',',-1) pId
-    from (SELECT t.*,sys_role.role_name,sys_role.permission_ids FROM(SELECT
-            u.id,
-            u.nickname,
-            u.username,
-            u.role_id,
-            u.unit_id,
-            u.domain_name
-    FROM unit_profile u  WHERE u.username = #{username} AND u.state = '1')t
-    LEFT JOIN sys_role ON t.role_id = sys_role.id) a   join  mysql.help_topic b  on b.help_topic_id &lt;
-    (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)) k LEFT JOIN sys_permission p ON k.pId = p.id
+        SELECT
+        k.id userId,
+        k.nickname nickname,
+        k.username username,
+        k.role_id roleId,
+        k.unit_id unitId,
+        k.role_name roleName,
+        k.domain_name domainName,
+        k.tag_state tagState,
+        p.menu_code menuCode,
+        p.permission_code permissionCode
+        FROM
+        (
+        SELECT
+        a.*,
+        substring_index( substring_index( a.permission_ids, ',', b.help_topic_id + 1 ), ',',- 1 ) pId
+        FROM
+        (
+        SELECT
+        t.*,
+        sys_role.role_name,
+        sys_role.permission_ids
+        FROM
+        (
+        SELECT
+        u.id,
+        u.nickname,
+        u.username,
+        u.role_id,
+        u.unit_id,
+        u.domain_name,
+        s.tag_state
+        FROM
+        unit_profile u
+        inner JOIN school_unit s ON u.username = #{username}
+        AND u.state = '1'
+        AND s.id = u.unit_id
+        ) t
+        LEFT JOIN sys_role ON t.role_id = sys_role.id
+        ) a
+        JOIN mysql.help_topic b ON b.help_topic_id &lt; ( length( a.permission_ids ) - length( REPLACE ( a.permission_ids, ',', '' ) ) + 1 )
+        ) k
+        LEFT JOIN sys_permission p ON k.pId = p.id
     </select>
     <select id="getScholatPermission" resultMap="permissionMap">
     SELECT
