@@ -54,6 +54,7 @@
         school_unit.unit_eng						  unit_eng,
         school_unit.college_url						  college_url,
         school_unit.logo_url						  logo_url,
+         school_unit.domain_name					  domain_name,
         t.role_id                                     roleId,
         sys_role.role_name                            roleName,
         t.state                                       state,
@@ -93,10 +94,16 @@
             parameterType="com.alibaba.fastjson.JSONObject">
         INSERT INTO school_unit
         (school_name,
-        unit_name)
+        unit_name,
+        domain_name,
+        state,
+        logo_url)
         VALUES
         (#{school_name},
-        #{unit_name})
+        #{unit_name},
+        #{domain_name},
+        1,
+        #{certificate_logo})
         <selectKey resultType="int" keyProperty="unit_id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -116,7 +123,8 @@
         certificate_back,
         certificate_working,
         phone,
-        email)
+        email,
+        domain_name)
         VALUES
         (#{chinese_name},
         #{username},
@@ -130,7 +138,8 @@
         #{certificate_back},
         #{certificate_working},
         #{phone},
-        #{email})
+        #{email},
+        #{domain_name})
         <selectKey resultType="int" keyProperty="unit_profile_id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
