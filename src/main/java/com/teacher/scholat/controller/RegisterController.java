@@ -88,13 +88,13 @@ public class RegisterController {
         if (exist != 0) {
             System.out.println("进入到if (exist != 0)");
             /*-----------------开始发送email----------------------*/
-            String userEmail=requestJson.getString("email");
+            /*String userEmail=requestJson.getString("email");
             mailService.sendHtmlMail(userEmail,"注册失败","<p>该学院已经发起过申请，请勿重复注册。<br>\n" +
                     "                                此为系统邮件，请勿回复。<br>\n" +
                     "                                请保管好您的邮箱，避免账号被他人盗用！\n" +
                     "                            </p>");
             System.out.println("成功了");
-            System.out.println("发送email结束");
+            System.out.println("发送email结束");*/
             /*--------------发送email结束-------------------*/
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("exist", "该学院已发起过申请");
@@ -103,21 +103,22 @@ public class RegisterController {
             System.out.println("看看该用户是否注册：" + existUsername);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("existName", "该用户名已存在");
-            String userEmail=requestJson.getString("email");
+            /*String userEmail=requestJson.getString("email");
             mailService.sendHtmlMail(userEmail,"注册失败","<p>该用户名已存在，请勿重复注册。<br>\n" +
                     "                                此为系统邮件，请勿回复。<br>\n" +
                     "                                请保管好您的邮箱，避免账号被他人盗用！\n" +
-                    "                            </p>");
+                    "                            </p>");*/
             return CommonUtil.successJson(jsonObject);
         } else if(existDomainName!=0){
             System.out.println("看看该域名是否注册：" + existDomainName);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("existDomainName", "该域名已存在");
-            String userEmail=requestJson.getString("email");
+            /*String userEmail=requestJson.getString("email");
             mailService.sendHtmlMail(userEmail,"注册失败","<p>该域名已存在，请勿重复注册。<br>\n" +
                     "                                此为系统邮件，请勿回复。<br>\n" +
                     "                                请保管好您的邮箱，避免账号被他人盗用！\n" +
-                    "                            </p>");            return CommonUtil.successJson(jsonObject);
+                    "                            </p>"); */
+            return CommonUtil.successJson(jsonObject);
         }else{
             Apply apply = JSONObject.toJavaObject(requestJson, Apply.class);
             System.out.println("发起申请的学院为：" + apply.getSchool_name() + " " + apply.getUnit_name() + ".......");
@@ -141,7 +142,7 @@ public class RegisterController {
 
 
             /*-----------------开始发送email----------------------*/
-            System.out.println("开始发送email");
+            /*System.out.println("开始发送email");
             String email=requestJson.getString("email");
             String username=requestJson.getString("username");
             String school_name=requestJson.getString("school_name");
@@ -192,7 +193,7 @@ public class RegisterController {
                     "</div>\n";
             mailService.sendHtmlMail(email,"注册成功",content);
             System.out.println("成功了");
-            System.out.println("发送email结束");
+            System.out.println("发送email结束");*/
             /*--------------发送email结束-------------------*/
 
 

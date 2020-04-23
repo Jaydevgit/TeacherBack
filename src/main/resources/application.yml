@@ -10,7 +10,7 @@
 #   mapperLocations: classpath:/mapper/*.xml
 spring:
   datasource:
-      url: jdbc:mysql://localhost:3306/teacherhome2?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      url: jdbc:mysql://localhost:3306/teacherhome?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
       username: root
       password: 123456
       max-active: 150 # 假设并发数量为100

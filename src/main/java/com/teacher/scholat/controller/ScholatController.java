@@ -93,6 +93,59 @@ public class ScholatController {
         scholatService.updateApplySuccess(apply);
         System.out.println("修改登录表状态为申请成功");
         System.out.println("----------------- 结束请求：允许通过申请 ------------------");
+        /*-------------------开始发送邮件---------------------------------------*/
+        String email=jsonObject.getString("email");
+        String username=jsonObject.getString("username");
+        String school_name=jsonObject.getString("school_name");
+        String domain_name=jsonObject.getString("domain_name");
+        String unit_name=jsonObject.getString("unit_name");
+        String phone=jsonObject.getString("phone");
+        String chinese_name=jsonObject.getString("chinese_name");
+        String content="<div style=\"background-color:#ECECEC; padding: 35px;\">\n" +
+                "    <table cellpadding=\"0\" align=\"center\"\n" +
+                "           style=\"width: 600px; margin: 0px auto; text-align: left; position: relative; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; font-size: 14px; font-family:微软雅黑, 黑体; line-height: 1.5; box-shadow: rgb(153, 153, 153) 0px 0px 5px; border-collapse: collapse; background-position: initial initial; background-repeat: initial initial;background:#fff;\">\n" +
+                "        <tbody>\n" +
+                "        <tr>\n" +
+                "            <th valign=\"middle\"\n" +
+                "                style=\"height: 25px; line-height: 25px; padding: 15px 35px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #42a3d3; background-color: #49bcff; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;\">\n" +
+                "                <font face=\"微软雅黑\" size=\"5\" style=\"color: rgb(255, 255, 255); \">注册成功! （学者网师资栏目管理系统）</font>\n" +
+                "            </th>\n" +
+                "        </tr>\n" +
+                "        <tr>\n" +
+                "            <td>\n" +
+                "                <div style=\"padding:25px 35px 40px; background-color:#fff;\">\n" +
+                "                    <h2 style=\"margin: 5px 0px; \">\n" +
+                "                        <font color=\"#333333\" style=\"line-height: 20px; \">\n" +
+                "                            <font style=\"line-height: 22px; \" size=\"4\">\n" +
+                "                                亲爱的 "+chinese_name+"</font>\n" +
+                "                        </font>\n" +
+                "                    </h2>\n" +
+                "                    <p>首先感谢您加入学者网师资栏目管理系统！下面是您的账号信息<br>\n" +
+                "                        学校名称：<b>"+school_name+"</b><br>\n" +
+                "                        学院名称：<b>"+unit_name+"</b><br>\n" +
+                "                        学校域名：<b>"+domain_name+"</b><br>\n" +
+                "                        管理员账号：<b>"+username+"</b><br>\n" +
+                "                        管理员邮箱：<b>"+email+"</b><br>\n" +
+                "                        管理员电话：<b>"+phone+"</b><br>\n" +
+                "                        当您在使用本网站时，遵守当地法律法规。<br>\n" +
+                "                    <p align=\"right\">学者网师资栏目管理系统</p>\n" +
+                "                    <div style=\"width:700px;margin:0 auto;\">\n" +
+                "                        <div style=\"padding:10px 10px 0;border-top:1px solid #ccc;color:#747474;margin-bottom:20px;line-height:1.3em;font-size:12px;\">\n" +
+                "                            <p>此为系统邮件，请勿回复<br>\n" +
+                "                                请保管好您的邮箱，避免账号被他人盗用\n" +
+                "                            </p>\n" +
+                "                            <p>©***</p>\n" +
+                "                        </div>\n" +
+                "                    </div>\n" +
+                "                </div>\n" +
+                "            </td>\n" +
+                "        </tr>\n" +
+                "        </tbody>\n" +
+                "    </table>\n" +
+                "</div>\n";
+        mailService.sendHtmlMail(email,"申请注册成功",content);
+        System.out.println("成功了");
+        System.out.println("发送email结束");
         return CommonUtil.successJson();
     }
     /**
@@ -115,12 +168,14 @@ public class ScholatController {
         System.out.println("该学院申请修改为了待修改状态,该学院token为:"+apply.getToken()
         +" email为:"+apply.getEmail());
         // ---------------------------------------------------------
+
         System.out.println("--------------- 动作开始:发送模板邮件 ---------------------");
         //向Thymeleaf模板传值，并解析成字符串
+        String email=jsonObject.getString("email");
         Context context = new Context();
         context.setVariable("token", apply.getToken());
         String emailContent = templateEngine.process("unitApplyModify", context);
-        mailService.sendHtmlMail("413459865@qq.com", "学院师资队伍栏目申请修改", emailContent);
+        mailService.sendHtmlMail(email, "学院师资队伍栏目申请修改", emailContent);
         // ===============================================================
         return CommonUtil.successJson();
     }
