@@ -30,9 +30,25 @@
             WHERE id = #{cId}
         </update>
          <select id="countTeacher" resultType="Integer">
-             SELECT COUNT(1) FROM catalogue_teacher c
-             WHERE c.catalogue_id = #{cId} and (c.is_deleted is null OR
-            c.is_deleted !=1)
+
+            SELECT COUNT(1) from (
+            SELECT
+            ct.id         ctId,
+            ct.seq        tSeq,
+            t.id         tId,
+            t.username   tName,
+            t.avatar     tAvatar,
+            t.post       tPost,
+             t.email       tEmail,
+                  t.department_name     tDepartment_name,
+                  t.work_place      tWork_place,
+                  t.degree      tDegree,
+                  t.scholat_username        tScholat_username,
+                  t.qrcode      tQrcode
+            FROM catalogue_teacher ct LEFT JOIN teacher_profile t ON t.id = ct.teacher_id
+            WHERE ct.catalogue_id = #{cId} AND t.state = 1 AND (ct.is_deleted is null OR
+            ct.is_deleted !=1) ORDER BY tSeq,t.pinyin
+            ) as a
          </select>
 
         <select id="getTeacherByCatalogueId" resultType="Integer">
