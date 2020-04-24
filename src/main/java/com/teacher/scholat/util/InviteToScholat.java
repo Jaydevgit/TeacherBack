@@ -41,7 +41,8 @@ public class InviteToScholat {
 //		String params = "{\"token\":\"14da67741f1ae95eb1f8e0795aeb8152\",\"appid\":\"2\",\"name\":\"Ronghua Lin\","
 //				+ "\"email\":\"249280256@qq.com\",\"workUnit\":\"South China Normal University\",\"title\":\"\","
 //				+ "\"degree\":\"Master\",\"introduction\":\"\",\"avatar\":\"\"}";
-        String requestUrl = "http://www.scholat.com/scholat/rest/signInOapi/appInvite";
+       //  String requestUrl = "http://www.scholat.com/scholat/rest/signInOapi/appInvite"; // 旧地址
+        String requestUrl = "http://www.scholat.com/rest/signInOapi/appInvite";
         try {
             URL url = new URL(requestUrl);
             HttpURLConnection connection = (HttpURLConnection) url
@@ -69,7 +70,7 @@ public class InviteToScholat {
                 lines = new String(lines.getBytes(), "utf-8");
                 sb.append(lines);
             }
-            System.out.println(sb);
+            System.out.println("发送api邮件返回:"+sb);
             reader.close();
             connection.disconnect();
             return sb.toString();
