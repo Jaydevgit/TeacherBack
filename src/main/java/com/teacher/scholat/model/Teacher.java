@@ -32,6 +32,24 @@ public class Teacher {
     private String pinyin;
     private String domain_name;
     private String edit_name;
+    private String duty;
+    private String degree_max;
+
+    public String getDuty() {
+        return duty;
+    }
+
+    public void setDuty(String duty) {
+        this.duty = duty;
+    }
+
+    public String getDegree_max() {
+        return degree_max;
+    }
+
+    public void setDegree_max(String degree_max) {
+        this.degree_max = degree_max;
+    }
 
     public String getEdit_name() {
         return edit_name;
