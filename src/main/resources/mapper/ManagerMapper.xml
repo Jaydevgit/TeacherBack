@@ -107,6 +107,14 @@ WHERE
             and t.state!=1
         </if>
     </select>
+    <update id="unBindScholat">
+        update teacher_profile t set  t.scholat_username = ""
+        where t.id = #{id}
+    </update>
+    <update id="bindScholat">
+        update teacher_profile t set  t.scholat_username = #{scholat_username}
+        where t.id = #{id}
+    </update>
 
     <select id="countLetterUnitTeacher" resultType="Integer">
         SELECT count(0)

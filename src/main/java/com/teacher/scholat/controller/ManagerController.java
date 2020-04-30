@@ -1,17 +1,18 @@
 package com.teacher.scholat.controller;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.model.Teacher;
 import com.teacher.scholat.service.ManagerService;
-import com.teacher.scholat.util.CommonUtil;
-import com.teacher.scholat.util.DelTagsUtil;
-import com.teacher.scholat.util.DiffProcessUtils;
-import com.teacher.scholat.util.PinyinUtil;
+import com.teacher.scholat.util.*;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -107,10 +108,7 @@ public class ManagerController {
 
 		System.out.println("___________________________"+teacher.getId());
         requestJson.put("teacher_id",teacher.getId());
-
-
-
-        return CommonUtil.successJson();
+        return CommonUtil.successJson(requestJson);
 	}
 
 	/**
@@ -139,8 +137,53 @@ public class ManagerController {
 		managerService.deleteTeacher(requestJson);
 		return CommonUtil.successJson();
 	}
+	// 通过用户名获取学者网用户信息
+	@RequestMapping("/getScholatProfileByUserName")
+	public JSONObject getScholarProfile(@RequestBody JSONObject requestJson){
+		String username = requestJson.getString("username");
+		JSONArray jsonArray = GetScholatProfile.getScholatProfileByUserName(username);
+		JSONObject jsonObject = jsonArray.getJSONObject(0);
+		JSONObject jsonObject1 = new JSONObject();
+		jsonObject1.put("scholat_username", jsonObject.getString("user"));
+		jsonObject1.put("username", jsonObject.getString("userChineseName"));
+		jsonObject1.put("unit_name", jsonObject.getString("workUnit"));
+		jsonObject1.put("department_name", jsonObject.getString("workDepartment"));
+		jsonObject1.put("avatar", jsonObject.getString("userPictureUrl"));
+		jsonObject1.put("email", jsonObject.getString("workEmail"));
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat strFormat = new SimpleDateFormat("yyyyMMddHHmm");
+		String str = jsonObject.getString("introUpdateTime");
+		Date date = new Date();
+		try {
+			date = strFormat.parse(str);
+		} catch (ParseException e) {
+			//e.printStackTrace();
+		}
+		String time = dateFormat.format(date); //可以把日期转换转指定格式的字符串
+		jsonObject1.put("update_time", time);
+		String scholatIntro = jsonObject.getString("introduction");
+		jsonObject1.put("intro", scholatIntro);
+		jsonObject1.put("degree", jsonObject.getString("degree"));
+		jsonObject1.put("post", jsonObject.getString("scholarTitle"));
+		jsonObject1.put("qrcode", jsonObject.getString("qrcodeUrl"));
+		return CommonUtil.successJson(jsonObject1);
+	}
 
+	// 绑定解绑学者网账号
+	@RequestMapping("/bindScholat")
+	public JSONObject bindScholat(@RequestBody JSONObject requestJson){
+		System.out.println(requestJson);
+		String state = requestJson.getString("state");
+		String id = requestJson.getString("id");
+		String scholat_username = requestJson.getString("scholat_username");
+		if(state=="unlock"){
+			managerService.unBindScholat(id);
+		}else {
+			managerService.bindScholat(id,scholat_username);
+		}
+		return CommonUtil.successJson();
 
+	}
 
 	// 验证学者网信息
 	@RequestMapping("/validate")

@@ -78,4 +78,7 @@ public interface ManagerDao {
 
 	//域名是否存在
 	List<JSONObject> judgeDomainExist(JSONObject jsonObject);
+
+    void unBindScholat(String id);
+    void bindScholat(String id,String scholat_username);
 }

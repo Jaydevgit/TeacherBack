@@ -58,4 +58,7 @@ public interface ManagerService {
 	JSONObject searchTeacher(JSONObject jsonObject);
 
 	JSONObject searchScholatList(JSONObject jsonObject);
+
+    void unBindScholat(String id);
+    void bindScholat(String id,String scholat_username);
 }

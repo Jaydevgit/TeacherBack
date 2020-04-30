@@ -304,4 +304,13 @@ public class ManagerServiceImpl implements ManagerService {
         return CommonUtil.successPage(jsonObject, list, count);
     }
 
+    @Override
+    public void unBindScholat(String id) {
+        managerDao.unBindScholat(id);
+    }
+    @Override
+    public void bindScholat(String id,String scholat_username) {
+        managerDao.bindScholat(id,scholat_username);
+    }
+
 }
