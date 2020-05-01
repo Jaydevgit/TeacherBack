@@ -157,13 +157,13 @@ WHERE
 		ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
     </select>
     <select id="listTeacherLocal" resultType="com.alibaba.fastjson.JSONObject">
-        select
+        select
 	    t.id                                      id,
         t.username                                name,
         t.email                                   email,
         t.avatar                                  avatar,
         t.degree                                  degree,
-        t.state                                   state,
+        t.state                                   state,
         t.views                                   views,
         t.post                                    post,
         t.scholat_username                        scholat_username,
