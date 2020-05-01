@@ -90,7 +90,7 @@ WHERE
         WHERE ts.scholat_update_time > ts.update_time
     </select>-->
 
-    <select id="countTeacher" resultType="Integer">
+<!--    <select id="countTeacher" resultType="Integer">
         SELECT count(0)
         FROM teacher_profile t
         WHERE t.unit_id = #{unitId}
@@ -106,7 +106,21 @@ WHERE
         <if test="state != 1">
             and t.state!=1
         </if>
+    </select>-->
+    <select id="countTeacher" resultType="Integer">
+        SELECT count(0)
+        FROM teacher_profile t
+        WHERE t.unit_id = #{unitId}
+        <if test="state == 1">
+            and t.state=1
+        </if>
+        <if test="state != 1">
+            and t.state!=1
+        </if>
     </select>
+
+
+
     <update id="unBindScholat">
         update teacher_profile t set  t.scholat_username = ""
         where t.id = #{id}
@@ -122,7 +136,7 @@ WHERE
         WHERE t.state = '1' AND t.unit_id = #{unitId} AND t.pinyin LIKE #{letter}"%"
     </select>
 
-<!--    <select id="listTeacher" resultType="com.alibaba.fastjson.JSONObject">
+ <select id="listTeacher" resultType="com.alibaba.fastjson.JSONObject">
         select
 	    t.id                                      id,
         t.username                                name,
@@ -141,9 +155,9 @@ WHERE
         on  (t.scholat_username = u.acc_name) or (t.email=u.work_email)
 		and t.unit_id = #{unitId}
 		ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
-    </select>-->
+    </select>
     <select id="listTeacherLocal" resultType="com.alibaba.fastjson.JSONObject">
-        select
+        select
 	    t.id                                      id,
         t.username                                name,
         t.email                                   email,
@@ -160,12 +174,12 @@ WHERE
         date_format(t.create_time, '%Y.%m.%d %T') create_time
         FROM teacher_profile t
 		WHERE t.unit_id = #{unitId}
-        <if test="scholatUsernameFlag == 'true'">
+       <!-- <if test="scholatUsernameFlag == 'true'">
             and t.scholat_username!=''
         </if>
         <if test="scholatUsernameFlag == 'false'">
             and t.scholat_username=''
-        </if>
+        </if>-->
         <if test="state == 1 or state == 2">
             and (t.state=1 or t.state = 2)
         </if>

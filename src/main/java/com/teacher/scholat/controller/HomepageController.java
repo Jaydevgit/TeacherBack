@@ -49,7 +49,6 @@ public class HomepageController {
     @GetMapping("/listTeacher")
     public JSONObject listTeacher(HttpServletRequest request) {
         System.out.println("......开始查询教师成员列表");
-        System.out.println(CommonUtil.request2Json(request));
         return teacherService.listTeacher(CommonUtil.request2Json(request));
     }
 
