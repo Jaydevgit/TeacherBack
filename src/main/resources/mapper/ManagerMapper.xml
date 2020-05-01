@@ -163,7 +163,7 @@ WHERE
         t.email                                   email,
         t.avatar                                  avatar,
         t.degree                                  degree,
-        t.state                                   state,
+        t.state                                   state,
         t.views                                   views,
         t.post                                    post,
         t.scholat_username                        scholat_username,
