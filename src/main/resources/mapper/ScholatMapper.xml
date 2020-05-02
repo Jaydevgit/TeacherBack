@@ -60,7 +60,7 @@
         t.state                                       state,
         date_format(t.update_time, '%Y.%m.%d %T')     update_time
 		from
-        (select * FROM unit_profile u where u.role_id = "1") t  LEFT JOIN sys_role ON t.role_id = sys_role.id
+        (select * FROM unit_profile u where u.role_id = "1" and u.state!="-1") t  LEFT JOIN sys_role ON t.role_id = sys_role.id
         left join school_unit on school_unit.id = t.unit_id
         ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
     </select>
@@ -176,7 +176,7 @@
         from unit_profile
         where username = #{username}
     </select>
-    <update id="updateApplySuccess" >
+    <update id="updateApplySuccess">
         update unit_apply
         set state = 0
         where id = #{id}
@@ -185,6 +185,13 @@
         update unit_apply
         set state = 2
         where id = #{id}
+    </update>
+    <update id="updateAllBlack" >
+        update unit_profile as t,login as l,
+        (SELECT u.id from unit_profile as u,(select unit_id from unit_profile as t where t.id= #{apply_id}) as m
+        where u.unit_id=m.unit_id) as n
+        set  t.state=-1,l.state=-1
+        where t.id= #{apply_id} and n.id=l.user_id
     </update>
     <update id="updateApplyBlack" >
         update unit_apply

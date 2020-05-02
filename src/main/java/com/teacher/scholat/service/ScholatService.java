@@ -38,4 +38,5 @@ public interface ScholatService {
 
     int applyValidate(JSONObject jsonObject);
 
+    int updateAllBlack(JSONObject jsonObject);
 }

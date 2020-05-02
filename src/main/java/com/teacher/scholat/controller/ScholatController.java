@@ -1,5 +1,6 @@
 package com.teacher.scholat.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.model.Apply;
 import com.teacher.scholat.service.MailService;
@@ -14,6 +15,8 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/scholat")
@@ -180,6 +183,19 @@ public class ScholatController {
         return CommonUtil.successJson();
     }
     /**
+     * 已通过申请的学院加入到黑名单
+     */
+    @PostMapping("/apply/blackAll")
+    public JSONObject blackAll(@RequestBody JSONObject requestJson) {
+        System.out.println("----------------- 请求：加入到黑名单 ------------------");
+
+        // --------------------------------------------------------
+        // 将申请者的state改为黑名单,即为-1  申请完成后表的state的也要变为-1,登录账号state变为-1
+        scholatService.updateAllBlack(requestJson);
+        // ===============================================================
+        return CommonUtil.successJson();
+    }
+    /**
      * 加入到黑名单
      */
     @PostMapping("/apply/blackApply")
@@ -194,7 +210,7 @@ public class ScholatController {
         Apply apply = JSONObject.toJavaObject(jsonObject, Apply.class);
         apply.setId(apply_id);
         // --------------------------------------------------------
-        // 将申请者的state改为黑名单,即为-1
+        // 将申请者的state改为黑名单,即为-1  申请完成后表的state的也要变为-1,登录账号state变为-1
         scholatService.updateApplyBlack(apply);
         // ===============================================================
         return CommonUtil.successJson();

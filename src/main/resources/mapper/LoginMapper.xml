@@ -8,12 +8,12 @@
             u.user_id       userId,
             u.username      username,
             u.password      password,
-            u.role          role
+            u.role          role,
+            u.state         state
         FROM
             login u
         WHERE u.username = #{username}
           AND u.password = #{password}
-          AND u.state = '1'
           AND u.role = #{host}
     </select>
 

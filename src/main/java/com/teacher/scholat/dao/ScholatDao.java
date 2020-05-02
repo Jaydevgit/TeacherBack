@@ -53,4 +53,6 @@ public interface ScholatDao {
 
     int applyValidateUnitApply(JSONObject jsonObject);
     int applyValidateUnitProfile(JSONObject jsonObject);
+
+    int updateAllBlack(JSONObject jsonObject);
 }

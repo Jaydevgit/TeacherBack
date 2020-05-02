@@ -97,7 +97,7 @@ public class ScholatServiceImpl implements ScholatService {
             System.out.println("后台查询到的申请数据为: " + list);
         } else if (state == 3) {
             // 获取全部学院
-            System.out.println("state为3，表示准备查询所有学院");
+            System.out.println("state为3，表示准备查询所有学院，且不包括黑名单（state!=-1）");
             count = scholatDao.countUnit(state);
             System.out.println("........全部共有" + count + "个学院");
             list = scholatDao.listUnitAll(jsonObject);
@@ -188,6 +188,10 @@ public class ScholatServiceImpl implements ScholatService {
     @Override
     public int updateApplyBlack(Apply apply) {
         return scholatDao.updateApplyBlack(apply);
+    }
+    @Override
+    public int updateAllBlack(JSONObject jsonObject) {
+        return scholatDao.updateAllBlack(jsonObject);
     }
     @Override
     public int updateCancelBlackApply(Apply apply) {

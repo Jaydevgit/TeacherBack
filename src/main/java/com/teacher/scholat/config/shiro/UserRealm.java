@@ -1,8 +1,11 @@
 package com.teacher.scholat.config.shiro;
 
 import com.alibaba.fastjson.JSONObject;
+import com.teacher.scholat.config.exception.CommonJsonException;
 import com.teacher.scholat.service.LoginService;
+import com.teacher.scholat.util.CommonUtil;
 import com.teacher.scholat.util.constants.Constants;
+import com.teacher.scholat.util.constants.ErrorEnum;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -75,6 +78,12 @@ public class UserRealm extends AuthorizingRealm {
             //没找到帐号
             System.out.println("对不起，没有找到 " + loginName + " 账号");
             throw new UnknownAccountException();
+        }else if(user.get("state").equals("-1")){
+            System.out.println("user.get(\"state\")="+user.get("state"));
+//            JSONObject jsonObject = new JSONObject();
+//            jsonObject.put("result","false");
+//            jsonObject.put("msg", "用户已锁定，请联系管理员进行处理!");
+            throw new IllegalArgumentException("用户已锁定，请联系管理员进行处理!");
         }
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
