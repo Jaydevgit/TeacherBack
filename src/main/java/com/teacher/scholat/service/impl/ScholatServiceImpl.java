@@ -115,6 +115,22 @@ public class ScholatServiceImpl implements ScholatService {
         }
         return CommonUtil.successPage(jsonObject, list, count);
     }
+    /**
+     * 模糊搜索学院列表
+     */
+    @Override
+    public JSONObject search(JSONObject jsonObject) {
+        System.out.println("准备获取列表，前端传过来的列表要求为: ");
+        CommonUtil.fillPageParam(jsonObject);
+        long state = jsonObject.getLongValue("state");
+        List<JSONObject> list = new ArrayList<>();
+        int count = 0;
+        count = scholatDao.countUnitNoBlack(jsonObject);
+        System.out.println("........全部共有" + count + "个学院非黑名单用户");
+        list = scholatDao.listUnitNoBlack(jsonObject);
+        System.out.println("后台查询到的所有非黑名单数据为: " + list);
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
 
 
     /**

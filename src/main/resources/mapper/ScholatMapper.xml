@@ -19,6 +19,18 @@
         FROM unit_profile u
         where u.role_id = "1" and u.state = "-1"
     </select>
+    <select id="countUnitNoBlack" resultType="Integer">
+       SELECT
+	count( 0 )
+FROM
+	unit_profile u,
+	school_unit
+WHERE
+	u.role_id = "1"
+	AND u.state != "-1"
+	AND school_unit.id = u.unit_id
+	AND ( school_unit.school_name LIKE CONCAT( '%', #{key}, '%' ) OR school_unit.unit_name LIKE CONCAT( '%',  #{key}, '%' ) )
+    </select>
 
     <select id="listApply" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
@@ -82,6 +94,31 @@
         (select * FROM unit_profile u where u.role_id = "1" and  u.state = "-1") t
         LEFT JOIN sys_role ON t.role_id = sys_role.id
         left join school_unit on school_unit.id = t.unit_id
+        ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
+    </select>
+    <select id="listUnitNoBlack" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.id                                          id,
+        t.nickname                                    nickname,
+        t.username                                    username,
+        t.unit_id                                     unitId,
+        school_unit.school_name						  school_name,
+        school_unit.unit_name						  unit_name,
+        school_unit.college_url						  college_url,
+        school_unit.logo_url						  logo_url,
+        t.role_id                                     roleId,
+        sys_role.role_name                            roleName,
+        t.state                                       state,
+        date_format(t.update_time, '%Y.%m.%d %T')     update_time
+		from
+        (select * FROM unit_profile u where u.role_id = "1" and  u.state != "-1"
+        ) t
+        LEFT JOIN sys_role ON t.role_id = sys_role.id
+        left join school_unit on school_unit.id = t.unit_id
+        WHERE
+	(school_unit.school_name LIKE CONCAT('%', #{key}, '%')
+	 or school_unit.unit_name LIKE CONCAT('%', #{key}, '%')
+	 )
         ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
     </select>
     <select id="getApplyInfo" resultType="com.alibaba.fastjson.JSONObject">

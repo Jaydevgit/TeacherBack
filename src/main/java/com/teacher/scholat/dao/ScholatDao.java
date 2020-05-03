@@ -23,6 +23,10 @@ public interface ScholatDao {
      */
     int countUnitBlack(long state);
     /**
+     * 统计学院非黑名单
+     */
+    int countUnitNoBlack(JSONObject jsonObject);
+    /**
      * 申请列表
      */
     List<JSONObject> listApply(JSONObject jsonObject);
@@ -38,6 +42,8 @@ public interface ScholatDao {
      * 全部学院黑名单
      */
     List<JSONObject> listUnitBlack(JSONObject jsonObject);
+    // 查看申请的学院信息
+    List<JSONObject> listUnitNoBlack(JSONObject jsonObject);
     // 查看申请的学院信息
     JSONObject getApplyInfo(JSONObject jsonObject);
 

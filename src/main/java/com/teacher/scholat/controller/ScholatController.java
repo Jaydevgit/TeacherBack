@@ -195,6 +195,16 @@ public class ScholatController {
         // ===============================================================
         return CommonUtil.successJson();
     }
+
+    @RequiresPermissions("unit:list")
+    @GetMapping("/apply/search")
+    public JSONObject search(HttpServletRequest request) {
+        System.out.println("----------------- 请求：搜索名单 ------------------");
+        System.out.println(CommonUtil.request2Json(request));
+        // --------------------------------------------------------
+        // 将申请者的state改为黑名单,即为-1  申请完成后表的state的也要变为-1,登录账号state变为-1
+        return scholatService.search(CommonUtil.request2Json(request));
+    }
     /**
      * 加入到黑名单
      */
