@@ -27,9 +27,12 @@ FROM
 	school_unit
 WHERE
 	u.role_id = "1"
-	AND u.state != "-1"
+	<if test="state==-2">and  u.state = "-1"</if>
+        <if test="state==3">and  u.state != "-1"</if>
 	AND school_unit.id = u.unit_id
-	AND ( school_unit.school_name LIKE CONCAT( '%', #{key}, '%' ) OR school_unit.unit_name LIKE CONCAT( '%',  #{key}, '%' ) )
+	AND ( school_unit.school_name LIKE CONCAT( '%', #{key}, '%' ) OR school_unit.unit_name LIKE CONCAT( '%',  #{key}, '%' )
+	 or school_unit.school_eng LIKE CONCAT('%', #{key}, '%')
+	 or school_unit.unit_eng LIKE CONCAT('%', #{key}, '%'))
     </select>
 
     <select id="listApply" resultType="com.alibaba.fastjson.JSONObject">
@@ -111,13 +114,17 @@ WHERE
         t.state                                       state,
         date_format(t.update_time, '%Y.%m.%d %T')     update_time
 		from
-        (select * FROM unit_profile u where u.role_id = "1" and  u.state != "-1"
+        (select * FROM unit_profile u where u.role_id = "1"
+        <if test="state==-2">and  u.state = "-1"</if>
+        <if test="state==3">and  u.state != "-1"</if>
         ) t
         LEFT JOIN sys_role ON t.role_id = sys_role.id
         left join school_unit on school_unit.id = t.unit_id
         WHERE
 	(school_unit.school_name LIKE CONCAT('%', #{key}, '%')
 	 or school_unit.unit_name LIKE CONCAT('%', #{key}, '%')
+	 or school_unit.school_eng LIKE CONCAT('%', #{key}, '%')
+	 or school_unit.unit_eng LIKE CONCAT('%', #{key}, '%')
 	 )
         ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
     </select>
