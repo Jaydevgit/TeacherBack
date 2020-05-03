@@ -197,14 +197,14 @@ public class CatalogueServiceImpl implements CatalogueService {
     @Override
     public JSONObject addCatalogueTeacher(JSONObject object)
     {
-        String tId = object.getString("tIds").replace("[","").replace("]","");
-        String[] cIdsSplit = object.getString("cId").replace("[","").replace("]","").split(",");
-        System.out.println("分配教师"+tId+"到栏目"+cIdsSplit+"中");
+        String[] tId = object.getString("tIds").replace("[","").replace("]","").split(",");
+        String cIdsSplit = object.getString("cId").replace("[","").replace("]","");
+        System.out.println("分配教师"+tId+"==="+tId.toString()+"到栏目"+cIdsSplit+"中");
         JSONObject dao = new JSONObject();
-        dao.put("tId",tId);
-        for (int i = 0 ;i<cIdsSplit.length;i++){
-            System.out.println(cIdsSplit[i]);
-            dao.put("cId",cIdsSplit[i]);
+        for (int i = 0 ;i<tId.length;i++){
+            System.out.println(cIdsSplit+"==="+tId[i]);
+            dao.put("tId",tId[i]);
+            dao.put("cId",cIdsSplit);
             catalogueDao.addCatalogueTeacher(dao);
         }
         return CommonUtil.successJson();
