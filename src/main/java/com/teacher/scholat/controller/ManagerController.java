@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.model.Teacher;
 import com.teacher.scholat.service.ManagerService;
 import com.teacher.scholat.util.*;
+import com.teacher.scholat.util.constants.ErrorEnum;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -87,7 +88,13 @@ public class ManagerController {
 		requestJson.put("pinyin",pinyin);
 		System.out.println("修改后的的新增数据为: "+requestJson);
 		System.out.println("........验证完毕, 有必填字段");
-
+		int whetherHasEmail = managerService.judgeEmailExist(requestJson);
+		if(whetherHasEmail!=0) {
+			System.out.println(	"该邮箱已存在");
+			JSONObject r = managerService.searchScholatList((requestJson));
+			r.put("err", "该邮箱已存在");
+			return CommonUtil.errorJson(ErrorEnum.E_8000);
+		}
         Teacher teacher = JSONObject.toJavaObject(requestJson,Teacher.class);
         System.out.println("********"+teacher.getScholat_update_time());
 
