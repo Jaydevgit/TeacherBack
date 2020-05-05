@@ -1,12 +1,18 @@
 package com.teacher.scholat.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.teacher.scholat.MyApplication;
+import com.teacher.scholat.util.CommonUtil;
 import com.teacher.scholat.util.FTPUtil;
 import com.teacher.scholat.util.IDUtils;
 import com.teacher.scholat.util.WangEditor;
+import com.teacher.scholat.util.constants.ErrorEnum;
 import org.apache.commons.net.ftp.FTPClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.Banner;
+import org.springframework.boot.SpringApplication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -100,6 +106,40 @@ public class attachController {
         }
 
     }
+    // 删除上传头像
+    @GetMapping("delete/{name}")
+    public JSONObject delete(@PathVariable("name") String name) throws IllegalStateException, IOException {
+        System.out.println("==================== 开始删除上传文件");
+        String deleteFiles="/images/avatar/"+name;
+        //删除测试数据
+//        String host="47.106.132.95";
+//        int port=21;
+//        String userName="sansen_ftp";
+//        String passWord="#scholat232";
+        System.out.println("deleteFiles="+deleteFiles);
+        // 调用FtpUtil工具类进行上传
+        System.out.println("-----------------------ftp应用启动------------------------");
+        FTPClient ftpClient = FTPUtil.connectFtpServer(host, port, userName, passWord, "gbk");
+        System.out.println("FTP 连接是否成功：" + ftpClient.isConnected());
+        System.out.println("FTP 连接是否有效：" + ftpClient.isAvailable());
+        boolean deleteFlag=FTPUtil.deleteServerFiles(ftpClient, deleteFiles);
+        System.out.println("-----------------------ftp应用关闭------------------------");
+        System.out.println("========================== 使用ftp删除文件结束");
+        if (deleteFlag) {
+            System.out.println("========================== 使用ftp删除文件成功");
+            return CommonUtil.successJson();
+        } else {
+            System.out.println("========================== 使用ftp删除文件失败,就是无该文件头像不报错");
+            return CommonUtil.successJson();
+        }
+
+    }
+    //删除测试代码
+//    public static void main(String[] args) throws IOException {
+//        attachController attachController = new attachController();
+//        boolean delete = attachController.delete("1588668561359091.png");
+//        System.out.println("delete="+delete);
+//    }
 
     // 上传证明
     @RequestMapping("upload/certificate")

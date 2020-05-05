@@ -402,11 +402,11 @@ public class FTPUtil {
      *                    路径必须是绝对路径，如 "/1.png"、"/video/3.mp4"、"/images/2018"
      *                    "/" 表示用户根目录,则删除所有内容
      */
-    public static void deleteServerFiles(FTPClient ftpClient, String deleteFiles) {
+    public static boolean deleteServerFiles(FTPClient ftpClient, String deleteFiles) {
         /**如果 FTP 连接已经关闭，或者连接无效，则直接返回*/
         if (!ftpClient.isConnected() || !ftpClient.isAvailable()) {
             System.out.println(">>>>>FTP服务器连接已经关闭或者连接无效*****放弃文件上传****");
-            return;
+            return false;
         }
         try {
             /** 尝试改变当前工作目录到 deleteFiles
@@ -424,8 +424,10 @@ public class FTPUtil {
                         boolean deleteFlag = ftpClient.deleteFile(ftpFile.getName());
                         if (deleteFlag) {
                             System.out.println(">>>>>删除服务器文件成功****" + ftpFile.getName());
+                            return true;
                         } else {
                             System.out.println(">>>>>删除服务器文件失败****" + ftpFile.getName());
+                            return false;
                         }
                     } else {
                         /**printWorkingDirectory：获取 FTPClient 客户端当前工作目录
@@ -451,13 +453,16 @@ public class FTPUtil {
                 boolean deleteFlag = ftpClient.deleteFile(deleteFiles);
                 if (deleteFlag) {
                     System.out.println(">>>>>删除服务器文件成功****" + deleteFiles);
+                    return true;
                 } else {
                     System.out.println(">>>>>删除服务器文件失败****" + deleteFiles);
+                    return false;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
 
 /*
