@@ -290,8 +290,7 @@ public class TeacherServiceImpl implements TeacherService {
         jsonObject.put("tId",jsonObject1.getString("tId"));
         // 先去看下有没有综合推荐
         List<JSONObject> listScholatTemp = teacherDao.listScholatTeacherRecommend(jsonObject);
-        System.out.println(listScholatTemp);
-        if(listScholatTemp.size()!=0){
+        if(listScholatTemp.size()!=0 && listScholatTemp.get(0)!=null){
             String str = listScholatTemp.get(0).getString("recommend_union");
             String[] str_arr = str.split("#");
             List<JSONObject> res = new ArrayList<JSONObject>();
