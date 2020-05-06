@@ -65,6 +65,13 @@ public class UnitController {
         return unitService.getUnitBytId(CommonUtil.request2Json(request));
     }
 
+    @GetMapping("getUnitBytDomain_name")
+    public JSONObject getUnitBytDomain_name(HttpServletRequest request){
+        System.out.println("获取UnitBytDomain_name");
+        return unitService.getUnitBytDomain_name(CommonUtil.request2Json(request));
+    }
+
+
     @PostMapping("/updateUnitInfo")
     public JSONObject updateUnitInfo(@RequestBody JSONObject requestJson){
         return unitService.updateUnitInfo(requestJson);

@@ -46,7 +46,16 @@ public class UnitServiceImpl implements UnitService {
     public JSONObject getUnitBytId(JSONObject object) {
         System.out.println("查查object" + object);
         JSONObject unitBytId = unitDao.getUnitBytId(object);
+        System.out.println("JSONObject unitBytId = "+unitBytId );
         return CommonUtil.successJson(unitBytId);
+    }
+
+    @Override
+    public JSONObject getUnitBytDomain_name(JSONObject object){
+        System.out.println("通过教师域名来查找学校名称，查查object"+object);
+        JSONObject unitBytDomain_name=unitDao.getUnitBytDomain_name(object);
+        System.out.println("unitBytDomain_name="+unitBytDomain_name);
+        return CommonUtil.successJson(unitBytDomain_name);
     }
 
     @Override

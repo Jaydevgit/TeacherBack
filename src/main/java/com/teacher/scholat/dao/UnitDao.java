@@ -22,5 +22,10 @@ public interface UnitDao {
 
 	JSONObject getUnitBytId(JSONObject object);
 
+	//通过教师域名获取学院基本信息（学校名称等）
+	JSONObject getUnitBytDomain_name(JSONObject object);
+
 	List<JSONObject> getUnitInfoByUnitId(JSONObject object);
+
+
 }
