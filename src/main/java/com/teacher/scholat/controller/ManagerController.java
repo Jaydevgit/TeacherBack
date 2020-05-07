@@ -90,14 +90,11 @@ public class ManagerController {
 		System.out.println("........验证完毕, 有必填字段");
 		JSONObject jsonObject2 = managerService.judgeEmailExist(requestJson);
 		String flag = jsonObject2.getString("flag");
-		String id = jsonObject2.getString("id");
 		int whetherHasEmail = Integer.parseInt(flag);
-		int id2= Integer.parseInt(id);
 		if(whetherHasEmail!=0) {
 			System.out.println(	"该邮箱已存在");
 			JSONObject r = managerService.searchScholatList((requestJson));
 			r.put("err", "该邮箱已存在");
-			r.put("id2", id2);
 			return CommonUtil.errorJson(ErrorEnum.E_8000);
 		}
         Teacher teacher = JSONObject.toJavaObject(requestJson,Teacher.class);
