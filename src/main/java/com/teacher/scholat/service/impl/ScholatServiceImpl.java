@@ -132,6 +132,15 @@ public class ScholatServiceImpl implements ScholatService {
         return CommonUtil.successPage(jsonObject, list, count);
     }
 
+    @Override
+    public JSONObject changePassword(JSONObject requestJson) {
+        System.out.println("改密:updateUser........"+requestJson);
+        scholatDao.updateUser(requestJson);
+        System.out.println("改密:现在准备更新信息到登录表");
+        scholatDao.updateUserToLogin(requestJson);
+        return CommonUtil.successJson();
+    }
+
 
     /**
      * 退出登录

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.model.Apply;
 import com.teacher.scholat.service.MailService;
 import com.teacher.scholat.service.ScholatService;
+import com.teacher.scholat.util.MD5Util;
 import com.teacher.scholat.util.constants.ErrorEnum;
 import com.teacher.scholat.util.CommonUtil;
 import com.teacher.scholat.util.InviteToScholat;
@@ -280,6 +281,16 @@ public class ScholatController {
             System.out.println("发送邀请注册邮件成功");
             return CommonUtil.successJson();
         }
+    }
+    @PostMapping("/changePassword")
+    public JSONObject changePassword(@RequestBody JSONObject requestJson) {
+        System.out.println("requestJson="+requestJson);
+        CommonUtil.hasAllRequired(requestJson, "newPassword,changePasswordId");
+        System.out.println("加密前"+requestJson.get("newPassword").toString());
+        String newPassword = MD5Util.toDb(requestJson.get("newPassword").toString());
+        requestJson.put("newPassword",newPassword);
+        System.out.println("加密后："+requestJson.get("newPassword").toString());
+        return scholatService.changePassword(requestJson);
     }
 
 }

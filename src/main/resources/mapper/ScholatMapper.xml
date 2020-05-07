@@ -247,5 +247,17 @@ WHERE
         set state = 1
         where id = #{id}
     </update>
+    <update id="updateUser">
+        UPDATE unit_profile
+        SET
+      password = #{newPassword}
+        WHERE id = #{changePasswordId}
+    </update>
+    <update id="updateUserToLogin">
+        UPDATE login
+        SET
+       password = #{newPassword}
+        WHERE user_id = #{changePasswordId} and role="unit"
+    </update>
 
 </mapper>

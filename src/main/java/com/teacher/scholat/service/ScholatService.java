@@ -41,4 +41,6 @@ public interface ScholatService {
     int updateAllBlack(JSONObject jsonObject);
 
     JSONObject search(JSONObject requestJson);
+
+    JSONObject changePassword(JSONObject requestJson);
 }
