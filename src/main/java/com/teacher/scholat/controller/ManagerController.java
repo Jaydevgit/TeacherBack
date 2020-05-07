@@ -88,11 +88,16 @@ public class ManagerController {
 		requestJson.put("pinyin",pinyin);
 		System.out.println("修改后的的新增数据为: "+requestJson);
 		System.out.println("........验证完毕, 有必填字段");
-		int whetherHasEmail = managerService.judgeEmailExist(requestJson);
+		JSONObject jsonObject2 = managerService.judgeEmailExist(requestJson);
+		String flag = jsonObject2.getString("flag");
+		String id = jsonObject2.getString("id");
+		int whetherHasEmail = Integer.parseInt(flag);
+		int id2= Integer.parseInt(id);
 		if(whetherHasEmail!=0) {
 			System.out.println(	"该邮箱已存在");
 			JSONObject r = managerService.searchScholatList((requestJson));
 			r.put("err", "该邮箱已存在");
+			r.put("id2", id2);
 			return CommonUtil.errorJson(ErrorEnum.E_8000);
 		}
         Teacher teacher = JSONObject.toJavaObject(requestJson,Teacher.class);
@@ -224,10 +229,15 @@ public class ManagerController {
 		String username = requestJson.getString("username");
 		if(email!=null){
 			// 去判断下有没有重复的学者网邮箱用户
-			int whetherHasEmail = managerService.judgeEmailExist(requestJson);
+			JSONObject jsonObject2 = managerService.judgeEmailExist(requestJson);
+			String flag = jsonObject2.getString("flag");
+			String id = jsonObject2.getString("id");
+			int whetherHasEmail = Integer.parseInt(flag);
+			int id2= Integer.parseInt(id);
 			if(whetherHasEmail!=0){
 				JSONObject r =managerService.searchScholatList((requestJson));
 				r.put("err","该邮箱已存在");
+				r.put("id",id2);
 				return r;
 			}else{
 				return managerService.searchScholatList((requestJson));

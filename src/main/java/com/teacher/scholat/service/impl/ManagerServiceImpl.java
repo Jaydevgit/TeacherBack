@@ -50,9 +50,9 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public int judgeEmailExist(JSONObject jsonObject) {
-        int i = managerDao.judgeEmailExist(jsonObject);
-        return i;
+    public JSONObject judgeEmailExist(JSONObject jsonObject) {
+
+        return   managerDao.judgeEmailExist(jsonObject);
     }
 
     @Override
@@ -267,7 +267,9 @@ public class ManagerServiceImpl implements ManagerService {
             // 判断是否已经存在该邮箱用户
             JSONObject requestJson = new JSONObject();
             requestJson.put("email",scholat_email);
-            int whetherHasEmail = managerDao.judgeEmailExist(requestJson);
+            JSONObject jsonObject2 = managerDao.judgeEmailExist(requestJson);
+            String flag = jsonObject2.getString("flag");
+            int whetherHasEmail = Integer.parseInt(flag);
             if(whetherHasEmail!=0){
                 jsonObject1.put("email_exist", true);
             }else{

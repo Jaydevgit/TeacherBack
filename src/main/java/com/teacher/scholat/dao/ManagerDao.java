@@ -19,7 +19,7 @@ public interface ManagerDao {
     /*
      * 查询邮箱是否已经存在
      * */
-    int judgeEmailExist(JSONObject jsonObject);
+	JSONObject judgeEmailExist(JSONObject jsonObject);
 
     /*
      * 查询若是学者网用户就插入到学者网name处

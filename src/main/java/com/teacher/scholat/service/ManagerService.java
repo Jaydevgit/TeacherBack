@@ -24,7 +24,7 @@ public interface ManagerService {
 	/*
 	* 查询邮箱是否已经存在
 	* */
-	int judgeEmailExist(JSONObject jsonObject);
+	JSONObject  judgeEmailExist(JSONObject jsonObject);
 
 	/*
 	 * 查询教师域名是否已经存在
