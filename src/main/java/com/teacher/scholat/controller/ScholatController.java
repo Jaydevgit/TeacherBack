@@ -292,5 +292,10 @@ public class ScholatController {
         System.out.println("加密后："+requestJson.get("newPassword").toString());
         return scholatService.changePassword(requestJson);
     }
-
+    @GetMapping("delete/{id}")
+    public JSONObject delete(@PathVariable("id") Long id){
+        System.out.println("删除unit_profile中信息");
+        int i = scholatService.deleteUnit(id);
+        return CommonUtil.successJson();
+    }
 }

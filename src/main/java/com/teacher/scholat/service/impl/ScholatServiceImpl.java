@@ -141,6 +141,19 @@ public class ScholatServiceImpl implements ScholatService {
         return CommonUtil.successJson();
     }
 
+    @Override
+    public int deleteUnit(Long id) {
+        List<JSONObject> jsonObjects = scholatDao.selectIds(id);
+        System.out.println("查询到的删除ids"+jsonObjects);
+        for(int i=0;i<jsonObjects.size();i++){
+            int tId= jsonObjects.get(i).getInteger("id");
+            System.out.println("tId="+tId);
+            scholatDao.deleteIds(tId);
+        }
+
+        return 0;
+    }
+
 
     /**
      * 退出登录

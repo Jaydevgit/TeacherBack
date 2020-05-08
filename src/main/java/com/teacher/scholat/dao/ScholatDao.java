@@ -65,4 +65,8 @@ public interface ScholatDao {
     int updateUser(JSONObject requestJson);
 
     int updateUserToLogin(JSONObject requestJson);
+
+    List<JSONObject> selectIds(Long id);
+
+    int deleteIds(int tId);
 }

@@ -85,6 +85,7 @@ WHERE
         t.nickname                                    nickname,
         t.username                                    username,
         t.unit_id                                     unitId,
+        t.domain_name                                 domainName,
         school_unit.school_name						  school_name,
         school_unit.unit_name						  unit_name,
         school_unit.college_url						  college_url,
@@ -105,6 +106,7 @@ WHERE
         t.nickname                                    nickname,
         t.username                                    username,
         t.unit_id                                     unitId,
+        t.domain_name                                 domainName,
         school_unit.school_name						  school_name,
         school_unit.unit_name						  unit_name,
         school_unit.college_url						  college_url,
@@ -259,5 +261,10 @@ WHERE
        password = #{newPassword}
         WHERE user_id = #{changePasswordId} and role="unit"
     </update>
-
+    <select id="selectIds" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT id from unit_profile as u,(select unit_id from unit_profile where id=#{id}) as t where t.unit_id=u.unit_id;
+    </select>
+    <select id="deleteIds" resultType="java.lang.Integer">
+        delete from unit_profile where id=#{tId};
+    </select>
 </mapper>

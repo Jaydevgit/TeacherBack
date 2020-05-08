@@ -43,4 +43,6 @@ public interface ScholatService {
     JSONObject search(JSONObject requestJson);
 
     JSONObject changePassword(JSONObject requestJson);
+
+    int deleteUnit(Long id);
 }
