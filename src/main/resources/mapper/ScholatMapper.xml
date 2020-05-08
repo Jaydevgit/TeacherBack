@@ -261,10 +261,31 @@ WHERE
        password = #{newPassword}
         WHERE user_id = #{changePasswordId} and role="unit"
     </update>
+    <delete id="deleteSchool" >
+        delete from school_unit where id=#{id};
+    </delete>
+    <delete id="deleteRole" >
+        delete from sys_role where unit_id=#{id};
+    </delete>
+    <delete id="deleteTeacher" >
+        delete from sys_role where unit_id=#{id};
+    </delete>
     <select id="selectIds" resultType="com.alibaba.fastjson.JSONObject">
-        SELECT id from unit_profile as u,(select unit_id from unit_profile where id=#{id}) as t where t.unit_id=u.unit_id;
+       SELECT id from unit_profile as u where u.unit_id=#{id};
     </select>
-    <select id="deleteIds" resultType="java.lang.Integer">
+    <delete id="deleteUnitIds" >
         delete from unit_profile where id=#{tId};
+    </delete>
+    <delete id="deleteLoginIds" >
+        delete from login where user_id=#{tId};
+    </delete>
+    <select id="selectCatalogueIds" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT id from catalogue as c where c.unit_id=#{id};
     </select>
+    <delete id="deleteCatalogueIds" >
+        delete from catalogue where unit_id=#{id};
+    </delete>
+    <delete id="deleteCatalogueTeaacherIds" >
+        delete from catalogue_teacher where catalogue_id=#{cId};
+    </delete>
 </mapper>

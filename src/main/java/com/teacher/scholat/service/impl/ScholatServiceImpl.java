@@ -143,12 +143,31 @@ public class ScholatServiceImpl implements ScholatService {
 
     @Override
     public int deleteUnit(Long id) {
+        System.out.println("删除该学院表信息");
+        scholatDao.deleteSchool(id);
+        System.out.println("删除该学院所有教师");
+        scholatDao.deleteTeacher(id);
+        System.out.println("删除该学院权限系统角色");
+        scholatDao.deleteRole(id);
         List<JSONObject> jsonObjects = scholatDao.selectIds(id);
-        System.out.println("查询到的删除ids"+jsonObjects);
+        System.out.println("查询到unit的删除ids"+jsonObjects);
         for(int i=0;i<jsonObjects.size();i++){
             int tId= jsonObjects.get(i).getInteger("id");
             System.out.println("tId="+tId);
-            scholatDao.deleteIds(tId);
+            scholatDao.deleteUnitIds(tId);
+            scholatDao.deleteLoginIds(tId);
+        }
+        System.out.println("查询所有栏目");
+        List<JSONObject> jsonObjects2 = scholatDao.selectCatalogueIds(id);
+        System.out.println("删除所有栏目");
+        scholatDao.deleteCatalogueIds(id);
+        System.out.println("删除该学院所有栏目");
+        for(int i=0;i<jsonObjects2.size();i++) {
+            int cId = jsonObjects2.get(i).getInteger("id");
+            System.out.println("cId=" + cId);
+
+            System.out.println("删除所有栏目关联教师表信息");
+            scholatDao.deleteCatalogueTeaacherIds(cId);
         }
 
         return 0;

@@ -68,5 +68,16 @@ public interface ScholatDao {
 
     List<JSONObject> selectIds(Long id);
 
-    int deleteIds(int tId);
+    int deleteUnitIds(int tId);
+    int deleteLoginIds(int tId);
+
+    List<JSONObject> selectCatalogueIds(Long id);
+
+    int deleteCatalogueIds(Long id);
+    int deleteCatalogueTeaacherIds(int cId);
+
+    int deleteRole(Long id);
+    int deleteTeacher(Long id);
+
+    int deleteSchool(Long id);
 }
