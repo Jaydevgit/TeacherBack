@@ -268,7 +268,7 @@ WHERE
         delete from sys_role where unit_id=#{id};
     </delete>
     <delete id="deleteTeacher" >
-        delete from sys_role where unit_id=#{id};
+        delete from teacher_profile where unit_id=#{id};
     </delete>
     <select id="selectIds" resultType="com.alibaba.fastjson.JSONObject">
        SELECT id from unit_profile as u where u.unit_id=#{id};
