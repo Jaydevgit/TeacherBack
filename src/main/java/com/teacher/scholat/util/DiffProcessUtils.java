@@ -104,6 +104,12 @@ public class DiffProcessUtils {
             oldVersion.setPost(res.get(0));
             newVersion.setPost(res.get(1));
         }
+        // 研究方向
+        res = compareAndReturn(oldVersion.getResearch_direction(),delTagHeadInCK,delTagEndInCK,newVersion.getResearch_direction(),insertHeadInCK,insertEndInCK);
+        if(res!=null){
+            oldVersion.setResearch_direction(res.get(0));
+            newVersion.setResearch_direction(res.get(1));
+        }
 
         System.out.println(oldVersion.getUsername());
         System.out.println(newVersion.getUsername());

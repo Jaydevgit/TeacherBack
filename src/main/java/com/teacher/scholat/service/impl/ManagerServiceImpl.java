@@ -263,6 +263,7 @@ public class ManagerServiceImpl implements ManagerService {
             jsonObject1.put("unit_name", tempJSONObject.getString("workUnit"));
             jsonObject1.put("department_name", tempJSONObject.getString("workDepartment"));
             jsonObject1.put("avatar", tempJSONObject.getString("userPictureUrl"));
+            jsonObject1.put("research_direction", tempJSONObject.getString("researchInterest"));
             String scholat_email = tempJSONObject.getString("workEmail");
             // 判断是否已经存在该邮箱用户
             JSONObject requestJson = new JSONObject();
