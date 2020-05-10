@@ -35,7 +35,7 @@
 
     <select id="judgeEmailExist" resultType="com.alibaba.fastjson.JSONObject">
         SELECT 	count( 0 ) AS flag,
-	t.id
+	    t.id
         FROM teacher_profile t
         WHERE t.email = #{email}
     </select>

@@ -227,11 +227,12 @@ public class ManagerController {
 		if(email!=null){
 			// 去判断下有没有重复的学者网邮箱用户
 			JSONObject jsonObject2 = managerService.judgeEmailExist(requestJson);
+			System.out.println(jsonObject2);
 			String flag = jsonObject2.getString("flag");
 			String id = jsonObject2.getString("id");
 			int whetherHasEmail = Integer.parseInt(flag);
-			int id2= Integer.parseInt(id);
 			if(whetherHasEmail!=0){
+				int id2= Integer.parseInt(id);
 				JSONObject r =managerService.searchScholatList((requestJson));
 				r.put("err","该邮箱已存在");
 				r.put("id",id2);
