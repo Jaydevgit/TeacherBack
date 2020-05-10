@@ -153,30 +153,32 @@ public class ManagerController {
 	public JSONObject getScholarProfile(@RequestBody JSONObject requestJson){
 		String username = requestJson.getString("username");
 		JSONArray jsonArray = GetScholatProfile.getScholatProfileByUserName(username);
-		JSONObject jsonObject = jsonArray.getJSONObject(0);
 		JSONObject jsonObject1 = new JSONObject();
-		jsonObject1.put("scholat_username", jsonObject.getString("user"));
-		jsonObject1.put("username", jsonObject.getString("userChineseName"));
-		jsonObject1.put("unit_name", jsonObject.getString("workUnit"));
-		jsonObject1.put("department_name", jsonObject.getString("workDepartment"));
-		jsonObject1.put("avatar", jsonObject.getString("userPictureUrl"));
-		jsonObject1.put("email", jsonObject.getString("workEmail"));
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-		SimpleDateFormat strFormat = new SimpleDateFormat("yyyyMMddHHmm");
-		String str = jsonObject.getString("introUpdateTime");
-		Date date = new Date();
-		try {
-			date = strFormat.parse(str);
-		} catch (ParseException e) {
-			//e.printStackTrace();
+		if(jsonArray!=null){
+			JSONObject jsonObject = jsonArray.getJSONObject(0);
+			jsonObject1.put("scholat_username", jsonObject.getString("user"));
+			jsonObject1.put("username", jsonObject.getString("userChineseName"));
+			jsonObject1.put("unit_name", jsonObject.getString("workUnit"));
+			jsonObject1.put("department_name", jsonObject.getString("workDepartment"));
+			jsonObject1.put("avatar", jsonObject.getString("userPictureUrl"));
+			jsonObject1.put("email", jsonObject.getString("workEmail"));
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			SimpleDateFormat strFormat = new SimpleDateFormat("yyyyMMddHHmm");
+			String str = jsonObject.getString("introUpdateTime");
+			Date date = new Date();
+			try {
+				date = strFormat.parse(str);
+			} catch (ParseException e) {
+				//e.printStackTrace();
+			}
+			String time = dateFormat.format(date); //可以把日期转换转指定格式的字符串
+			jsonObject1.put("update_time", time);
+			String scholatIntro = jsonObject.getString("introduction");
+			jsonObject1.put("intro", scholatIntro);
+			jsonObject1.put("degree", jsonObject.getString("degree"));
+			jsonObject1.put("post", jsonObject.getString("scholarTitle"));
+			jsonObject1.put("qrcode", jsonObject.getString("qrcodeUrl"));
 		}
-		String time = dateFormat.format(date); //可以把日期转换转指定格式的字符串
-		jsonObject1.put("update_time", time);
-		String scholatIntro = jsonObject.getString("introduction");
-		jsonObject1.put("intro", scholatIntro);
-		jsonObject1.put("degree", jsonObject.getString("degree"));
-		jsonObject1.put("post", jsonObject.getString("scholarTitle"));
-		jsonObject1.put("qrcode", jsonObject.getString("qrcodeUrl"));
 		return CommonUtil.successJson(jsonObject1);
 	}
 

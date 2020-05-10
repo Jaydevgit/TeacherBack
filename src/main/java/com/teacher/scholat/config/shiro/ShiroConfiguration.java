@@ -61,6 +61,7 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/unit/getUnitBytId","anon");
 		filterChainDefinitionMap.put("/unit/getTeacherByDepartment","anon");
 		filterChainDefinitionMap.put("/unit/getTeacherBySubject","anon");
+		filterChainDefinitionMap.put("/unit/getUnitBytDomain_name","anon");
 		filterChainDefinitionMap.put("/static/**", "anon");
 		filterChainDefinitionMap.put("/login/auth", "anon");
 		filterChainDefinitionMap.put("/scholat/login/auth", "anon");
