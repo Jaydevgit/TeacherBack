@@ -16,6 +16,7 @@ public interface CatalogueDao {
     void removeTeacher(JSONObject jsonObject);
     void topTeacher(JSONObject jsonObject);
     void topCatalogue(JSONObject jsonObject);
+    void addSingleTeacher(JSONObject object);
     void addCatalogueTeacher(JSONObject jsonObject);
     void sortUnitTeacher(JSONObject jsonObject);
     void updateCatalogueTeacher(JSONObject jsonObject);
@@ -30,4 +31,6 @@ public interface CatalogueDao {
     List<JSONObject> getTeacherByCatalogueId(JSONObject object);
 
     List<JSONObject> getTeacherAllCatalogues(JSONObject object);
+
+
 }

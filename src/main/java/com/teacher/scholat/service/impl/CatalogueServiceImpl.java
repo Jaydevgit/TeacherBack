@@ -195,6 +195,12 @@ public class CatalogueServiceImpl implements CatalogueService {
     }
 
     @Override
+    public JSONObject addSingleTeacher(JSONObject object){
+        catalogueDao.addSingleTeacher(object);
+        return CommonUtil.successJson();
+    }
+
+    @Override
     public JSONObject addCatalogueTeacher(JSONObject object)
     {
         String[] tId = object.getString("tIds").replace("[","").replace("]","").split(",");

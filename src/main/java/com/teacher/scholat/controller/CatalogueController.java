@@ -84,7 +84,12 @@ public class CatalogueController {
         return catalogueService.removeTeacher(requestJson);
     }
 
-
+    @PostMapping("/addSingleTeacher")
+    public JSONObject addSingleTeacher(@RequestBody JSONObject requestJson){
+        CommonUtil.hasAllRequired(requestJson,"tId,cId");
+        System.out.println(requestJson.getString("tId"));
+        return catalogueService.addSingleTeacher(requestJson);
+    }
 
     @PostMapping("/addCatalogueTeacher")
     public JSONObject addCatalogueTeacher(@RequestBody JSONObject requestJson){

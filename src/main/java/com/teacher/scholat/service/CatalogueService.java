@@ -83,8 +83,14 @@ public interface CatalogueService {
 	/**
 	 * 排序教师
 	 */
-
 	JSONObject sortTeacher(JSONObject object);
+
+	/**
+	 * 单个添加栏目教师
+	 * @param object
+	 * @return
+	 */
+	JSONObject addSingleTeacher(JSONObject object);
 	/**
 	 * 添加栏目教师
 	 * @param object
@@ -110,4 +116,6 @@ public interface CatalogueService {
 	 * 排序学院的教师
 	 */
 	JSONObject sortUnitTeacher(JSONObject object);
+
+
 }

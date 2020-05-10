@@ -192,6 +192,13 @@
             WHERE id = #{ctId}
         </update>
 
+        <insert id="addSingleTeacher" useGeneratedKeys="true">
+            INSERT INTO catalogue_teacher
+            (teacher_id ,catalogue_id)
+            VALUES
+            (#{tId},#{cId})
+        </insert>
+
         <insert id="addCatalogueTeacher" useGeneratedKeys="true">
             INSERT INTO catalogue_teacher
             (teacher_id ,catalogue_id)
