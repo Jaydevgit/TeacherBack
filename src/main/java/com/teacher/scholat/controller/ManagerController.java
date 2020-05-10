@@ -81,21 +81,23 @@ public class ManagerController {
 	public JSONObject addTeacher(@RequestBody JSONObject requestJson) {
         System.out.println("........新增中");
         System.out.println("前台传过来的新增数据为: "+requestJson);
-        CommonUtil.hasAllRequired(requestJson, "avatar,username,email,create_time,state");
+        CommonUtil.hasAllRequired(requestJson, "avatar,username,create_time,state");
 		String username = (String)requestJson.get("username");
 		String pinyin = PinyinUtil.getPinyinString(username);
 		System.out.println("----------pinyin-------------"+pinyin);
 		requestJson.put("pinyin",pinyin);
 		System.out.println("修改后的的新增数据为: "+requestJson);
 		System.out.println("........验证完毕, 有必填字段");
-		JSONObject jsonObject2 = managerService.judgeEmailExist(requestJson);
-		String flag = jsonObject2.getString("flag");
-		int whetherHasEmail = Integer.parseInt(flag);
-		if(whetherHasEmail!=0) {
-			System.out.println(	"该邮箱已存在");
-			JSONObject r = managerService.searchScholatList((requestJson));
-			r.put("err", "该邮箱已存在");
-			return CommonUtil.errorJson(ErrorEnum.E_8000);
+		if(!requestJson.getString("email").isEmpty()){
+			JSONObject jsonObject2 = managerService.judgeEmailExist(requestJson);
+			String flag = jsonObject2.getString("flag");
+			int whetherHasEmail = Integer.parseInt(flag);
+			if(whetherHasEmail!=0) {
+				System.out.println(	"该邮箱已存在");
+				JSONObject r = managerService.searchScholatList((requestJson));
+				r.put("err", "该邮箱已存在");
+				return CommonUtil.errorJson(ErrorEnum.E_8000);
+			}
 		}
         Teacher teacher = JSONObject.toJavaObject(requestJson,Teacher.class);
         System.out.println("********"+teacher.getScholat_update_time());
