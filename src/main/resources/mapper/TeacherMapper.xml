@@ -104,7 +104,8 @@
                   t.username    tName,
                   t.post        tPost,
                   t.avatar      tAvatar,
-                  t.pinyin      tPinyin
+                  t.pinyin      tPinyin,
+                  t.domain_name tDomain_name
         FROM teacher_profile t
         WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY tPinyin
     </select>
