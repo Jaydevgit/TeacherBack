@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
 	public JSONObject listUser(JSONObject jsonObject) {
 		CommonUtil.fillPageParam(jsonObject);
 		long unitId = jsonObject.getLongValue("unitId");
+		System.out.println("unitId="+unitId);
 		int count = userDao.countUser(unitId);
 		System.out.println("........有"+count+"位子账号");
 		List<JSONObject> list = userDao.listUser(jsonObject);
