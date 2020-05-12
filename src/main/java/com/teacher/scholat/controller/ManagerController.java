@@ -176,6 +176,7 @@ public class ManagerController {
 			String scholatIntro = jsonObject.getString("introduction");
 			jsonObject1.put("intro", scholatIntro);
 			jsonObject1.put("degree", jsonObject.getString("degree"));
+			jsonObject1.put("research_direction", jsonObject.getString("researchInterest"));
 			jsonObject1.put("post", jsonObject.getString("scholarTitle"));
 			jsonObject1.put("qrcode", jsonObject.getString("qrcodeUrl"));
 		}
