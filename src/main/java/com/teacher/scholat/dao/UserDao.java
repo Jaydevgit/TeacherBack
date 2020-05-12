@@ -55,6 +55,14 @@ public interface UserDao {
 	* 修改用户的登录表
 	* */
 	int updateUserToLogin(JSONObject jsonObject);
+	/**
+	 * 修改用户
+	 */
+	int updateSelfUser(JSONObject jsonObject);
+	/*
+	 * 修改用户的登录表
+	 * */
+	int updateSelfUserToLogin(JSONObject jsonObject);
 
 
 	/**

@@ -107,6 +107,14 @@
         , state = #{state}
         WHERE id = #{userId} and id != 10001
     </update>
+    <update id="updateSelfUser">
+        UPDATE unit_profile
+        SET
+        <if test="password !='' and password !=null">
+            password = #{password}
+        </if>
+        WHERE id = #{userId} and id != 10001
+    </update>
     <update id="updateUserToLogin">
         UPDATE login
         SET
@@ -115,6 +123,14 @@
             , password = #{password}
         </if>
         , state = #{state}
+        WHERE user_id = #{userId} and role="unit"
+    </update>
+    <update id="updateSelfUserToLogin">
+        UPDATE login
+        SET
+        <if test="password !='' and password !=null">
+             password = #{password}
+        </if>
         WHERE user_id = #{userId} and role="unit"
     </update>
 

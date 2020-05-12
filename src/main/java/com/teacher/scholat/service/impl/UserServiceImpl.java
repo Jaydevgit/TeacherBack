@@ -90,6 +90,18 @@ public class UserServiceImpl implements UserService {
 	}
 
 	/**
+	 * 本用户,自己修改密码
+	 */
+	@Override
+	public JSONObject updateSelfPass(JSONObject jsonObject) {
+		System.out.println("updateUser........"+jsonObject);
+		userDao.updateSelfUser(jsonObject);
+		System.out.println("现在准备更新用户信息到登录表");
+		userDao.updateSelfUserToLogin(jsonObject);
+		return CommonUtil.successJson();
+	}
+
+	/**
 	 * 角色列表
 	 */
 	@Override

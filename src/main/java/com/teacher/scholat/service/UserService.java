@@ -35,6 +35,10 @@ public interface UserService {
 	 */
 	JSONObject updateUser(JSONObject jsonObject);
 
+	/**
+	 * 本用户,自己修改密码
+	 */
+	JSONObject updateSelfPass(JSONObject jsonObject);
 
 	/**
 	 * 角色列表

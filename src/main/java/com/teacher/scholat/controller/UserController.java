@@ -53,6 +53,14 @@ public class UserController {
 		System.out.println("加密后："+requestJson.get("password").toString());
 		return userService.updateUser(requestJson);
 	}
+	@PostMapping("/updateSelfPass")
+	public JSONObject updateSelfPass(@RequestBody JSONObject requestJson) {
+		System.out.println("加密前"+requestJson.get("password").toString());
+		String newPassword = MD5Util.toDb(requestJson.get("password").toString());
+		requestJson.put("password",newPassword);
+		System.out.println("加密后："+requestJson.get("password").toString());
+		return userService.updateSelfPass(requestJson);
+	}
 
 	@RequiresPermissions(value = {"user:add", "user:update"}, logical = Logical.OR)
 	@GetMapping("/getAllRoles")
