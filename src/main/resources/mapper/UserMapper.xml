@@ -82,8 +82,8 @@
 
     <insert id="addUser" useGeneratedKeys="true">
         INSERT INTO unit_profile
-        (username, password, role_id, unit_id, domain_name,state) VALUES
-            (#{username}, #{password}, #{roleId}, #{unitId},#{domainName}, 1)
+        (username,nickname, password, role_id, unit_id, domain_name,state) VALUES
+            (#{username},#{nickname}, #{password}, #{roleId}, #{unitId},#{domainName}, 1)
         <selectKey resultType="int" keyProperty="userId" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>

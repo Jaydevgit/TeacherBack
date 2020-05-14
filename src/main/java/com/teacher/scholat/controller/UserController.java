@@ -34,7 +34,7 @@ public class UserController {
 	@RequiresPermissions("user:add")
 	@PostMapping("/addUser")
 	public JSONObject addUser(@RequestBody JSONObject requestJson) {
-		CommonUtil.hasAllRequired(requestJson, "username, password, roleId, unitId");
+		CommonUtil.hasAllRequired(requestJson, "username,nickname,password, roleId, unitId");
 		System.out.println("加密前"+requestJson.get("password").toString());
 		String newPassword = MD5Util.toDb(requestJson.get("password").toString());
 		requestJson.put("password",newPassword);
