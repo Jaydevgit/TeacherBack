@@ -76,4 +76,9 @@ public class UnitController {
     public JSONObject updateUnitInfo(@RequestBody JSONObject requestJson){
         return unitService.updateUnitInfo(requestJson);
     }
+
+    @PostMapping("/updateUnitTagstate")
+    public JSONObject updateUnitTagstate(@RequestBody JSONObject requestJson){
+        return unitService.updateUnitTagstate(requestJson);
+    }
 }

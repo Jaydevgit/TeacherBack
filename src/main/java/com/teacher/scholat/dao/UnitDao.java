@@ -20,12 +20,16 @@ public interface UnitDao {
 
 	void updateUnitInfo(JSONObject object);
 
+	//更新教师主页显示字段
+	void updateUnitTagstate(JSONObject object);
+
 	JSONObject getUnitBytId(JSONObject object);
 
 	//通过教师域名获取学院基本信息（学校名称等）
 	JSONObject getUnitBytDomain_name(JSONObject object);
 
 	List<JSONObject> getUnitInfoByUnitId(JSONObject object);
+
 
 
 }

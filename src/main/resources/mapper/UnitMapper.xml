@@ -100,5 +100,11 @@
             WHERE id = #{unitId}
     </update>
 
+    <update id="updateUnitTagstate">
+        update school_unit
+        set tag_state=#{tagState}
+        where id=#{unitId}
+    </update>
+
 
 </mapper>

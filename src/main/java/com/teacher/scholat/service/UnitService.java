@@ -25,4 +25,6 @@ public interface UnitService {
 	JSONObject getUnitBytDomain_name(JSONObject object);
 
 	List<JSONObject> getUnitInfoByUnitId(JSONObject jsonObject);
+
+    JSONObject updateUnitTagstate(JSONObject object);
 }

@@ -43,6 +43,12 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
+    public JSONObject updateUnitTagstate(JSONObject object){
+        unitDao.updateUnitTagstate(object);
+        return CommonUtil.successJson();
+    }
+
+    @Override
     public JSONObject getUnitBytId(JSONObject object) {
         System.out.println("查查object" + object);
         JSONObject unitBytId = unitDao.getUnitBytId(object);
