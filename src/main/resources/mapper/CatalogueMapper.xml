@@ -100,7 +100,7 @@
                   t.qrcode      tQrcode
             FROM catalogue_teacher ct LEFT JOIN teacher_profile t ON t.id = ct.teacher_id
             WHERE ct.catalogue_id = #{cId} AND t.state = 1 AND (ct.is_deleted is null OR
-            ct.is_deleted !=1) ORDER BY t.pinyin,tSeq  LIMIT #{offSet},#{pageRow}
+            ct.is_deleted !=1) ORDER BY tSeq,t.pinyin LIMIT #{offSet},#{pageRow}
         </select>
 
         <select id="getByCatalogueAndLetterAndPage" resultType="com.alibaba.fastjson.JSONObject">
