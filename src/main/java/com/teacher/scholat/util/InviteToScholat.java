@@ -17,10 +17,11 @@ public class InviteToScholat {
       //  System.out.println("name="+form.getString("name"));
         String name=form.getString("name");
         String email=form.getString("email");
-        String workUnit=form.getString("workUnit");
-        String title=form.getString("title");
-        String degree=form.getString("degree");
-        String introduction=form.getString("introduction");
+        String workUnit=form.getString("workUnit")+"";
+        System.out.println("workUnit="+workUnit);
+        String title=form.getString("title")+"";
+        String degree=form.getString("degree")+"";
+        String introduction=form.getString("introduction")+"";
         String avatar=form.getString("avatar");
          JSONObject params = new JSONObject();
       //   params.put("token", "14da67741f1ae95eb1f8e0795aeb8152"); // dxm
@@ -39,7 +40,7 @@ public class InviteToScholat {
         System.out.println("准备发送邀请到学者网邀请的信息为：");
        System.out.println(params.toString());
 //		String params = "{\"token\":\"14da67741f1ae95eb1f8e0795aeb8152\",\"appid\":\"2\",\"name\":\"Ronghua Lin\","
-//				+ "\"email\":\"249280256@qq.com\",\"workUnit\":\"South China Normal University\",\"title\":\"\","
+//				+ "\"email\":\"495102181@qq.com\",\"workUnit\":\"South China Normal University\",\"title\":\"\","
 //				+ "\"degree\":\"Master\",\"introduction\":\"\",\"avatar\":\"\"}";
        //  String requestUrl = "http://www.scholat.com/scholat/rest/signInOapi/appInvite"; // 旧地址
         String requestUrl = "http://www.scholat.com/rest/signInOapi/appInvite";
