@@ -94,7 +94,7 @@ public class CatalogueController {
     @PostMapping("/addCatalogueTeacher")
     public JSONObject addCatalogueTeacher(@RequestBody JSONObject requestJson){
         CommonUtil.hasAllRequired(requestJson,"tIds,cId");
-        System.out.println(requestJson.getString("tIds"));
+        System.out.println(requestJson.getString("cId"));
         return catalogueService.addCatalogueTeacher(requestJson);
     }
 
