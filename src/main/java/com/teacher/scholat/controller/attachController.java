@@ -107,16 +107,17 @@ public class attachController {
 
     }
     // 删除上传头像
-    @GetMapping("delete/{name}")
-    public JSONObject delete(@PathVariable("name") String name) throws IllegalStateException, IOException {
+    @GetMapping("delete/{filePath}/{name}")
+    public JSONObject delete(@PathVariable("filePath") String filePath,@PathVariable("name") String name) throws IllegalStateException, IOException {
         System.out.println("==================== 开始删除上传文件");
-        String deleteFiles="/images/avatar/"+name;
+        String deleteFiles="/images/"+filePath+"/"+name;
+     //   String deleteFiles="/images/avatar/"+name;
         //删除测试数据
 //        String host="47.106.132.95";
 //        int port=21;
 //        String userName="sansen_ftp";
 //        String passWord="#scholat232";
-        System.out.println("deleteFiles="+deleteFiles);
+        System.out.println("删除文件具体路径为deleteFiles="+deleteFiles);
         // 调用FtpUtil工具类进行上传
         System.out.println("-----------------------ftp应用启动------------------------");
         FTPClient ftpClient = FTPUtil.connectFtpServer(host, port, userName, passWord, "gbk");
