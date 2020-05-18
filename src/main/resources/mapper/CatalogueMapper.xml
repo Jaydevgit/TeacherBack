@@ -147,6 +147,13 @@
             (SELECT catalogue.id FROM  catalogue WHERE unit_id = #{unitId} AND state = #{state})
         </select>
 
+        <select id="getCatalogueNameByCatalogueId" resultType="com.alibaba.fastjson.JSONObject">
+            SELECT
+                c.catalogue_name
+            FROM catalogue c
+            WHERE id=#{id}
+        </select>
+
         <resultMap id="catalogueMap" type="com.teacher.scholat.util.model.One2Many">
             <id column="id" property="id"/>
             <result column="name" property="name"/>
@@ -219,4 +226,6 @@
             catalogue_name=#{newName}
             WHERE id = #{cId}
         </update>
+
+
 </mapper>

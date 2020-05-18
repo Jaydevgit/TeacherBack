@@ -23,6 +23,12 @@ public class CatalogueController {
         return catalogueService.getCatalogues(CommonUtil.request2Json(request));
     }
 
+    @GetMapping("/getCatalogueNameByCatalogueId")
+    public JSONObject getCatalogueNameByCatalogueId(HttpServletRequest request){
+        System.out.println(CommonUtil.request2Json(request));
+        return catalogueService.getCatalogueNameByCatalogueId(CommonUtil.request2Json(request));
+    }
+
     @GetMapping("/getTeacherByCatalogue")
     public JSONObject getTeacherByCatalogue(HttpServletRequest request){
         System.out.println(CommonUtil.request2Json(request));

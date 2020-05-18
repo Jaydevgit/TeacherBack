@@ -118,4 +118,6 @@ public interface CatalogueService {
 	JSONObject sortUnitTeacher(JSONObject object);
 
 
+	/*通过cId获取分类名*/
+    JSONObject getCatalogueNameByCatalogueId(JSONObject object);
 }

@@ -256,4 +256,11 @@ public class CatalogueServiceImpl implements CatalogueService {
         }
         return CommonUtil.successJson();
     }
+
+    @Override
+    public JSONObject getCatalogueNameByCatalogueId(JSONObject object) {
+        List<JSONObject> cName=catalogueDao.getCatalogueNameByCatalogueId(object);
+        System.out.println("cName="+cName);
+        return CommonUtil.successJson(cName);
+    }
 }

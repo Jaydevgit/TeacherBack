@@ -33,4 +33,5 @@ public interface CatalogueDao {
     List<JSONObject> getTeacherAllCatalogues(JSONObject object);
 
 
+    List<JSONObject> getCatalogueNameByCatalogueId(JSONObject object);
 }
