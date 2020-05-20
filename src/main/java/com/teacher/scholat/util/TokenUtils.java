@@ -12,7 +12,7 @@ import java.util.Map.Entry;
 public class TokenUtils {
 
     private static Map<String,String> MAP_TOKENS = new HashMap<String,String>();
-    private static final int VALID_TIME = 60*60*2; // token有效期(秒)
+    private static final int VALID_TIME = 60*60*24; // token有效期(秒)
     public static final String TOKEN_ERROR = "F"; // 非法
     public static final String TOKEN_OVERDUE = "G"; // 过期
     public static final String TOKEN_FAILURE = "S"; // 失效
