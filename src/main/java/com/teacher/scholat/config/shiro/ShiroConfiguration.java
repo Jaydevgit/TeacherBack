@@ -55,6 +55,7 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/teacher/**", "anon");
 		filterChainDefinitionMap.put("/catalogue/getCatalogues", "anon");
 		filterChainDefinitionMap.put("/catalogue/getTeacherByCatalogue", "anon");
+		filterChainDefinitionMap.put("/catalogue/getCatalogueNameByCatalogueId", "anon");
 		filterChainDefinitionMap.put("/catalogue/getByCatalogueAndLetterAndPage", "anon");
 		filterChainDefinitionMap.put("/unit/listDepartment","anon");
 		filterChainDefinitionMap.put("/unit/listSubject","anon");
