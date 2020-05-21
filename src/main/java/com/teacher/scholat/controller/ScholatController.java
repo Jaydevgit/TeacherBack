@@ -274,12 +274,18 @@ public class ScholatController {
         // 开始进行邮箱邀请发送
         String callback = InviteToScholat.inviteToScholat(requestJson);
         System.out.println("发送邀请注册为学者网的邮件回调信息为:"+callback);
-        if(callback.equals("error")){
-            System.out.println("发送邀请注册邮件失败");
-            return CommonUtil.errorJson(ErrorEnum.E_400);
-        }else{
+        if(callback.equals("{\"state\":\"email_lock\"}")||callback.equals("{\"state\":\"email_exists\"}")){
+            System.out.println("邮件已发送");
+            return CommonUtil.errorJson(ErrorEnum.E_10009);
+        }else if(callback.equals("{\"state\":\"empty_fail\"}")){
+            System.out.println("发送邀请注册邮件失败,缺少必填参数邮箱");
+            return CommonUtil.errorJson(ErrorEnum.E_90003);
+        }else if(callback.equals("{\"state\":\"success\"}")){
             System.out.println("发送邀请注册邮件成功");
             return CommonUtil.successJson();
+        }else{
+            System.out.println("发送邀请注册邮件失败");
+            return CommonUtil.errorJson(ErrorEnum.E_400);
         }
     }
     @PostMapping("/changePassword")

@@ -1,5 +1,6 @@
 package com.teacher.scholat.util;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import java.io.BufferedReader;
@@ -13,15 +14,20 @@ public class InviteToScholat {
         System.out.println("-------------------- 请求开始：进入到邀请加入学者网 --------------------");
 
         JSONObject form = jsonObject.getJSONObject("form");
-       // System.out.println("form="+form);
-      //  System.out.println("name="+form.getString("name"));
-        String name=form.getString("name");
+        System.out.println("form="+form);
+        String name="";
+        if (form.getString("username")!=null){
+            name=form.getString("username");
+        }else{
+            name=form.getString("name");
+        }
+        System.out.println("name="+form.getString("username"));
         String email=form.getString("email");
         String workUnit=form.getString("workUnit")+"";
         System.out.println("workUnit="+workUnit);
-        String title=form.getString("title")+"";
+        String title=form.getString("post")+""; //接口规定title是职称
         String degree=form.getString("degree")+"";
-        String introduction=form.getString("introduction")+"";
+        String introduction=form.getString("intro")+"";
         String avatar=form.getString("avatar");
          JSONObject params = new JSONObject();
       //   params.put("token", "14da67741f1ae95eb1f8e0795aeb8152"); // dxm
@@ -34,7 +40,7 @@ public class InviteToScholat {
         params.put("title", title);
         params.put("degree", degree);
         params.put("introduction",introduction);
-        params.put("avatar", avatar);
+        params.put("avatar", "");
       // jsonObject.put("token", "14da67741f1ae95eb1f8e0795aeb8152");
        // jsonObject.put("appid", "2");
         System.out.println("准备发送邀请到学者网邀请的信息为：");
