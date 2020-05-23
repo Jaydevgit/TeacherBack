@@ -30,13 +30,16 @@ public interface ManagerDao {
 	//统计教师总数
     int countTeacher(JSONObject jsonObject);
 
+	//统计教师更新了学者网信息总数
+	int countUpdateTeacher(JSONObject jsonObject);
+
 	int countLetterUnitTeacher(JSONObject jsonObject);
     /**
      * 教师列表
      */
     List<JSONObject> listTeacher(JSONObject jsonObject);
     List<JSONObject> listTeacherLocal(JSONObject jsonObject);
-
+	List<JSONObject> listTeacherLocalAll(JSONObject jsonObject);
 //	/**
 //	 * 除去在岗教师列表
 //	 */

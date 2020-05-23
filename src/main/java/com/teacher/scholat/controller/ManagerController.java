@@ -40,6 +40,15 @@ public class ManagerController {
 		System.out.println(CommonUtil.request2Json(request));
 		return managerService.listTeacher(CommonUtil.request2Json(request));
 	}
+	/**
+	 * 查询统计有多少用户的学者网简介更新了信息
+	 */
+	@GetMapping("/listTeacherUpdateScholat")
+	public JSONObject listTeacherUpdateScholat(HttpServletRequest request) {
+		System.out.println("......开始查询教师成员列表");
+		System.out.println(CommonUtil.request2Json(request));
+		return CommonUtil.successJson(managerService.listTeacherUpdateScholat(CommonUtil.request2Json(request)));
+	}
 
 	/**
 	 * 查询教师域名是否存在

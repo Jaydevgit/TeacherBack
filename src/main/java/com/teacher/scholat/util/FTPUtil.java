@@ -244,6 +244,7 @@ public class FTPUtil {
             ftp.setFileType(FTP.BINARY_FILE_TYPE);
             //上传文件
             if (!ftp.storeFile(filename, input)) {
+                System.out.println("上传文件失败");
                 return result;
             }
             input.close();

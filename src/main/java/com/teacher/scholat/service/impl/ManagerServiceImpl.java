@@ -60,27 +60,17 @@ public class ManagerServiceImpl implements ManagerService {
 
         return managerDao.judgeDomainExist(jsonObject);
     }
-
     /**
-     * 教师列表
-     *
-     * @TODO: 加入一个统计有多少用户的学者网简介更新了信息
+     * 统计有多少用户的学者网简介更新了信息
      */
     @Override
-    public JSONObject listTeacher(JSONObject jsonObject) {
-        System.out.println("前端传过来的教师列表要求为: ");
-        CommonUtil.fillPageParam(jsonObject);
-        //long unitId = jsonObject.getLongValue("unitId");
-        int count = managerDao.countTeacher(jsonObject);
-        //System.out.println("........有"+count+"位教师");
-
-
-        // 搜索列表, 对加入进来的信息加入在线搜索的user_profile: introUpdateTime信息
-        //List<JSONObject> list = managerDao.listTeacher(jsonObject);
-        List<JSONObject> listLocal = managerDao.listTeacherLocal(jsonObject);
+    public JSONObject listTeacherUpdateScholat(JSONObject jsonObject) {
+        int countScholat=0;
+        List<JSONObject> listLocal = managerDao.listTeacherLocalAll(jsonObject);
         for (JSONObject jsonObject1 : listLocal) {
             String username = jsonObject1.getString("scholat_username");
             String email = jsonObject1.getString("email"); // 通过email搜索
+            String updateTime = jsonObject1.getString("update_time");
             JSONArray jsonArray = GetScholatProfile.getScholatProfileByUserName(username);
             JSONObject jsonObject2 = new JSONObject();
             if(jsonArray!= null && jsonArray.size()>0){
@@ -93,6 +83,59 @@ public class ManagerServiceImpl implements ManagerService {
                 try {
                     date = strFormat.parse(str);
                     time = dateFormat.format(date); //可以把日期转换转指定格式的字符串
+                    int compareTo = time.compareTo(updateTime);
+                    if(compareTo==1) {
+                        countScholat++;
+                    }
+                } catch (ParseException e) {
+                    time = str;
+                    // e.printStackTrace();
+                }
+                jsonObject1.put("scholat_update_time",time);
+                //jsonObject1.put("real_scholat_username", jsonObject2.getString("acc_name"));
+            }else {
+                jsonObject1.put("scholat_update_time", "");
+                jsonObject1.put("real_scholat_username", "");
+            }
+        }
+        System.out.println("后台查询到的更新教师数据总为: " + countScholat);
+        JSONObject r=new JSONObject();
+        r.put("countScholat",countScholat);
+        return r;
+    }
+    /**
+     * 教师列表
+     *
+     * @TODO: 加入一个统计有多少用户的学者网简介更新了信息
+     */
+    @Override
+    public JSONObject listTeacher(JSONObject jsonObject) {
+        System.out.println("前端传过来的教师列表要求为: ");
+        CommonUtil.fillPageParam(jsonObject);
+        //long unitId = jsonObject.getLongValue("unitId");
+        int count = managerDao.countTeacher(jsonObject);
+        //System.out.println("........有"+count+"位教师");
+//        int countScholat = managerDao.countUpdateTeacher(jsonObject);
+        // 搜索列表, 对加入进来的信息加入在线搜索的user_profile: introUpdateTime信息
+        //List<JSONObject> list = managerDao.listTeacher(jsonObject);
+        List<JSONObject> listLocal = managerDao.listTeacherLocal(jsonObject);
+        for (JSONObject jsonObject1 : listLocal) {
+            String username = jsonObject1.getString("scholat_username");
+            String email = jsonObject1.getString("email"); // 通过email搜索
+            String updateTime = jsonObject1.getString("update_time");
+            JSONArray jsonArray = GetScholatProfile.getScholatProfileByUserName(username);
+            JSONObject jsonObject2 = new JSONObject();
+            if(jsonArray!= null && jsonArray.size()>0){
+                jsonObject2= jsonArray.getJSONObject(0);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                SimpleDateFormat strFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                String str = jsonObject2.getString("introUpdateTime");
+                Date date = new Date();
+                String time;
+                try {
+                    date = strFormat.parse(str);
+                    time = dateFormat.format(date); //可以把日期转换转指定格式的字符串
+                    int compareTo = time.compareTo(updateTime);
                 } catch (ParseException e) {
                     time = str;
                     // e.printStackTrace();
@@ -107,7 +150,7 @@ public class ManagerServiceImpl implements ManagerService {
         // 需要 u.introUpdateTime 和 u.acc_name	当 (t.scholat_username = u.acc_name) or (t.email=u.work_email)
         System.out.println("后台查询到的教师数据为: " + listLocal);
 
-//        System.out.println("看下是JOSN信息：" + listLocal.get(0).getString(("email")));
+//        System.out.println("看下是JOSN信息：" + stLocal.get(0).getString(("email")));
         //managerDao.whetherScholatUser(jsonObject);
         //managerDao.insertScholatName(listLocal);
         return CommonUtil.successPage(jsonObject, listLocal, count);

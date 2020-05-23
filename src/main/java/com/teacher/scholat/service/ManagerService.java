@@ -35,6 +35,10 @@ public interface ManagerService {
 	 * 教师列表
 	 */
 	JSONObject listTeacher(JSONObject jsonObject);
+	/**
+	 * 统计有多少用户的学者网简介更新了信息
+	 */
+	JSONObject listTeacherUpdateScholat(JSONObject jsonObject);
 
 //	/**
 //	 * 未在岗教师列表
