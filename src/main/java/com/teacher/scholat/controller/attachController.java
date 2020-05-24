@@ -106,10 +106,13 @@ public class attachController {
         }
 
     }
-    // 删除上传头像
+    // 删除上传文件
     @GetMapping("delete/{filePath}/{name}")
     public JSONObject delete(@PathVariable("filePath") String filePath,@PathVariable("name") String name) throws IllegalStateException, IOException {
         System.out.println("==================== 开始删除上传文件");
+        if(filePath.equals("backgroundHome")){
+            filePath="background";
+        }
         String deleteFiles="/images/"+filePath+"/"+name;
      //   String deleteFiles="/images/avatar/"+name;
         //删除测试数据
@@ -130,7 +133,7 @@ public class attachController {
             System.out.println("========================== 使用ftp删除文件成功");
             return CommonUtil.successJson();
         } else {
-            System.out.println("========================== 使用ftp删除文件失败,就是无该文件头像不报错");
+            System.out.println("========================== 使用ftp删除文件失败,就是无该文件不报错");
             return CommonUtil.successJson();
         }
 
@@ -147,7 +150,11 @@ public class attachController {
     public String uploadCertificate(@RequestParam MultipartFile file) throws IllegalStateException, IOException {
         System.out.println("==================== 成功进入申请界面上传证明文件功能");
         String oldFileName = file.getOriginalFilename(); //获取上传文件的原名
+        if(!(oldFileName.equals("front.png")&&oldFileName.equals("back.png")&&oldFileName.equals("working.png")&&oldFileName.equals("logo.png")&&oldFileName.equals("unit.png"))){
+            oldFileName="backgroundHome.png";
+        }
         System.out.println("旧文件名为: " + oldFileName);
+
         String newfileName = getFileName(file);
         String filePath = "";
         InputStream input = file.getInputStream();
@@ -175,7 +182,7 @@ public class attachController {
         }else if(oldFileName.equals("unit.png")){
             System.out.println("上传到: "+host+port+unitLogoPath+filePath+newfileName);
             result = FTPUtil.uploadFile(host, port, userName, passWord, unitLogoPath, filePath, newfileName, input);
-        }else  if (oldFileName.equals("background.png")){
+        }else  if (oldFileName.equals("background.png")||oldFileName.equals("backgroundHome.png")){
             System.out.println("上传到: "+host+port+backgroundPath+filePath+newfileName);
             result = FTPUtil.uploadFile(host, port, userName, passWord, backgroundPath, filePath, newfileName, input);
         }
