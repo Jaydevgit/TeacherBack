@@ -2,7 +2,12 @@ package com.teacher.scholat.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.model.Teacher;
+import org.springframework.web.servlet.tags.Param;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -65,4 +70,6 @@ public interface ManagerService {
 
     void unBindScholat(String id);
     void bindScholat(String id,String scholat_username);
+
+    void exportTeacher(HttpServletRequest request,HttpServletResponse response) throws IOException;
 }

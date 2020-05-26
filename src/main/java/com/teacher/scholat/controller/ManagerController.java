@@ -1,20 +1,33 @@
 package com.teacher.scholat.controller;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.metadata.Sheet;
+import com.alibaba.excel.support.ExcelTypeEnum;
+import com.alibaba.excel.write.metadata.WriteSheet;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.model.Teacher;
+import com.teacher.scholat.model.excel.teacherData;
 import com.teacher.scholat.service.ManagerService;
 import com.teacher.scholat.util.*;
 import com.teacher.scholat.util.constants.ErrorEnum;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.tags.Param;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author:
@@ -294,4 +307,48 @@ public class ManagerController {
 //        ver1.setIntroduction(res.get(0));
 //        ver2.setIntroduction(res.get(1));
 	}
+//	@RequiresPermissions("teacher:list")
+	@RequestMapping(value ="/exportTeacher",method = RequestMethod.GET)
+	public void getExcel(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		managerService.exportTeacher(request,response);
+//		ServletOutputStream out = response.getOutputStream();
+//		ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX, true);
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+//		String date = sdf.format(new Date());
+//		String fileName = "Alarm"+date + ".xlsx";
+//		List<teacherData> list = new ArrayList<teacherData>();
+//		teacherData data = new teacherData();
+//		data.setUsername("aaa");
+//		list.add(data);
+//		Sheet sheet1 = new Sheet(1, 0);
+//		sheet1.setSheetName("第一个sheet");
+//		writer.write(list, sheet1);
+//		writer.finish();
+//		response.setContentType("multipart/form-data");
+//		response.setCharacterEncoding("utf-8");
+//		response.setHeader("Content-disposition", "attachment;filename="+fileName+".xlsx");
+		//out.flush();
+
+//		response.setContentType("multipart/form-data");
+//		response.setCharacterEncoding("utf-8");
+//		//设置返回头为附件形式，并提供下载文件名
+//		String fileName = "Alarm"+date + ".xlsx";
+//		response.setHeader("Content-Disposition", "attachment;filename="+fileName);
+//		String sheetName = "数据展示";
+//		// easyexcel工具类实现Excel文件导出
+//		try {
+//			ExcelUtil.writeExcel(response, list, fileName, sheetName,teacherData.class);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		// 这里 需要指定写用哪个class去写
+//		ExcelWriter excelWriter = EasyExcel.write(fileName, teacherData.class).build();
+//		WriteSheet writeSheet = EasyExcel.writerSheet("写入方法二").build();
+//		excelWriter.write(list, writeSheet);
+		/// 千万别忘记finish 会帮忙关闭流
+//		excelWriter.finish();
+	}
+//	@RequestMapping(value = "/export",method = RequestMethod.GET)
+//	public void getExcel( HttpServletRequest request, HttpServletResponse response) throws IOException {
+
 }

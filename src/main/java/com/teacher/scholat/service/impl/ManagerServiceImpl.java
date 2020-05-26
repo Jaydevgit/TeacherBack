@@ -1,21 +1,29 @@
 package com.teacher.scholat.service.impl;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.dao.ManagerDao;
 import com.teacher.scholat.model.Teacher;
+import com.teacher.scholat.model.excel.teacherData;
 import com.teacher.scholat.service.ManagerService;
 import com.teacher.scholat.util.CommonUtil;
 import com.teacher.scholat.util.GetScholatProfile;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.tags.Param;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author: sansen
@@ -359,4 +367,60 @@ public class ManagerServiceImpl implements ManagerService {
         managerDao.bindScholat(id,scholat_username);
     }
 
+    @Override
+    public void exportTeacher(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        System.out.println( "CommonUtil.request2Json(request)="+CommonUtil.request2Json(request));
+        JSONObject json=CommonUtil.request2Json(request);
+        String json1 = json.getString("json");
+        String str1=json1.substring(0, json1.indexOf(":"));
+        String unitId=json1.substring(str1.length()+1,json1.length()-1);
+        System.out.println("unitId="+unitId);
+        JSONObject J=new JSONObject();
+        J.put("unitId",unitId);
+        List<JSONObject> teacherList = managerDao.listTeacherLocalAll(J);
+        List<teacherData> list = new ArrayList<teacherData>();
+        for (int i = 0; i <teacherList.size() ; i++) {
+            JSONObject teacher=teacherList.get(i);
+            teacherData data = new teacherData();
+            data.setUsername(teacher.getString("name"));
+            if((teacher.getIntValue("sex"))==1){
+                data.setSex("女");
+            }else{
+                data.setSex("男");
+            }
+            data.setEmail(teacher.getString("email"));
+            data.setPost(teacher.getString("post"));
+            data.setDuty(teacher.getString("duty"));
+            data.setLabel(teacher.getString("label"));
+            data.setSubject(teacher.getString("subject"));
+            data.setDegree(teacher.getString("degree"));
+            data.setGraduateFrom(teacher.getString("graduateFrom"));
+            data.setResearch_direction(teacher.getString("research_direction"));
+            data.setWork_place(teacher.getString("work_place"));
+            data.setPhone(teacher.getString("phone"));
+            list.add(data);
+        }
+
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+            String fileName = URLEncoder.encode("教师信息", "UTF-8");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+            // 这里需要设置不关闭流
+            EasyExcel.write(response.getOutputStream(), teacherData.class).autoCloseStream(Boolean.FALSE).sheet("模板")
+                    .doWrite(list);
+        }  catch (Exception e) {
+            // 重置response
+            response.reset();
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("status", "failure");
+            map.put("message", "下载文件失败" + e.getMessage());
+            response.getWriter().println(JSON.toJSONString(map));
+        }
+    }
+
 }
+
