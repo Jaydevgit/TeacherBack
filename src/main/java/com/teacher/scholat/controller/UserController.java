@@ -31,6 +31,7 @@ public class UserController {
 		return userService.listUser(CommonUtil.request2Json(request));
 	}
 
+
 	@RequiresPermissions("user:add")
 	@PostMapping("/addUser")
 	public JSONObject addUser(@RequestBody JSONObject requestJson) {
@@ -60,6 +61,14 @@ public class UserController {
 		requestJson.put("password",newPassword);
 		System.out.println("加密后："+requestJson.get("password").toString());
 		return userService.updateSelfPass(requestJson);
+	}
+	@PostMapping("/getInfo")
+	public JSONObject getInfo(@RequestBody JSONObject requestJson) {
+		return userService.getInfo(requestJson);
+	}
+	@PostMapping("/updateInfo")
+	public JSONObject updateInfo(@RequestBody JSONObject requestJson) {
+		return userService.updateInfo(requestJson);
 	}
 
 	@RequiresPermissions(value = {"user:add", "user:update"}, logical = Logical.OR)

@@ -65,4 +65,7 @@ public interface UserService {
 	 * 删除角色
 	 */
 	JSONObject deleteRole(JSONObject jsonObject);
+
+	JSONObject getInfo(JSONObject jsonObject);
+	JSONObject updateInfo(JSONObject jsonObject);
 }

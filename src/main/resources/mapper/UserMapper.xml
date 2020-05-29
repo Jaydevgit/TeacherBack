@@ -240,4 +240,17 @@
          WHERE username=#{username}
          AND state='1';
     </select>
+    <select id="getInfo" resultType="com.alibaba.fastjson.JSONObject">
+        select
+        u.nickname nickname,
+        u.phone phone,
+        u.email email
+         from unit_profile u
+        WHERE id = #{userId}
+    </select>
+    <update id="updateInfo">
+        UPDATE    unit_profile
+        SET       nickname = #{chinese_name} , phone = #{phone},email=#{email}
+        WHERE     id = #{userId}
+    </update>
 </mapper>

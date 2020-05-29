@@ -244,4 +244,17 @@ public class UserServiceImpl implements UserService {
 		userDao.removeRoleAllPermission(jsonObject);*/
 		return CommonUtil.successJson();
 	}
+
+	@Override
+	public JSONObject getInfo(JSONObject jsonObject) {
+		System.out.println("查询用户基本信息");
+
+		return CommonUtil.successJson(userDao.getInfo(jsonObject));
+	}
+	@Override
+	public JSONObject updateInfo(JSONObject jsonObject) {
+		System.out.println("更新用户基本信息");
+		userDao.updateInfo(jsonObject);
+		return CommonUtil.successJson();
+	}
 }

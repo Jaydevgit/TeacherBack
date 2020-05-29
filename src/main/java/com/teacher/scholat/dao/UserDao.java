@@ -110,6 +110,14 @@ public interface UserDao {
 	 * 在删除和修改角色时调用
 	 */
 	JSONObject getRoleAllInfo(JSONObject jsonObject);
+	/**
+	 * 查询用户基本信息
+	 */
+	JSONObject getInfo(JSONObject jsonObject);
+	/**
+	 * 更新用户基本信息
+	 */
+	int updateInfo(JSONObject jsonObject);
 
 	/**
 	 * 删除角色
