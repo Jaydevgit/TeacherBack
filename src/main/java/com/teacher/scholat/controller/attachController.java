@@ -129,13 +129,14 @@ public class attachController {
         boolean deleteFlag=FTPUtil.deleteServerFiles(ftpClient, deleteFiles);
         System.out.println("-----------------------ftp应用关闭------------------------");
         System.out.println("========================== 使用ftp删除文件结束");
-        if (deleteFlag) {
-            System.out.println("========================== 使用ftp删除文件成功");
-            return CommonUtil.successJson();
-        } else {
-            System.out.println("========================== 使用ftp删除文件失败,就是无该文件不报错");
-            return CommonUtil.successJson();
-        }
+        return CommonUtil.successJson();
+//        if (deleteFlag) {
+//            System.out.println("========================== 使用ftp删除文件成功");
+//            return CommonUtil.successJson();
+//        } else {
+//            System.out.println("========================== 使用ftp删除文件失败,就是无该文件不报错");
+//            return CommonUtil.successJson();
+//        }
 
     }
     //删除测试代码

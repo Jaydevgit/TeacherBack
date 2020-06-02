@@ -13,9 +13,12 @@ public class IDUtils {
         //long millis = System.nanoTime();
         //加上三位随机数
         Random random = new Random();
+        MD5Util md5Util=new MD5Util();
+
         int end3 = random.nextInt(999);
         //如果不足三位前面补0
         String str = millis + String.format("%03d", end3);
+        str=md5Util.md5(str);
 
         return str;
     }
