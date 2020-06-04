@@ -196,7 +196,7 @@ public class ManagerController {
 			String time = dateFormat.format(date); //可以把日期转换转指定格式的字符串
 			jsonObject1.put("update_time", time);
 			String scholatIntro = jsonObject.getString("introduction");
-			jsonObject1.put("intro", scholatIntro);
+			jsonObject1.put("intro", DelTagsUtil.delHtmlTags(scholatIntro));
 			jsonObject1.put("degree", jsonObject.getString("degree"));
 			jsonObject1.put("research_direction", jsonObject.getString("researchInterest"));
 			jsonObject1.put("post", jsonObject.getString("scholarTitle"));
@@ -285,9 +285,9 @@ public class ManagerController {
 
 		System.out.println(scholat.getIntro());
 		System.out.println("学者网去标签开始");
-		System.out.println(DelTagsUtil.delHtmlTags(scholat.getIntro()));
+		System.out.println("学者网去标签后的intro"+DelTagsUtil.delHtmlTags(scholat.getIntro()));
 		System.out.println("教师去标签开始");
-		System.out.println(DelTagsUtil.delHtmlTags(teacher.getIntro()));
+		System.out.println("教师去标签后的intro"+DelTagsUtil.delHtmlTags(teacher.getIntro()));
 
    /*     scholat.setIntro(DelTagsUtil.delHtmlTags(scholat.getIntro()));
         teacher.setIntro(DelTagsUtil.delHtmlTags(teacher.getIntro()));*/
