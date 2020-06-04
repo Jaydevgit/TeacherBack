@@ -179,8 +179,9 @@ WHERE
         t.domain_name                             domainName,
         t.edit_name                             editName,
         date_format(t.update_time, '%Y.%m.%d %T') update_time,
-        date_format(t.create_time, '%Y.%m.%d %T') create_time
-        FROM teacher_profile t
+        date_format(t.create_time, '%Y.%m.%d %T') create_time,
+        s.domain_name                             school_unit_domainName
+        FROM teacher_profile t left join school_unit s on t.unit_id=s.id
 		WHERE t.unit_id = #{unitId}
        <!-- <if test="scholatUsernameFlag == 'true'">
             and t.scholat_username!=''
