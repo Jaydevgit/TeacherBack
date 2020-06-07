@@ -52,7 +52,8 @@
         t.id             tId,
         t.username       tName,
         t.avatar         tAvatar,
-        t.post           tPost
+        t.post           tPost,
+        t.domain_name    tDomainName
         FROM teacher_profile t
         WHERE t.unit_id = #{unitId}
         AND(t.username LIKE CONCAT('%', #{key}, '%')

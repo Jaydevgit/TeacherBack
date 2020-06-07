@@ -76,6 +76,7 @@
             u.background_url    backgroundUrl,
             u.domain_name       domainName,
             u.tag_state            tagState,
+            u.id                id,
         u.background_home backgroundHome
         FROM
             school_unit u
