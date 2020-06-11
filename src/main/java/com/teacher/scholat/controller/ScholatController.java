@@ -101,6 +101,7 @@ public class ScholatController {
         String email=jsonObject.getString("email");
         String username=jsonObject.getString("username");
         String school_name=jsonObject.getString("school_name");
+        String school_domain=jsonObject.getString("school_domain");
         String domain_name=jsonObject.getString("domain_name");
         String unit_name=jsonObject.getString("unit_name");
         String phone=jsonObject.getString("phone");
@@ -126,8 +127,9 @@ public class ScholatController {
                 "                    </h2>\n" +
                 "                    <p>首先感谢您加入学者网师资栏目管理系统！下面是您的账号信息<br>\n" +
                 "                        学校名称：<b>"+school_name+"</b><br>\n" +
+                "                        学校域名：<b>"+school_domain+"</b><br>\n" +
                 "                        学院名称：<b>"+unit_name+"</b><br>\n" +
-                "                        学校域名：<b>"+domain_name+"</b><br>\n" +
+                "                        学院域名：<b>"+domain_name+"</b><br>\n" +
                 "                        管理员账号：<b>"+username+"</b><br>\n" +
                 "                        管理员邮箱：<b>"+email+"</b><br>\n" +
                 "                        管理员电话：<b>"+phone+"</b><br>\n" +
