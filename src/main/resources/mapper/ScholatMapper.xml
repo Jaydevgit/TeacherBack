@@ -70,6 +70,7 @@ WHERE
         school_unit.college_url						  college_url,
         school_unit.logo_url						  logo_url,
          school_unit.domain_name					  domain_name,
+          school_unit.school_domain					  school_domain,
         t.role_id                                     roleId,
         sys_role.role_name                            roleName,
         t.state                                       state,

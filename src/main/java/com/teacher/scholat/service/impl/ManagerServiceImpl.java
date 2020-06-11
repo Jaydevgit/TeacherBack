@@ -392,9 +392,9 @@ public class ManagerServiceImpl implements ManagerService {
             data.setPost(teacher.getString("post"));
             data.setDuty(teacher.getString("duty"));
             data.setLabel(teacher.getString("label"));
-            data.setSubject(teacher.getString("subject"));
+//            data.setSubject(teacher.getString("subject"));
             data.setDegree(teacher.getString("degree"));
-            data.setGraduateFrom(teacher.getString("graduateFrom"));
+//            data.setGraduateFrom(teacher.getString("graduateFrom"));
             data.setResearch_direction(teacher.getString("research_direction"));
             data.setWork_place(teacher.getString("work_place"));
             data.setPhone(teacher.getString("phone"));

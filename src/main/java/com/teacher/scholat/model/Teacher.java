@@ -31,9 +31,18 @@ public class Teacher {
     private Integer views;
     private String pinyin;
     private String domain_name;
+    private String school_domain;
     private String edit_name;
     private String duty;
     private String degree_max;
+
+    public String getSchool_domain() {
+        return school_domain;
+    }
+
+    public void setSchool_domain(String school_domain) {
+        this.school_domain = school_domain;
+    }
 
     public String getDuty() {
         return duty;

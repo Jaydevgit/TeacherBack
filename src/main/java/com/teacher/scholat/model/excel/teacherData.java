@@ -19,22 +19,22 @@ public class teacherData {
     private String duty;
     @ExcelProperty(value = "头衔", index = 5)
     private String label;
+//    @ColumnWidth(25)
+//    @ExcelProperty(value = "专业", index = 6)
+//    private String subject;
     @ColumnWidth(25)
-    @ExcelProperty(value = "专业", index = 6)
-    private String subject;
-    @ColumnWidth(25)
-    @ExcelProperty(value = "学历学位", index = 7)
+    @ExcelProperty(value = "学历学位", index = 6)
     private String degree;
-    @ColumnWidth(25)
-    @ExcelProperty(value = "毕业学校", index = 8)
-    private String graduateFrom;
+//    @ColumnWidth(25)
+//    @ExcelProperty(value = "毕业学校", index = 8)
+//    private String graduateFrom;
     @ColumnWidth(100)
-    @ExcelProperty(value = "研究方向", index = 9)
+    @ExcelProperty(value = "研究方向", index = 7)
     private String research_direction;
     @ColumnWidth(25)
-    @ExcelProperty(value = "办公地点", index = 10)
+    @ExcelProperty(value = "办公地点", index = 8)
     private String work_place;
-    @ExcelProperty(value = "办公电话", index = 11)
+    @ExcelProperty(value = "办公电话", index = 9)
     private String phone;
 
     public String getUsername() {
@@ -85,13 +85,13 @@ public class teacherData {
         this.label = label;
     }
 
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(String subject) {
-        this.subject = subject;
-    }
+//    public String getSubject() {
+//        return subject;
+//    }
+//
+//    public void setSubject(String subject) {
+//        this.subject = subject;
+//    }
 
     public String getDegree() {
         return degree;
@@ -101,13 +101,13 @@ public class teacherData {
         this.degree = degree;
     }
 
-    public String getGraduateFrom() {
-        return graduateFrom;
-    }
-
-    public void setGraduateFrom(String graduateFrom) {
-        this.graduateFrom = graduateFrom;
-    }
+//    public String getGraduateFrom() {
+//        return graduateFrom;
+//    }
+//
+//    public void setGraduateFrom(String graduateFrom) {
+//        this.graduateFrom = graduateFrom;
+//    }
 
     public String getResearch_direction() {
         return research_direction;
