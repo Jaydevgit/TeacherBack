@@ -4,7 +4,8 @@
 <mapper namespace="com.teacher.scholat.dao.TeacherDao">
 
     <select id="getTeacherInfo" resultType="com.alibaba.fastjson.JSONObject">
-      select * from teacher_profile u where u.id=#{0}
+      select u.*,s.domain_name unit_DomainName
+      from teacher_profile u left join school_unit s on u.unit_id=s.id where u.id=#{0}
     </select>
 
     <select id="getTeacherInfoByDomainName" resultType="com.alibaba.fastjson.JSONObject">
