@@ -22,7 +22,8 @@
         token,
         update_time,
         password,
-        domain_name)
+        domain_name,
+        school_domain)
         VALUES
         (#{school_name},
         #{unit_name},
@@ -40,7 +41,8 @@
         #{token},
         #{update_time},
         #{password},
-        #{domain_name})
+        #{domain_name},
+        #{school_domain})
         <selectKey resultType="int" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -68,7 +70,7 @@
     <select id="judgeDomainNameExist" resultType="Integer">
         select count(0)
         from school_unit
-        where domain_name = #{domain_name}
+        where domain_name = #{domain_name} and school_domain = #{school_domain}
     </select>
 
     <select id="getApplyInfo" resultType="com.alibaba.fastjson.JSONObject">

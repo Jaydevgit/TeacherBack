@@ -142,12 +142,14 @@ WHERE
         (school_name,
         unit_name,
         domain_name,
+        school_domain,
         tag_state,
         logo_url)
         VALUES
         (#{school_name},
         #{unit_name},
         #{domain_name},
+        #{school_domain},
         'abcdefghijklmno',
         #{certificate_logo})
         <selectKey resultType="int" keyProperty="unit_id" order="AFTER">
@@ -170,7 +172,8 @@ WHERE
         certificate_working,
         phone,
         email,
-        domain_name)
+        domain_name,
+        school_domain)
         VALUES
         (#{chinese_name},
         #{username},
@@ -185,7 +188,8 @@ WHERE
         #{certificate_working},
         #{phone},
         #{email},
-        #{domain_name})
+        #{domain_name},
+        #{school_domain})
         <selectKey resultType="int" keyProperty="unit_profile_id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
