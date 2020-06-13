@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.dao.ManagerDao;
+import com.teacher.scholat.dao.UnitDao;
 import com.teacher.scholat.model.Teacher;
 import com.teacher.scholat.model.excel.teacherData;
 import com.teacher.scholat.service.ManagerService;
@@ -34,6 +35,9 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Resource
     private ManagerDao managerDao;
+
+    @Resource
+    private UnitDao unitDao;
 
     /**
      * 新增教师
@@ -377,6 +381,8 @@ public class ManagerServiceImpl implements ManagerService {
         System.out.println("unitId="+unitId);
         JSONObject J=new JSONObject();
         J.put("unitId",unitId);
+        JSONObject unitInfo = unitDao.getUnitInfo(J);
+        String SchoolDomain=unitInfo.getString("schoolDomain");
         List<JSONObject> teacherList = managerDao.listTeacherLocalAll(J);
         List<teacherData> list = new ArrayList<teacherData>();
         for (int i = 0; i <teacherList.size() ; i++) {
@@ -392,6 +398,8 @@ public class ManagerServiceImpl implements ManagerService {
             data.setPost(teacher.getString("post"));
             data.setDuty(teacher.getString("duty"));
             data.setLabel(teacher.getString("label"));
+            data.setDepartment_name(teacher.getString("departName"));
+            data.setDomain_name("http://faculty.scholat.com/teacher/"+SchoolDomain+"/"+teacher.getString("domainName"));
 //            data.setSubject(teacher.getString("subject"));
             data.setDegree(teacher.getString("degree"));
 //            data.setGraduateFrom(teacher.getString("graduateFrom"));

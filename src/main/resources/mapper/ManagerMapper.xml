@@ -229,6 +229,7 @@ WHERE
         t.scholat_username                        scholat_username,
         t.pinyin                                  pinyin,
         t.domain_name                             domainName,
+        t.department_name                              departName,
         t.edit_name                             editName,
         date_format(t.update_time, '%Y.%m.%d %T') update_time,
         date_format(t.create_time, '%Y.%m.%d %T') create_time

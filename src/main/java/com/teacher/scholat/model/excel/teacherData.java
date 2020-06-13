@@ -11,31 +11,53 @@ public class teacherData {
     @ExcelProperty(value = "性别", index = 1)
     private String sex;
     @ColumnWidth(25)
-    @ExcelProperty(value = "邮箱", index = 2)
-    private String email;
+    @ExcelProperty(value = "学历学位", index = 2)
+    private String degree;
     @ExcelProperty(value = "职称", index = 3)
     private String post;
     @ExcelProperty(value = "职务", index = 4)
     private String duty;
     @ExcelProperty(value = "头衔", index = 5)
     private String label;
+    @ExcelProperty(value = "所在部门", index = 6)
+    private String department_name;
 //    @ColumnWidth(25)
 //    @ExcelProperty(value = "专业", index = 6)
 //    private String subject;
-    @ColumnWidth(25)
-    @ExcelProperty(value = "学历学位", index = 6)
-    private String degree;
+
 //    @ColumnWidth(25)
 //    @ExcelProperty(value = "毕业学校", index = 8)
 //    private String graduateFrom;
-    @ColumnWidth(100)
-    @ExcelProperty(value = "研究方向", index = 7)
-    private String research_direction;
     @ColumnWidth(25)
-    @ExcelProperty(value = "办公地点", index = 8)
+    @ExcelProperty(value = "办公地点", index = 7)
     private String work_place;
-    @ExcelProperty(value = "办公电话", index = 9)
+    @ExcelProperty(value = "办公电话", index = 8)
     private String phone;
+    @ColumnWidth(25)
+    @ExcelProperty(value = "邮箱", index = 9)
+    private String email;
+    @ColumnWidth(60)
+    @ExcelProperty(value = "主页", index =10)
+    private String domain_name;
+    @ColumnWidth(100)
+    @ExcelProperty(value = "研究方向", index = 11)
+    private String research_direction;
+
+    public String getDepartment_name() {
+        return department_name;
+    }
+
+    public void setDepartment_name(String department_name) {
+        this.department_name = department_name;
+    }
+
+    public String getDomain_name() {
+        return domain_name;
+    }
+
+    public void setDomain_name(String domain_name) {
+        this.domain_name = domain_name;
+    }
 
     public String getUsername() {
         return username;
