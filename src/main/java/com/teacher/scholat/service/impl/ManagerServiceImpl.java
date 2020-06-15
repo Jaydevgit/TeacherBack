@@ -444,6 +444,31 @@ public class ManagerServiceImpl implements ManagerService {
             response.getWriter().println(JSON.toJSONString(map));
         }
     }
+    @Override
+    public void exportTeacher2(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        List<importTeacher> list = new ArrayList<importTeacher>();
+
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+            String fileName = URLEncoder.encode("教师填写模板信息", "UTF-8");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+            // 这里需要设置不关闭流
+            EasyExcel.write(response.getOutputStream(), importTeacher.class).autoCloseStream(Boolean.FALSE).sheet("模板")
+                    .doWrite(list);
+        }  catch (Exception e) {
+            // 重置response
+            response.reset();
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("status", "failure");
+            map.put("message", "下载文件失败" + e.getMessage());
+            response.getWriter().println(JSON.toJSONString(map));
+        }
+    }
+
 
     @Override
     public void importTeacher(MultipartFile file, ManagerService managerService,int unitId,String editName) {

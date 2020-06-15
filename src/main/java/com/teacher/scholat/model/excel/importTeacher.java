@@ -35,6 +35,7 @@ public class importTeacher {
     @ColumnWidth(25)
     @ExcelProperty(value = "邮箱", index = 9)
     private String email;
+    @ColumnWidth(100)
     @ExcelProperty(value = "研究方向", index = 10)
     private String research_direction;
 

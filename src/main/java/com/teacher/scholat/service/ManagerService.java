@@ -76,6 +76,7 @@ public interface ManagerService {
     void bindScholat(String id,String scholat_username);
 
     void exportTeacher(HttpServletRequest request,HttpServletResponse response) throws IOException;
+	void exportTeacher2(HttpServletRequest request,HttpServletResponse response) throws IOException;
 
 	void importTeacher(MultipartFile file, ManagerService managerService,int unitId,String editName);
 }

@@ -309,6 +309,10 @@ public class ManagerController {
 //        ver2.setIntroduction(res.get(1));
 	}
 //	@RequiresPermissions("teacher:list")
+@RequestMapping(value ="/exportTeacher2",method = RequestMethod.GET)
+public void getExcel2(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	managerService.exportTeacher2(request, response);
+}
 	@RequestMapping(value ="/exportTeacher",method = RequestMethod.GET)
 	public void getExcel(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		managerService.exportTeacher(request,response);
@@ -360,6 +364,7 @@ public class ManagerController {
 				//设置要下载的文件的名称
 				String fileName = URLEncoder.encode("教师填写信息模板", "UTF-8");
 				res.setHeader("Content-disposition", "attachment;fileName=" + fileName + ".xlsx");
+
 				//通知客服文件的MIME类型
 				res.setContentType("application/vnd.ms-excel;charset=UTF-8");
 				//获取文件的路径
@@ -367,6 +372,8 @@ public class ManagerController {
 				//excel模板路径
 				File cfgFile = ResourceUtils.getFile(ResourceUtils.CLASSPATH_URL_PREFIX + "static/excel/InfoModel.xlsx");
 				FileInputStream input = new FileInputStream(cfgFile);
+				//修正 Excel在“xxx.xlsx”中发现不可读取的内容。是否恢复此工作薄的内容？如果信任此工作簿的来源，请点击"是"
+				res.setHeader("Content-Length", String.valueOf(input.getChannel().size()));
 				//            FileInputStream input = new FileInputStream(new File("d://"+fileName));
 				OutputStream out = res.getOutputStream();
 				byte[] b = new byte[2048];
@@ -374,8 +381,7 @@ public class ManagerController {
 				while ((len = input.read(b)) != -1) {
 					out.write(b, 0, len);
 				}
-				//修正 Excel在“xxx.xlsx”中发现不可读取的内容。是否恢复此工作薄的内容？如果信任此工作簿的来源，请点击"是"
-				res.setHeader("Content-Length", String.valueOf(input.getChannel().size()));
+
 				input.close();
 				System.out.println("应用导入模板下载完成");
 			} catch (Exception ex) {
