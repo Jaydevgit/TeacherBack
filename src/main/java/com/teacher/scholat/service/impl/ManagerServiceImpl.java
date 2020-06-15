@@ -7,6 +7,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.dao.ManagerDao;
 import com.teacher.scholat.dao.UnitDao;
 import com.teacher.scholat.model.Teacher;
+import com.teacher.scholat.model.excel.importTeacher;
+import com.teacher.scholat.model.excel.listener.teacherExcelListen;
 import com.teacher.scholat.model.excel.teacherData;
 import com.teacher.scholat.service.ManagerService;
 import com.teacher.scholat.util.CommonUtil;
@@ -14,12 +16,14 @@ import com.teacher.scholat.util.GetScholatProfile;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.tags.Param;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.text.ParseException;
@@ -49,6 +53,12 @@ public class ManagerServiceImpl implements ManagerService {
         System.out.println(id);
         return id;
     }
+    @Override
+    public int addImportTeacher(JSONObject jsonObject) {
+        int id = managerDao.addImportTeacher(jsonObject);
+        System.out.println(id);
+        return id;
+    }
 
     @Override
     public int deleteTeacher(JSONObject jsonObject) {
@@ -71,6 +81,11 @@ public class ManagerServiceImpl implements ManagerService {
     public List<JSONObject> judgeDomainExist(JSONObject jsonObject) {
 
         return managerDao.judgeDomainExist(jsonObject);
+    }
+    @Override
+    public JSONObject judgeDomainExist2(JSONObject jsonObject) {
+
+        return managerDao.judgeDomainExist2(jsonObject);
     }
     /**
      * 统计有多少用户的学者网简介更新了信息
@@ -427,6 +442,16 @@ public class ManagerServiceImpl implements ManagerService {
             map.put("status", "failure");
             map.put("message", "下载文件失败" + e.getMessage());
             response.getWriter().println(JSON.toJSONString(map));
+        }
+    }
+
+    @Override
+    public void importTeacher(MultipartFile file, ManagerService managerService,int unitId,String editName) {
+        try {
+            InputStream in=file.getInputStream();
+            EasyExcel.read(in, importTeacher.class,new teacherExcelListen(managerService,unitId,editName)).sheet().doRead();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

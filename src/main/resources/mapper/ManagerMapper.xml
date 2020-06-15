@@ -23,6 +23,17 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
+    <insert id="addImportTeacher" >
+        INSERT INTO teacher_profile
+        (username,state,sex,post,intro,email,phone,
+        create_time,update_time,department_name,
+        degree,work_place,label,research_direction,unit_id,pinyin,domain_name,edit_name,duty)
+        VALUES
+        (#{username},#{state},#{sex},#{post},#{intro},#{email},#{phone},
+        #{create_time},#{update_time},#{department_name},
+        #{degree},#{work_place},#{label},#{research_direction},#{unit_id},#{pinyin},#{domain_name},#{edit_name},#{duty}
+        )
+    </insert>
 
     <update id="insertScholatName">
         <foreach collection="list" item="item" index="index" separator=";">
@@ -50,6 +61,14 @@ FROM
 	( SELECT count( 0 ) AS count FROM teacher_profile t WHERE t.domain_name LIKE '${sameName}%' ) as t2
 WHERE
 	t.domain_name = #{domain_name}
+    </select>
+    <select id="judgeDomainExist2" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+	count( 0 ) AS flag
+FROM
+	teacher_profile t
+WHERE
+	t.domain_name LIKE CONCAT(#{domain_name}, '%')
     </select>
 
     <select id="selectAllTeacher" resultType="com.alibaba.fastjson.JSONObject">

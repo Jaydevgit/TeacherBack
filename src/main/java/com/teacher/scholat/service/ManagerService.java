@@ -2,6 +2,7 @@ package com.teacher.scholat.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.model.Teacher;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.tags.Param;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,8 @@ public interface ManagerService {
 	 * 新增教师
 	 */
 	public int addTeacher(Teacher teacher);
+	public int addImportTeacher(JSONObject jsonObject);
+
 	/**
 	 * 新增教师
 	 */
@@ -35,7 +38,8 @@ public interface ManagerService {
 	 * 查询教师域名是否已经存在
 	 * */
 	List<JSONObject> judgeDomainExist(JSONObject jsonObject);
-
+	//生成相同域名个数
+	JSONObject judgeDomainExist2(JSONObject jsonObject);
 	/**
 	 * 教师列表
 	 */
@@ -72,4 +76,6 @@ public interface ManagerService {
     void bindScholat(String id,String scholat_username);
 
     void exportTeacher(HttpServletRequest request,HttpServletResponse response) throws IOException;
+
+	void importTeacher(MultipartFile file, ManagerService managerService,int unitId,String editName);
 }

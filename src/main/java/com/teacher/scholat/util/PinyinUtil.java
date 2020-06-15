@@ -9,6 +9,8 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
+import static org.apache.tomcat.util.IntrospectionUtils.capitalize;
+
 public class PinyinUtil {
 
     /**
@@ -43,7 +45,33 @@ public class PinyinUtil {
     public static String getFirstLettersLo(String ChineseLanguage){
         return getFirstLetters(ChineseLanguage ,HanyuPinyinCaseType.LOWERCASE);
     }
-
+    public static String getFullSpell(String chinese) {
+        // 用StringBuffer（字符串缓冲）来接收处理的数据
+        StringBuffer sb = new StringBuffer();
+        //字符串转换字节数组
+        char[] arr = chinese.toCharArray();
+        HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
+        //转换类型（大写or小写）
+        defaultFormat.setCaseType(HanyuPinyinCaseType.LOWERCASE);
+        //定义中文声调的输出格式
+        defaultFormat.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
+        //定义字符的输出格式
+        defaultFormat.setVCharType(HanyuPinyinVCharType.WITH_U_AND_COLON);
+        for (int i = 0; i < arr.length; i++) {
+            //判断是否是汉子字符
+            if (arr[i] > 128) {
+                try {
+                    sb.append(capitalize(PinyinHelper.toHanyuPinyinStringArray(arr[i], defaultFormat)[0]));
+                } catch (BadHanyuPinyinOutputFormatCombination e) {
+                    e.printStackTrace();
+                }
+            } else {
+                // 如果不是汉字字符，直接拼接
+                sb.append(arr[i]);
+            }
+        }
+        return sb.toString();
+    }
     public static String getFirstLetters(String ChineseLanguage,HanyuPinyinCaseType caseType) {
         char[] cl_chars = ChineseLanguage.trim().toCharArray();
         String hanyupinyin = "";

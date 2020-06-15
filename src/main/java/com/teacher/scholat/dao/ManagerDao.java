@@ -15,6 +15,7 @@ public interface ManagerDao {
      * 新增教师
      */
     int addTeacher(Teacher teacher);
+	int addImportTeacher(JSONObject jsonObject);
     int deleteTeacher(JSONObject jsonObject);
     /*
      * 查询邮箱是否已经存在
@@ -81,6 +82,7 @@ public interface ManagerDao {
 
 	//域名是否存在
 	List<JSONObject> judgeDomainExist(JSONObject jsonObject);
+	JSONObject judgeDomainExist2(JSONObject jsonObject);
 
     void unBindScholat(String id);
     void bindScholat(String id,String scholat_username);
