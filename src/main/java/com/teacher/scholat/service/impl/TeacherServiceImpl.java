@@ -86,6 +86,8 @@ public class TeacherServiceImpl implements TeacherService {
         System.out.println("前端传过来的教师列表要求为: "+jsonObject);
         String unitDomain = jsonObject.getString("unitDomain");
         jsonObject.put("unitDomain", unitDomain);
+        String schoolDomain = jsonObject.getString("schoolDomain");
+        jsonObject.put("schoolDomain", schoolDomain);
         List<JSONObject> list = teacherDao.listTeacherByUnitDomain(jsonObject);
         return CommonUtil.successPage(list);
     }

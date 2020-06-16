@@ -95,6 +95,13 @@
         WHERE u.unit_id = #{id}
     </select>
 
+    <select id="getUnitBySchoolDomain" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+            *
+        FROM
+        school_unit su
+        WHERE su.school_domain= #{schoolDomain}
+    </select>
 
     <update id="updateUnitInfo">
         update school_unit

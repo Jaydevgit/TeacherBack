@@ -100,6 +100,18 @@
             #{offSet},#{pageRow}
     </select>
 
+    <select id="listTeacherByUnitDomain" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          tId,
+                  t.username    tName,
+                  t.post        tPost,
+                  t.avatar      tAvatar,
+                  t.pinyin      tPinyin,
+                  t.domain_name tDomain_name
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id IN (SELECT su.id FROM school_unit su WHERE su.domain_name=#{unitDomain} AND su.school_domain=#{schoolDomain}) ORDER BY tPinyin
+    </select>
+
     <select id="listTeacherAll" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
                   t.id          tId,
