@@ -49,6 +49,15 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
+    public List<JSONObject> getUnitBySchoolDomain(String schoolDomain) {
+        System.out.println("getUnitBySchoolDomain获取到的schoolDomain------"+schoolDomain);
+        List<JSONObject> unitList=unitDao.getUnitBySchoolDomain(schoolDomain);
+        System.out.println("获取到的unitList------"+unitList);
+        return unitList;
+    }
+
+
+    @Override
     public JSONObject getUnitBytId(JSONObject object) {
         System.out.println("查查object" + object);
         JSONObject unitBytId = unitDao.getUnitBytId(object);

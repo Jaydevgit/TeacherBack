@@ -27,4 +27,6 @@ public interface UnitService {
 	List<JSONObject> getUnitInfoByUnitId(JSONObject jsonObject);
 
     JSONObject updateUnitTagstate(JSONObject object);
+
+	List<JSONObject> getUnitBySchoolDomain(String schoolDomain);
 }

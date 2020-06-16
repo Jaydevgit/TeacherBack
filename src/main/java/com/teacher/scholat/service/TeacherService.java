@@ -64,4 +64,6 @@ public interface TeacherService {
     JSONObject getUnionRecommendUsers(String local_id); // 获取结合学者网和本地教师的推荐用户
 
     JSONObject listTeacherRecommend(JSONObject jsonObject);
+
+    JSONObject listTeacherByUnitDomain(JSONObject jsonObject);
 }

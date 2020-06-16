@@ -30,6 +30,9 @@ public interface TeacherDao {
     //获取所有学院教师(不分页)
     List<JSONObject> listTeacherAll(JSONObject jsonObject);
 
+    //通过域名获取学院所有教师
+    List<JSONObject> listTeacherByUnitDomain(JSONObject jsonObject);
+
     //注：通用搜索
     List<JSONObject> getTeacherByKey(JSONObject jsonObject);
     // 统计返回的教师数量
@@ -85,5 +88,7 @@ public interface TeacherDao {
     List<JSONObject> listScholatTeacherRecommend(JSONObject jsonObject);
 
     JSONObject getLocalInfoByID(String s);
+
+
     //  -------------------------------------
 }

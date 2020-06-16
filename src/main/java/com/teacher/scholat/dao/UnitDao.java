@@ -30,6 +30,9 @@ public interface UnitDao {
 
 	List<JSONObject> getUnitInfoByUnitId(JSONObject object);
 
+	//通过学校域名获取学院信息
+	List<JSONObject> getUnitBySchoolDomain(@Param("schoolDomain") String schoolDomain);
+
 
 
 }

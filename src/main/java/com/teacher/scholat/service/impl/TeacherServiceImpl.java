@@ -82,6 +82,15 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public JSONObject listTeacherByUnitDomain(JSONObject jsonObject) {
+        System.out.println("前端传过来的教师列表要求为: "+jsonObject);
+        String unitDomain = jsonObject.getString("unitDomain");
+        jsonObject.put("unitDomain", unitDomain);
+        List<JSONObject> list = teacherDao.listTeacherByUnitDomain(jsonObject);
+        return CommonUtil.successPage(list);
+    }
+
+    @Override
     public JSONObject letterTeacher(JSONObject jsonObject) {
         System.out.println("前端传过来的教师列表要求为: ");
         CommonUtil.fillPageParam(jsonObject);
@@ -316,6 +325,8 @@ public class TeacherServiceImpl implements TeacherService {
         }
         return CommonUtil.successPage(jsonObject, list, list.size());
     }
+
+
 
 
     // ------------------- [学者画像]   获取本地数据库学者关系 [end] ----------------
