@@ -89,6 +89,8 @@ public interface TeacherDao {
 
     JSONObject getLocalInfoByID(String s);
 
+    List<JSONObject> getRecommendTeacher(JSONObject jsonObject);
+
 
     //  -------------------------------------
 }

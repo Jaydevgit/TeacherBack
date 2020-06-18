@@ -290,6 +290,16 @@
     <select id="listScholatTeacherRecommend" resultType="com.alibaba.fastjson.JSONObject">
            select recommend_union from persona_user_local u where u.user_id=#{tId}
     </select>
+
+    <select id="getRecommendTeacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.*,su.unit_name
+        FROM `teacher_profile` t,`school_unit` su
+        WHERE t.unit_id=su.id
+        AND t.unit_id IN (SELECT id FROM `school_unit` su WHERE su.school_domain=#{schoolDomain})
+        ORDER BY RAND() LIMIT 9
+    </select>
+
     <select id="getLocalInfoByID" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
             t.id         tId,

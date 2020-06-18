@@ -31,7 +31,7 @@ public class HomeController {
         return CommonUtil.successJson(unitList);
     }
 
-
+    //根据学校，学院域名获取所有教师
     @GetMapping("/listTeacherByUnitDomain")
     public JSONObject listTeacherByUnitDomain(HttpServletRequest request){
         System.out.println("......开始查询教师成员列表");
@@ -39,4 +39,11 @@ public class HomeController {
         return teacherService.listTeacherByUnitDomain(CommonUtil.request2Json(request));
     }
 
+    //根据学校域名获取推荐教师
+    @GetMapping("/getRecommendTeacher")
+    public JSONObject getRecommendTeacher(HttpServletRequest request){
+        System.out.println("......开始查询推荐教师成员列表");
+        System.out.println(CommonUtil.request2Json(request));
+        return teacherService.getRecommendTeacher(CommonUtil.request2Json(request));
+    }
 }

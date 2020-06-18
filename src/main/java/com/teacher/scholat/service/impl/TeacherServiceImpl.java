@@ -93,6 +93,12 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public JSONObject getRecommendTeacher(JSONObject jsonObject) {
+        List<JSONObject> list = teacherDao.getRecommendTeacher(jsonObject);
+        return CommonUtil.successJson(list);
+    }
+
+    @Override
     public JSONObject letterTeacher(JSONObject jsonObject) {
         System.out.println("前端传过来的教师列表要求为: ");
         CommonUtil.fillPageParam(jsonObject);
