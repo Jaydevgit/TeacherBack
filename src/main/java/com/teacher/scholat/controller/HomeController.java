@@ -3,7 +3,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.service.TeacherService;
 import com.teacher.scholat.service.UnitService;
 import com.teacher.scholat.util.CommonUtil;
-import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
