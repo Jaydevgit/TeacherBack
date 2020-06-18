@@ -9,4 +9,6 @@ public interface RegisterService {
     int judgeUnitExist(JSONObject jsonObject);
     int judgeUserNameExist(JSONObject jsonObject);
     int judgeDomainNameExist(JSONObject jsonObject);
+
+    JSONObject getSchoolDomain(JSONObject requestJson);
 }

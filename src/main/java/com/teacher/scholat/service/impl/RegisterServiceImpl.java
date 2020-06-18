@@ -2,6 +2,7 @@ package com.teacher.scholat.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.dao.RegisterDao;
+import com.teacher.scholat.dao.SchoolDomain;
 import com.teacher.scholat.model.Apply;
 import com.teacher.scholat.service.RegisterService;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ import javax.annotation.Resource;
 public class RegisterServiceImpl implements RegisterService {
     @Resource
     private RegisterDao registerDao;
+    @Resource
+    private SchoolDomain schoolDomain;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -62,5 +65,11 @@ public class RegisterServiceImpl implements RegisterService {
         }else{
             return 1;
         }
+    }
+
+    @Override
+    public JSONObject getSchoolDomain(JSONObject requestJson) {
+        JSONObject jsonObject= schoolDomain.GetSchoolDomain(requestJson);
+        return jsonObject;
     }
 }

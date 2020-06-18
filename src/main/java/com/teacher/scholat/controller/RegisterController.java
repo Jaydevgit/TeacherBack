@@ -54,6 +54,12 @@ public class RegisterController {
             return CommonUtil.successJson(jsonObject);
         }
     }
+    @PostMapping("/getSchoolDomain")
+    public JSONObject getSchoolDomain(@RequestBody JSONObject requestJson) {
+        System.out.println("根据域名查找"+requestJson);
+        JSONObject jsonObject= registerService.getSchoolDomain(requestJson);
+        return CommonUtil.successJson(jsonObject);
+    }
     @PostMapping("/judgeUserNameExist")
     public JSONObject judgeUserNameExist(@RequestBody JSONObject requestJson) {
         System.out.println("UserName==="+requestJson);
