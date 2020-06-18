@@ -300,6 +300,14 @@
         ORDER BY RAND() LIMIT 9
     </select>
 
+    <select id="getRecentUpdateTeacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.*
+        FROM `teacher_profile` t WHERE t.unit_id IN
+        (SELECT su.id FROM `school_unit` su WHERE su.school_domain=#{schoolDomain})
+        ORDER BY t.update_time DESC LIMIT 6
+    </select>
+
     <select id="getLocalInfoByID" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
             t.id         tId,

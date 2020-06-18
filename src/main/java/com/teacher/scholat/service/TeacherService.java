@@ -68,4 +68,6 @@ public interface TeacherService {
     JSONObject listTeacherByUnitDomain(JSONObject jsonObject);
 
     JSONObject getRecommendTeacher(JSONObject request2Json);
+
+    JSONObject getRecentUpdateTeacher(JSONObject request2Json);
 }

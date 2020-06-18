@@ -3,6 +3,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.service.TeacherService;
 import com.teacher.scholat.service.UnitService;
 import com.teacher.scholat.util.CommonUtil;
+import jdk.nashorn.internal.objects.annotations.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,4 +47,13 @@ public class HomeController {
         System.out.println(CommonUtil.request2Json(request));
         return teacherService.getRecommendTeacher(CommonUtil.request2Json(request));
     }
+
+    //根据学校域名获取最近更新教师
+    @GetMapping("/getRecentUpdateTeacher")
+    public JSONObject getRecentUpdateTeacher(HttpServletRequest request){
+        System.out.println("......开始查询最近更新教师成员列表");
+        System.out.println(CommonUtil.request2Json(request));
+        return teacherService.getRecentUpdateTeacher(CommonUtil.request2Json(request));
+    }
+
 }

@@ -91,6 +91,8 @@ public interface TeacherDao {
 
     List<JSONObject> getRecommendTeacher(JSONObject jsonObject);
 
+    List<JSONObject> getRecentUpdateTeacher(JSONObject jsonObject);
+
 
     //  -------------------------------------
 }
