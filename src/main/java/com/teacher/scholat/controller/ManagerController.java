@@ -76,6 +76,11 @@ public class ManagerController {
 		System.out.println(requestJson);
 		return managerService.judgeDomainExist(requestJson);
 	}
+	@RequestMapping("/judgeDomainExist2")
+	public JSONObject judgeDomainExist2(@RequestBody JSONObject requestJson) {
+
+		return managerService.judgeDomainExist2(requestJson);
+	}
 
 //	@GetMapping("/listTeacherNoState")
 //	public JSONObject listTeacherNoState(HttpServletRequest request) {
