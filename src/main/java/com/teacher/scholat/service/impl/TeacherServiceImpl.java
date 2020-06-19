@@ -128,6 +128,17 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public JSONObject searchTeacherBySchoolDomain(JSONObject jsonObject) {
+        System.out.println("搜索-----------前端传过来的教师列表要求为: ");
+        System.out.println(jsonObject);
+        CommonUtil.fillPageParam(jsonObject);
+        int count = teacherDao.countKeyTeacherInSchoolDomain(jsonObject);
+        System.out.println("........1有"+count+"位教师");
+        List<JSONObject> list = teacherDao.getTeacherByKeyInSchoolDomain(jsonObject);
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
+
+    @Override
     public JSONObject getUnitIdBytId(JSONObject jsonObject) {
         Integer unitId = teacherDao.getUnitIdBytId(jsonObject);
         JSONObject jo = new JSONObject();

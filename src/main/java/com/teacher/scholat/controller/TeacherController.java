@@ -140,6 +140,12 @@ public class TeacherController {
         return teacherService.searchTeacher(CommonUtil.request2Json(request));
     }
 
+    @GetMapping("/searchTeacherBySchoolDomain")
+    public JSONObject searchTeacherBySchoolDomain(HttpServletRequest request) {
+
+        return teacherService.searchTeacherBySchoolDomain(CommonUtil.request2Json(request));
+    }
+
     @GetMapping("/getUnitIdBytId")
     public JSONObject getUnitIdBytId(HttpServletRequest request) {
         return teacherService.getUnitIdBytId(CommonUtil.request2Json(request));

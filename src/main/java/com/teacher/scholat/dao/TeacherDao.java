@@ -35,8 +35,11 @@ public interface TeacherDao {
 
     //注：通用搜索
     List<JSONObject> getTeacherByKey(JSONObject jsonObject);
+    //注：学校范围内的搜索
+    List<JSONObject> getTeacherByKeyInSchoolDomain(JSONObject jsonObject);
     // 统计返回的教师数量
     Integer countKeyTeacher(JSONObject jsonObject);
+    Integer countKeyTeacherInSchoolDomain(JSONObject jsonObject);
 
 
     //获取学院ID
@@ -92,6 +95,7 @@ public interface TeacherDao {
     List<JSONObject> getRecommendTeacher(JSONObject jsonObject);
 
     List<JSONObject> getRecentUpdateTeacher(JSONObject jsonObject);
+
 
 
     //  -------------------------------------

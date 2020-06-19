@@ -31,6 +31,7 @@ public interface TeacherService {
 
     //搜索教师
     JSONObject searchTeacher(JSONObject jsonObject);
+    JSONObject searchTeacherBySchoolDomain(JSONObject jsonObject);
 
     JSONObject getUnitIdBytId(JSONObject jsonObject);
     // 根据id查找学者网用户账号
@@ -70,4 +71,6 @@ public interface TeacherService {
     JSONObject getRecommendTeacher(JSONObject request2Json);
 
     JSONObject getRecentUpdateTeacher(JSONObject request2Json);
+
+
 }

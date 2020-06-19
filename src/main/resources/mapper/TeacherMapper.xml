@@ -25,6 +25,20 @@
         OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
         )
     </select>
+    <select id="countKeyTeacherInSchoolDomain" resultType="Integer">
+        SELECT
+        count(0)
+        FROM teacher_profile t
+        WHERE t.unit_id in (SELECT su.id FROM `school_unit` su WHERE su.school_domain=#{schoolDomain})
+				AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
+    </select>
 
     <select id="getUpdatedTeacherList"
             resultType="com.alibaba.fastjson.JSONObject">
@@ -66,6 +80,25 @@
         OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
         )
         ORDER BY t.seq LIMIT #{offSet},#{pageRow}
+    </select>
+
+    <select id="getTeacherByKeyInSchoolDomain" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.id             tId,
+        t.username       tName,
+        t.avatar         tAvatar,
+        t.post           tPost,
+        t.domain_name    tDomainName
+        FROM teacher_profile t
+        WHERE t.unit_id in (SELECT su.id FROM `school_unit` su WHERE su.school_domain=#{schoolDomain})
+				AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
     </select>
 
     <select id="listTeacher" resultType="com.alibaba.fastjson.JSONObject">
