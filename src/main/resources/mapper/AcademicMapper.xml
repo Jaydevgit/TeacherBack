@@ -51,12 +51,12 @@
     <insert id="addPaper" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
             parameterType="com.alibaba.fastjson.JSONObject">
         INSERT INTO paper
-        (title , authors , source , source_detail , datetime ,folder_path , papertype , keyword , summary , unit_id
-        ,update_time , deleted ,scholat_paper_id , scholat_username , correspond ,hot)
+        (title , authors , source , source_detail , datetime  , papertype , keyword , summary , unit_id
+        ,update_time , deleted ,scholat_paper_id , scholat_username )
         VALUES
         (#{title}, #{authors},
-        #{source},#{sourceDetail},#{datetime},#{folderPath},#{papertype},#{keyword},#{summary},#{unitId},#{updateTime} ,
-        0, #{scholat_paper_id} , #{scholat_username} ,#{correspond} ,#{hot})
+        #{source},#{sourceDetail},#{datetime},#{papertype},#{keyword},#{summary},#{unitId},#{updateTime} ,
+        0, #{scholat_paper_id} , #{scholat_username}  )
     </insert>
 
 

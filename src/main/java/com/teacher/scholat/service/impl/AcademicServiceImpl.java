@@ -749,7 +749,7 @@ public class AcademicServiceImpl implements AcademicService {
         jsonObject.put("updateTime" , df.format(new Date()));
         String datetime = jsonObject.getString("datetime");
         //"datetime" -> "2018-12-31"
-        jsonObject.put("hot" ,1000);
+//        jsonObject.put("hot" ,1000);
         System.out.println("--------datetime--------" + datetime);
         //从新版本输入时间
         if (datetime!=null && datetime.indexOf(".") == -1) {
