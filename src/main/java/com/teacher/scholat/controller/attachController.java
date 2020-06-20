@@ -109,6 +109,40 @@ public class attachController {
         }
 
     }
+    // 上传头像2 不裁剪
+    @RequestMapping("upload2")
+    public String upload2(@RequestParam MultipartFile file) throws IllegalStateException, IOException {
+        System.out.println("==================== 开始使用ftp上传文件");
+        String newfileName = getFileName(file);
+        String filePath = "";
+        InputStream input = file.getInputStream();
+        /*
+                生成文件在服务器端存储的子目录
+                比如: String filePath = new DateTime().toString("/yyyy/MM/dd");
+                ftp://222.201.80.72/images/avatar/2019/06/12/文件名
+         */
+/*      String saveFilePath = "D:\\sansenLian\\project\\beta\\teacherHome\\teacherHome-back\\src\\main\\resources\\static\\avatar";
+        String newFileName = UUID.randomUUID() + ".png";
+        File newFile = new File(saveFilePath + '\\' + newFileName);
+        // 将内存中的数据写入磁盘中
+        file.transferTo(newFile);
+        System.out.println(".....保存到磁盘中成功");*/
+
+        // 调用FtpUtil工具类进行上传
+        System.out.println("-----------------------ftp应用启动------------------------");
+        FTPClient ftpClient = FTPUtil.connectFtpServer(host, port, userName, passWord, "gbk");
+        System.out.println("FTP 连接是否成功：" + ftpClient.isConnected());
+        System.out.println("FTP 连接是否有效：" + ftpClient.isAvailable());
+        boolean result = FTPUtil.uploadFile(host, port, userName, passWord, baseAvatarPath, filePath, newfileName, input);
+        System.out.println("-----------------------ftp应用关闭------------------------");
+        System.out.println("========================== 使用ftp上传文件结束");
+        if (result) {
+            return newfileName;
+        } else {
+            return "false";
+        }
+
+    }
     @RequestMapping("upload/teacherExcel")
     public String teacherExcel(@RequestParam MultipartFile file) throws IllegalStateException, IOException {
         System.out.println("==================== 开始使用ftp上传文件");
