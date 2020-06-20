@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.teacher.scholat.dao.AcademicDao">
+
+    <select id="countPaper"  resultType="Integer">
+        SELECT count(0)
+        FROM paper p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+    </select>
+
+    <select id="countProject"  resultType="Integer">
+        SELECT count(0)
+        FROM project p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+    </select>
+
+    <select id="countPatent"  resultType="Integer">
+        SELECT count(0)
+        FROM patent p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+    </select>
+
+    <insert id="addPaperTeacher" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO paper_teacher
+        (paper_id , teacher_id)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (#{id},#{item})
+        </foreach>
+    </insert>
+
+    <insert id="addProjectTeacher" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO project_teacher
+        (project_id , teacher_id)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{id},#{item})
+        </foreach>
+    </insert>
+
+    <insert id="addPatentTeacher" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO patent_teacher
+        (patent_id , teacher_id)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{id},#{item})
+        </foreach>
+    </insert>
+
+    <insert id="addPaper" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO paper
+        (title , authors , source , source_detail , datetime ,folder_path , papertype , keyword , summary , unit_id
+        ,update_time , deleted ,scholat_paper_id , scholat_username , correspond ,hot)
+        VALUES
+        (#{title}, #{authors},
+        #{source},#{sourceDetail},#{datetime},#{folderPath},#{papertype},#{keyword},#{summary},#{unitId},#{updateTime} ,
+        0, #{scholat_paper_id} , #{scholat_username} ,#{correspond} ,#{hot})
+    </insert>
+
+
+    <insert id="addProject" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO project
+        (title , start_date , end_date , application , folder_path , project_type , funding ,project_number ,unit_id,
+        update_time , deleted , scholat_project_id , scholat_username ,leader, summary)
+        VALUES
+        (#{title},
+        #{startDate},#{endDate},#{application},#{folderPath},#{projectType},#{funding},#{projectNumber},#{unitId},
+        #{updateTime} ,0, #{scholat_project_id} , #{scholat_username} ,#{leader} ,#{summary})
+    </insert>
+
+    <insert id="addPatent" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO patent
+        (title , authors , datetime , folder_path , patent_type ,patent_number , unit_id ,update_time , deleted
+        ,scholat_patent_id , scholat_username, research , summary)
+        VALUES
+        (#{title}, #{authors},
+            #{datetime},#{folderPath},#{patentType},#{patentNumber},#{unitId},
+        #{updateTime} ,0, #{scholat_patent_id} , #{scholat_username} ,#{research} ,#{summary})
+    </insert>
+
+    <resultMap id="paperTeacherMap" type="com.teacher.scholat.util.model.One2Many">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="title" property="title"/>
+        <result column="authors" property="authors"/>
+        <result column="source" property="source"/>
+        <result column="authors" property="authors"/>
+        <result column="sourceDetail" property="sourceDetail"/>
+        <result column="folderPath" property="folderPath"/>
+        <result column="keyword" property="keyword"/>
+        <result column="summary" property="summary"/>
+        <result column="views" property="views"/>
+        <result column="unitId" property="unitId"/>
+        <result column="hot" property="hot"/>
+        <result column="similarPaper" property="similarPaper"/>
+        <result column="papertype" property="papertype"/>
+        <result column="datetime" property="datetime"/>
+        <result column="correspond" property="correspond"/>
+        <collection property="teacherList" ofType="com.alibaba.fastjson.JSONObject">
+            <id column="tId" property="tId"/>
+            <result column="tName" property="tName"/>
+            <result column="ptId" property="ptId"/>
+            <result column="englishName" property="englishName"/>
+            <result column="tPost" property="tPost"/>
+            <result column="tAvatar" property="tAvatar"/>
+            <result column="tCount" property="tCount"/>
+        </collection>
+    </resultMap>
+
+    <select id="getPaper" resultMap="paperTeacherMap">
+    SELECT		a.*,
+                COUNT(paper_id) tCount
+     FROM (SELECT p.id                id,
+            p.title             title,
+            p.authors           authors,
+            p.source            source,
+            p.source_detail     sourceDetail,
+            p.folder_path       folderPath,
+            p.keyword           keyword,
+            p.summary           summary,
+            p.papertype         papertype,
+            p.datetime          datetime,
+            p.correspond      correspond,
+            p.similar_paper   similarPaper,
+            p.unit_id         unitId,
+            p.views             views,
+            p.hot               hot,
+            p.ptId				ptId,
+            t.id          tId,
+            t.username    tName,
+            t.english_name englishName,
+            t.post        tPost,
+            t.avatar      tAvatar FROM (SELECT	pa.*,pt.teacher_id tId,pt.id ptId FROM ((select * from paper  where
+            id = #{id}) pa LEFT JOIN
+     paper_teacher pt ON
+    pa.id = pt.paper_id))p LEFT JOIN teacher_profile t ON p.tId = t.id) a LEFT JOIN paper_teacher pt2 ON
+     pt2.teacher_id = a.tId GROUP BY pt2.teacher_id
+    </select>
+
+    <select id="getPaperByTeacher" resultType="com.alibaba.fastjson.JSONObject">
+      SELECT p.id               id,
+			p.title             title,
+            p.authors           authors,
+            p.source            source,
+            p.source_detail     sourceDetail,
+            p.folder_path       folderPath,
+            p.keyword           keyword,
+            p.summary           summary,
+            p.papertype         papertype,
+            p.datetime          datetime
+            FROM paper_teacher pt  LEFT JOIN paper p ON pt.paper_id = p.id where pt.teacher_id= #{0}
+    </select>
+
+    <select id="getPatentByTeacher" resultType="com.alibaba.fastjson.JSONObject">
+      SELECT      p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.patent_number     patentNumber,
+                  p.patent_type       patentType,
+                  p.folder_path       folderPath,
+                  p.datetime          datetime,
+                  p.research          research,
+                  p.summary           summary
+            FROM patent_teacher pt  LEFT JOIN patent p ON pt.patent_id = p.id where pt.teacher_id= #{0}
+    </select>
+
+    <select id="getProjectByTeacher" resultType="com.alibaba.fastjson.JSONObject">
+      SELECT  p.id                id,
+              p.title             title,
+              p.funding           funding,
+              p.project_number    projectNumber,
+              p.project_type      projectType,
+              p.start_date        startDate,
+              p.end_date          endDate,
+              p.application       application,
+              p.folder_path       folderPath,
+              p.leader             leader,
+              p.summary            summary
+            FROM project_teacher pt  LEFT JOIN project p ON pt.project_id = p.id where pt.teacher_id= #{0}
+    </select>
+
+    <delete id="deletePaperTeacher" >
+      DELETE FROM paper_teacher WHERE id = #{id}
+    </delete>
+    <!--<select id="getPaper" resultType="com.alibaba.fastjson.JSONObject">
+      select      p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.source            source,
+                  p.source_detail     sourceDetail,
+                  p.folder_path       folderPath,
+                  p.keyword           keyword,
+                  p.summary           summary,
+                  p.papertype         papertype,
+                  p.datetime          datetime
+                  FROM (select * from paper  where id=#{0}) p LEFT JOIN paper_teacher pt ON p.id = pt.paper_id
+    </select>-->
+
+    <select id="getInfoByName" resultType="com.alibaba.fastjson.JSONObject">
+      select      t.id          tId,
+                  t.username    tName,
+                  t.english_name englishName,
+                  t.post        tPost,
+                  t.avatar      tAvatar
+      from teacher_profile t where (t.english_name = #{name} or t.username = #{name}) and t.unit_id = #{unitId}
+    </select>
+
+    <!--<select id="getProject" resultType="com.alibaba.fastjson.JSONObject">
+      select  p.id                id,
+              p.title             title,
+              p.funding           funding,
+              p.project_number    projectNumber,
+              p.project_type      projectType,
+              p.start_date        startDate,
+              p.end_date          endDate,
+              p.application       application,
+              p.folder_path       folderPath
+      from project p where p.id=#{0}
+    </select>-->
+
+    <resultMap id="projectTeacherMap" type="com.teacher.scholat.util.model.One2Many">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="funding" property="funding"/>
+        <result column="projectNumber" property="projectNumber"/>
+        <result column="projectType" property="projectType"/>
+        <result column="startDate" property="startDate"/>
+        <result column="endDate" property="endDate"/>
+        <result column="application" property="application"/>
+        <result column="folderPath" property="folderPath"/>
+        <result column="leader" property="leader"/>
+        <result column="summary" property="summary"/>
+        <result column="unitId" property="unitId"/>
+        <result column="hot" property="hot"/>
+        <result column="views" property="views"/>
+        <result column="ptId" property="ptId"/>
+        <collection property="teacherList" ofType="com.alibaba.fastjson.JSONObject">
+            <id column="tId" property="tId"/>
+            <result column="tName" property="tName"/>
+            <result column="ptId" property="ptId"/>
+            <result column="englishName" property="englishName"/>
+            <result column="tPost" property="tPost"/>
+            <result column="tAvatar" property="tAvatar"/>
+        </collection>
+    </resultMap>
+
+    <select id="getProject" resultMap="projectTeacherMap">
+    SELECT
+              p.id                id,
+              p.title             title,
+              p.funding           funding,
+              p.project_number    projectNumber,
+              p.project_type      projectType,
+              p.start_date        startDate,
+              p.end_date          endDate,
+              p.application       application,
+              p.folder_path       folderPath,
+              p.ptId				ptId,
+              p.leader             leader,
+              p.unit_id             unitId,
+              p.summary            summary,
+              p.views               views,
+              p.hot                 hot,
+            t.id          tId,
+            t.username    tName,
+            t.english_name englishName,
+            t.post        tPost,
+            t.avatar      tAvatar
+     FROM (SELECT	pa.*,pt.teacher_id,pt.id ptId FROM ((select * from project  where id = #{id}) pa LEFT JOIN
+     project_teacher pt ON
+    pa.id
+     = pt.project_id))p LEFT JOIN teacher_profile t ON p.teacher_id = t.id
+    </select>
+
+    <delete id="deleteProjectTeacher" >
+      DELETE FROM project_teacher WHERE id = #{id}
+    </delete>
+
+    <!--<select id="getPatent" resultType="com.alibaba.fastjson.JSONObject">
+      select      p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.patent_number     patentNumber,
+                  p.patent_type       patentType,
+                  p.folder_path       folderPath,
+                  p.datetime          datetime
+      from patent p where p.id=#{0}
+    </select>-->
+
+    <resultMap id="patentTeacherMap" type="com.teacher.scholat.util.model.One2Many">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="authors" property="authors"/>
+        <result column="patentNumber" property="patentNumber"/>
+        <result column="patentType" property="patentType"/>
+        <result column="folderPath" property="folderPath"/>
+        <result column="datetime" property="datetime"/>
+        <result column="research" property="research"/>
+        <result column="summary" property="summary"/>
+        <result column="hot" property="hot"/>
+        <result column="views" property="views"/>
+        <result column="ptId" property="ptId"/>
+        <result column="unitId" property="unitId"/>
+        <collection property="teacherList" ofType="com.alibaba.fastjson.JSONObject">
+            <id column="tId" property="tId"/>
+            <result column="tName" property="tName"/>
+            <result column="ptId" property="ptId"/>
+            <result column="englishName" property="englishName"/>
+            <result column="tPost" property="tPost"/>
+            <result column="tAvatar" property="tAvatar"/>
+        </collection>
+    </resultMap>
+
+    <select id="getPatent" resultMap="patentTeacherMap">
+    SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.patent_number     patentNumber,
+                  p.patent_type       patentType,
+                  p.folder_path       folderPath,
+                  p.datetime          datetime,
+                  p.research          research,
+                  p.summary           summary,
+                  p.ptId				ptId,
+                  p.unit_id           unitId,
+                  p.hot               hot,
+                  p.views             views,
+            t.id          tId,
+            t.username    tName,
+            t.english_name englishName,
+            t.post        tPost,
+            t.avatar      tAvatar
+     FROM (SELECT	pa.*,pt.teacher_id,pt.id ptId FROM ((select * from patent  where id = #{id}) pa LEFT JOIN
+     patent_teacher pt ON
+    pa.id
+     = pt.patent_id))p LEFT JOIN teacher_profile t ON p.teacher_id = t.id
+    </select>
+
+    <delete id="deletePatentTeacher" >
+      DELETE FROM patent_teacher WHERE id = #{id}
+    </delete>
+
+    <update id="removePaper"  parameterType="com.alibaba.fastjson.JSONObject">
+            UPDATE paper
+            SET deleted = 1
+            WHERE id = #{id}
+    </update>
+
+    <update id="removeProject"  parameterType="com.alibaba.fastjson.JSONObject">
+            UPDATE project
+            SET deleted = 1
+            WHERE id = #{id}
+    </update>
+
+    <update id="removePatent"  parameterType="com.alibaba.fastjson.JSONObject">
+            UPDATE patent
+            SET deleted = 1
+            WHERE id = #{id}
+    </update>
+
+    <update id="updatePaper"  parameterType="com.alibaba.fastjson.JSONObject">
+            UPDATE paper
+            SET
+            title=#{title},
+            authors=#{authors},
+            source=#{source},
+            source_detail=#{sourceDetail},
+            datetime=#{datetime},
+            folder_path=#{folderPath} ,
+            papertype=#{papertype} ,
+            keyword=#{keyword} ,
+            summary=#{summary} ,
+            unit_id=#{unitId},
+            update_time= #{updateTime},
+            correspond = #{correspond},
+            similar_paper = #{similarPaper},
+            deleted= 0
+            where id = #{id}
+    </update>
+
+    <update id="updatePaperRecommend"  parameterType="com.alibaba.fastjson.JSONObject">
+            UPDATE paper
+            SET
+            similar_paper = #{similarPaper}
+            where id = #{id}
+    </update>
+
+    <update id="updateProject"  parameterType="com.alibaba.fastjson.JSONObject">
+            UPDATE project
+            SET
+            title=#{title},
+            start_date=#{startDate},
+            end_date=#{endDate},
+            application=#{application},
+            folder_path=#{folderPath},
+            project_type=#{projectType} ,
+            funding=#{funding} ,
+            project_number=#{projectNumber} ,
+            unit_id=#{unitId},
+            update_time= #{updateTime},
+            leader = #{leader},
+            summary = #{summary},
+            deleted= 0
+            where id = #{id}
+    </update>
+
+    <update id="updatePatent"  parameterType="com.alibaba.fastjson.JSONObject">
+            UPDATE patent
+            SET
+            title=#{title},
+            authors=#{authors},
+            datetime=#{datetime},
+            folder_path=#{folderPath},
+            patent_type=#{patentType},
+            patent_number=#{patentNumber} ,
+            unit_id=#{unitId} ,
+            update_time=#{updateTime},
+            research = #{research},
+            summary = #{summary},
+            deleted= 0
+            where id = #{id}
+    </update>
+
+    <select id="listPaper" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.source            source,
+                  p.papertype         papertype,
+                  p.datetime          datetime
+        FROM paper p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY datetime DESC  LIMIT
+            #{offSet},#{pageRow}
+    </select>
+
+    <select id="listProject" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.funding           funding,
+                  p.project_number    projectNumber,
+                  p.project_type      projectType,
+                  p.start_date        startDate,
+                  p.end_date          endDate,
+                  p.leader            leader,
+                  p.application       application
+        FROM project p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY startDate DESC  LIMIT
+            #{offSet},#{pageRow}
+    </select>
+
+    <select id="listPatent" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.patent_number     patentNumber,
+                  p.patent_type       patentType,
+                  p.datetime          datetime
+        FROM patent p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY datetime DESC  LIMIT
+            #{offSet},#{pageRow}
+    </select>
+
+    <select id="listPaperAll" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.summary           summary,
+                  p.keyword           keyword,
+                  p.source            source,
+                  p.papertype         papertype,
+                  p.datetime          datetime
+--                   p.views             views,
+--                   IFNULL(p.hot,3000)   hot
+        FROM paper p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY datetime DESC
+    </select>
+
+    <select id="listProjectAll" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.funding           funding,
+                  p.project_number    projectNumber,
+                  p.project_type      projectType,
+                  p.start_date        startDate,
+                  p.end_date          endDate,
+                  p.leader            leader,
+                  p.application       application
+        FROM project p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY startDate DESC
+    </select>
+
+    <select id="listPatentAll" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.patent_number     patentNumber,
+                  p.patent_type       patentType,
+                  p.datetime          datetime
+        FROM patent p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY datetime DESC
+    </select>
+
+    <select id="paperIdsByScholatname" resultType="Long" parameterType="map" >
+        SELECT
+              p.scholat_paper_id   spid
+        FROM paper p
+        WHERE p.scholat_username = #{scholat_username} AND p.unit_id = #{unitId} AND p.deleted = '0'
+    </select>
+
+    <select id="projectIdsByScholatname" resultType="Long" parameterType="map" >
+        SELECT
+              p.scholat_project_id   spid
+        FROM project p
+        WHERE p.scholat_username = #{scholat_username} AND p.unit_id = #{unitId} AND p.deleted = '0'
+    </select>
+
+    <select id="patentIdsByScholatname" resultType="Long" parameterType="map" >
+        SELECT
+              p.scholat_patent_id   spid
+        FROM patent p
+        WHERE p.scholat_username = #{scholat_username} AND p.unit_id = #{unitId} AND p.deleted = '0'
+    </select>
+
+    <update id="sortUnitPaper">
+            UPDATE paper
+            SET seq = #{seq}
+            WHERE id = #{id}
+    </update>
+
+    <select id="getPaperByKey" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.source            source,
+                  p.papertype         papertype,
+                  p.datetime          datetime
+        FROM paper p
+        WHERE p.unit_id = #{unitId} AND p.deleted = 0
+        AND(p.title    LIKE CONCAT('%', #{key}, '%')
+        OR  p.authors  LIKE CONCAT('%', #{key}, '%')
+        OR  p.source   LIKE CONCAT('%', #{key}, '%')
+        OR  p.datetime LIKE CONCAT('%', #{key}, '%')
+        )
+        ORDER BY datetime DESC
+
+    </select>
+
+    <select id="getProjectByKey" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.funding           funding,
+                  p.project_number    projectNumber,
+                  p.project_type      projectType,
+                  p.start_date        startDate,
+                  p.end_date          endDate,
+                  p.leader            leader
+        FROM project p
+        WHERE p.unit_id = #{unitId} AND p.deleted = 0
+        AND(p.title    LIKE CONCAT('%', #{key}, '%')
+        OR  p.project_number  LIKE CONCAT('%', #{key}, '%')
+        OR  p.project_type   LIKE CONCAT('%', #{key}, '%')
+        OR  p.start_date LIKE CONCAT('%', #{key}, '%')
+        )
+        ORDER BY p.start_date DESC
+
+    </select>
+
+    <select id="getPatentByKey" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.patent_number     patentNumber,
+                  p.patent_type       patentType,
+                  p.datetime          datetime
+        FROM patent p
+        WHERE p.unit_id = #{unitId} AND p.deleted = 0
+        AND(p.title    LIKE CONCAT('%', #{key}, '%')
+        OR  p.authors  LIKE CONCAT('%', #{key}, '%')
+        OR  p.patent_number   LIKE CONCAT('%', #{key}, '%')
+        OR  p.patent_type   LIKE CONCAT('%', #{key}, '%')
+        OR  p.datetime LIKE CONCAT('%', #{key}, '%')
+        )
+        ORDER BY datetime DESC
+
+    </select>
+
+    <select id="getPaperInYears" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT SUBSTRING(datetime,1,4) years,count(*) num FROM paper WHERE unit_id = #{unitId} AND deleted = 0 GROUP BY
+        SUBSTRING(datetime,1,4)
+    </select>
+
+    <select id="getPatentInYears" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT SUBSTRING(datetime,1,4) years,count(*) num FROM patent WHERE unit_id = #{unitId} AND deleted = 0 GROUP BY
+        SUBSTRING(datetime,1,4)
+    </select>
+
+    <select id="getProjectInYears" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT SUBSTRING(start_date,1,4) years,count(*) num FROM project WHERE unit_id = #{unitId} AND deleted = 0
+        GROUP BY
+        SUBSTRING(start_date,1,4)
+    </select>
+
+    <select id="getPapersByTeacher" resultType="Long">
+        SELECT paper_id paperId FROM paper_teacher WHERE teacher_id = #{id}
+    </select>
+
+
+
+</mapper>
