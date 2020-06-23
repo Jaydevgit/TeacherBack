@@ -125,6 +125,7 @@
                   t.email       tEmail,
                   t.department_name     tDepartment_name,
                   t.work_place      tWork_place,
+                  t.scholat_username        tScholat_username,
                   t.degree      tDegree
         FROM teacher_profile t
         WHERE t.state = '1' AND t.unit_id = #{unitId} AND t.pinyin LIKE #{letter}"%" ORDER BY t.pinyin, update_time
@@ -152,7 +153,12 @@
                   t.post        tPost,
                   t.avatar      tAvatar,
                   t.pinyin      tPinyin,
-                  t.domain_name tDomain_name
+                  t.domain_name tDomain_name,
+                  t.post        tPost,
+                  t.email       tEmail,
+                  t.degree      tDegree,
+                  t.scholat_username        tScholat_username,
+                  t.duty        tDuty
         FROM teacher_profile t
         WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY tPinyin
     </select>
