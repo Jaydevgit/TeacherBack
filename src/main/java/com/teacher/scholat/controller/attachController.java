@@ -183,7 +183,7 @@ public class attachController {
         if(filePath.equals("backgroundHome")){
             filePath="background";
         }
-        String deleteFiles="/images/"+filePath+"/"+name;
+        String deleteFiles="/storage/public/images/"+filePath+"/"+name;
      //   String deleteFiles="/images/avatar/"+name;
         //删除测试数据
 //        String host="47.106.132.95";

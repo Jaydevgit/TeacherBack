@@ -472,13 +472,12 @@ public class FTPUtil {
 * */
     public static void main(String[] args) throws Exception {
         System.out.println("-----------------------应用启动------------------------");
-        FTPClient ftpClient = FTPUtil.connectFtpServer("47.106.132.95", 21, "sansen_ftp", "#scholat232", "gbk");
+        FTPClient ftpClient = FTPUtil.connectFtpServer("39.108.169.193", 21, "ftp", "123456", "gbk");
         System.out.println("FTP 连接是否成功：" + ftpClient.isConnected());
         System.out.println("FTP 连接是否有效：" + ftpClient.isAvailable());
         /*
         * 以下测试有效, 测试时间为2019年6月12日08:54:50
         * */
-
 
 /*        // ============================= 单文件下载
         downloadSingleFile(ftpClient, "D:\\sansenLian\\FTP\\download", "\\images\\avatar\\1.jpg");
@@ -489,8 +488,8 @@ public class FTPUtil {
             System.out.println("准备下载的服务器文件：" + relativePath);
             downloadSingleFile(ftpClient, "D:\\sansenLian\\FTP\\download", relativePath);
         }
-        // ============================= 上传文件
-        uploadFiles(ftpClient,"/images/avatar" ,new File("D:\\sansenLian\\upload\\"));
+        ============================= 上传文件
+       //  uploadFiles(ftpClient,"/images/avatar" ,new File("D:\\sansenLian\\upload\\"));
         // ============================= 文件同步
         syncLocalDir(ftpClient,"E:\\gxg\\ftpDownload");
         // ============================= 删除文件
