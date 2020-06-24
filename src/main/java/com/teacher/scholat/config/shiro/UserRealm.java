@@ -96,6 +96,7 @@ public class UserRealm extends AuthorizingRealm {
         //session中不需要保存密码
         user.remove("password");
         //将用户信息放入session中
+
         SecurityUtils.getSubject().getSession().setAttribute(Constants.SESSION_USER_INFO, user);
         System.out.println("Shiro登录验证返回结果为：" + authenticationInfo);
         return authenticationInfo;

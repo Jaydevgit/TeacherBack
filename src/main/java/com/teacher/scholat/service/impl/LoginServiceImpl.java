@@ -50,7 +50,6 @@ public class LoginServiceImpl implements LoginService {
 
 //		UsernamePasswordToken token = new UsernamePasswordToken(username, password,host);
 		UserToken token = new UserToken(username, password,"User"); // 说明传入的是学院用户
-
 		try {
 			currentUser.login(token);
 			info.put("result", "success");

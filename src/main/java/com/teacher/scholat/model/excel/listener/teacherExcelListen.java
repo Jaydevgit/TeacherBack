@@ -71,7 +71,7 @@ public class teacherExcelListen extends AnalysisEventListener<importTeacher> {
         String email=importTeacher.getEmail();
         String phone=importTeacher.getPhone();
         System.out.println("email=="+email);
-        if(email!=null&&isEmail(email)&&isNumeric(phone)){
+        if(email!=null&&isEmail(email)){  //&&isNumeric(phone)
             JSONObject jsonObject=new JSONObject();
             jsonObject.put("email",email);
 
@@ -86,7 +86,10 @@ public class teacherExcelListen extends AnalysisEventListener<importTeacher> {
                 jsonObject.put("domain_name",domain);
                 JSONObject j2=  managerService.judgeDomainExist2(jsonObject);
                 int countDomain = Integer.parseInt(j2.getString("flag"))+1; //相同域名数+1->生成新域名
-                domain=domain+countDomain;
+                if(countDomain!=1){
+                    domain=domain+countDomain;
+                }
+
                 jsonObject.put("domain_name",domain);
                 int sexNum=0;
                 if(importTeacher.getSex().equals("女")){
