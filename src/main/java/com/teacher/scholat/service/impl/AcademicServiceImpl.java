@@ -742,7 +742,15 @@ public class AcademicServiceImpl implements AcademicService {
         academicDao.removePaper(jsonObject);
         return CommonUtil.successJson();
     }
-
+    @Override
+    public JSONObject addAllPaper(JSONObject jsonObject) {
+        String data = jsonObject.getString("data");
+        JSONObject json=new JSONObject();
+//        for (int i = 0; i <data.length()-1 ; i++) {
+//            json=
+//        }
+        return CommonUtil.successJson();
+    }
     @Override
     public JSONObject addPaper(JSONObject jsonObject) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式

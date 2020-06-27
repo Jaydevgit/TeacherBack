@@ -102,6 +102,12 @@ public class AcademicController {
         System.out.println("--------获取到的要求：---------" + requestJson);
         return academicService.addPaper(requestJson);
     }
+    @RequestMapping("/addAllPaper")
+    public JSONObject addAllPaper(@RequestBody JSONObject requestJson) {
+        System.out.println("----------------- 开始请求：增加所有论文 ------------------");
+      //  System.out.println("--------获取到的要求：---------" + requestJson);
+        return academicService.addAllPaper(requestJson);
+    }
 
     @RequestMapping("/updatePaper")
     public JSONObject updatePaper(@RequestBody JSONObject requestJson) {
