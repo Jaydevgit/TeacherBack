@@ -115,6 +115,21 @@
         WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY t.seq, update_time DESC  LIMIT
             #{offSet},#{pageRow}
     </select>
+    <select id="countTeacher" resultType="Integer">
+        SELECT COUNT(1) from (
+        SELECT
+                  t.id          tId,
+                  t.username    tName,
+                  t.post        tPost,
+                  t.avatar      tAvatar,
+                  t.email       tEmail,
+                  t.department_name     tDepartment_name,
+                  t.work_place      tWork_place,
+                  t.degree      tDegree
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY t.seq, update_time DESC
+        ) as a
+    </select>
 
     <select id="letterTeacher" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
@@ -326,6 +341,7 @@
             WHERE  t.pinyin LIKE #{letter}"%"  AND t.unit_id = #{unitId} And t.id !=#{tId}
             ORDER BY t.pinyin LIMIT #{offSet},#{pageRow}
     </select>
+
     <select id="listScholatTeacherRecommend" resultType="com.alibaba.fastjson.JSONObject">
            select recommend_union from persona_user_local u where u.user_id=#{tId}
     </select>

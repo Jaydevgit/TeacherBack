@@ -96,6 +96,7 @@ public interface TeacherDao {
 
     List<JSONObject> getRecentUpdateTeacher(JSONObject jsonObject);
 
+    Integer countTeacher(JSONObject jsonObject);
 
 
     //  -------------------------------------

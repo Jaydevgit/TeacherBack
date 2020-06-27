@@ -63,7 +63,7 @@ public class TeacherServiceImpl implements TeacherService {
         CommonUtil.fillPageParam(jsonObject);
         // 按照拼音排序
         long unitId = jsonObject.getLongValue("unitId");
-        int count = managerDao.countTeacher(jsonObject);
+        int count = teacherDao.countTeacher(jsonObject);
         System.out.println("........有"+count+"位教师");
         List<JSONObject> list = teacherDao.listTeacher(jsonObject);
 
