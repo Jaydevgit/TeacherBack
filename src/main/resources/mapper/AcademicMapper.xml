@@ -487,6 +487,21 @@
         FROM paper p
         WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY datetime DESC
     </select>
+    <select id="getPaperteacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                 p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.summary           summary,
+                  p.keyword           keyword,
+                  p.source            source,
+                  p.papertype         papertype,
+                  p.datetime          datetime
+       FROM paper p
+    WHERE p.scholat_username = ( SELECT t.scholat_username
+		FROM teacher_profile t
+		WHERE t.username = #{name} AND t.unit_id =#{unitId}) ORDER BY datetime DESC
+    </select>
 
     <select id="listProjectAll" resultType="com.alibaba.fastjson.JSONObject">
         SELECT

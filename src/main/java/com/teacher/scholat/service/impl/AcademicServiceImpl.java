@@ -254,6 +254,15 @@ public class AcademicServiceImpl implements AcademicService {
         List<JSONObject> list = academicDao.listPaperAll(jsonObject);
         return CommonUtil.successPage(list);
     }
+    @Override
+    public JSONObject getPaperteacher(JSONObject jsonObject) {
+        Long unitId = jsonObject.getLongValue("unitId");
+        jsonObject.put("unitId", unitId);
+        System.out.println("查询科研信息请求参数为:" + jsonObject);
+       List<JSONObject> list = academicDao.getPaperteacher(jsonObject);
+        System.out.println("查询科研信息结果为:" + list);
+        return CommonUtil.successPage(list);
+    }
 
     @Override
     public JSONObject listProject(JSONObject jsonObject) {
