@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -743,12 +744,37 @@ public class AcademicServiceImpl implements AcademicService {
         return CommonUtil.successJson();
     }
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public JSONObject addAllPaper(JSONObject jsonObject) {
-        String data = jsonObject.getString("data");
-        JSONObject json=new JSONObject();
-//        for (int i = 0; i <data.length()-1 ; i++) {
-//            json=
-//        }
+        JSONArray jsonArray=jsonObject.getJSONArray("data");
+        long unit_id=jsonObject.getLongValue("unitId");
+        System.out.println("unit_id="+unit_id);
+        String scholat_username = jsonObject.getString("scholat_username");
+        for (int i = 0; i <jsonArray.size() ; i++) {
+            Object tt = jsonArray.get(i); //遍历所有论文信息
+            JSONObject t=(JSONObject) tt;
+            long scholat_paper_id=t.getLongValue("id");
+            if(academicDao.paperExitIf(scholat_paper_id)!=0){
+                continue;
+            }
+            System.out.println("p1p1="+tt);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            t.put("updateTime" , df.format(new Date()));
+            if(t.getString("type").equals("期刊论文")){
+                t.put("papertype" , 0);
+            }else{
+                t.put("papertype" , 1);
+            }
+            t.put("unitId",unit_id);
+            t.put("scholat_username",scholat_username);
+            t.put("scholat_paper_id" , t.getString("id"));
+            //"datetime" -> "2018-12-31"
+//        jsonObject.put("hot" ,1000);
+            //从新版本输入时间
+            t.put("datetime",t.getString("date"));
+            System.out.println("ttt="+t);
+            academicDao.addPaper(t);
+        }
         return CommonUtil.successJson();
     }
     @Override

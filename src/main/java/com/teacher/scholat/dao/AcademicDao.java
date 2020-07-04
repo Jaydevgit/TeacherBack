@@ -18,6 +18,7 @@ public interface AcademicDao {
     List<JSONObject> listProjectAll(JSONObject jsonObject);
 
     void addPaper(JSONObject jsonObject);
+    int paperExitIf(long scholat_paper_id);
     JSONObject getPaper(Long id);
     void removePaper(JSONObject jsonObject);
     void updatePaper(JSONObject jsonObject);

@@ -140,6 +140,10 @@
     pa.id = pt.paper_id))p LEFT JOIN teacher_profile t ON p.tId = t.id) a LEFT JOIN paper_teacher pt2 ON
      pt2.teacher_id = a.tId GROUP BY pt2.teacher_id
     </select>
+    <select id="paperExitIf" resultType="Integer">
+      SELECT  count(1)
+            FROM paper p   where p.scholat_paper_id= #{scholat_paper_id}
+    </select>
 
     <select id="getPaperByTeacher" resultType="com.alibaba.fastjson.JSONObject">
       SELECT p.id               id,
