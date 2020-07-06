@@ -80,7 +80,7 @@ public class AcademicController {
     //根据教师名、科研类别、日期查询论文信息
     @RequestMapping("/getAchievement")
     public JSONObject getAchievement(@RequestBody JSONObject requestJson) {
-        System.out.println("查询科研信息请求参数为:" + requestJson+requestJson.getIntValue("type"));
+       // System.out.println("查询科研信息请求参数为:" + requestJson+requestJson.getIntValue("type"));
         if(requestJson.getIntValue("type")==0){
             return  academicService.getPaperteacher(requestJson);
         }

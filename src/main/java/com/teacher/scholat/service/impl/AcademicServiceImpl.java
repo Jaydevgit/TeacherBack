@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.sql.SQLOutput;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -256,11 +257,22 @@ public class AcademicServiceImpl implements AcademicService {
     }
     @Override
     public JSONObject getPaperteacher(JSONObject jsonObject) {
+
+        //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z");
+        String beginTime=jsonObject.getString("valueStart");
+        String endTime=jsonObject.getString("valueEnd");
+       // System.out.println("beginTime="+beginTime+endTime);
+        if(beginTime!=null&&beginTime.length()!=0){
+            beginTime = beginTime.replace("-", ".").substring(0,10);
+            jsonObject.put("beginTime", beginTime);
+        }
+        if(endTime!=null&&endTime.length()!=0){
+            endTime = endTime.replace("-", ".").substring(0,10);
+            jsonObject.put("endTime", endTime);
+        }
         Long unitId = jsonObject.getLongValue("unitId");
         jsonObject.put("unitId", unitId);
-        System.out.println("查询科研信息请求参数为:" + jsonObject);
        List<JSONObject> list = academicDao.getPaperteacher(jsonObject);
-        System.out.println("查询科研信息结果为:" + list);
         return CommonUtil.successPage(list);
     }
 
