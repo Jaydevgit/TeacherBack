@@ -117,6 +117,12 @@ public class AcademicController {
       //  System.out.println("--------获取到的要求：---------" + requestJson);
         return academicService.addAllPaper(requestJson);
     }
+    @RequestMapping("/addAllProject")
+    public JSONObject addAllProject(@RequestBody JSONObject requestJson) {
+        System.out.println("----------------- 开始请求：增加所有项目 ------------------");
+        //  System.out.println("--------获取到的要求：---------" + requestJson);
+        return academicService.addAllProject(requestJson);
+    }
 
     @RequestMapping("/updatePaper")
     public JSONObject updatePaper(@RequestBody JSONObject requestJson) {
@@ -160,7 +166,7 @@ public class AcademicController {
     @RequestMapping("/addProject")
     public JSONObject addProject(@RequestBody JSONObject requestJson) {
         System.out.println("----------------- 开始请求：增加项目 ------------------");
-        System.out.println("--------获取到的要求：---------" + requestJson);
+       // System.out.println("--------获取到的要求：---------" + requestJson);
         return academicService.addProject(requestJson);
     }
 

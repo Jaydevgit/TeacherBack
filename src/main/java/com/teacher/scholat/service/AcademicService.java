@@ -15,6 +15,7 @@ public interface AcademicService {
     JSONObject deletePaper(JSONObject jsonObject);
     JSONObject addPaper(JSONObject jsonObject);
     JSONObject addAllPaper(JSONObject jsonObject);
+    JSONObject addAllProject(JSONObject jsonObject);
     JSONObject updatePaper(JSONObject jsonObject);
 
     JSONObject getPatent(Long id);

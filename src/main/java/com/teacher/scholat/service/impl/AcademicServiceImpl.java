@@ -799,6 +799,17 @@ public class AcademicServiceImpl implements AcademicService {
         return CommonUtil.successJson();
     }
     @Override
+    @Transactional(rollbackFor = Exception.class)
+    public JSONObject addAllProject(JSONObject jsonObject) {
+        JSONArray jsonArray=jsonObject.getJSONArray("data");
+        long unit_id=jsonObject.getLongValue("unitId");
+        System.out.println("unit_id="+unit_id);
+        String scholat_username = jsonObject.getString("scholat_username");
+        academicDao.addProject(jsonObject);
+        System.out.println("jsonObjectjsonObject="+jsonObject);
+        return CommonUtil.successJson();
+    }
+    @Override
     public JSONObject addPaper(JSONObject jsonObject) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         jsonObject.put("updateTime" , df.format(new Date()));

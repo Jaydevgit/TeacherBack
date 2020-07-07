@@ -63,11 +63,11 @@
     <insert id="addProject" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
             parameterType="com.alibaba.fastjson.JSONObject">
         INSERT INTO project
-        (title , start_date , end_date , application , folder_path , project_type , funding ,project_number ,unit_id,
+        (title , start_date , end_date , application  , project_type , funding ,project_number ,unit_id,
         update_time , deleted , scholat_project_id , scholat_username ,leader, summary)
         VALUES
         (#{title},
-        #{startDate},#{endDate},#{application},#{folderPath},#{projectType},#{funding},#{projectNumber},#{unitId},
+        #{startDate},#{endDate},#{application},#{projectType},#{funding},#{projectNumber},#{unitId},
         #{updateTime} ,0, #{scholat_project_id} , #{scholat_username} ,#{leader} ,#{summary})
     </insert>
 
