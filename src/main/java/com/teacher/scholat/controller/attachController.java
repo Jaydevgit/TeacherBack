@@ -221,10 +221,11 @@ public class attachController {
     public String uploadCertificate(@RequestParam MultipartFile file) throws IllegalStateException, IOException {
         System.out.println("==================== 成功进入申请界面上传证明文件功能");
         String oldFileName = file.getOriginalFilename(); //获取上传文件的原名
-        if(!(oldFileName.equals("front.png")&&oldFileName.equals("back.png")&&oldFileName.equals("working.png")&&oldFileName.equals("logo.png")&&oldFileName.equals("unit.png"))){
+        System.out.println("旧文件名为: " + oldFileName);
+        if(!(oldFileName.equals("front.png")||oldFileName.equals("back.png")||oldFileName.equals("working.png")||oldFileName.equals("logo.png")||oldFileName.equals("unit.png"))){
             oldFileName="backgroundHome.png";
         }
-        System.out.println("旧文件名为: " + oldFileName);
+      //  System.out.println("旧文件名为: " + oldFileName);
 
         String newfileName = getFileName(file);
         String filePath = "";

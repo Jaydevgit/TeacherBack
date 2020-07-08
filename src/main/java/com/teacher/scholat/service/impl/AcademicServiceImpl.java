@@ -771,7 +771,7 @@ public class AcademicServiceImpl implements AcademicService {
         long unit_id=jsonObject.getLongValue("unitId");
         System.out.println("unit_id="+unit_id);
         String scholat_username = jsonObject.getString("scholat_username");
-        for (int i = 0; i <jsonArray.size() ; i++) {
+        for (int i = 0; i <=jsonArray.size() ; i++) {
             Object tt = jsonArray.get(i); //遍历所有论文信息
             JSONObject t=(JSONObject) tt;
             long scholat_paper_id=t.getLongValue("id");
@@ -803,9 +803,26 @@ public class AcademicServiceImpl implements AcademicService {
     public JSONObject addAllProject(JSONObject jsonObject) {
         JSONArray jsonArray=jsonObject.getJSONArray("data");
         long unit_id=jsonObject.getLongValue("unitId");
-        System.out.println("unit_id="+unit_id);
         String scholat_username = jsonObject.getString("scholat_username");
-        academicDao.addProject(jsonObject);
+        for (int i = 0; i <=jsonArray.size() ; i++) {
+            Object tt = jsonArray.get(i); //遍历所有项目信息
+            JSONObject t=(JSONObject) tt;
+            long scholat_paper_id=t.getLongValue("id");
+            if(academicDao.paperExitIf(scholat_paper_id)!=0){
+                continue;
+            }
+            System.out.println("p1p1="+tt);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            t.put("updateTime" , df.format(new Date()));
+            t.put("unitId",unit_id);
+            t.put("scholat_username",scholat_username);
+            t.put("projectType",t.getString("originAndId"));
+            t.put("scholat_project_id",t.getLongValue("id"));
+            t.put("title",t.getString("name"));
+            System.out.println("ttt="+t);
+            academicDao.addProject(t);
+        }
+
         System.out.println("jsonObjectjsonObject="+jsonObject);
         return CommonUtil.successJson();
     }
