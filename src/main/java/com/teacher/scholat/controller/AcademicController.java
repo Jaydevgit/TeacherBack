@@ -125,6 +125,12 @@ public class AcademicController {
         //  System.out.println("--------获取到的要求：---------" + requestJson);
         return academicService.addAllProject(requestJson);
     }
+    @RequestMapping("/addAllPatent")
+    public JSONObject addAllPatent(@RequestBody JSONObject requestJson) {
+        System.out.println("----------------- 开始请求：增加所有专利 ------------------");
+        //  System.out.println("--------获取到的要求：---------" + requestJson);
+        return academicService.addAllPatent(requestJson);
+    }
 
     @RequestMapping("/updatePaper")
     public JSONObject updatePaper(@RequestBody JSONObject requestJson) {

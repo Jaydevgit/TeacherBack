@@ -74,11 +74,11 @@
     <insert id="addPatent" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
             parameterType="com.alibaba.fastjson.JSONObject">
         INSERT INTO patent
-        (title , authors , datetime , folder_path , patent_type ,patent_number , unit_id ,update_time , deleted
+        (title , authors , datetime  , patent_type ,patent_number , unit_id ,update_time , deleted
         ,scholat_patent_id , scholat_username, research , summary)
         VALUES
         (#{title}, #{authors},
-            #{datetime},#{folderPath},#{patentType},#{patentNumber},#{unitId},
+            #{datetime},#{patentType},#{patentNumber},#{unitId},
         #{updateTime} ,0, #{scholat_patent_id} , #{scholat_username} ,#{research} ,#{summary})
     </insert>
 
@@ -147,6 +147,10 @@
     <select id="projectExitIf" resultType="Integer">
       SELECT  count(1)
             FROM project p   where p.scholat_project_id= #{scholat_project_id}
+    </select>
+    <select id="patentExitIf" resultType="Integer">
+      SELECT  count(1)
+            FROM patent p   where p.scholat_patent_id= #{scholat_patent_id}
     </select>
 
     <select id="getPaperByTeacher" resultType="com.alibaba.fastjson.JSONObject">
@@ -525,7 +529,7 @@
         p.end_date         end_date,
         p.update_time          update_time
         FROM project p
-        WHERE p.scholat_username = ( SELECT t.scholat_username
+        WHERE p.scholat_username = ( SELECT t.scholat_usernameaddPatent
         FROM teacher_profile t
         WHERE t.username = #{name} AND t.unit_id =#{unitId})
         <if test="beginTime != null">

@@ -848,6 +848,35 @@ public class AcademicServiceImpl implements AcademicService {
         return CommonUtil.successJson();
     }
     @Override
+    @Transactional(rollbackFor = Exception.class)
+    public JSONObject addAllPatent(JSONObject jsonObject) {
+        JSONArray jsonArray=jsonObject.getJSONArray("data");
+        long unit_id=jsonObject.getLongValue("unitId");
+        String scholat_username = jsonObject.getString("scholat_username");
+        for (int i = 0; i <jsonArray.size() ; i++) {
+            Object tt = jsonArray.get(i); //遍历所有专利信息
+            JSONObject t=(JSONObject) tt;
+            long scholat_patent_id=t.getLongValue("id");
+            if(academicDao.patentExitIf(scholat_patent_id)!=0){
+                continue;
+            }
+           // System.out.println("p1p1="+tt);
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            t.put("updateTime" , df.format(new Date()));
+            t.put("unitId",unit_id);
+            t.put("scholat_username",scholat_username);
+            t.put("datetime" , t.getString("date"));
+            t.put("patentType",t.getString("typeAndId"));
+            t.put("scholat_patent_id",t.getLongValue("id"));
+            t.put("title",t.getString("name"));
+            System.out.println("ttt="+t);
+            academicDao.addPatent(t);
+        }
+
+    //    System.out.println("jsonObjectjsonObject="+jsonObject);
+        return CommonUtil.successJson();
+    }
+    @Override
     public JSONObject addPaper(JSONObject jsonObject) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         jsonObject.put("updateTime" , df.format(new Date()));
