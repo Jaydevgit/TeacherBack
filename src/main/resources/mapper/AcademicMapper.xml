@@ -529,7 +529,7 @@
         p.end_date         end_date,
         p.update_time          update_time
         FROM project p
-        WHERE p.scholat_username = ( SELECT t.scholat_usernameaddPatent
+        WHERE p.scholat_username = ( SELECT t.scholat_username
         FROM teacher_profile t
         WHERE t.username = #{name} AND t.unit_id =#{unitId})
         <if test="beginTime != null">
@@ -539,6 +539,27 @@
             And p.start_date &lt; #{endTime}
         </if>
         ORDER BY start_date DESC
+    </select>
+    <select id="getPatentteacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        p.id                id,
+        p.title             title,
+        p.authors           authors,
+        p.patent_number     patentNumber,
+        p.patent_type       patentType,
+        p.datetime          datetime,
+        p.update_time          update_time
+        FROM patent p
+        WHERE p.scholat_username = ( SELECT t.scholat_username
+        FROM teacher_profile t
+        WHERE t.username = #{name} AND t.unit_id =#{unitId})
+        <if test="beginTime != null">
+            And p.datetime 	&gt; #{beginTime}
+        </if>
+        <if test="endTime != null">
+            And p.datetime &lt; #{endTime}
+        </if>
+        ORDER BY datetime DESC
     </select>
 
     <select id="listProjectAll" resultType="com.alibaba.fastjson.JSONObject">

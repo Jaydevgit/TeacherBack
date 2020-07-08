@@ -85,6 +85,8 @@ public class AcademicController {
             return  academicService.getPaperteacher(requestJson);
         }else if(requestJson.getIntValue("type")==1){
             return  academicService.getProjectteacher(requestJson);
+        }else if(requestJson.getIntValue("type")==2){
+            return  academicService.getPatentteacher(requestJson);
         }
         return CommonUtil.successJson();
     }

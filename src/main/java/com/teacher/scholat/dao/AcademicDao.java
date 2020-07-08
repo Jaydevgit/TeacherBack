@@ -12,6 +12,7 @@ public interface AcademicDao {
     List<JSONObject> listPaperAll(JSONObject jsonObject);
     List<JSONObject> getPaperteacher(JSONObject jsonObject);
     List<JSONObject> getProjectteacher(JSONObject jsonObject);
+    List<JSONObject> getPatentteacher(JSONObject jsonObject);
     List<JSONObject> listPatent(JSONObject jsonObject);
     List<JSONObject> listPatentAll(JSONObject jsonObject);
 
