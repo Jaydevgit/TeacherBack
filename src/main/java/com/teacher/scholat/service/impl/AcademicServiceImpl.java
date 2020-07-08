@@ -275,6 +275,27 @@ public class AcademicServiceImpl implements AcademicService {
        List<JSONObject> list = academicDao.getPaperteacher(jsonObject);
         return CommonUtil.successPage(list);
     }
+    @Override
+    public JSONObject getProjectteacher(JSONObject jsonObject) {
+
+        //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z");
+        String beginTime=jsonObject.getString("valueStart");
+        String endTime=jsonObject.getString("valueEnd");
+        // System.out.println("beginTime="+beginTime+endTime);
+        if(beginTime!=null&&beginTime.length()!=0){
+            beginTime = beginTime.replace("-", ".").substring(0,10);
+            jsonObject.put("beginTime", beginTime);
+        }
+        if(endTime!=null&&endTime.length()!=0){
+            endTime = endTime.replace("-", ".").substring(0,10);
+            jsonObject.put("endTime", endTime);
+        }
+        Long unitId = jsonObject.getLongValue("unitId");
+        jsonObject.put("unitId", unitId);
+        List<JSONObject> list = academicDao.getProjectteacher(jsonObject);
+        System.out.println("listlist="+list);
+        return CommonUtil.successPage(list);
+    }
 
     @Override
     public JSONObject listProject(JSONObject jsonObject) {

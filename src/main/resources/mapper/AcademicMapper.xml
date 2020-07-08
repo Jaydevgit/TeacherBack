@@ -513,6 +513,29 @@
         </if>
 		ORDER BY datetime DESC
     </select>
+    <select id="getProjectteacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        p.id                id,
+        p.title             title,
+        p.application       application,
+        p.project_type          project_type,
+        p.project_number        project_number,
+        p.funding           funding,
+        p.start_date            start_date,
+        p.end_date         end_date,
+        p.update_time          update_time
+        FROM project p
+        WHERE p.scholat_username = ( SELECT t.scholat_username
+        FROM teacher_profile t
+        WHERE t.username = #{name} AND t.unit_id =#{unitId})
+        <if test="beginTime != null">
+            And p.start_date 	&gt; #{beginTime}
+        </if>
+        <if test="endTime != null">
+            And p.start_date &lt; #{endTime}
+        </if>
+        ORDER BY start_date DESC
+    </select>
 
     <select id="listProjectAll" resultType="com.alibaba.fastjson.JSONObject">
         SELECT

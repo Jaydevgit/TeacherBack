@@ -83,6 +83,8 @@ public class AcademicController {
        // System.out.println("查询科研信息请求参数为:" + requestJson+requestJson.getIntValue("type"));
         if(requestJson.getIntValue("type")==0){
             return  academicService.getPaperteacher(requestJson);
+        }else if(requestJson.getIntValue("type")==1){
+            return  academicService.getProjectteacher(requestJson);
         }
         return CommonUtil.successJson();
     }
