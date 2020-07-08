@@ -159,16 +159,16 @@ public class AcademicServiceImpl implements AcademicService {
             jsonObject1.put("exist",0);
             //需要处理：id是否已经存在于
             Long id = jsonObject1.getLong("id");
-            if (list.size()!=0){
-                for (int k = 0;k < list1.size();k++){
+         //   if (list.size()!=0){
+            for (int k = 0;k < list1.size();k++){
                     //Long必须要用longValue作比较，否则只是比较地址
                     if (id.longValue() == list1.get(k).longValue())
                     {
                         jsonObject1.put("exist",1);
                         break;
                     }
-                }
             }
+         //   }
 //            if (jsonObject1.getInteger("exist").equals(0)) {
 //                for (int z = 0; z < projectAll.size(); z++) {
 //                    JSONObject project = projectAll.get(z);
@@ -771,7 +771,7 @@ public class AcademicServiceImpl implements AcademicService {
         long unit_id=jsonObject.getLongValue("unitId");
         System.out.println("unit_id="+unit_id);
         String scholat_username = jsonObject.getString("scholat_username");
-        for (int i = 0; i <=jsonArray.size() ; i++) {
+        for (int i = 0; i <jsonArray.size() ; i++) {
             Object tt = jsonArray.get(i); //遍历所有论文信息
             JSONObject t=(JSONObject) tt;
             long scholat_paper_id=t.getLongValue("id");
@@ -804,11 +804,11 @@ public class AcademicServiceImpl implements AcademicService {
         JSONArray jsonArray=jsonObject.getJSONArray("data");
         long unit_id=jsonObject.getLongValue("unitId");
         String scholat_username = jsonObject.getString("scholat_username");
-        for (int i = 0; i <=jsonArray.size() ; i++) {
+        for (int i = 0; i <jsonArray.size() ; i++) {
             Object tt = jsonArray.get(i); //遍历所有项目信息
             JSONObject t=(JSONObject) tt;
             long scholat_paper_id=t.getLongValue("id");
-            if(academicDao.paperExitIf(scholat_paper_id)!=0){
+            if(academicDao.projectExitIf(scholat_paper_id)!=0){
                 continue;
             }
             System.out.println("p1p1="+tt);

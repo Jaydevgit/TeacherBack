@@ -144,6 +144,10 @@
       SELECT  count(1)
             FROM paper p   where p.scholat_paper_id= #{scholat_paper_id}
     </select>
+    <select id="projectExitIf" resultType="Integer">
+      SELECT  count(1)
+            FROM project p   where p.scholat_project_id= #{scholat_project_id}
+    </select>
 
     <select id="getPaperByTeacher" resultType="com.alibaba.fastjson.JSONObject">
       SELECT p.id               id,
