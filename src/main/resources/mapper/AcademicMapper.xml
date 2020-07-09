@@ -163,6 +163,10 @@
       SELECT  count(1)
             FROM patent p   where p.scholat_patent_id= #{scholat_patent_id}
     </select>
+    <select id="publicationExitIf" resultType="Integer">
+      SELECT  count(1)
+            FROM publication p   where p.scholat_publication_id= #{scholat_publication_id}
+    </select>
 
     <select id="getPaperByTeacher" resultType="com.alibaba.fastjson.JSONObject">
       SELECT p.id               id,

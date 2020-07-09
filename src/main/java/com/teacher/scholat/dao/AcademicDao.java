@@ -24,6 +24,7 @@ public interface AcademicDao {
     int paperExitIf(long scholat_paper_id);
     int projectExitIf(long scholat_paper_id);
     int patentExitIf(long scholat_paper_id);
+    int publicationExitIf(long scholat_paper_id);
     JSONObject getPaper(Long id);
     void removePaper(JSONObject jsonObject);
     void updatePaper(JSONObject jsonObject);
