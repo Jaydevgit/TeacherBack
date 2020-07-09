@@ -2,6 +2,8 @@ package com.teacher.scholat.service;
 
 import com.alibaba.fastjson.JSONObject;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public interface AcademicService {
@@ -61,6 +63,8 @@ public interface AcademicService {
     JSONObject addPaperTeacher(JSONObject jsonObject);
     JSONObject addPatentTeacher(JSONObject jsonObject);
     JSONObject addProjectTeacher(JSONObject jsonObject);
+
+    void exportPaper(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
 //    JSONObject aiPaper(Long id) throws IOException;
 //

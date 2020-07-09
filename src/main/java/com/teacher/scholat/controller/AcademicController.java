@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLDecoder;
 
 @RestController
 @RequestMapping("/academic")
@@ -284,6 +286,18 @@ public class AcademicController {
     @GetMapping("/getPatentByTeacher")
     public JSONObject getPatentByTeacher(HttpServletRequest request) {
         return academicService.getPatentByTeacher(CommonUtil.request2Json(request).getLongValue("id"));
+    }
+
+    @RequestMapping(value ="/exportAcademic",method = RequestMethod.GET)
+    public void exportAcademic(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        JSONObject json=CommonUtil.request2Json(request);
+        String aa = URLDecoder.decode(json.getString("data"), "utf-8");
+        JSONObject json2 =JSONObject.parseObject(new String(aa));
+        System.out.println("json2="+json2);
+        int type=json2.getIntValue("type");
+        if(type==0){
+            academicService.exportPaper(request, response);
+        }
     }
 
 //    @GetMapping("/aiUnitPaper")

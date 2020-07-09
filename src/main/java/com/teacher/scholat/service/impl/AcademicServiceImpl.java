@@ -1,5 +1,7 @@
 package com.teacher.scholat.service.impl;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.dao.AcademicDao;
@@ -8,6 +10,7 @@ import com.teacher.scholat.dao.UnitDao;
 //import com.teacher.scholat.repository.PaperRepository;
 //import com.teacher.scholat.repository.PatentRepository;
 //import com.teacher.scholat.repository.ProjectRepository;
+import com.teacher.scholat.model.excel.importTeacher;
 import com.teacher.scholat.service.AcademicService;
 import com.teacher.scholat.util.CommonUtil;
 //import com.teacher.scholat.util.EditDistance;
@@ -19,7 +22,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.sql.SQLOutput;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -1284,6 +1291,29 @@ public class AcademicServiceImpl implements AcademicService {
         }
 
         return CommonUtil.successJson();
+    }
+
+    @Override
+    public void exportPaper(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        JSONObject json=CommonUtil.request2Json(request);
+        String aa = URLDecoder.decode(json.getString("data"), "utf-8");
+        JSONObject json2 =JSONObject.parseObject(new String(aa));//换成json格式
+        String beginTime=json2.getString("valueStart");
+        String endTime=json2.getString("valueEnd");
+        // System.out.println("beginTime="+beginTime+endTime);转换日期格式
+        if(beginTime!=null&&beginTime.length()!=0){
+            beginTime = beginTime.replace("-", ".").substring(0,10);
+            json2.put("beginTime", beginTime);
+        }
+        if(endTime!=null&&endTime.length()!=0){
+            endTime = endTime.replace("-", ".").substring(0,10);
+            json2.put("endTime", endTime);
+        }
+        Long unitId = json2.getLongValue("unitId");
+        json2.put("unitId", unitId);
+        List<JSONObject> list=academicDao.getPaperteacher(json2);
+        System.out.println("查询导出结果为"+list);
+
     }
 
 
