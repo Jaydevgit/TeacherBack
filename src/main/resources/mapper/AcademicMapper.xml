@@ -576,6 +576,25 @@
         </if>
         ORDER BY datetime DESC
     </select>
+    <select id="getPublicationteacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        p.id                id,
+        p.title             title,
+        p.authors           authors,
+        p.press         press,
+        p.datetime          datetime
+        FROM publication p
+        WHERE p.scholat_username = ( SELECT t.scholat_username
+        FROM teacher_profile t
+        WHERE t.username = #{name} AND t.unit_id =#{unitId})
+        <if test="beginTime != null">
+            And p.datetime 	&gt; #{beginTime}
+        </if>
+        <if test="endTime != null">
+            And p.datetime &lt; #{endTime}
+        </if>
+        ORDER BY datetime DESC
+    </select>
 
     <select id="listProjectAll" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
