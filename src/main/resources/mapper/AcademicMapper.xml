@@ -59,6 +59,17 @@
         0, #{scholat_paper_id} , #{scholat_username}  )
     </insert>
 
+    <insert id="addPublication" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO publication
+        (title , authors ,  datetime  , press , unit_id
+        ,update_time , deleted ,scholat_publication_id , scholat_username )
+        VALUES
+        (#{title}, #{authors},
+       #{datetime},#{press},#{unitId},#{updateTime} ,
+        0, #{scholat_publication_id} , #{scholat_username}  )
+    </insert>
+
 
     <insert id="addProject" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
             parameterType="com.alibaba.fastjson.JSONObject">
@@ -607,6 +618,12 @@
         SELECT
               p.scholat_patent_id   spid
         FROM patent p
+        WHERE p.scholat_username = #{scholat_username} AND p.unit_id = #{unitId} AND p.deleted = '0'
+    </select>
+    <select id="publicationIdsByScholatname" resultType="Long" parameterType="map" >
+        SELECT
+              p.scholat_publication_id   spid
+        FROM publication p
         WHERE p.scholat_username = #{scholat_username} AND p.unit_id = #{unitId} AND p.deleted = '0'
     </select>
 

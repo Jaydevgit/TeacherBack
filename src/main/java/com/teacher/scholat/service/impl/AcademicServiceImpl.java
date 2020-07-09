@@ -186,7 +186,43 @@ public class AcademicServiceImpl implements AcademicService {
 
     @Override
     public JSONObject getPublicationFromScholat(JSONObject jsonObject) {
-        return null;
+        String scholatUsername = jsonObject.getString("scholat_username");
+        JSONArray jsonArray = GetScholatAcademic.getScholatPublicationByUserName(scholatUsername);
+        System.out.println(jsonArray);
+        List<Long> list1 = academicDao.publicationIdsByScholatname(jsonObject);
+        System.out.println("----------list1--------"+list1);
+        List<JSONObject> list = new ArrayList<>();
+        if (jsonArray.toString().equals("[null]"))
+            return CommonUtil.successJson(list);
+        //每一篇论文
+        for (int i = 0;i < jsonArray.size();i++){
+            JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+            jsonObject1.put("exist",0);
+            //需要处理：id是否已经存在于
+            Long id = jsonObject1.getLong("id");
+            //   if (list.size()!=0){
+            for (int k = 0;k < list1.size();k++){
+                //Long必须要用longValue作比较，否则只是比较地址
+                if (id.longValue() == list1.get(k).longValue())
+                {
+                    jsonObject1.put("exist",1);
+                    break;
+                }
+            }
+            //   }
+//            if (jsonObject1.getInteger("exist").equals(0)) {
+//                for (int z = 0; z < projectAll.size(); z++) {
+//                    JSONObject project = projectAll.get(z);
+//                    if (EditDistance.getsimilarity(project.getString("title"), jsonObject1.getString("name")) > 0.8) {
+//                        jsonObject1.put("exist", 2);
+//                        jsonObject1.put("similarId" ,project.getInteger("id"));
+//                        break;
+//                    }
+//                }
+//            }
+            list.add(jsonObject1);
+        }
+        return CommonUtil.successJson(list);
     }
 
     @Override
@@ -918,6 +954,29 @@ public class AcademicServiceImpl implements AcademicService {
         }
 
         academicDao.addPaper(jsonObject);
+        return CommonUtil.successJson();
+    }
+    @Override
+    public JSONObject addPublication(JSONObject jsonObject) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        jsonObject.put("updateTime" , df.format(new Date()));
+        String datetime = jsonObject.getString("datetime");
+        //"datetime" -> "2018-12-31"
+//        jsonObject.put("hot" ,1000);
+        System.out.println("--------datetime--------" + datetime);
+        //从新版本输入时间
+        if (datetime!=null && datetime.indexOf(".") == -1) {
+            String[] split = datetime.split("-");
+            StringBuilder sb = new StringBuilder();
+            sb.append(split[0]);
+            sb.append('.');
+            sb.append(split[1]);
+            datetime = sb.toString();
+
+            jsonObject.put("datetime",datetime);
+        }
+
+        academicDao.addPublication(jsonObject);
         return CommonUtil.successJson();
     }
 

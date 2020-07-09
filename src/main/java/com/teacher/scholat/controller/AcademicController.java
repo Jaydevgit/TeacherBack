@@ -74,8 +74,8 @@ public class AcademicController {
     @RequestMapping("/getPublicationFromScholat")
     public JSONObject getPublicationFromScholat(@RequestBody JSONObject requestJson){
         CommonUtil.hasAllRequired(requestJson,"scholat_username");
-        System.out.println("------scholat_username------" + requestJson.getString("scholat_username"));
-        return CommonUtil.successJson();
+        System.out.println("------scholat_username------" + requestJson);
+        return academicService.getPublicationFromScholat(requestJson);
     }
     //根据教师名、科研类别、日期查询论文信息
     @RequestMapping("/getAchievement")
@@ -204,6 +204,12 @@ public class AcademicController {
         System.out.println("----------------- 开始请求：增加专利 ------------------");
         System.out.println("--------获取到的要求：---------" + requestJson);
         return academicService.addPatent(requestJson);
+    }
+    @RequestMapping("/addPublication")
+    public JSONObject addPublication(@RequestBody JSONObject requestJson) {
+        System.out.println("----------------- 开始请求：增加著作 ------------------");
+        System.out.println("--------获取到的要求：---------" + requestJson);
+        return academicService.addPublication(requestJson);
     }
 
     @GetMapping("/getPaperInYears")

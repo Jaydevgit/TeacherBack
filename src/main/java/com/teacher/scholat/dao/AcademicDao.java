@@ -20,6 +20,7 @@ public interface AcademicDao {
     List<JSONObject> listProjectAll(JSONObject jsonObject);
 
     void addPaper(JSONObject jsonObject);
+    void addPublication(JSONObject jsonObject);
     int paperExitIf(long scholat_paper_id);
     int projectExitIf(long scholat_paper_id);
     int patentExitIf(long scholat_paper_id);
@@ -44,6 +45,7 @@ public interface AcademicDao {
     List<Long> paperIdsByScholatname(JSONObject jsonObject);
     List<Long> projectIdsByScholatname(JSONObject jsonObject);
     List<Long> patentIdsByScholatname(JSONObject jsonObject);
+    List<Long> publicationIdsByScholatname(JSONObject jsonObject);
 
     void sortUnitPaper(JSONObject jsonObject);
     List<JSONObject> getPaperByKey(JSONObject jsonObject);
