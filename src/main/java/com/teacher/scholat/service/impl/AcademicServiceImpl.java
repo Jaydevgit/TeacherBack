@@ -11,6 +11,7 @@ import com.teacher.scholat.dao.UnitDao;
 //import com.teacher.scholat.repository.PatentRepository;
 //import com.teacher.scholat.repository.ProjectRepository;
 import com.teacher.scholat.model.excel.importTeacher;
+import com.teacher.scholat.model.excel.paperExcel;
 import com.teacher.scholat.service.AcademicService;
 import com.teacher.scholat.util.CommonUtil;
 //import com.teacher.scholat.util.EditDistance;
@@ -1312,10 +1313,40 @@ public class AcademicServiceImpl implements AcademicService {
         Long unitId = json2.getLongValue("unitId");
         json2.put("unitId", unitId);
         List<JSONObject> list=academicDao.getPaperteacher(json2);
-        System.out.println("查询导出结果为"+list);
-
+        List<paperExcel> listPaper = new ArrayList<paperExcel>();
+        for (int i = 0; i <list.size() ; i++) {
+            JSONObject paper=list.get(i);
+            paperExcel data = new paperExcel();
+            if((paper.getIntValue("papertype"))==0){
+                data.setPapertype("期刊论文");
+            }else{
+                data.setPapertype("会议论文");
+            }
+            data.setTitle(paper.getString("title"));
+            data.setAuthors(paper.getString("authors"));
+            data.setSource(paper.getString("source"));
+            data.setDatetime(paper.getString("datetime"));
+            data.setKeyword(paper.getString("keyword"));
+            listPaper.add(data);
+        }
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+            String fileName = URLEncoder.encode("教师论文信息", "UTF-8");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+            // 这里需要设置不关闭流
+            EasyExcel.write(response.getOutputStream(), paperExcel.class).autoCloseStream(Boolean.FALSE).sheet("模板")
+                    .doWrite(listPaper);
+        }  catch (Exception e) {
+            // 重置response
+            response.reset();
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("status", "failure");
+            map.put("message", "下载文件失败" + e.getMessage());
+            response.getWriter().println(JSON.toJSONString(map));
+        }
     }
-
-
-
 }

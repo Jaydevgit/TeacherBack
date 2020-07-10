@@ -518,6 +518,7 @@
                   p.summary           summary,
                   p.keyword           keyword,
                   p.source            source,
+                  p.source_detail     sourceDetail,
                   p.papertype         papertype,
                   p.datetime          datetime
        FROM paper p
