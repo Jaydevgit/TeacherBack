@@ -301,6 +301,8 @@ public class AcademicController {
             academicService.exportProject(request, response);
         }else  if(type==2){
             academicService.exportPatent(request, response);
+        }else  if(type==3){
+            academicService.exportPublication(request, response);
         }
     }
 

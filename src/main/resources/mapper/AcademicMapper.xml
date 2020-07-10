@@ -62,10 +62,10 @@
     <insert id="addPublication" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
             parameterType="com.alibaba.fastjson.JSONObject">
         INSERT INTO publication
-        (title , authors ,  datetime  , press , unit_id
+        (title , authors ,  citation,datetime  , press , unit_id
         ,update_time , deleted ,scholat_publication_id , scholat_username )
         VALUES
-        (#{title}, #{authors},
+        (#{title}, #{authors},#{citation},
        #{datetime},#{press},#{unitId},#{updateTime} ,
         0, #{scholat_publication_id} , #{scholat_username}  )
     </insert>
@@ -582,7 +582,8 @@
         p.id                id,
         p.title             title,
         p.authors           authors,
-        p.press         press,
+        p.citation           citation,
+        p.press             press,
         p.datetime          datetime
         FROM publication p
         WHERE p.scholat_username = ( SELECT t.scholat_username
