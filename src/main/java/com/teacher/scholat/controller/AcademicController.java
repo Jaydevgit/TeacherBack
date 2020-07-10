@@ -297,6 +297,8 @@ public class AcademicController {
         int type=json2.getIntValue("type");
         if(type==0){
             academicService.exportPaper(request, response);
+        }else  if(type==1){
+            academicService.exportProject(request, response);
         }else  if(type==2){
             academicService.exportPatent(request, response);
         }
