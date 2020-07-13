@@ -135,15 +135,15 @@
             p.summary           summary,
             p.papertype         papertype,
             p.datetime          datetime,
-            p.correspond      correspond,
-            p.similar_paper   similarPaper,
+--             p.correspond      correspond,
+--             p.similar_paper   similarPaper,
             p.unit_id         unitId,
-            p.views             views,
-            p.hot               hot,
+--             p.views             views,
+--             p.hot               hot,
             p.ptId				ptId,
             t.id          tId,
             t.username    tName,
-            t.english_name englishName,
+--             t.english_name englishName,
             t.post        tPost,
             t.avatar      tAvatar FROM (SELECT	pa.*,pt.teacher_id tId,pt.id ptId FROM ((select * from paper  where
             id = #{id}) pa LEFT JOIN
@@ -404,12 +404,11 @@
             summary=#{summary} ,
             unit_id=#{unitId},
             update_time= #{updateTime},
-            correspond = #{correspond},
-            similar_paper = #{similarPaper},
             deleted= 0
             where id = #{id}
     </update>
-
+<!--    correspond = #{correspond},-->
+<!--    similar_paper = #{similarPaper},-->
     <update id="updatePaperRecommend"  parameterType="com.alibaba.fastjson.JSONObject">
             UPDATE paper
             SET

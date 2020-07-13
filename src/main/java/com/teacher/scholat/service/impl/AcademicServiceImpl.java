@@ -235,30 +235,30 @@ public class AcademicServiceImpl implements AcademicService {
     @Override
     public JSONObject getPaper(Long id) {
         JSONObject paper = academicDao.getPaper(id);
-        ArrayList<JSONObject> teacherList = (ArrayList<JSONObject>) paper.get("teacherList");
-        if (teacherList.get(0).getString("tCount").equals("0"))
-            paper.put("teacherList" ,new ArrayList<>());
-        System.out.println("paper" + paper);
-        String similarPaper = paper.getString("similarPaper");
-        System.out.println("similarPaper" + similarPaper);
-        List<JSONObject> similarList = new ArrayList<>();
-        if (similarPaper != null && similarPaper.indexOf(",")!= -1){
-        String[] split = similarPaper.split(",");
-        for (int i = 0;i < split.length;i++){
-            Long ad = Long.valueOf(split[i]);
-            System.out.println(ad);
-            JSONObject paper1 = academicDao.getPaper(ad);
-            similarList.add(paper1);
-            }
-        }
-        else if (similarPaper != null )
-        {       Long ad = Long.valueOf(similarPaper);
-                System.out.println(ad);
-                JSONObject paper1 = academicDao.getPaper(Long.valueOf(ad));
-                similarList.add(paper1);
-
-        }
-        paper.put("similarList" , similarList);
+//        ArrayList<JSONObject> teacherList = (ArrayList<JSONObject>) paper.get("teacherList");
+//        if (teacherList.get(0).getString("tCount").equals("0"))
+//            paper.put("teacherList" ,new ArrayList<>());
+//        System.out.println("paper" + paper);
+//        String similarPaper = paper.getString("similarPaper");
+//        System.out.println("similarPaper" + similarPaper);
+//        List<JSONObject> similarList = new ArrayList<>();
+//        if (similarPaper != null && similarPaper.indexOf(",")!= -1){
+//        String[] split = similarPaper.split(",");
+//        for (int i = 0;i < split.length;i++){
+//            Long ad = Long.valueOf(split[i]);
+//            System.out.println(ad);
+//            JSONObject paper1 = academicDao.getPaper(ad);
+//            similarList.add(paper1);
+//            }
+//        }
+//        else if (similarPaper != null )
+//        {       Long ad = Long.valueOf(similarPaper);
+//                System.out.println(ad);
+//                JSONObject paper1 = academicDao.getPaper(Long.valueOf(ad));
+//                similarList.add(paper1);
+//
+//        }
+//        paper.put("similarList" , similarList);
 
         //改成在前端修改格式 这边就先注释了
 /*        String datetime = paper.getString("datetime");
