@@ -15,7 +15,7 @@ import com.teacher.scholat.service.AcademicService;
 import com.teacher.scholat.util.CommonUtil;
 //import com.teacher.scholat.util.EditDistance;
 //import com.teacher.scholat.util.TextUtil;
-//import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import com.teacher.scholat.util.GetScholatAcademic;
 import org.springframework.stereotype.Service;
@@ -235,9 +235,11 @@ public class AcademicServiceImpl implements AcademicService {
     @Override
     public JSONObject getPaper(Long id) {
         JSONObject paper = academicDao.getPaper(id);
-//        ArrayList<JSONObject> teacherList = (ArrayList<JSONObject>) paper.get("teacherList");
-//        if (teacherList.get(0).getString("tCount").equals("0"))
-//            paper.put("teacherList" ,new ArrayList<>());
+        System.out.println("paper="+paper);
+        ArrayList<JSONObject> teacherList = (ArrayList<JSONObject>) paper.get("teacherList");
+        System.out.println("teacherList="+teacherList);
+        if (teacherList.get(0).getString("tCount").equals("0"))
+            paper.put("teacherList" ,new ArrayList<>());
 //        System.out.println("paper" + paper);
 //        String similarPaper = paper.getString("similarPaper");
 //        System.out.println("similarPaper" + similarPaper);
@@ -476,26 +478,26 @@ public class AcademicServiceImpl implements AcademicService {
         return CommonUtil.successPage(projectByTeacher);
     }
 
-//    @Override
-//    public JSONObject identifyTeacher(JSONObject jsonObject) {
-//        String authors = jsonObject.getString("authors").replace(" ","").replace("，",",").replace("、",",");
-//        long unitId = jsonObject.getLongValue("unitId");
-//        System.out.println(authors);
-//        String[] split = authors.split(",");
-//        List<JSONObject> list = new ArrayList<>();
-//        for (int i = 0;i < split.length;i++){
-//            JSONObject searchJson = new JSONObject();
-//            searchJson.put("unitId" , unitId);
-//            searchJson.put("name", split[i]);
-//            List<JSONObject> infoByName = teacherDao.getInfoByName(searchJson);
-//            if (!infoByName.isEmpty())
-//            for (int j = 0;j < infoByName.size();j++){
-//                list.add(infoByName.get(j));
-//            }
-//        }
-//        System.out.println(list);
-//        return CommonUtil.successPage(list);
-//    }
+    @Override
+    public JSONObject identifyTeacher(JSONObject jsonObject) {
+        String authors = jsonObject.getString("authors").replace(" ","").replace("，",",").replace("、",",");
+        long unitId = jsonObject.getLongValue("unitId");
+        System.out.println(authors);
+        String[] split = authors.split(",");
+        List<JSONObject> list = new ArrayList<>();
+        for (int i = 0;i < split.length;i++){
+            JSONObject searchJson = new JSONObject();
+            searchJson.put("unitId" , unitId);
+            searchJson.put("name", split[i]);
+            List<JSONObject> infoByName = teacherDao.getInfoByName(searchJson);
+            if (!infoByName.isEmpty())
+            for (int j = 0;j < infoByName.size();j++){
+                list.add(infoByName.get(j));
+            }
+        }
+        System.out.println(list);
+        return CommonUtil.successPage(list);
+    }
 
     @Override
     public JSONObject deletePaperTeacher(JSONObject jsonObject) {

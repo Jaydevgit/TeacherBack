@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -317,6 +318,36 @@ public class attachController {
         }
         return null;
 
+    }
+    @PostMapping(value="/uploadQusImages",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public String uploadQusImages(@RequestParam("questionImages") MultipartFile[] questionImages){
+        if(questionImages != null && questionImages.length > 0){
+            MultipartFile multipartFile = questionImages[0];
+            try {
+                System.out.println("==================== 开始使用ftp上传文件");
+                String newfileName = getFileName(multipartFile);
+                String filePath = "";
+                InputStream input = multipartFile.getInputStream();
+                System.out.println("-----------------------ftp应用启动------------------------");
+                FTPClient ftpClient = FTPUtil.connectFtpServer(host, port, userName, passWord, "gbk");
+                System.out.println("FTP 连接是否成功：" + ftpClient.isConnected());
+                System.out.println("FTP 连接是否有效：" + ftpClient.isAvailable());
+                boolean result = FTPUtil.uploadFile(host, port, userName, passWord, baseImagePath, filePath, newfileName, input);
+                System.out.println("-----------------------ftp应用关闭------------------------");
+                System.out.println("========================== 使用ftp上传文件结束");
+                // 返回图片访问路径
+                String url = "http://" +nginxHost +":"+nginxPort+ nginxImagePath + "/"+newfileName;
+                System.out.println("返回前端可以显示的图片url地址为: "+url);
+                String[] str = {url};
+                System.out.println("------url------"+url);
+                return url;
+            } catch (IOException e) {
+                log.error("上传文件失败", e);
+            }
+            return "true";
+        }else{
+            return "false";
+        }
     }
 
     // 获取上传的文件名字并且转为时间戳文件名

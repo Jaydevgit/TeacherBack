@@ -55,7 +55,7 @@ public interface AcademicService {
     JSONObject getPatentByTeacher(Long id);
     JSONObject getProjectByTeacher(Long id);
 
-//    JSONObject identifyTeacher(JSONObject jsonObject);
+    JSONObject identifyTeacher(JSONObject jsonObject);
     JSONObject deletePaperTeacher(JSONObject jsonObject);
     JSONObject deletePatentTeacher(JSONObject jsonObject);
     JSONObject deleteProjectTeacher(JSONObject jsonObject);
