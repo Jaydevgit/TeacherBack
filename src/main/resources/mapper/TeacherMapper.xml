@@ -110,7 +110,8 @@
                   t.email       tEmail,
                   t.department_name     tDepartment_name,
                   t.work_place      tWork_place,
-                  t.degree      tDegree
+                  t.degree      tDegree,
+                  t.scholat_username    tScholat_username
         FROM teacher_profile t
         WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY t.seq, update_time DESC  LIMIT
             #{offSet},#{pageRow}
