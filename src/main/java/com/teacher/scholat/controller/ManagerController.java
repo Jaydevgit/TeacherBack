@@ -254,7 +254,8 @@ public class ManagerController {
 
 
 		// 判断邮箱是否已经存在
-		System.out.println(">>>>>>>现在："+requestJson.getString("email"));
+		System.out.println(">>>>>>>现在：email="+requestJson.getString("email"));
+		System.out.println(">>>>>>>现在：name="+requestJson.getString("name"));
 		String email = requestJson.getString("email");
 		String username = requestJson.getString("username");
 		if(email!=null){
@@ -292,6 +293,7 @@ public class ManagerController {
 		System.out.println(scholat.getIntro());
 		System.out.println("学者网去标签开始");
 		System.out.println("学者网去标签后的intro"+DelTagsUtil.delHtmlTags(scholat.getIntro()));
+		System.out.println("学者网去标签后的research_direction"+DelTagsUtil.delHtmlTags(scholat.getResearch_direction()));
 		System.out.println("教师去标签开始");
 		System.out.println("教师去标签后的intro"+DelTagsUtil.delHtmlTags(teacher.getIntro()));
 
@@ -307,6 +309,7 @@ public class ManagerController {
 		System.out.println(res.get(1));
 		resp.put("teacher",res.get(0));
 		resp.put("scholat",res.get(1));
+		resp.put("scholat_research_direction1",DelTagsUtil.delHtmlTags(scholat.getResearch_direction()));
 		System.out.println("---------------對比完畢-----------------"+resp+"???");
 		return CommonUtil.successJson(resp);
 
