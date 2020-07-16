@@ -59,10 +59,17 @@
         0, #{scholat_paper_id} , #{scholat_username}  )
     </insert>
 
-    <update id="NoDelete" parameterType="com.alibaba.fastjson.JSONObject">
+    <update id="NoDeletePaper" parameterType="com.alibaba.fastjson.JSONObject">
          UPDATE paper
             SET
             deleted = 0
+            where scholat_paper_id=#{scholat_paper_id}
+    </update>
+    <update id="NoDeleteProject" parameterType="com.alibaba.fastjson.JSONObject">
+         UPDATE project
+            SET
+            deleted = 0
+            where scholat_project_id=#{scholat_project_id}
     </update>
 
     <insert id="addPublication" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
@@ -171,6 +178,11 @@
       SELECT  count(1)
             FROM project p   where p.scholat_project_id= #{scholat_project_id}
     </select>
+    <select id="projectDeleteExitIf" resultType="Integer">
+      SELECT  count(1)
+            FROM project p   where p.scholat_project_id= #{scholat_project_id} and p.deleted=1
+    </select>
+
     <select id="patentExitIf" resultType="Integer">
       SELECT  count(1)
             FROM patent p   where p.scholat_patent_id= #{scholat_patent_id}

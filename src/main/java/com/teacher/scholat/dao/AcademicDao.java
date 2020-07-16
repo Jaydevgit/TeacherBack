@@ -21,11 +21,16 @@ public interface AcademicDao {
     List<JSONObject> listProjectAll(JSONObject jsonObject);
 
     void addPaper(JSONObject jsonObject);
-    void NoDelete();
+    void NoDeletePaper(long scholat_paper_id);
+    void NoDeleteProject(long scholat_paper_id);
+
     void addPublication(JSONObject jsonObject);
     int paperExitIf(long scholat_paper_id);
     int paperDeleteExitIf(long scholat_paper_id);
-    int projectExitIf(long scholat_paper_id);
+
+    int projectExitIf(long scholat_project_id);
+    int projectDeleteExitIf(long scholat_project_id);
+
     int patentExitIf(long scholat_paper_id);
     int publicationExitIf(long scholat_paper_id);
     JSONObject getPaper(Long id);
