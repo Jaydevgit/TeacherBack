@@ -24,7 +24,12 @@ public class RegisterServiceImpl implements RegisterService {
         int id = registerDao.addApply(applay);
         return id;
     }
-
+    @Override
+    public int addApplySchool(Apply apply) {
+        System.out.println("准备去加入申请信息到--> 申请表中");
+        int id = registerDao.addApplySchool(apply);
+        return id;
+    }
     @Override
     public JSONObject getApplyInfo(JSONObject jsonObject) {
         return registerDao.getApplyInfo(jsonObject);
@@ -53,6 +58,16 @@ public class RegisterServiceImpl implements RegisterService {
             return 1;
         }
     }
+    @Override
+    public int judgeSchoolUserNameExist(JSONObject jsonObject) {
+        int exist = registerDao.judgeSchoolUserNameExist(jsonObject);
+        if(exist == 0){
+            // 表示没有找到相同的用户名，那就可以添加
+            return 0;
+        }else{
+            return 1;
+        }
+    }
 
     @Override
     public int judgeDomainNameExist(JSONObject jsonObject) {
@@ -68,8 +83,21 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
+    public int judgeSchoolDomainNameExist(JSONObject jsonObject) {
+        int school_domain_name_exist = registerDao.judgeSchoolDomainNameExist(jsonObject);
+        if(school_domain_name_exist == 0){
+            // 表示没有找到相同的学校域名，那就可以添加
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    @Override
     public JSONObject getSchoolDomain(JSONObject requestJson) {
         JSONObject jsonObject= schoolDomain.GetSchoolDomain(requestJson);
         return jsonObject;
     }
+
+
 }

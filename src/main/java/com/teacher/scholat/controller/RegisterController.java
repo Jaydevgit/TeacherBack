@@ -38,6 +38,22 @@ public class RegisterController {
         System.out.println(jsonObject);
         return CommonUtil.successJson(jsonObject);
     }
+    @PostMapping("/judgeSchoolDomainNameExist")
+    public JSONObject judgeSchoolDomainNameExist(@RequestBody JSONObject requestJson){
+        System.out.println("school_domain==="+requestJson);
+        int existSchoolDomainName = registerService.judgeSchoolDomainNameExist(requestJson);
+        if(existSchoolDomainName!=0) {
+            System.out.println("看看该学校域名是注册：" + existSchoolDomainName);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("existSchoolDomainName",true);
+            return CommonUtil.successJson(jsonObject);
+        }else{
+            System.out.println("看看该学校域名否注册：" + existSchoolDomainName);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("existSchoolDomainName",false);
+            return CommonUtil.successJson(jsonObject);
+        }
+    }
     @PostMapping("/judgeDomainNameExist")
     public JSONObject judgeDomainNameExist(@RequestBody JSONObject requestJson) {
         System.out.println("domain==="+requestJson);
@@ -71,6 +87,23 @@ public class RegisterController {
             return CommonUtil.successJson(jsonObject);
         }else{
             System.out.println("看看该用户名否注册：" + UserName);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("UserName",false);
+            return CommonUtil.successJson(jsonObject);
+        }
+    }
+
+    @PostMapping("/judgeSchoolUserNameExist")
+    public JSONObject judgeSchoolUserNameExist(@RequestBody JSONObject requestJson) {
+        System.out.println("UserName==="+requestJson);
+        int UserName = registerService.judgeSchoolUserNameExist(requestJson);
+        if(UserName!=0) {
+            System.out.println("看看该学校用户名是注册：" + UserName);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("UserName",true);
+            return CommonUtil.successJson(jsonObject);
+        }else{
+            System.out.println("看看该学校用户名否注册：" + UserName);
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("UserName",false);
             return CommonUtil.successJson(jsonObject);
@@ -145,6 +178,55 @@ public class RegisterController {
             apply.setToken(token);
             // ------------------------处理数据结束---------------------------
             registerService.addApply(apply);
+            System.out.println("插入申请表的id为：" + apply.getId());
+            return CommonUtil.successJson();
+        }
+
+    }
+
+    @PostMapping("/applySchool")
+    public JSONObject applySchool(@RequestBody JSONObject requestJson) {
+        System.out.println("进入到了学校层面申请。。。。。。");
+        System.out.println(requestJson);
+        int existUsername = registerService.judgeSchoolUserNameExist(requestJson);
+        int existSchoolDomainName = registerService.judgeSchoolDomainNameExist(requestJson);
+        // 去看下有没有重复的申请信息, 主要是去校验有没有相同的学校和学院
+//        int exist = registerService.judgeUnitExist(requestJson);
+        System.out.println("看看该学院是否已经发起过申请：exist:" +"---existUsername:"+existUsername+"---existDomainName:"+existSchoolDomainName);
+        if(existUsername!=0){
+            System.out.println("看看该用户是否注册：" + existUsername);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("existName", "该用户名已存在");
+            /*String userEmail=requestJson.getString("email");
+            mailService.sendHtmlMail(userEmail,"注册失败","<p>该用户名已存在，请勿重复注册。<br>\n" +
+                    "                                此为系统邮件，请勿回复。<br>\n" +
+                    "                                请保管好您的邮箱，避免账号被他人盗用！\n" +
+                    "                            </p>");*/
+            return CommonUtil.successJson(jsonObject);
+        } else if(existSchoolDomainName!=0){
+            System.out.println("看看该域名是否注册：" + existSchoolDomainName);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("existSchoolDomainName", "该域名已存在");
+            return CommonUtil.successJson(jsonObject);
+        }else{
+            Apply apply = JSONObject.toJavaObject(requestJson, Apply.class);
+            System.out.println("发起申请的学校为：" + apply.getSchool_name() + " ");
+            // -----------------------对输入的数据进行处理------------------------------
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+            apply.setUpdate_time(df.format(new Date()));
+            apply.setState(1); // 状态改为申请状态
+
+            System.out.println("加密前" + apply.getPassword());
+            String newPassword = MD5Util.toDb(apply.getPassword());
+            System.out.println("加密后：" + newPassword);
+            apply.setPassword(newPassword);
+            // 设置token
+            String token = TokenUtils.getToken(apply.getUsername());
+            System.out.println("该申请学院的token为：" + token);
+            apply.setToken(token);
+            // ------------------------处理数据结束---------------------------
+            registerService.addApplySchool(apply);
             System.out.println("插入申请表的id为：" + apply.getId());
             return CommonUtil.successJson();
         }

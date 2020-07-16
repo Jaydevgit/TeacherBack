@@ -48,7 +48,44 @@
         </selectKey>
     </insert>
 
-
+    <insert id="addApplySchool" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO school_apply
+        (school_name,
+        school_eng,
+        certificate_front,
+        certificate_back,
+        certificate_working,
+        username,
+        certificate_logo,
+        chinese_name,
+        phone,
+        email,
+        state,
+        token,
+        update_time,
+        password,
+        school_domain)
+        VALUES
+        (#{school_name},
+        #{school_eng},
+        #{certificate_front},
+        #{certificate_back},
+        #{certificate_working},
+        #{username},
+        #{certificate_logo},
+        #{chinese_name},
+        #{phone},
+        #{email},
+        #{state},
+        #{token},
+        #{update_time},
+        #{password},
+        #{school_domain})
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
 
     <select id="judgeUnitExist" resultType="Integer">
         select count(0)
@@ -61,6 +98,11 @@
         where username = #{username}
     </select>
 
+    <select id="judgeSchoolUserNameExist" resultType="Integer">
+        select count(0)
+        from school_profile
+        where username = #{username}
+    </select>
     <select id="judgeSchoolUnitExist" resultType="Integer">
         select count(0)
         from school_unit
@@ -71,6 +113,12 @@
         select count(0)
         from school_unit
         where domain_name = #{domain_name} and school_domain = #{school_domain}
+    </select>
+
+    <select id="judgeSchoolDomainNameExist" resultType="Integer">
+        select count(0)
+        from school
+        where school_domain = #{school_domain}
     </select>
 
     <select id="getApplyInfo" resultType="com.alibaba.fastjson.JSONObject">
