@@ -245,6 +245,7 @@ WHERE
         nickname,
         username,
         password,
+        school_id,
         role_id,
         state,
         create_time,
@@ -259,6 +260,7 @@ WHERE
         (#{chinese_name},
         #{username},
         #{password},
+        #{school_id},
         1,
         1,
         #{update_time},
@@ -306,7 +308,7 @@ WHERE
         state,
         update_time)
         VALUES
-        (#{school_profile_id},
+        (#{school_id},
         "school",
         #{username},
         #{chinese_name},

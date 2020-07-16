@@ -174,14 +174,14 @@ public class ScholatController {
         System.out.println("找到的申请信息如下：");
         System.out.println(jsonObject);
         Apply apply = JSONObject.toJavaObject(jsonObject, Apply.class);
-        apply.setId(apply_id);
+        apply.setSchool_id(apply_id);
         // --------------------------------------------------------
         /*
          * 找完申请信息后就去插入到各种表内
          * */
         // 添加到学院用户表和登录表进去
         scholatService.addApplyToSchool(apply);
-//        System.out.println("插入school_unit表的unit_id为：" + apply.getUnit_id());
+        System.out.println("插入school表的school_id为：" + apply.getSchool_id());
         scholatService.addApplyToSchoolProfile(apply);
         System.out.println("插入school_profile表的unit_profile_id为：" + apply.getSchool_profile_id());
         scholatService.addApplySchoolToLogin(apply);
