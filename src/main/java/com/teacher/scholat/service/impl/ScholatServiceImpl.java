@@ -115,6 +115,42 @@ public class ScholatServiceImpl implements ScholatService {
         }
         return CommonUtil.successPage(jsonObject, list, count);
     }
+
+    @Override
+    public JSONObject listApplySchool(JSONObject jsonObject) {
+        System.out.println("准备获取列表，前端传过来的列表要求为: ");
+        CommonUtil.fillPageParam(jsonObject);
+        long state = jsonObject.getLongValue("state");
+        List<JSONObject> list = new ArrayList<>();
+        int count = 0;
+        if (state == 1 || state == 2 || state == -1) {
+            // 申请的三种状态：待处理，待修改，黑名单
+            System.out.println("state为" + state + "，表示申请的三种获取之一");
+            count = scholatDao.countApplySchool(state);
+            System.out.println("........有" + count + "个申请学院");
+            list = scholatDao.listApplySchool(jsonObject);
+            System.out.println("后台查询到的申请数据为: " + list);
+        } else if (state == 3) {
+            // 获取全部学院
+            System.out.println("state为3，表示准备查询所有学院，且不包括黑名单（state!=-1）");
+            count = scholatDao.countUnit(state);
+            System.out.println("........全部共有" + count + "个学院");
+            list = scholatDao.listUnitAll(jsonObject);
+            System.out.println("后台查询到的所有学院数据为: " + list);
+        } else if (state == -2) {
+            // 获取黑名单学院
+            System.out.println("state为-2，表示准备查询所有黑名单");
+            count = scholatDao.countUnitBlack(state);
+            System.out.println("........全部共有" + count + "个学院黑名单用户");
+            list = scholatDao.listUnitBlack(jsonObject);
+            System.out.println("后台查询到的所有学院黑名单数据为: " + list);
+        } else {
+            // 其他
+            System.out.println("没有找到state,所以不知道你到底要找什么?");
+        }
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
+
     /**
      * 模糊搜索学院列表
      */
@@ -203,6 +239,13 @@ public class ScholatServiceImpl implements ScholatService {
     }
 
     @Override
+    public int addApplyToSchool(Apply applay) {
+        System.out.println("准备去加入申请信息到--> school表中");
+        int id = scholatDao.addApplyToSchool(applay);
+        return id;
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public int addApplyToUnitProfile(Apply applay) {
         System.out.println("准备去加入申请信息到--> 学院信息表中");
@@ -212,9 +255,24 @@ public class ScholatServiceImpl implements ScholatService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    public int addApplyToSchoolProfile(Apply apply) {
+        System.out.println("准备去加入申请信息到--> 学院信息表中");
+        int id = scholatDao.addApplyToSchoolProfile(apply);
+        return id;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
     public int addApplyToLogin(Apply applay) {
         System.out.println("准备去加入申请信息到--> 登录表中");
         int id = scholatDao.addApplyToLogin(applay);
+        return id;
+    }
+
+    @Override
+    public int addApplySchoolToLogin(Apply applay) {
+        System.out.println("准备去加入申请信息到--> 登录表中");
+        int id = scholatDao.addApplySchoolToLogin(applay);
         return id;
     }
 
@@ -233,18 +291,35 @@ public class ScholatServiceImpl implements ScholatService {
     public JSONObject getApplyInfo(JSONObject jsonObject) {
         return scholatDao.getApplyInfo(jsonObject);
     }
+    @Override
+    public JSONObject getApplySchoolInfo(JSONObject jsonObject) {
+        return scholatDao.getApplySchoolInfo(jsonObject);
+    }
 
     @Override
     public int updateApplySuccess(Apply apply) {
         return scholatDao.updateApplySuccess(apply);
+    }@Override
+    public int updateApplySchoolSuccess(Apply apply) {
+        return scholatDao.updateApplySchoolSuccess(apply);
     }
     @Override
     public int updateApplyModify(Apply apply) {
         return scholatDao.updateApplyModify(apply);
     }
+
+    @Override
+    public int updateApplySchoolModify(Apply apply) {
+        return scholatDao.updateApplySchoolModify(apply);
+    }
+
     @Override
     public int updateApplyBlack(Apply apply) {
         return scholatDao.updateApplyBlack(apply);
+    }
+    @Override
+    public int updateApplySchoolBlack(Apply apply) {
+        return scholatDao.updateApplySchoolBlack(apply);
     }
     @Override
     public int updateAllBlack(JSONObject jsonObject) {
@@ -253,6 +328,9 @@ public class ScholatServiceImpl implements ScholatService {
     @Override
     public int updateCancelBlackApply(Apply apply) {
         return scholatDao.updateCancelBlackApply(apply);
+    }
+    public int updateCancelBlackApplySchool(Apply apply) {
+        return scholatDao.updateCancelBlackApplySchool(apply);
     }
 
 }

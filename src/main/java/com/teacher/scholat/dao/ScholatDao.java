@@ -10,6 +10,7 @@ public interface ScholatDao {
      * 统计申请总数
      */
     int countApply(long state);
+    int countApplySchool(long state);
     /**
      * 统计待修改数量
      */
@@ -30,6 +31,7 @@ public interface ScholatDao {
      * 申请列表
      */
     List<JSONObject> listApply(JSONObject jsonObject);
+    List<JSONObject> listApplySchool(JSONObject jsonObject);
     /**
      * 申请列表
      */
@@ -46,16 +48,24 @@ public interface ScholatDao {
     List<JSONObject> listUnitNoBlack(JSONObject jsonObject);
     // 查看申请的学院信息
     JSONObject getApplyInfo(JSONObject jsonObject);
+    JSONObject getApplySchoolInfo(JSONObject jsonObject);
 
     int updateApplySuccess(Apply apply);
+    int updateApplySchoolSuccess(Apply apply);
     int updateApplyModify(Apply apply);
+    int updateApplySchoolModify(Apply apply);
     int updateApplyBlack(Apply apply);
+    int updateApplySchoolBlack(Apply apply);
     int updateCancelBlackApply(Apply apply);
+    int updateCancelBlackApplySchool(Apply apply);
 
     // 允许通过申请
     int addApplyToSchoolUnit(Apply apply);
+    int addApplyToSchool(Apply apply);
     int addApplyToUnitProfile(Apply apply);
+    int addApplyToSchoolProfile(Apply apply);
     int addApplyToLogin(Apply apply);
+    int addApplySchoolToLogin(Apply apply);
 
     int applyValidateUnitApply(JSONObject jsonObject);
     int applyValidateUnitProfile(JSONObject jsonObject);
@@ -80,4 +90,7 @@ public interface ScholatDao {
     int deleteTeacher(Long id);
 
     int deleteSchool(Long id);
+
+
+
 }

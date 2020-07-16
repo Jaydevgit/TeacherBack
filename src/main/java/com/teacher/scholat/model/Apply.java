@@ -50,6 +50,7 @@ public class Apply {
 
     // 数据库外的
     private Integer unit_profile_id;
+    private Integer school_profile_id;
     private Integer login_id;
 
     public String getToken() {
@@ -219,5 +220,13 @@ public class Apply {
 
     public void setUnit_eng(String unit_eng) {
         this.unit_eng = unit_eng;
+    }
+
+    public Integer getSchool_profile_id() {
+        return school_profile_id;
+    }
+
+    public void setSchool_profile_id(Integer school_profile_id) {
+        this.school_profile_id = school_profile_id;
     }
 }
