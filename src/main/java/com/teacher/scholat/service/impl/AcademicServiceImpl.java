@@ -386,7 +386,7 @@ public class AcademicServiceImpl implements AcademicService {
 
     @Override
     public JSONObject listProject(JSONObject jsonObject) {
-        System.out.println("前端传过来的论文列表要求为: " + jsonObject);
+        System.out.println("前端传过来的项目列表要求为: " + jsonObject);
         CommonUtil.fillPageParam(jsonObject);
         long unitId = jsonObject.getLongValue("unitId");
         int count = academicDao.countProject(unitId);
@@ -883,7 +883,10 @@ public class AcademicServiceImpl implements AcademicService {
             Object tt = jsonArray.get(i); //遍历所有论文信息
             JSONObject t=(JSONObject) tt;
             long scholat_paper_id=t.getLongValue("id");
-            if(academicDao.paperExitIf(scholat_paper_id)!=0){
+            if(academicDao.paperDeleteExitIf(scholat_paper_id)!=0){
+                academicDao.NoDelete();
+                continue;
+            }else if(academicDao.paperExitIf(scholat_paper_id)!=0){
                 continue;
             }
             System.out.println("p1p1="+tt);
@@ -993,25 +996,32 @@ public class AcademicServiceImpl implements AcademicService {
     }
     @Override
     public JSONObject addPaper(JSONObject jsonObject) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        jsonObject.put("updateTime" , df.format(new Date()));
-        String datetime = jsonObject.getString("datetime");
-        //"datetime" -> "2018-12-31"
-//        jsonObject.put("hot" ,1000);
-        System.out.println("--------datetime--------" + datetime);
-        //从新版本输入时间
-        if (datetime!=null && datetime.indexOf(".") == -1) {
-            String[] split = datetime.split("-");
-            StringBuilder sb = new StringBuilder();
-            sb.append(split[0]);
-            sb.append('.');
-            sb.append(split[1]);
-            datetime = sb.toString();
 
-            jsonObject.put("datetime",datetime);
+        Long scholat_paper_id=jsonObject.getLongValue("scholat_paper_id");
+        int flagN = academicDao.paperDeleteExitIf(scholat_paper_id);//判断添加的论文是否原来删除过
+        if(flagN!=0){
+            academicDao.NoDelete();//将论文由删除状态改为已添加
+        }else{
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            jsonObject.put("updateTime" , df.format(new Date()));
+            String datetime = jsonObject.getString("datetime");
+            //"datetime" -> "2018-12-31"
+//        jsonObject.put("hot" ,1000);
+            System.out.println("--------datetime--------" + datetime);
+            //从新版本输入时间
+            if (datetime!=null && datetime.indexOf(".") == -1) {
+                String[] split = datetime.split("-");
+                StringBuilder sb = new StringBuilder();
+                sb.append(split[0]);
+                sb.append('.');
+                sb.append(split[1]);
+                datetime = sb.toString();
+
+                jsonObject.put("datetime",datetime);
+            }
+            academicDao.addPaper(jsonObject);
         }
 
-        academicDao.addPaper(jsonObject);
         return CommonUtil.successJson();
     }
     @Override

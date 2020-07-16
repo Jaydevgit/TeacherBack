@@ -59,6 +59,12 @@
         0, #{scholat_paper_id} , #{scholat_username}  )
     </insert>
 
+    <update id="NoDelete" parameterType="com.alibaba.fastjson.JSONObject">
+         UPDATE paper
+            SET
+            deleted = 0
+    </update>
+
     <insert id="addPublication" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
             parameterType="com.alibaba.fastjson.JSONObject">
         INSERT INTO publication
@@ -155,6 +161,11 @@
     <select id="paperExitIf" resultType="Integer">
       SELECT  count(1)
             FROM paper p   where p.scholat_paper_id= #{scholat_paper_id}
+    </select>
+
+    <select id="paperDeleteExitIf" resultType="Integer">
+      SELECT  count(1)
+            FROM paper p   where p.scholat_paper_id= #{scholat_paper_id} and p.deleted=1
     </select>
     <select id="projectExitIf" resultType="Integer">
       SELECT  count(1)
@@ -291,11 +302,8 @@
               p.leader             leader,
               p.unit_id             unitId,
               p.summary            summary,
-              p.views               views,
-              p.hot                 hot,
             t.id          tId,
             t.username    tName,
-            t.english_name englishName,
             t.post        tPost,
             t.avatar      tAvatar
      FROM (SELECT	pa.*,pt.teacher_id,pt.id ptId FROM ((select * from project  where id = #{id}) pa LEFT JOIN
@@ -303,6 +311,9 @@
     pa.id
      = pt.project_id))p LEFT JOIN teacher_profile t ON p.teacher_id = t.id
     </select>
+<!--    p.views               views,-->
+<!--    t.english_name englishName,-->
+<!--    p.hot                 hot,-->
 
     <delete id="deleteProjectTeacher" >
       DELETE FROM project_teacher WHERE id = #{id}
