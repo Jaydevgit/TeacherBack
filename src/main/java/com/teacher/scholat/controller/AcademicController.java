@@ -18,11 +18,11 @@ public class AcademicController {
     @Autowired
     AcademicService academicService;
 
-//    @GetMapping("/identifyTeacher")
-//    public JSONObject identifyTeacher(HttpServletRequest request){
-//
-//        return academicService.identifyTeacher(CommonUtil.request2Json(request));
-//    }
+    @GetMapping("/identifyTeacher")
+    public JSONObject identifyTeacher(HttpServletRequest request){
+
+        return academicService.identifyTeacher(CommonUtil.request2Json(request));
+    }
 
     @GetMapping("/paperInfo/{id}")
     public JSONObject getPaperInfo(@PathVariable("id") long id){

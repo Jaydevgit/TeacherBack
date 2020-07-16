@@ -15,7 +15,7 @@ import com.teacher.scholat.service.AcademicService;
 import com.teacher.scholat.util.CommonUtil;
 //import com.teacher.scholat.util.EditDistance;
 //import com.teacher.scholat.util.TextUtil;
-//import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import com.teacher.scholat.util.GetScholatAcademic;
 import org.springframework.stereotype.Service;
@@ -235,9 +235,11 @@ public class AcademicServiceImpl implements AcademicService {
     @Override
     public JSONObject getPaper(Long id) {
         JSONObject paper = academicDao.getPaper(id);
-//        ArrayList<JSONObject> teacherList = (ArrayList<JSONObject>) paper.get("teacherList");
-//        if (teacherList.get(0).getString("tCount").equals("0"))
-//            paper.put("teacherList" ,new ArrayList<>());
+        System.out.println("paper="+paper);
+        ArrayList<JSONObject> teacherList = (ArrayList<JSONObject>) paper.get("teacherList");
+        System.out.println("teacherList="+teacherList);
+        if (teacherList.get(0).getString("tCount").equals("0"))
+            paper.put("teacherList" ,new ArrayList<>());
 //        System.out.println("paper" + paper);
 //        String similarPaper = paper.getString("similarPaper");
 //        System.out.println("similarPaper" + similarPaper);
@@ -384,7 +386,7 @@ public class AcademicServiceImpl implements AcademicService {
 
     @Override
     public JSONObject listProject(JSONObject jsonObject) {
-        System.out.println("前端传过来的论文列表要求为: " + jsonObject);
+        System.out.println("前端传过来的项目列表要求为: " + jsonObject);
         CommonUtil.fillPageParam(jsonObject);
         long unitId = jsonObject.getLongValue("unitId");
         int count = academicDao.countProject(unitId);
@@ -476,26 +478,26 @@ public class AcademicServiceImpl implements AcademicService {
         return CommonUtil.successPage(projectByTeacher);
     }
 
-//    @Override
-//    public JSONObject identifyTeacher(JSONObject jsonObject) {
-//        String authors = jsonObject.getString("authors").replace(" ","").replace("，",",").replace("、",",");
-//        long unitId = jsonObject.getLongValue("unitId");
-//        System.out.println(authors);
-//        String[] split = authors.split(",");
-//        List<JSONObject> list = new ArrayList<>();
-//        for (int i = 0;i < split.length;i++){
-//            JSONObject searchJson = new JSONObject();
-//            searchJson.put("unitId" , unitId);
-//            searchJson.put("name", split[i]);
-//            List<JSONObject> infoByName = teacherDao.getInfoByName(searchJson);
-//            if (!infoByName.isEmpty())
-//            for (int j = 0;j < infoByName.size();j++){
-//                list.add(infoByName.get(j));
-//            }
-//        }
-//        System.out.println(list);
-//        return CommonUtil.successPage(list);
-//    }
+    @Override
+    public JSONObject identifyTeacher(JSONObject jsonObject) {
+        String authors = jsonObject.getString("authors").replace(" ","").replace("，",",").replace("、",",");
+        long unitId = jsonObject.getLongValue("unitId");
+        System.out.println(authors);
+        String[] split = authors.split(",");
+        List<JSONObject> list = new ArrayList<>();
+        for (int i = 0;i < split.length;i++){
+            JSONObject searchJson = new JSONObject();
+            searchJson.put("unitId" , unitId);
+            searchJson.put("name", split[i]);
+            List<JSONObject> infoByName = teacherDao.getInfoByName(searchJson);
+            if (!infoByName.isEmpty())
+            for (int j = 0;j < infoByName.size();j++){
+                list.add(infoByName.get(j));
+            }
+        }
+        System.out.println(list);
+        return CommonUtil.successPage(list);
+    }
 
     @Override
     public JSONObject deletePaperTeacher(JSONObject jsonObject) {
@@ -881,10 +883,13 @@ public class AcademicServiceImpl implements AcademicService {
             Object tt = jsonArray.get(i); //遍历所有论文信息
             JSONObject t=(JSONObject) tt;
             long scholat_paper_id=t.getLongValue("id");
-            if(academicDao.paperExitIf(scholat_paper_id)!=0){
+            if(academicDao.paperDeleteExitIf(scholat_paper_id)!=0){
+                academicDao.NoDeletePaper(scholat_paper_id);
+                continue;
+            }else if(academicDao.paperExitIf(scholat_paper_id)!=0){
                 continue;
             }
-            System.out.println("p1p1="+tt);
+        //    System.out.println("p1p1="+tt);
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             t.put("updateTime" , df.format(new Date()));
             if(t.getString("type").equals("期刊论文")){
@@ -913,8 +918,11 @@ public class AcademicServiceImpl implements AcademicService {
         for (int i = 0; i <jsonArray.size() ; i++) {
             Object tt = jsonArray.get(i); //遍历所有项目信息
             JSONObject t=(JSONObject) tt;
-            long scholat_paper_id=t.getLongValue("id");
-            if(academicDao.projectExitIf(scholat_paper_id)!=0){
+            long scholat_project_id=t.getLongValue("id");
+            if(academicDao.projectDeleteExitIf(scholat_project_id)!=0){
+                academicDao.NoDeleteProject(scholat_project_id);
+                continue;
+            }else if(academicDao.projectExitIf(scholat_project_id)!=0){
                 continue;
             }
             System.out.println("p1p1="+tt);
@@ -991,25 +999,32 @@ public class AcademicServiceImpl implements AcademicService {
     }
     @Override
     public JSONObject addPaper(JSONObject jsonObject) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        jsonObject.put("updateTime" , df.format(new Date()));
-        String datetime = jsonObject.getString("datetime");
-        //"datetime" -> "2018-12-31"
-//        jsonObject.put("hot" ,1000);
-        System.out.println("--------datetime--------" + datetime);
-        //从新版本输入时间
-        if (datetime!=null && datetime.indexOf(".") == -1) {
-            String[] split = datetime.split("-");
-            StringBuilder sb = new StringBuilder();
-            sb.append(split[0]);
-            sb.append('.');
-            sb.append(split[1]);
-            datetime = sb.toString();
 
-            jsonObject.put("datetime",datetime);
+        Long scholat_paper_id=jsonObject.getLongValue("scholat_paper_id");
+        int flagN = academicDao.paperDeleteExitIf(scholat_paper_id);//判断添加的论文是否原来删除过
+        if(flagN!=0){
+            academicDao.NoDeletePaper(scholat_paper_id);//将论文由删除状态改为已添加
+        }else{
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            jsonObject.put("updateTime" , df.format(new Date()));
+            String datetime = jsonObject.getString("datetime");
+            //"datetime" -> "2018-12-31"
+//        jsonObject.put("hot" ,1000);
+            System.out.println("--------datetime--------" + datetime);
+            //从新版本输入时间
+            if (datetime!=null && datetime.indexOf(".") == -1) {
+                String[] split = datetime.split("-");
+                StringBuilder sb = new StringBuilder();
+                sb.append(split[0]);
+                sb.append('.');
+                sb.append(split[1]);
+                datetime = sb.toString();
+
+                jsonObject.put("datetime",datetime);
+            }
+            academicDao.addPaper(jsonObject);
         }
 
-        academicDao.addPaper(jsonObject);
         return CommonUtil.successJson();
     }
     @Override
@@ -1076,75 +1091,81 @@ public class AcademicServiceImpl implements AcademicService {
 
     @Override
     public JSONObject addProject(JSONObject jsonObject) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        jsonObject.put("updateTime" , df.format(new Date()));
-        System.out.println("-----test----" + jsonObject);
-        String startDate = jsonObject.getString("startDate");
-        String endDate = jsonObject.getString("endDate");
-        //"datetime" -> "2018-12-31"
+        Long scholat_project_id=jsonObject.getLongValue("scholat_project_id");
+        int flagN = academicDao.projectDeleteExitIf(scholat_project_id);//判断添加的论文是否原来删除过
+        if(flagN!=0){
+            academicDao.NoDeleteProject(scholat_project_id);//将论文由删除状态改为已添加
+        }else {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            jsonObject.put("updateTime", df.format(new Date()));
+            System.out.println("-----test----" + jsonObject);
+            String startDate = jsonObject.getString("startDate");
+            String endDate = jsonObject.getString("endDate");
+            //"datetime" -> "2018-12-31"
 
-        System.out.println("--------datetime--------" + endDate);
-        //从新版本输入开始时间
-        if (startDate!=null && startDate.indexOf(".") == -1) {
-            String[] split = startDate.split("-");
-            StringBuilder sb = new StringBuilder();
-            sb.append(split[0]);
-            sb.append('.');
-            sb.append(split[1]);
-            startDate = sb.toString();
-
-            jsonObject.put("startDate",startDate);
-        }
-
-        //从旧版本输入开始时间
-        if (startDate!=null && startDate.indexOf(".") != -1) {
-            String[] split = startDate.split("\\.");
-            StringBuilder sb = new StringBuilder();
-            if (split[0]!= "-")
+            System.out.println("--------datetime--------" + endDate);
+            //从新版本输入开始时间
+            if (startDate != null && startDate.indexOf(".") == -1) {
+                String[] split = startDate.split("-");
+                StringBuilder sb = new StringBuilder();
                 sb.append(split[0]);
-            else
-                sb.append("1800");
-            sb.append('.');
-            if (split[1]!= "-")
+                sb.append('.');
                 sb.append(split[1]);
-            else
-                sb.append("01");
-            startDate = sb.toString();
-            jsonObject.put("startDate",startDate);
-        }
+                startDate = sb.toString();
 
-        //从新版本输入结束时间
-        if (endDate!=null && endDate.indexOf(".") == -1) {
-            String[] split = endDate.split("-");
-            StringBuilder sb = new StringBuilder();
-            sb.append(split[0]);
-            sb.append('.');
-            sb.append(split[1]);
-            endDate = sb.toString();
+                jsonObject.put("startDate", startDate);
+            }
 
-            jsonObject.put("endDate",endDate);
-        }
-        System.out.println("endDate:"+endDate);
-        //从旧版本输入结束时间
-        if (!endDate.equals(".") && endDate.indexOf(".") != -1) {
-            String[] split = endDate.split("\\.");
-            StringBuilder sb = new StringBuilder();
-            if (split[0]!= "null" && split[0] != "-")
+            //从旧版本输入开始时间
+            if (startDate != null && startDate.indexOf(".") != -1) {
+                String[] split = startDate.split("\\.");
+                StringBuilder sb = new StringBuilder();
+                if (split[0] != "-")
+                    sb.append(split[0]);
+                else
+                    sb.append("1800");
+                sb.append('.');
+                if (split[1] != "-")
+                    sb.append(split[1]);
+                else
+                    sb.append("01");
+                startDate = sb.toString();
+                jsonObject.put("startDate", startDate);
+            }
+
+            //从新版本输入结束时间
+            if (endDate != null && endDate.indexOf(".") == -1) {
+                String[] split = endDate.split("-");
+                StringBuilder sb = new StringBuilder();
                 sb.append(split[0]);
-            else
-                sb.append("1800");
-            sb.append('.');
-            if (split[1]!= "null" && split[1] != "-")
+                sb.append('.');
                 sb.append(split[1]);
-            else
-                sb.append("01");
-            endDate = sb.toString();
-        }
+                endDate = sb.toString();
 
-        if (endDate.equals("."))
-            endDate = "1800.01";
-        jsonObject.put("endDate",endDate);
-        academicDao.addProject(jsonObject);
+                jsonObject.put("endDate", endDate);
+            }
+            System.out.println("endDate:" + endDate);
+            //从旧版本输入结束时间
+            if (!endDate.equals(".") && endDate.indexOf(".") != -1) {
+                String[] split = endDate.split("\\.");
+                StringBuilder sb = new StringBuilder();
+                if (split[0] != "null" && split[0] != "-")
+                    sb.append(split[0]);
+                else
+                    sb.append("1800");
+                sb.append('.');
+                if (split[1] != "null" && split[1] != "-")
+                    sb.append(split[1]);
+                else
+                    sb.append("01");
+                endDate = sb.toString();
+            }
+
+            if (endDate.equals("."))
+                endDate = "1800.01";
+            jsonObject.put("endDate", endDate);
+            academicDao.addProject(jsonObject);
+        }
         return CommonUtil.successJson();
     }
 

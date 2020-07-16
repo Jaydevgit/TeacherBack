@@ -8,6 +8,16 @@
       from teacher_profile u left join school_unit s on u.unit_id=s.id where u.id=#{0}
     </select>
 
+    <select id="getInfoByName" resultType="com.alibaba.fastjson.JSONObject">
+      select      t.id          tId,
+                  t.username    tName,
+
+                  t.post        tPost,
+                  t.avatar      tAvatar
+      from teacher_profile t where ( t.username = #{name}) and t.unit_id = #{unitId}
+    </select>
+<!--    t.english_name englishName,t.english_name = #{name} or-->
+
     <select id="getTeacherInfoByDomainName" resultType="com.alibaba.fastjson.JSONObject">
       select * from teacher_profile u where u.domain_name=#{0}
     </select>

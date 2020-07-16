@@ -59,6 +59,19 @@
         0, #{scholat_paper_id} , #{scholat_username}  )
     </insert>
 
+    <update id="NoDeletePaper" parameterType="com.alibaba.fastjson.JSONObject">
+         UPDATE paper
+            SET
+            deleted = 0
+            where scholat_paper_id=#{scholat_paper_id}
+    </update>
+    <update id="NoDeleteProject" parameterType="com.alibaba.fastjson.JSONObject">
+         UPDATE project
+            SET
+            deleted = 0
+            where scholat_project_id=#{scholat_project_id}
+    </update>
+
     <insert id="addPublication" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
             parameterType="com.alibaba.fastjson.JSONObject">
         INSERT INTO publication
@@ -104,23 +117,23 @@
         <result column="folderPath" property="folderPath"/>
         <result column="keyword" property="keyword"/>
         <result column="summary" property="summary"/>
-        <result column="views" property="views"/>
         <result column="unitId" property="unitId"/>
-        <result column="hot" property="hot"/>
-        <result column="similarPaper" property="similarPaper"/>
         <result column="papertype" property="papertype"/>
         <result column="datetime" property="datetime"/>
-        <result column="correspond" property="correspond"/>
         <collection property="teacherList" ofType="com.alibaba.fastjson.JSONObject">
             <id column="tId" property="tId"/>
             <result column="tName" property="tName"/>
             <result column="ptId" property="ptId"/>
-            <result column="englishName" property="englishName"/>
             <result column="tPost" property="tPost"/>
             <result column="tAvatar" property="tAvatar"/>
             <result column="tCount" property="tCount"/>
         </collection>
     </resultMap>
+    <!--            <result column="englishName" property="englishName"/>-->
+    <!--        <result column="correspond" property="correspond"/>-->
+    <!--        <result column="hot" property="hot"/>-->
+    <!--        <result column="similarPaper" property="similarPaper"/>-->
+    <!--        <result column="views" property="views"/>-->
 
     <select id="getPaper" resultMap="paperTeacherMap">
     SELECT		a.*,
@@ -135,15 +148,10 @@
             p.summary           summary,
             p.papertype         papertype,
             p.datetime          datetime,
---             p.correspond      correspond,
---             p.similar_paper   similarPaper,
             p.unit_id         unitId,
---             p.views             views,
---             p.hot               hot,
             p.ptId				ptId,
             t.id          tId,
             t.username    tName,
---             t.english_name englishName,
             t.post        tPost,
             t.avatar      tAvatar FROM (SELECT	pa.*,pt.teacher_id tId,pt.id ptId FROM ((select * from paper  where
             id = #{id}) pa LEFT JOIN
@@ -151,14 +159,30 @@
     pa.id = pt.paper_id))p LEFT JOIN teacher_profile t ON p.tId = t.id) a LEFT JOIN paper_teacher pt2 ON
      pt2.teacher_id = a.tId GROUP BY pt2.teacher_id
     </select>
+<!--    t.english_name englishName,-->
+<!--    p.correspond      correspond,-->
+<!--    p.similar_paper   similarPaper,-->
+<!--    p.views             views,-->
+<!--    p.hot               hot,-->
+
     <select id="paperExitIf" resultType="Integer">
       SELECT  count(1)
             FROM paper p   where p.scholat_paper_id= #{scholat_paper_id}
+    </select>
+
+    <select id="paperDeleteExitIf" resultType="Integer">
+      SELECT  count(1)
+            FROM paper p   where p.scholat_paper_id= #{scholat_paper_id} and p.deleted=1
     </select>
     <select id="projectExitIf" resultType="Integer">
       SELECT  count(1)
             FROM project p   where p.scholat_project_id= #{scholat_project_id}
     </select>
+    <select id="projectDeleteExitIf" resultType="Integer">
+      SELECT  count(1)
+            FROM project p   where p.scholat_project_id= #{scholat_project_id} and p.deleted=1
+    </select>
+
     <select id="patentExitIf" resultType="Integer">
       SELECT  count(1)
             FROM patent p   where p.scholat_patent_id= #{scholat_patent_id}
@@ -290,11 +314,8 @@
               p.leader             leader,
               p.unit_id             unitId,
               p.summary            summary,
-              p.views               views,
-              p.hot                 hot,
             t.id          tId,
             t.username    tName,
-            t.english_name englishName,
             t.post        tPost,
             t.avatar      tAvatar
      FROM (SELECT	pa.*,pt.teacher_id,pt.id ptId FROM ((select * from project  where id = #{id}) pa LEFT JOIN
@@ -302,6 +323,9 @@
     pa.id
      = pt.project_id))p LEFT JOIN teacher_profile t ON p.teacher_id = t.id
     </select>
+<!--    p.views               views,-->
+<!--    t.english_name englishName,-->
+<!--    p.hot                 hot,-->
 
     <delete id="deleteProjectTeacher" >
       DELETE FROM project_teacher WHERE id = #{id}
