@@ -1222,39 +1222,45 @@ public class AcademicServiceImpl implements AcademicService {
 
     @Override
     public JSONObject addPatent(JSONObject jsonObject) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        jsonObject.put("updateTime" , df.format(new Date()));
-        String datetime = jsonObject.getString("datetime");
-        //"datetime" -> "2018-12-31"
+        Long scholat_patent_id=jsonObject.getLongValue("scholat_patent_id");
+        int flagN = academicDao.patentDeleteExitIf(scholat_patent_id);//判断添加的论文是否原来删除过
+        if(flagN!=0){
+            academicDao.NoDeletePatent(scholat_patent_id);//将论文由删除状态改为已添加
+        }else {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            jsonObject.put("updateTime" , df.format(new Date()));
+            String datetime = jsonObject.getString("datetime");
+            //"datetime" -> "2018-12-31"
 
-        System.out.println("--------datetime--------" + datetime);
-        //从新版本输入时间
-        if (datetime!=null && datetime.indexOf(".") == -1) {
-            String[] split = datetime.split("-");
-            StringBuilder sb = new StringBuilder();
-            sb.append(split[0]);
-            sb.append('.');
-            sb.append(split[1]);
-            datetime = sb.toString();
-
-        }
-        //从旧版本输入时间
-        if (datetime!="." && datetime.indexOf(".") != -1) {
-            String[] split = datetime.split("\\.");
-            StringBuilder sb = new StringBuilder();
-            if (split[0]!= "null" && split[0] != "-")
+            System.out.println("--------datetime--------" + datetime);
+            //从新版本输入时间
+            if (datetime!=null && datetime.indexOf(".") == -1) {
+                String[] split = datetime.split("-");
+                StringBuilder sb = new StringBuilder();
                 sb.append(split[0]);
-            else
-                sb.append("1800");
-            sb.append('.');
-            if (split[1]!= "null" && split[1] != "-")
+                sb.append('.');
                 sb.append(split[1]);
-            else
-                sb.append("01");
-            datetime = sb.toString();
+                datetime = sb.toString();
+
+            }
+            //从旧版本输入时间
+            if (datetime!="." && datetime.indexOf(".") != -1) {
+                String[] split = datetime.split("\\.");
+                StringBuilder sb = new StringBuilder();
+                if (split[0]!= "null" && split[0] != "-")
+                    sb.append(split[0]);
+                else
+                    sb.append("1800");
+                sb.append('.');
+                if (split[1]!= "null" && split[1] != "-")
+                    sb.append(split[1]);
+                else
+                    sb.append("01");
+                datetime = sb.toString();
+            }
+            jsonObject.put("datetime",datetime);
+            academicDao.addPatent(jsonObject);
         }
-        jsonObject.put("datetime",datetime);
-        academicDao.addPatent(jsonObject);
         return CommonUtil.successJson();
     }
 
