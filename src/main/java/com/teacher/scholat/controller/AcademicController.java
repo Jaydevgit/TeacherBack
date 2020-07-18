@@ -98,6 +98,10 @@ public class AcademicController {
     public JSONObject listPaper(HttpServletRequest request){
         return academicService.listPaper(CommonUtil.request2Json(request));
     }
+    @RequestMapping("/listPublication")
+    public JSONObject listPublication(HttpServletRequest request){
+        return academicService.listPublication(CommonUtil.request2Json(request));
+    }
 
     @GetMapping("/listPaperAll")
     public JSONObject listPaperAll(HttpServletRequest request) {

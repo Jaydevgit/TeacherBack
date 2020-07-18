@@ -292,6 +292,15 @@ public class AcademicServiceImpl implements AcademicService {
         List<JSONObject> list = academicDao.listPaper(jsonObject);
         return CommonUtil.successPage(jsonObject, list , count);
     }
+    @Override
+    public JSONObject listPublication(JSONObject jsonObject) {
+        System.out.println("前端传过来的著作列表要求为: " + jsonObject);
+        CommonUtil.fillPageParam(jsonObject);
+        long unitId = jsonObject.getLongValue("unitId");
+        int count = academicDao.countPublication(unitId);
+        List<JSONObject> list = academicDao.listPublication(jsonObject);
+        return CommonUtil.successPage(jsonObject, list , count);
+    }
 
     @Override
     public JSONObject listPaperAll(JSONObject jsonObject) {

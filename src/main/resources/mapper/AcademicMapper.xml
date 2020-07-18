@@ -8,6 +8,11 @@
         FROM paper p
         WHERE p.deleted = '0' AND p.unit_id = #{unitId}
     </select>
+    <select id="countPublication"  resultType="Integer">
+        SELECT count(0)
+        FROM publication p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+    </select>
 
     <select id="countProject"  resultType="Integer">
         SELECT count(0)
@@ -496,6 +501,18 @@
                   p.papertype         papertype,
                   p.datetime          datetime
         FROM paper p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY datetime DESC  LIMIT
+            #{offSet},#{pageRow}
+    </select>
+    <select id="listPublication" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.citation            citation,
+                  p.press         press,
+                  p.datetime          datetime
+        FROM publication p
         WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY datetime DESC  LIMIT
             #{offSet},#{pageRow}
     </select>

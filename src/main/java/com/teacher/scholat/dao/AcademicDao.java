@@ -9,6 +9,7 @@ public interface AcademicDao {
 
 
     List<JSONObject> listPaper(JSONObject jsonObject);
+    List<JSONObject> listPublication(JSONObject jsonObject);
     List<JSONObject> listPaperAll(JSONObject jsonObject);
     List<JSONObject> getPaperteacher(JSONObject jsonObject);
     List<JSONObject> getProjectteacher(JSONObject jsonObject);
@@ -40,6 +41,7 @@ public interface AcademicDao {
     void removePaper(JSONObject jsonObject);
     void updatePaper(JSONObject jsonObject);
     int countPaper(long unitId);
+    int countPublication(long unitId);
     void updatePaperRecommend(JSONObject jsonObject);
 
     void addProject(JSONObject jsonObject);

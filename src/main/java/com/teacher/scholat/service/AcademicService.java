@@ -38,6 +38,7 @@ public interface AcademicService {
     JSONObject listPatentAll(JSONObject jsonObject);
 
     JSONObject listPaper(JSONObject jsonObject);
+    JSONObject listPublication(JSONObject jsonObject);
     JSONObject listPaperAll(JSONObject jsonObject);
     JSONObject getPaperteacher(JSONObject jsonObject);
     JSONObject getProjectteacher(JSONObject jsonObject);
