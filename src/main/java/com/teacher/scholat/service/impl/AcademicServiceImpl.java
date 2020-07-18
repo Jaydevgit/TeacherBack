@@ -882,6 +882,12 @@ public class AcademicServiceImpl implements AcademicService {
         return CommonUtil.successJson();
     }
     @Override
+    public JSONObject deletePubilcation(JSONObject jsonObject) {
+        academicDao.removePubilcation(jsonObject);
+        return CommonUtil.successJson();
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public JSONObject addAllPaper(JSONObject jsonObject) {
         JSONArray jsonArray=jsonObject.getJSONArray("data");
@@ -959,7 +965,10 @@ public class AcademicServiceImpl implements AcademicService {
             Object tt = jsonArray.get(i); //遍历所有专利信息
             JSONObject t=(JSONObject) tt;
             long scholat_patent_id=t.getLongValue("id");
-            if(academicDao.patentExitIf(scholat_patent_id)!=0){
+            if(academicDao.patentDeleteExitIf(scholat_patent_id)!=0){
+                academicDao.NoDeletePatent(scholat_patent_id);
+                continue;
+            }else if(academicDao.patentExitIf(scholat_patent_id)!=0){
                 continue;
             }
            // System.out.println("p1p1="+tt);
@@ -987,8 +996,11 @@ public class AcademicServiceImpl implements AcademicService {
         for (int i = 0; i <jsonArray.size() ; i++) {
             Object tt = jsonArray.get(i); //遍历所有著作信息
             JSONObject t=(JSONObject) tt;
-            long scholat_patent_id=t.getLongValue("id");
-            if(academicDao.publicationExitIf(scholat_patent_id)!=0){
+            long scholat_publication_id=t.getLongValue("id");
+            if(academicDao.publicationDeleteExitIf(scholat_publication_id)!=0){
+                academicDao.NoDeletePublication(scholat_publication_id);
+                continue;
+            }else if(academicDao.publicationExitIf(scholat_publication_id)!=0){
                 continue;
             }
             // System.out.println("p1p1="+tt);
@@ -1038,25 +1050,32 @@ public class AcademicServiceImpl implements AcademicService {
     }
     @Override
     public JSONObject addPublication(JSONObject jsonObject) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        jsonObject.put("updateTime" , df.format(new Date()));
-        String datetime = jsonObject.getString("datetime");
-        //"datetime" -> "2018-12-31"
+        Long scholat_publication_id=jsonObject.getLongValue("scholat_publication_id");
+        int flagN = academicDao.publicationDeleteExitIf(scholat_publication_id);//判断添加的论文是否原来删除过
+        if(flagN!=0){
+            academicDao.NoDeletePublication(scholat_publication_id);//将论文由删除状态改为已添加
+        }else{
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+            jsonObject.put("updateTime" , df.format(new Date()));
+            String datetime = jsonObject.getString("datetime");
+            //"datetime" -> "2018-12-31"
 //        jsonObject.put("hot" ,1000);
-        System.out.println("--------datetime--------" + datetime);
-        //从新版本输入时间
-        if (datetime!=null && datetime.indexOf(".") == -1) {
-            String[] split = datetime.split("-");
-            StringBuilder sb = new StringBuilder();
-            sb.append(split[0]);
-            sb.append('.');
-            sb.append(split[1]);
-            datetime = sb.toString();
+            System.out.println("--------datetime--------" + datetime);
+            //从新版本输入时间
+            if (datetime!=null && datetime.indexOf(".") == -1) {
+                String[] split = datetime.split("-");
+                StringBuilder sb = new StringBuilder();
+                sb.append(split[0]);
+                sb.append('.');
+                sb.append(split[1]);
+                datetime = sb.toString();
 
-            jsonObject.put("datetime",datetime);
+                jsonObject.put("datetime",datetime);
+            }
+
+            academicDao.addPublication(jsonObject);
         }
 
-        academicDao.addPublication(jsonObject);
         return CommonUtil.successJson();
     }
 

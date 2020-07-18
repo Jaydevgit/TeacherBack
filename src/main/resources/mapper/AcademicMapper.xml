@@ -70,6 +70,12 @@
             deleted = 0
             where scholat_paper_id=#{scholat_paper_id}
     </update>
+    <update id="NoDeletePublication" parameterType="com.alibaba.fastjson.JSONObject">
+         UPDATE publication
+            SET
+            deleted = 0
+            where scholat_publication_id=#{scholat_publication_id}
+    </update>
     <update id="NoDeleteProject" parameterType="com.alibaba.fastjson.JSONObject">
          UPDATE project
             SET
@@ -192,6 +198,10 @@
     <select id="projectDeleteExitIf" resultType="Integer">
       SELECT  count(1)
             FROM project p   where p.scholat_project_id= #{scholat_project_id} and p.deleted=1
+    </select>
+    <select id="publicationDeleteExitIf" resultType="Integer">
+      SELECT  count(1)
+            FROM publication p   where p.scholat_publication_id= #{scholat_publication_id} and p.deleted=1
     </select>
 
     <select id="patentExitIf" resultType="Integer">
@@ -414,6 +424,11 @@
 
     <update id="removePaper"  parameterType="com.alibaba.fastjson.JSONObject">
             UPDATE paper
+            SET deleted = 1
+            WHERE id = #{id}
+    </update>
+    <update id="removePubilcation"  parameterType="com.alibaba.fastjson.JSONObject">
+            UPDATE publication
             SET deleted = 1
             WHERE id = #{id}
     </update>

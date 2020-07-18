@@ -23,12 +23,15 @@ public interface AcademicDao {
 
     void addPaper(JSONObject jsonObject);
     void NoDeletePaper(long scholat_paper_id);
+    void NoDeletePublication(long scholat_publication_id);
     void NoDeleteProject(long scholat_paper_id);
     void NoDeletePatent(long scholat_paper_id);
 
     void addPublication(JSONObject jsonObject);
     int paperExitIf(long scholat_paper_id);
     int paperDeleteExitIf(long scholat_paper_id);
+    int publicationDeleteExitIf(long scholat_publication_id);
+
 
     int projectExitIf(long scholat_project_id);
     int projectDeleteExitIf(long scholat_project_id);
@@ -39,6 +42,7 @@ public interface AcademicDao {
     int publicationExitIf(long scholat_paper_id);
     JSONObject getPaper(Long id);
     void removePaper(JSONObject jsonObject);
+    void removePubilcation(JSONObject jsonObject);
     void updatePaper(JSONObject jsonObject);
     int countPaper(long unitId);
     int countPublication(long unitId);

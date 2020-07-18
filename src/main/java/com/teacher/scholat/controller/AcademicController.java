@@ -116,6 +116,11 @@ public class AcademicController {
         System.out.println("----------------- 开始请求：删除论文 ------------------");
         return academicService.deletePaper(requestJson);
     }
+    @RequestMapping("/deletePubilcation")
+    public JSONObject deletePubilcation(@RequestBody JSONObject requestJson) {
+        System.out.println("----------------- 开始请求：删除论文 ------------------");
+        return academicService.deletePubilcation(requestJson);
+    }
 
     @RequestMapping("/addPaper")
     public JSONObject addPaper(@RequestBody JSONObject requestJson) {
