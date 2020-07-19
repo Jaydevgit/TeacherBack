@@ -1353,6 +1353,29 @@ public class AcademicServiceImpl implements AcademicService {
 
         return CommonUtil.successJson();
     }
+    @Override
+    public JSONObject updatePublication(JSONObject jsonObject) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        jsonObject.put("updateTime" , df.format(new Date()));
+        System.out.println("-----test----" + jsonObject);
+        String datetime = jsonObject.getString("datetime");
+        datetime = datetime.replace("-undefined-01","");
+        //"datetime" -> "2018-12-31"
+        System.out.println("--------datetime--------" + datetime);
+        //从新版本输入开始时间
+        if (datetime!=null && datetime.indexOf(".") == -1) {
+            String[] split = datetime.split("-");
+            StringBuilder sb = new StringBuilder();
+            sb.append(split[0]);
+            sb.append('.');
+            sb.append(split[1]);
+            datetime = sb.toString();
+        }
+        jsonObject.put("datetime",datetime);
+        academicDao.updatePublication(jsonObject);
+        return CommonUtil.successJson();
+    }
+
 
     @Override
     public void exportPaper(HttpServletRequest request, HttpServletResponse response) throws IOException {

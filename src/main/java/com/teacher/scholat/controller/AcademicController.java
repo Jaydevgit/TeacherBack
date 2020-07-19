@@ -172,6 +172,12 @@ public class AcademicController {
         System.out.println("--------获取到的要求：---------" + requestJson);
         return academicService.updateProject(requestJson);
     }
+    @RequestMapping("/updatePublication")
+    public JSONObject updatePublication(@RequestBody JSONObject requestJson) {
+        System.out.println("----------------- 开始请求：更新著作 ------------------");
+        System.out.println("--------获取到的要求：---------" + requestJson);
+        return academicService.updatePublication(requestJson);
+    }
 
     @RequestMapping("/updatePatent")
     public JSONObject updatePatent(@RequestBody JSONObject requestJson) {

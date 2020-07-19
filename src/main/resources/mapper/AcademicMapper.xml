@@ -501,6 +501,18 @@
             deleted= 0
             where id = #{id}
     </update>
+    <update id="updatePublication"  parameterType="com.alibaba.fastjson.JSONObject">
+            UPDATE publication
+            SET
+            title=#{title},
+            authors=#{authors},
+            datetime=#{datetime},
+            citation=#{citation} ,
+            press=#{press} ,
+            update_time= #{updateTime},
+            deleted= 0
+            where id = #{id}
+    </update>
 
     <update id="updatePatent"  parameterType="com.alibaba.fastjson.JSONObject">
             UPDATE patent

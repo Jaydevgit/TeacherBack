@@ -32,6 +32,7 @@ public interface AcademicService {
     JSONObject deleteProject(JSONObject jsonObject);
     JSONObject addProject(JSONObject jsonObject);
     JSONObject updateProject(JSONObject jsonObject);
+    JSONObject updatePublication(JSONObject jsonObject);
 
     JSONObject getPublication(Long id);
     JSONObject addPublication(JSONObject jsonObject);

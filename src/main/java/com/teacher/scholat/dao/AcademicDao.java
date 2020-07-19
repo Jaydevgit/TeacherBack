@@ -53,6 +53,7 @@ public interface AcademicDao {
     JSONObject getPublication(Long id);
     void removeProject(JSONObject jsonObject);
     void updateProject(JSONObject jsonObject);
+    void updatePublication(JSONObject jsonObject);
     int countProject(long unitId);
 
     void addPatent(JSONObject jsonObject);
