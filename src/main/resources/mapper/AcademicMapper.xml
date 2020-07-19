@@ -353,6 +353,18 @@
 <!--    t.english_name englishName,-->
 <!--    p.hot                 hot,-->
 
+    <select id="getPublication" resultType="com.alibaba.fastjson.JSONObject">
+    select
+    p.id     id,
+    p.title     title,
+    p.authors      authors,
+    p.citation      citation,
+    p.press     press,
+    p.datetime      datetime
+    from publication p
+    where id = #{id}
+    </select>
+
     <delete id="deleteProjectTeacher" >
       DELETE FROM project_teacher WHERE id = #{id}
     </delete>

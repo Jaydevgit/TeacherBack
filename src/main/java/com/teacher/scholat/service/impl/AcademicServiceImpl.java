@@ -1243,6 +1243,12 @@ public class AcademicServiceImpl implements AcademicService {
     }
 
     @Override
+    public JSONObject getPublication(Long id) {
+        return academicDao.getPublication(id);
+    }
+
+
+    @Override
     public JSONObject deleteProject(JSONObject jsonObject) {
         academicDao.removeProject(jsonObject);
         return CommonUtil.successJson();

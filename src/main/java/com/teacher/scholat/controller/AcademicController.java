@@ -44,6 +44,12 @@ public class AcademicController {
         System.out.println("传来来的参数id为。。。。。。"+id);
         return CommonUtil.successJson(academicService.getPatent(id));
     }
+    @GetMapping("/publicationInfo/{id}")
+    public JSONObject getPublicationInfo(@PathVariable("id") long id){
+        // howHttpRequestContent(request);
+        System.out.println("传来来的参数id为。。。。。。"+id);
+        return CommonUtil.successJson(academicService.getPublication(id));
+    }
 
     @RequestMapping("/getAcademicFromScholat")
     public JSONObject getResearchFromScholat(@RequestBody JSONObject requestJson){

@@ -50,6 +50,7 @@ public interface AcademicDao {
 
     void addProject(JSONObject jsonObject);
     JSONObject getProject(Long id);
+    JSONObject getPublication(Long id);
     void removeProject(JSONObject jsonObject);
     void updateProject(JSONObject jsonObject);
     int countProject(long unitId);
