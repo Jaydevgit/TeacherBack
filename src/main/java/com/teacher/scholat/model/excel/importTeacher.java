@@ -5,7 +5,7 @@ import com.alibaba.excel.annotation.write.style.ColumnWidth;
 
 @ColumnWidth(15)
 public class importTeacher {
-    @ExcelProperty(value = "姓名", index = 0)
+    @ExcelProperty(value = "姓名(必填)", index = 0)
     private String username;
     @ExcelProperty(value = "性别", index = 1)
     private String sex;
@@ -33,7 +33,7 @@ public class importTeacher {
     @ExcelProperty(value = "办公电话", index = 8)
     private String phone;
     @ColumnWidth(25)
-    @ExcelProperty(value = "邮箱", index = 9)
+    @ExcelProperty(value = "邮箱(必填)", index = 9)
     private String email;
     @ColumnWidth(100)
     @ExcelProperty(value = "研究方向", index = 10)
