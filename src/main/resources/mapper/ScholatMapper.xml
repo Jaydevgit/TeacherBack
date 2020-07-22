@@ -308,7 +308,7 @@ WHERE
         state,
         update_time)
         VALUES
-        (#{school_id},
+        (#{school_profile_id},
         "school",
         #{username},
         #{chinese_name},
