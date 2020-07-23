@@ -18,11 +18,24 @@ public class PermissionServiceImpl implements PermissionService {
 	private PermissionDao permissionDao;
 
 	/**
-	 * 查询某用户的 角色  菜单列表   权限列表
+	 * 查询某学院用户的 角色  菜单列表   权限列表
 	 */
 	@Override
 	public JSONObject getUserPermission(String username) {
 		JSONObject userPermission = getUserPermissionFromDB(username);
+		return userPermission;
+	}
+
+	/**
+	 * 查询某学校用户的 角色  菜单列表   权限列表
+	 */
+	@Override
+	public JSONObject getSchoolUserPermission(String username) {
+		System.out.println("permisionImpl的getSchoolUserPermission方法，准备去数据库查询 "+username+" 的权限");
+		// 获取到的登录用户的用户信息
+		JSONObject userPermission = permissionDao.getSchoolUserPermission(username);
+		System.out.println("找到的学校id为："+userPermission.get("schoolId"));
+		System.out.println("该学校管理员的权限为："+userPermission);
 		return userPermission;
 	}
 

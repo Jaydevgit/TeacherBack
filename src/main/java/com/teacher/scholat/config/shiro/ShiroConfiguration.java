@@ -66,6 +66,7 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/unit/getTeacherBySubject","anon");
 		filterChainDefinitionMap.put("/unit/getUnitBytDomain_name","anon");
 		filterChainDefinitionMap.put("/static/**", "anon");
+		filterChainDefinitionMap.put("/login/**","anon");
 		filterChainDefinitionMap.put("/login/auth", "anon");
 		filterChainDefinitionMap.put("/scholat/login/auth", "anon");
 		filterChainDefinitionMap.put("/scholat/apply/**", "anon");
@@ -86,6 +87,13 @@ public class ShiroConfiguration {
 		return userRealm;
 	}
 
+	@Bean(name = "SchoolUserRealm")
+	public SchoolUserRealm schoolUserRealm() {
+		SchoolUserRealm schoolUserRealm = new SchoolUserRealm();
+		schoolUserRealm.setCredentialsMatcher(new CustomCredentialsMatcher());
+		return schoolUserRealm;
+	}
+
 	@Bean(name = "scholatRealm")
 	public ScholatRealm scholatRealm(){
 		ScholatRealm scholatRealm = new ScholatRealm();
@@ -104,6 +112,7 @@ public class ShiroConfiguration {
 		List<Realm> realms = new ArrayList<>();
 		//添加多个Realm
 		realms.add(userRealm());
+		realms.add(schoolUserRealm());
 		realms.add(scholatRealm());
 		securityManager.setRealms(realms);
 

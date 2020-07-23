@@ -183,7 +183,7 @@ public class ScholatController {
         scholatService.addApplyToSchool(apply);
         System.out.println("插入school表的school_id为：" + apply.getSchool_id());
         scholatService.addApplyToSchoolProfile(apply);
-        System.out.println("插入school_profile表的unit_profile_id为：" + apply.getSchool_profile_id());
+        System.out.println("插入school_profile表的school_profile_id为：" + apply.getSchool_profile_id());
         scholatService.addApplySchoolToLogin(apply);
         System.out.println("插入login表的login_id为：" + apply.getLogin_id());
         // ------------------------------------------------------------------

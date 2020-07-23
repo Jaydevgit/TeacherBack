@@ -22,27 +22,50 @@ public class LoginController {
 	private LoginService loginService;
 
 	/**
-	 * 登录, 设置token
+	 * 学院用户登录, 设置token
 	 */
 	@PostMapping("/auth")
 	public JSONObject authLogin(@RequestBody JSONObject requestJson) {
 		CommonUtil.hasAllRequired(requestJson, "username,password");
 		return loginService.authLogin(requestJson);
 	}
+	/**
+	 * 学校用户登录, 设置token
+	 */
+	@PostMapping("/schoolAuth")
+	public JSONObject authSchoolLogin(@RequestBody JSONObject requestJson) {
+		CommonUtil.hasAllRequired(requestJson, "username,password");
+		return loginService.authSchoolLogin(requestJson);
+	}
 
 	/**
-	 * 查询当前登录用户的信息
+	 * 查询当前登录学院用户的信息
 	 */
 	@PostMapping("/getInfo")
 	public JSONObject getInfo() {
 		return loginService.getInfo();
 	}
+	/**
+	 * 查询当前登录学校用户的信息
+	 */
+	@PostMapping("/getSchoolInfo")
+	public JSONObject getSchoolInfo() {
+		return loginService.getSchoolInfo();
+	}
 
 	/**
-	 * 登出
+	 * 学院用户登出
 	 */
 	@PostMapping("/logout")
 	public JSONObject logout() {
 		return loginService.logout();
+	}
+
+	/**
+	 * 学校用户登出
+	 */
+	@PostMapping("/schoolLogout")
+	public JSONObject schoolLogout() {
+		return loginService.schoolLogout();
 	}
 }

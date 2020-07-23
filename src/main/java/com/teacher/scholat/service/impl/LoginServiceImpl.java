@@ -47,9 +47,9 @@ public class LoginServiceImpl implements LoginService {
 
 		JSONObject info = new JSONObject();
 		Subject currentUser = SecurityUtils.getSubject();
-
+		System.out.println("currentUser="+currentUser);
 //		UsernamePasswordToken token = new UsernamePasswordToken(username, password,host);
-		UserToken token = new UserToken(username, password,"User"); // 说明传入的是学院用户
+		UserToken token = new UserToken(username, password,"User"); // 自定义token,用于确定登陆者类型,说明传入的是学院用户
 		try {
 			currentUser.login(token);
 			info.put("result", "success");
@@ -57,6 +57,31 @@ public class LoginServiceImpl implements LoginService {
 			info.put("result", "fail");
 		}
 		System.out.println("看看我发现了什么哈哈哈哈："+SecurityUtils.getSubject().getSession().getAttribute(Constants.SESSION_USER_INFO));
+		return CommonUtil.successJson(info);
+	}
+	@Override
+	public JSONObject authSchoolLogin(JSONObject jsonObject) {
+		String username = jsonObject.getString("username");
+		String password = jsonObject.getString("password");
+		String host = jsonObject.getString("host");
+		System.out.println("------------------ LoginImpl的authSchoolLogin:开始准备登录验证 ----------------------");
+		System.out.println("前台传过来的host（登录角色）值为："+host);
+		// 进行密码加密处理
+		password = MD5Util.inputCompareWithDb(password);
+		System.out.println("学校用户加密后的密码为: "+password);
+
+		JSONObject info = new JSONObject();
+		Subject currentUser = SecurityUtils.getSubject();
+
+//		UsernamePasswordToken token = new UsernamePasswordToken(username, password,host);
+		UserToken token = new UserToken(username, password,"SchoolUser"); // 说明传入的是学校用户
+		try {
+			currentUser.login(token);
+			info.put("result", "success");
+		} catch (AuthenticationException e) {
+			info.put("result", "fail");
+		}
+		System.out.println("看看我发现了什么嘻嘻嘻嘻："+SecurityUtils.getSubject().getSession().getAttribute(Constants.SESSION_SCHOOL_USER_INFO));
 		return CommonUtil.successJson(info);
 	}
 
@@ -73,7 +98,7 @@ public class LoginServiceImpl implements LoginService {
 	 */
 	@Override
 	public JSONObject getInfo() {
-		System.out.println("------------- LoginImpl：验证密码成功 ---------------");
+		System.out.println("------------- LoginImpl：验证密码成功 执行getInfo，查询当前登录用户的权限等信息---------------");
 		System.out.println("准备查询权限");
 		//从session获取用户信息
 		Session session = SecurityUtils.getSubject().getSession();
@@ -86,6 +111,27 @@ public class LoginServiceImpl implements LoginService {
 			JSONObject userPermission = permissionService.getUserPermission(username);
 			System.out.println("查询到的权限为："+userPermission);
 			session.setAttribute(Constants.SESSION_USER_PERMISSION, userPermission);
+			info.put("userPermission", userPermission);
+			return CommonUtil.successJson(info);
+		}else {
+			return CommonUtil.errorJson(ErrorEnum.E_20011);
+		}
+	}
+	@Override
+	public JSONObject getSchoolInfo() {
+		System.out.println("------------- LoginImpl：验证密码成功 执行getSchoolInfo，查询当前登录用户的权限等信息---------------");
+		System.out.println("准备查询权限");
+		//从session获取用户信息
+		Session session = SecurityUtils.getSubject().getSession();
+		JSONObject userInfo = (JSONObject) session.getAttribute(Constants.SESSION_SCHOOL_USER_INFO);
+		System.out.println("登录的用户信息为："+userInfo);
+		if(userInfo!=null){
+			String username = userInfo.getString("username");
+			System.out.println("需要查询权限的用户名为： "+username);
+			JSONObject info = new JSONObject();
+			JSONObject userPermission = permissionService.getSchoolUserPermission(username);
+			System.out.println("查询到的权限为："+userPermission);
+			session.setAttribute(Constants.SESSION_SCHOOL_USER_PERMISSION, userPermission);
 			info.put("userPermission", userPermission);
 			return CommonUtil.successJson(info);
 		}else {
@@ -105,6 +151,19 @@ public class LoginServiceImpl implements LoginService {
 			Session session = SecurityUtils.getSubject().getSession();
 			session.setAttribute(Constants.SESSION_USER_INFO, "userInfo");
 			session.setAttribute(Constants.SESSION_USER_PERMISSION, "userPermission");
+		} catch (Exception e) {
+		}
+		return CommonUtil.successJson();
+	}
+	@Override
+	public JSONObject schoolLogout() {
+		try {
+			/*Subject currentUser = SecurityUtils.getSubject();
+			currentUser.logout();*/
+			// 清除session中的信息
+			Session session = SecurityUtils.getSubject().getSession();
+			session.setAttribute(Constants.SESSION_SCHOOL_USER_INFO, "schoolUserInfo");
+			session.setAttribute(Constants.SESSION_SCHOOL_USER_PERMISSION, "schoolUserPermission");
 		} catch (Exception e) {
 		}
 		return CommonUtil.successJson();
