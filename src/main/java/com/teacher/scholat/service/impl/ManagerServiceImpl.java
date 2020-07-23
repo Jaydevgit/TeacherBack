@@ -47,16 +47,16 @@ public class ManagerServiceImpl implements ManagerService {
     /**
      * 新增教师
      */
-    @CacheEvict(value = "FacultyTeacherAll", allEntries=true)
+    @CacheEvict(value = "FacultyTeacherAll",key = "'Faculty'+#teacher.getUnit_id()")
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int addTeacher(Teacher teacher) {
         int id = managerDao.addTeacher(teacher);
-        System.out.println(id);
+        System.out.println("teacher.getUnit_id()="+teacher.getUnit_id());
         return id;
     }
 
-    @CacheEvict(value = "FacultyTeacherAll", allEntries=true)
+    @CacheEvict(value = "FacultyTeacherAll",key = "'Faculty'+#jsonObject.getLongValue(\"unit_id\")")
     @Override
     public int addImportTeacher(JSONObject jsonObject) {
         int id = managerDao.addImportTeacher(jsonObject);
@@ -64,7 +64,7 @@ public class ManagerServiceImpl implements ManagerService {
         return id;
     }
 
-    @CacheEvict(value = "FacultyTeacherAll", allEntries=true)
+    @CacheEvict(value = "FacultyTeacherAll",key = "'Faculty'+#jsonObject.getLongValue(\"unitId\")")
     @Override
     public int deleteTeacher(JSONObject jsonObject) {
         return managerDao.deleteTeacher(jsonObject);
@@ -243,7 +243,6 @@ public class ManagerServiceImpl implements ManagerService {
     /**
      * 更新教师
      */
-    @CacheEvict(value = "FacultyTeacherAll", allEntries=true)
     @Override
     @Transactional(rollbackFor = Exception.class)
     public JSONObject updateTeacher(JSONObject jsonObject) {
@@ -475,7 +474,6 @@ public class ManagerServiceImpl implements ManagerService {
         }
     }
 
-    @CacheEvict(value = "FacultyTeacherAll", allEntries=true)
     @Override
     public void importTeacher(MultipartFile file, ManagerService managerService,int unitId,String editName) {
         try {
