@@ -475,7 +475,7 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
-    public void importTeacher(MultipartFile file, ManagerService managerService,int unitId,String editName) {
+    public void importTeacher(MultipartFile file, ManagerService managerService,Long unitId,String editName) {
         try {
             InputStream in=file.getInputStream();
             EasyExcel.read(in, importTeacher.class,new teacherExcelListen(managerService,unitId,editName)).sheet().doRead();

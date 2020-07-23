@@ -9,6 +9,7 @@ import com.teacher.scholat.service.ManagerService;
 import com.teacher.scholat.util.CommonUtil;
 import com.teacher.scholat.util.PinyinUtil;
 import com.teacher.scholat.util.constants.ErrorEnum;
+import org.apache.commons.lang3.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,12 +26,12 @@ public class teacherExcelListen extends AnalysisEventListener<importTeacher> {
 
 
     public ManagerService managerService;
-    public int unitId;
+    public Long unitId;
     public String editName;
     public teacherExcelListen( ) {
         this.managerService = managerService;
     }
-    public teacherExcelListen(ManagerService managerService,int  unitId,String editName) {
+    public teacherExcelListen(ManagerService managerService,Long  unitId,String editName) {
         this.managerService = managerService;
         this.unitId=unitId;
         this.editName=editName;
@@ -92,7 +93,7 @@ public class teacherExcelListen extends AnalysisEventListener<importTeacher> {
 
                 jsonObject.put("domain_name",domain);
                 int sexNum=0;
-                if(importTeacher.getSex().equals("女")){
+                if(!StringUtils.isBlank(importTeacher.getSex())&&importTeacher.getSex().equals("女")){
                     sexNum=1;
                 }
                 String username = importTeacher.getUsername();

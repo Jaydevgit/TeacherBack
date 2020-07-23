@@ -397,7 +397,7 @@ public void getExcel2(HttpServletRequest request,HttpServletResponse response) t
 			}
 		}
 	@PostMapping("/excel/import")
-	public JSONObject addSubject(MultipartFile file, @RequestParam("unitId") int unitId,@RequestParam("editName") String editName){
+	public JSONObject addSubject(MultipartFile file, @RequestParam("unitId") Long unitId,@RequestParam("editName") String editName){
 		System.out.println("aaaa"+editName);
 		managerService.importTeacher(file,managerService,unitId,editName);
 		return CommonUtil.successJson();
