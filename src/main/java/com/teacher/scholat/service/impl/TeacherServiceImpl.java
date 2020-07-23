@@ -72,7 +72,7 @@ public class TeacherServiceImpl implements TeacherService {
         return CommonUtil.successPage(jsonObject, list, count);
     }
 
-    @Cacheable(value = "FacultyTeacherAll", key = "'listFacultyTeacherAll'")
+    @Cacheable(value = "FacultyTeacherAll", key = "#jsonObject.getLongValue(\"unitId\")+'listFacultyTeacherAll'")
     @Override
     public JSONObject listTeacherAll(JSONObject jsonObject) {
         System.out.println("前端传过来的教师列表要求为: "+jsonObject);
