@@ -14,6 +14,7 @@ import com.teacher.scholat.service.ManagerService;
 import com.teacher.scholat.util.CommonUtil;
 import com.teacher.scholat.util.GetScholatProfile;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,6 +47,7 @@ public class ManagerServiceImpl implements ManagerService {
     /**
      * 新增教师
      */
+    @CacheEvict(value = "FacultyTeacherAll", allEntries=true)
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int addTeacher(Teacher teacher) {
@@ -53,6 +55,8 @@ public class ManagerServiceImpl implements ManagerService {
         System.out.println(id);
         return id;
     }
+
+    @CacheEvict(value = "FacultyTeacherAll", allEntries=true)
     @Override
     public int addImportTeacher(JSONObject jsonObject) {
         int id = managerDao.addImportTeacher(jsonObject);
@@ -60,6 +64,7 @@ public class ManagerServiceImpl implements ManagerService {
         return id;
     }
 
+    @CacheEvict(value = "FacultyTeacherAll", allEntries=true)
     @Override
     public int deleteTeacher(JSONObject jsonObject) {
         return managerDao.deleteTeacher(jsonObject);
@@ -238,6 +243,7 @@ public class ManagerServiceImpl implements ManagerService {
     /**
      * 更新教师
      */
+    @CacheEvict(value = "FacultyTeacherAll", allEntries=true)
     @Override
     @Transactional(rollbackFor = Exception.class)
     public JSONObject updateTeacher(JSONObject jsonObject) {
@@ -469,7 +475,7 @@ public class ManagerServiceImpl implements ManagerService {
         }
     }
 
-
+    @CacheEvict(value = "FacultyTeacherAll", allEntries=true)
     @Override
     public void importTeacher(MultipartFile file, ManagerService managerService,int unitId,String editName) {
         try {

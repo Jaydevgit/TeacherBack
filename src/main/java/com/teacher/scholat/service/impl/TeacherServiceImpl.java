@@ -7,6 +7,7 @@ import com.teacher.scholat.dao.TeacherDao;
 import com.teacher.scholat.service.LoginService;
 import com.teacher.scholat.service.TeacherService;
 import com.teacher.scholat.util.CommonUtil;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -71,6 +72,7 @@ public class TeacherServiceImpl implements TeacherService {
         return CommonUtil.successPage(jsonObject, list, count);
     }
 
+    @Cacheable(value = "FacultyTeacherAll", key = "'listFacultyTeacherAll'")
     @Override
     public JSONObject listTeacherAll(JSONObject jsonObject) {
         System.out.println("前端传过来的教师列表要求为: "+jsonObject);
@@ -80,6 +82,7 @@ public class TeacherServiceImpl implements TeacherService {
         List<JSONObject> list = teacherDao.listTeacherAll(jsonObject);
         return CommonUtil.successPage(list);
     }
+
 
     @Override
     public JSONObject listTeacherByUnitDomain(JSONObject jsonObject) {
