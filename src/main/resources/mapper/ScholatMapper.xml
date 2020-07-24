@@ -191,10 +191,12 @@ WHERE
         INSERT INTO school
         (school_name,
         school_domain,
+        state,
         logo_url)
         VALUES
         (#{school_name},
         #{school_domain},
+        1,
         #{certificate_logo})
         <selectKey resultType="int" keyProperty="unit_id" order="AFTER">
             SELECT LAST_INSERT_ID()
@@ -261,7 +263,7 @@ WHERE
         #{username},
         #{password},
         #{school_id},
-        1,
+        37,
         1,
         #{update_time},
         #{update_time},
