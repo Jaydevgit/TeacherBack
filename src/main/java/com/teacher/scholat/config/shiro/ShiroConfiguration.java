@@ -69,6 +69,7 @@ public class ShiroConfiguration {
 		filterChainDefinitionMap.put("/login/**","anon");
 		filterChainDefinitionMap.put("/login/auth", "anon");
 		filterChainDefinitionMap.put("/scholat/login/auth", "anon");
+		filterChainDefinitionMap.put("/school/**", "anon");
 		filterChainDefinitionMap.put("/scholat/apply/**", "anon");
 		filterChainDefinitionMap.put("/login/logout", "anon");
 		filterChainDefinitionMap.put("/error", "anon");

@@ -13,6 +13,8 @@
         <result column="roleName" property="roleName"/>
         <result column="domainName" property="domainName"/>
         <result column="tagState" property="tagState"/>
+        <result column="schoolId" property="schoolId"/>
+        <result column="schoolDomain" property="schoolDomain"/>
         <collection property="menuList" ofType="String">
             <id column="menuCode" property="menuCode"/>
         </collection>
@@ -69,13 +71,13 @@
 
     <select id="getSchoolUserPermission" resultMap="permissionMap">
         SELECT
+        k.school_id schoolId,
+        k.school_domain schoolDomain,
         k.id userId,
         k.nickname nickname,
         k.username username,
         k.role_id roleId,
-        k.school_id schoolId,
         k.role_name roleName,
-        k.school_domain schoolDomain,
         p.menu_code menuCode,
         p.permission_code permissionCode
         FROM
