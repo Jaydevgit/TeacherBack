@@ -8,5 +8,11 @@ import com.alibaba.fastjson.JSONObject;
  * @date:
  */
 public interface SchoolService {
+    /**
+     * 学校教师列表
+     */
+    JSONObject listTeacher(JSONObject request2Json);
     JSONObject getSchoolInfo(JSONObject jsonObject);
+
+
 }

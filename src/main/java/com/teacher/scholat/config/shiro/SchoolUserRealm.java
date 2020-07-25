@@ -33,7 +33,7 @@ public class SchoolUserRealm extends AuthorizingRealm {
     @Override
     @SuppressWarnings("unchecked")
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        System.out.println("*****************进入unit权限查询*****************");
+        System.out.println("*****************进入school权限查询*****************");
         System.out.println("查询的用户名为：" + principals);
         Session session = SecurityUtils.getSubject().getSession();
         //查询用户的权限
@@ -42,12 +42,12 @@ public class SchoolUserRealm extends AuthorizingRealm {
         //System.out.println((JSONObject) session.getAttribute(Constants.SESSION_SCHOLAT_PERMISSION));
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         JSONObject permission = new JSONObject();
-        if (session.getAttribute(Constants.SESSION_USER_INFO) == null
-                ||session.getAttribute(Constants.SESSION_USER_INFO).toString().equals("userInfo")) {
+        if (session.getAttribute(Constants.SESSION_SCHOOL_USER_INFO) == null
+                ||session.getAttribute(Constants.SESSION_SCHOOL_USER_INFO).toString().equals("userInfo")) {
             System.out.println("用户表信息为空，说明没有用户登录");
             permission = null;
         } else {
-            permission = (JSONObject) session.getAttribute(Constants.SESSION_USER_PERMISSION);
+            permission = (JSONObject) session.getAttribute(Constants.SESSION_SCHOOL_USER_PERMISSION);
         }
         if (permission != null) {
             logger.info("permission的值为:" + permission);

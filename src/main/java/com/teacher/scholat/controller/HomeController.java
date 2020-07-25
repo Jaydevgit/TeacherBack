@@ -27,7 +27,7 @@ public class HomeController {
     public JSONObject getUnitBySchoolDomain(@PathVariable("schoolDomain") String schoolDomain){
         System.out.println("传来来的学校域名为。。。。。。"+schoolDomain);
         List<JSONObject> unitList = unitService.getUnitBySchoolDomain(schoolDomain);
-        System.out.println("unitList=。。。。。。"+unitList);
+        System.out.println("schoolList=。。。。。。"+unitList);
         return CommonUtil.successJson(unitList);
     }
 
