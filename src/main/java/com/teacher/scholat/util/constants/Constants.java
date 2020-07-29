@@ -19,6 +19,12 @@ public class Constants {
 	/**
 	 * session中存放用户信息的key值
 	 */
+	public static final String SESSION_SCHOOL_USER_INFO = "schoolUserInfo";
+	public static final String SESSION_SCHOOL_USER_PERMISSION = "schoolUserPermission";
+
+	/**
+	 * session中存放用户信息的key值
+	 */
 	public static final String SESSION_SCHOLAT_INFO = "scholatInfo";
 	public static final String SESSION_SCHOLAT_PERMISSION = "scholatPermission";
 

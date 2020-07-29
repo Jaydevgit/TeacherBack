@@ -13,6 +13,8 @@
         <result column="roleName" property="roleName"/>
         <result column="domainName" property="domainName"/>
         <result column="tagState" property="tagState"/>
+        <result column="schoolId" property="schoolId"/>
+        <result column="schoolDomain" property="schoolDomain"/>
         <collection property="menuList" ofType="String">
             <id column="menuCode" property="menuCode"/>
         </collection>
@@ -66,6 +68,51 @@
         ) k
         LEFT JOIN sys_permission p ON k.pId = p.id
     </select>
+
+    <select id="getSchoolUserPermission" resultMap="permissionMap">
+        SELECT
+        k.school_id schoolId,
+        k.school_domain schoolDomain,
+        k.id userId,
+        k.nickname nickname,
+        k.username username,
+        k.role_id roleId,
+        k.role_name roleName,
+        p.menu_code menuCode,
+        p.permission_code permissionCode
+        FROM
+        (
+        SELECT
+        a.*,
+        substring_index( substring_index( a.permission_ids, ',', b.help_topic_id + 1 ), ',',- 1 ) pId
+        FROM
+        (
+        SELECT
+        t.*,
+        sys_role.role_name,
+        sys_role.permission_ids
+        FROM
+        (
+        SELECT
+        u.id,
+        u.nickname,
+        u.username,
+        u.role_id,
+        u.school_id,
+        u.school_domain
+        FROM
+        school_profile u
+        inner JOIN school s ON u.username = #{username}
+        AND u.state = '1'
+        AND s.id = u.school_id
+        ) t
+        LEFT JOIN sys_role ON t.role_id = sys_role.id
+        ) a
+        JOIN mysql.help_topic b ON b.help_topic_id &lt; ( length( a.permission_ids ) - length( REPLACE ( a.permission_ids, ',', '' ) ) + 1 )
+        ) k
+        LEFT JOIN sys_permission p ON k.pId = p.id
+    </select>
+
     <select id="getScholatPermission" resultMap="permissionMap">
     SELECT
           k.id                       userId,

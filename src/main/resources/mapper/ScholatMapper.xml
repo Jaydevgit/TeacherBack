@@ -191,12 +191,14 @@ WHERE
         INSERT INTO school
         (school_name,
         school_domain,
+        state,
         logo_url)
         VALUES
         (#{school_name},
         #{school_domain},
+        1,
         #{certificate_logo})
-        <selectKey resultType="int" keyProperty="unit_id" order="AFTER">
+        <selectKey resultType="int" keyProperty="school_id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
@@ -261,7 +263,7 @@ WHERE
         #{username},
         #{password},
         #{school_id},
-        1,
+        50,
         1,
         #{update_time},
         #{update_time},
@@ -271,7 +273,7 @@ WHERE
         #{phone},
         #{email},
         #{school_domain})
-        <selectKey resultType="int" keyProperty="unit_profile_id" order="AFTER">
+        <selectKey resultType="int" keyProperty="school_profile_id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
     </insert>
@@ -308,7 +310,7 @@ WHERE
         state,
         update_time)
         VALUES
-        (#{school_id},
+        (#{school_profile_id},
         "school",
         #{username},
         #{chinese_name},

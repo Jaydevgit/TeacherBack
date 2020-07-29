@@ -10,9 +10,14 @@ import java.util.Set;
  */
 public interface PermissionDao {
 	/**
-	 * 查询用户的角色 菜单 权限
+	 * 查询学院用户的角色 菜单 权限
 	 */
 	JSONObject getUserPermission(String username);
+
+	/**
+	 * 查询学校用户的角色 菜单 权限
+	 */
+	JSONObject getSchoolUserPermission(String username);
 
 	/**
 	 * 查询学者网用户的基本信息 菜单 权限
@@ -28,4 +33,6 @@ public interface PermissionDao {
 	 * 查询所有的权限
 	 */
 	Set<String> getAllPermission();
+
+
 }

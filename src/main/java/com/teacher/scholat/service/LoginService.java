@@ -12,6 +12,7 @@ public interface LoginService {
 	 * 登录表单提交
 	 */
 	JSONObject authLogin(JSONObject jsonObject);
+	JSONObject authSchoolLogin(JSONObject requestJson);
 
 	/**
 	 * 根据用户名和密码查询对应的用户
@@ -25,9 +26,11 @@ public interface LoginService {
 	 * 查询当前登录用户的权限等信息
 	 */
 	JSONObject getInfo();
+	JSONObject getSchoolInfo();
 
 	/**
 	 * 退出登录
 	 */
 	JSONObject logout();
+	JSONObject schoolLogout();
 }
