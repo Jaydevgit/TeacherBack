@@ -14,5 +14,8 @@ public interface SchoolService {
     JSONObject listTeacher(JSONObject request2Json);
     JSONObject getSchoolInfo(JSONObject jsonObject);
 
-
+    /**
+     * 模糊搜索教师
+     */
+    JSONObject searchTeacher(JSONObject request2Json);
 }

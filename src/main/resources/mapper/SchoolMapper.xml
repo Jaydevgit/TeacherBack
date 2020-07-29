@@ -69,4 +69,49 @@
         </if>
         LIMIT #{offSet},#{pageRow}
     </select>
+    <select id="countKeyTeacher" resultType="Integer">
+        SELECT count(0)
+        FROM teacher_profile t
+        WHERE t.state = '1'
+        AND t.unit_id IN (SELECT id FROM school_unit
+                WHERE school_unit.school_domain IN
+                (SELECT school_domain FROM school WHERE school.id=#{schoolId}))
+        AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
+    </select>
+    <select id="searchTeacher" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        t.id                                      id,
+        t.username                                name,
+        t.email                                   email,
+        t.avatar                                  avatar,
+        t.state                                   state,
+        t.views                                   views,
+        t.post                                    post,
+        t.scholat_username                        scholat_username,
+        t.domain_name                        domainName,
+        date_format(t.update_time, '%Y.%m.%d %T') update_time,
+        date_format(t.create_time, '%Y.%m.%d %T') create_time
+        FROM teacher_profile t
+        WHERE
+        t.unit_id IN (SELECT id FROM school_unit
+                WHERE school_unit.school_domain IN
+                (SELECT school_domain FROM school WHERE school.id=#{schoolId}))
+        AND(t.username LIKE CONCAT('%', #{key}, '%')
+        OR  t.post LIKE CONCAT('%', #{key}, '%')
+        OR  t.phone LIKE CONCAT('%', #{key}, '%')
+        OR  t.email LIKE CONCAT('%', #{key}, '%')
+        OR  t.degree LIKE CONCAT('%', #{key}, '%')
+        OR  t.scholat_username LIKE CONCAT('%', #{key}, '%')
+        OR  t.research_direction LIKE CONCAT('%', #{key}, '%')
+        )
+        ORDER BY scholat_update_time desc
+        LIMIT #{offSet},#{pageRow}
+    </select>
 </mapper>

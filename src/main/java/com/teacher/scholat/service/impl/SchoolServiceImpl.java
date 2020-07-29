@@ -73,4 +73,46 @@ public class SchoolServiceImpl implements SchoolService {
         System.out.println("获取到的school------"+school);
         return CommonUtil.successJson(school);
     }
+    /**
+     * 模糊搜索教师
+     */
+    @Override
+    public JSONObject searchTeacher(JSONObject jsonObject) {
+        System.out.println("搜索 ==========> 学校前端传过来的教师列表要求为: ");
+        System.out.println(jsonObject);
+        CommonUtil.fillPageParam(jsonObject);
+        int count = schoolDao.countKeyTeacher(jsonObject);
+        System.out.println("........有" + count + "位教师");
+
+
+        List<JSONObject> list = schoolDao.searchTeacher(jsonObject);
+        for(JSONObject jsonObject1:list){
+            String username = jsonObject1.getString("scholat_username");
+            String email = jsonObject1.getString("email");
+            JSONArray jsonArray = GetScholatProfile.getScholatProfileByUserName(username);
+            JSONObject jsonObject2 = new JSONObject();
+            if(jsonArray!=null && jsonArray.size()>0){
+                jsonObject2 = jsonArray.getJSONObject(0);
+                System.out.println(jsonObject2);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                SimpleDateFormat strFormat = new SimpleDateFormat("yyyyMMddHHmm");
+                String str = jsonObject2.getString("introUpdateTime");
+                Date date = new Date();
+                String time;
+                try {
+                    date = strFormat.parse(str);
+                    time = dateFormat.format(date); //可以把日期转换转指定格式的字符串
+                } catch (ParseException e) {
+                    time = str;
+                    // e.printStackTrace();
+                }
+                jsonObject1.put("scholat_update_time",time);
+                jsonObject1.put("real_scholat_username", jsonObject2.getString("acc_name"));
+            }else {
+                jsonObject1.put("scholat_update_time", "");
+                jsonObject1.put("real_scholat_username", "");
+            }
+        }
+        return CommonUtil.successPage(jsonObject, list, count);
+    }
 }

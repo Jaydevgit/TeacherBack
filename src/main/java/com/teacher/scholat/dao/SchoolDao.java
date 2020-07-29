@@ -18,4 +18,14 @@ public interface SchoolDao {
     List<JSONObject> listTeacherLocal(JSONObject jsonObject);
     //获取学院基本信息
     JSONObject getSchoolInfo(JSONObject object);
+    /**
+     * 统计搜索结果
+     * @param object
+     * @return
+     */
+    int countKeyTeacher(JSONObject object);
+    /**
+     * 模糊搜索教师
+     */
+    List<JSONObject> searchTeacher(JSONObject jsonObject);
 }
