@@ -100,6 +100,14 @@ public class UserServiceImpl implements UserService {
 		userDao.updateSelfUserToLogin(jsonObject);
 		return CommonUtil.successJson();
 	}
+	@Override
+	public JSONObject updateSchoolSelfPass(JSONObject jsonObject) {
+		System.out.println("updateSchoolUser........"+jsonObject);
+		userDao.updateSchoolSelfUser(jsonObject);
+		System.out.println("现在准备更新用户信息到登录表");
+		userDao.updateSchoolSelfUserToLogin(jsonObject);
+		return CommonUtil.successJson();
+	}
 
 	/**
 	 * 角色列表
@@ -252,9 +260,21 @@ public class UserServiceImpl implements UserService {
 		return CommonUtil.successJson(userDao.getInfo(jsonObject));
 	}
 	@Override
+	public JSONObject getSchoolUserInfo(JSONObject jsonObject) {
+		System.out.println("查询学校用户基本信息");
+
+		return CommonUtil.successJson(userDao.getSchoolUserInfo(jsonObject));
+	}
+	@Override
 	public JSONObject updateInfo(JSONObject jsonObject) {
 		System.out.println("更新用户基本信息");
 		userDao.updateInfo(jsonObject);
+		return CommonUtil.successJson();
+	}
+	@Override
+	public JSONObject updateSchoolUserInfo(JSONObject jsonObject) {
+		System.out.println("更新学校用户基本信息");
+		userDao.updateSchoolUserInfo(jsonObject);
 		return CommonUtil.successJson();
 	}
 }

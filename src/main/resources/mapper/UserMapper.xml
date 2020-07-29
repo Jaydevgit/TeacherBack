@@ -115,6 +115,14 @@
         </if>
         WHERE id = #{userId} and id != 10001
     </update>
+    <update id="updateSchoolSelfUser">
+        UPDATE school_profile
+        SET
+        <if test="password !='' and password !=null">
+            password = #{password}
+        </if>
+        WHERE id = #{schoolUserId} and id != 10001
+    </update>
     <update id="updateUserToLogin">
         UPDATE login
         SET
@@ -125,6 +133,7 @@
         , state = #{state}
         WHERE user_id = #{userId} and role="unit"
     </update>
+
     <update id="updateSelfUserToLogin">
         UPDATE login
         SET
@@ -132,6 +141,14 @@
              password = #{password}
         </if>
         WHERE user_id = #{userId} and role="unit"
+    </update>
+    <update id="updateSchoolSelfUserToLogin">
+        UPDATE login
+        SET
+        <if test="password !='' and password !=null">
+            password = #{password}
+        </if>
+        WHERE user_id = #{schoolUserId} and role="school"
     </update>
 
     <resultMap id="roleMap" type="com.teacher.scholat.util.model.One2Many">
@@ -248,9 +265,22 @@
          from unit_profile u
         WHERE id = #{userId}
     </select>
+    <select id="getSchoolUserInfo" resultType="com.alibaba.fastjson.JSONObject">
+        select
+        sp.nickname nickname,
+        sp.phone phone,
+        sp.email email
+         from school_profile sp
+        WHERE id = #{schoolUserId}
+    </select>
     <update id="updateInfo">
         UPDATE    unit_profile
         SET       nickname = #{chinese_name} , phone = #{phone},email=#{email}
         WHERE     id = #{userId}
+    </update>
+    <update id="updateSchoolUserInfo">
+        UPDATE    school_profile
+        SET       nickname = #{chinese_name} , phone = #{phone},email=#{email}
+        WHERE     id = #{schoolUserId}
     </update>
 </mapper>

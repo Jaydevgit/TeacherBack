@@ -59,11 +59,12 @@ public interface UserDao {
 	 * 修改用户
 	 */
 	int updateSelfUser(JSONObject jsonObject);
-	/*
+	int updateSchoolSelfUser(JSONObject jsonObject);
+	/**
 	 * 修改用户的登录表
-	 * */
+	 */
 	int updateSelfUserToLogin(JSONObject jsonObject);
-
+	int updateSchoolSelfUserToLogin(JSONObject jsonObject);
 
 	/**
 	 * 角色列表
@@ -114,10 +115,12 @@ public interface UserDao {
 	 * 查询用户基本信息
 	 */
 	JSONObject getInfo(JSONObject jsonObject);
+	JSONObject getSchoolUserInfo(JSONObject jsonObject);
 	/**
 	 * 更新用户基本信息
 	 */
 	int updateInfo(JSONObject jsonObject);
+	int updateSchoolUserInfo(JSONObject jsonObject);
 
 	/**
 	 * 删除角色
@@ -130,4 +133,7 @@ public interface UserDao {
 	int removeRoleAllPermission(JSONObject jsonObject);
 
 	int updateRole(JSONObject jsonObject);
+
+
+
 }

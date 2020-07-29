@@ -39,6 +39,7 @@ public interface UserService {
 	 * 本用户,自己修改密码
 	 */
 	JSONObject updateSelfPass(JSONObject jsonObject);
+	JSONObject updateSchoolSelfPass(JSONObject requestJson);
 
 	/**
 	 * 角色列表
@@ -67,5 +68,9 @@ public interface UserService {
 	JSONObject deleteRole(JSONObject jsonObject);
 
 	JSONObject getInfo(JSONObject jsonObject);
+	JSONObject getSchoolUserInfo(JSONObject requestJson);
 	JSONObject updateInfo(JSONObject jsonObject);
+	JSONObject updateSchoolUserInfo(JSONObject requestJson);
+
+
 }

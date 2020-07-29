@@ -62,13 +62,29 @@ public class UserController {
 		System.out.println("加密后："+requestJson.get("password").toString());
 		return userService.updateSelfPass(requestJson);
 	}
+	@PostMapping("/updateSchoolSelfPass")
+	public JSONObject updateSchoolSelfPass(@RequestBody JSONObject requestJson) {
+		System.out.println("加密前"+requestJson.get("password").toString());
+		String newPassword = MD5Util.toDb(requestJson.get("password").toString());
+		requestJson.put("password",newPassword);
+		System.out.println("加密后："+requestJson.get("password").toString());
+		return userService.updateSchoolSelfPass(requestJson);
+	}
 	@PostMapping("/getInfo")
 	public JSONObject getInfo(@RequestBody JSONObject requestJson) {
 		return userService.getInfo(requestJson);
 	}
+	@PostMapping("/getSchoolUserInfo")
+	public JSONObject getSchoolUserInfo(@RequestBody JSONObject requestJson) {
+		return userService.getSchoolUserInfo(requestJson);
+	}
 	@PostMapping("/updateInfo")
 	public JSONObject updateInfo(@RequestBody JSONObject requestJson) {
 		return userService.updateInfo(requestJson);
+	}
+	@PostMapping("/updateSchoolUserInfo")
+	public JSONObject updateSchoolUserInfo(@RequestBody JSONObject requestJson) {
+		return userService.updateSchoolUserInfo(requestJson);
 	}
 
 	@RequiresPermissions(value = {"user:add", "user:update"}, logical = Logical.OR)
