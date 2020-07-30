@@ -78,5 +78,5 @@ public interface ManagerService {
     void exportTeacher(HttpServletRequest request,HttpServletResponse response) throws IOException;
 	void exportTeacher2(HttpServletRequest request,HttpServletResponse response) throws IOException;
 
-	void importTeacher(MultipartFile file, ManagerService managerService,int unitId,String editName);
+	void importTeacher(MultipartFile file, ManagerService managerService,Long unitId,String editName);
 }
