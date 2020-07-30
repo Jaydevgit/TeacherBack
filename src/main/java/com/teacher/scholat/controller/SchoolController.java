@@ -7,9 +7,7 @@ import com.teacher.scholat.service.UnitService;
 import com.teacher.scholat.util.CommonUtil;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,5 +41,10 @@ public class SchoolController {
     public JSONObject searchTeacher(HttpServletRequest request) {
 
         return schoolService.searchTeacher(CommonUtil.request2Json(request));
+    }
+
+    @PostMapping("/updateSchoolInfo")
+    public JSONObject updateSchoolInfo(@RequestBody JSONObject requestJson){
+        return schoolService.updateSchoolInfo(requestJson);
     }
 }

@@ -114,4 +114,11 @@
         ORDER BY scholat_update_time desc
         LIMIT #{offSet},#{pageRow}
     </select>
+
+    <update id="updateSchoolInfo">
+        update school
+        SET school_url = #{schoolUrl},
+        school_eng=#{schoolEng}
+        WHERE id = #{schoolId}
+    </update>
 </mapper>

@@ -115,4 +115,10 @@ public class SchoolServiceImpl implements SchoolService {
         }
         return CommonUtil.successPage(jsonObject, list, count);
     }
+
+    @Override
+    public JSONObject updateSchoolInfo(JSONObject object) {
+        schoolDao.updateSchoolInfo(object);
+        return CommonUtil.successJson();
+    }
 }

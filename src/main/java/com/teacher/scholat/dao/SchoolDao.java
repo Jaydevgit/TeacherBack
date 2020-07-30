@@ -28,4 +28,6 @@ public interface SchoolDao {
      * 模糊搜索教师
      */
     List<JSONObject> searchTeacher(JSONObject jsonObject);
+
+    void updateSchoolInfo(JSONObject object);
 }
