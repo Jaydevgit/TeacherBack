@@ -82,6 +82,8 @@ public interface AcademicService {
 
     JSONObject addAllStatistic(JSONObject jsonObject);
 
+    JSONObject getTotal(long unitId);
+
 
 //    JSONObject aiPaper(Long id) throws IOException;
 //

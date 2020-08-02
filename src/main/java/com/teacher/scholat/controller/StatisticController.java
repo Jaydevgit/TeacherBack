@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
 @RequestMapping("/statistic")
-public class Statistic {
+public class StatisticController {
     @Autowired
     AcademicService academicService;
     @Autowired
     UnitService unitService;
 
+    //统计所有个数
     @GetMapping("/total")
     @Transactional(rollbackFor = Exception.class)
     public void total(){
@@ -47,4 +47,11 @@ public class Statistic {
         }
     }
 
+    //查询所有个数
+    @GetMapping("/getTotal/{unitId}")
+    public JSONObject getTotal(@PathVariable("unitId") long unitId){
+        System.out.println("传来来的学院参数id为。。。。。。"+unitId);
+        return CommonUtil.successJson(academicService.getTotal(unitId));
+        }
 }
+

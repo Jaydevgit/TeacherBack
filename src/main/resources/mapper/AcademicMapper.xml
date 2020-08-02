@@ -443,6 +443,14 @@
 <!--    p.views             views,-->
 <!--    t.english_name englishName,-->
 
+    <select id="getTotal"  resultType="com.alibaba.fastjson.JSONObject">
+    SELECT a.paper_total paperTotal,
+    a.project_total projectTotal,
+    a.patent_total patentTotal,
+    a.publication_total publicationTotal
+    From academic_statistic a where unit_id=#{unitId}
+    </select>
+
     <delete id="deletePatentTeacher" >
       DELETE FROM patent_teacher WHERE id = #{id}
     </delete>

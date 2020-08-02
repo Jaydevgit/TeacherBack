@@ -97,4 +97,6 @@ public interface AcademicDao {
     void addAllStatistic(JSONObject jsonObject);
 
     void deleteAllStatistic(int unitId);
+
+    JSONObject getTotal(Long unitId);
 }

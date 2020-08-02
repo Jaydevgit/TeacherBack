@@ -1,6 +1,6 @@
 package com.teacher.scholat.util;
 
-import com.teacher.scholat.controller.Statistic;
+import com.teacher.scholat.controller.StatisticController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 public class ScheduledTask {
 
     @Autowired
-    private Statistic statistic;
+    private StatisticController statisticController;
 
-    @Scheduled(cron = "0 0 16 ? * *")
+    @Scheduled(cron = "0 0 0 ? * *")
     public void task1() {
-      statistic.total();
+        statisticController.total();
     }
 }

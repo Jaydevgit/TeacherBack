@@ -487,6 +487,8 @@ public class AcademicServiceImpl implements AcademicService {
         return CommonUtil.successPage(projectByTeacher);
     }
 
+
+
     @Override
     public JSONObject identifyTeacher(JSONObject jsonObject) {
         String authors = jsonObject.getString("authors").replace(" ","").replace("，",",").replace("、",",");
@@ -579,6 +581,11 @@ public class AcademicServiceImpl implements AcademicService {
     public JSONObject addAllStatistic(JSONObject jsonObject) {
         academicDao.addAllStatistic(jsonObject);
         return CommonUtil.successJson();
+    }
+
+    @Override
+    public JSONObject getTotal(long unitId) {
+        return academicDao.getTotal(unitId);
     }
 
     @Override
