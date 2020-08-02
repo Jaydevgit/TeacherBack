@@ -4,6 +4,7 @@ import com.alibaba.excel.EasyExcel;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.teacher.scholat.dao.AcademicDao;
 import com.teacher.scholat.dao.TeacherDao;
 import com.teacher.scholat.dao.UnitDao;
@@ -586,6 +587,20 @@ public class AcademicServiceImpl implements AcademicService {
     @Override
     public JSONObject getTotal(long unitId) {
         return academicDao.getTotal(unitId);
+    }
+
+    @Override
+    public JSONObject getAllCount(long unitId) {
+        int paperTotal=academicDao.countPaper(unitId);
+        int projectTotal=academicDao.countProject(unitId);
+        int patentTotal=academicDao.countPatent(unitId);
+        int publicationTotal=academicDao.countPublication(unitId);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("paperTotal",paperTotal);
+        jsonObject.put("projectTotal",projectTotal);
+        jsonObject.put("patentTotal",patentTotal);
+        jsonObject.put("publicationTotal",publicationTotal);
+        return jsonObject;
     }
 
     @Override

@@ -84,6 +84,8 @@ public interface AcademicService {
 
     JSONObject getTotal(long unitId);
 
+    JSONObject getAllCount(long unitId);
+
 
 //    JSONObject aiPaper(Long id) throws IOException;
 //
