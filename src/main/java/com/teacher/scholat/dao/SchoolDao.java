@@ -12,10 +12,15 @@ import java.util.List;
 public interface SchoolDao {
     //统计学校教师总数
     int countTeacher(JSONObject jsonObject);
+    int countUnitTeacher(JSONObject jsonObject);
     /**
-     * 教师列表
+     * 学校教师列表
      */
     List<JSONObject> listTeacherLocal(JSONObject jsonObject);
+    /**
+     * 学院教师列表
+     */
+    List<JSONObject> listTeacherByUnit(JSONObject jsonObject);
     //获取学院基本信息
     JSONObject getSchoolInfo(JSONObject object);
     /**
@@ -28,4 +33,12 @@ public interface SchoolDao {
      * 模糊搜索教师
      */
     List<JSONObject> searchTeacher(JSONObject jsonObject);
+
+    void updateSchoolInfo(JSONObject object);
+    /**
+     * 学院列表
+     */
+    List<JSONObject> getUnitList(JSONObject jsonObject);
+
+
 }
