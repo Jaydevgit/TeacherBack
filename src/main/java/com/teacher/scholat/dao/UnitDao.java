@@ -34,5 +34,5 @@ public interface UnitDao {
 	List<JSONObject> getUnitBySchoolDomain(@Param("schoolDomain") String schoolDomain);
 
 
-
+	List<JSONObject> getAllUnit();
 }

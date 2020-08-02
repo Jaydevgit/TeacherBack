@@ -85,6 +85,13 @@
         WHERE u.id = (SELECT t.unit_id FROM teacher_profile t WHERE t.domain_name = #{tDomain_name})
     </select>
 
+    <select id="getAllUnit" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+            u.id                id
+        FROM
+            school_unit u
+    </select>
+
     <select id="getUnitInfoByUnitId" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
             u.username userName,

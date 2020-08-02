@@ -81,4 +81,11 @@ public class UnitServiceImpl implements UnitService {
         return unitBytIdObject;
     }
 
+    @Override
+    public List<JSONObject> getAllUnit(){
+        List<JSONObject> allUnitID = unitDao.getAllUnit();
+
+        return allUnitID;
+    }
+
 }
