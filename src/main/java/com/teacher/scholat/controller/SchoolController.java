@@ -67,4 +67,5 @@ public class SchoolController {
         System.out.println(CommonUtil.request2Json(request));
         return schoolService.getUnitList(CommonUtil.request2Json(request));
     }
+
 }

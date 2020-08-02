@@ -176,4 +176,5 @@ public class SchoolServiceImpl implements SchoolService {
         System.out.println("后台查询到的学院数据为: " + unitList);
         return CommonUtil.successPage(unitList);
     }
+
 }
