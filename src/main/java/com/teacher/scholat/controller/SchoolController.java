@@ -67,5 +67,15 @@ public class SchoolController {
         System.out.println(CommonUtil.request2Json(request));
         return schoolService.getUnitList(CommonUtil.request2Json(request));
     }
+    /**
+     * 学校管理员删除教师
+     */
+    @RequiresPermissions("school:delete")
+    @PostMapping("/deleteTeacher")
+    public JSONObject deleteTeacher(@RequestBody JSONObject requestJson) {
+        System.out.println("----------------- 开始请求：学校管理员删除教师 ------------------");
+        schoolService.deleteTeacher(requestJson);
+        return CommonUtil.successJson();
+    }
 
 }

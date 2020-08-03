@@ -7,6 +7,7 @@ import com.teacher.scholat.dao.UnitDao;
 import com.teacher.scholat.service.SchoolService;
 import com.teacher.scholat.util.CommonUtil;
 import com.teacher.scholat.util.GetScholatProfile;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -175,6 +176,15 @@ public class SchoolServiceImpl implements SchoolService {
         List<JSONObject> unitList = schoolDao.getUnitList(jsonObject);
         System.out.println("后台查询到的学院数据为: " + unitList);
         return CommonUtil.successPage(unitList);
+    }
+
+    /**
+     * 学校管理员删除教师
+     */
+    @CacheEvict(value = "FacultyTeacherAll",key = "'Faculty'+#jsonObject.getLongValue(\"unitId\")")
+    @Override
+    public int deleteTeacher(JSONObject jsonObject) {
+        return schoolDao.deleteTeacher(jsonObject);
     }
 
 }

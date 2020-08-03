@@ -23,7 +23,7 @@ public interface ManagerService {
 	public int addImportTeacher(JSONObject jsonObject);
 
 	/**
-	 * 新增教师
+	 * 删除教师
 	 */
 	public int deleteTeacher(JSONObject jsonObject);
 

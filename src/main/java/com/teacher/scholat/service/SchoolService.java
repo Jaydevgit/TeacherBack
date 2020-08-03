@@ -29,7 +29,8 @@ public interface SchoolService {
      */
     JSONObject getUnitList(JSONObject request2Json);
 
-
-
-
+    /**
+     * 学校管理员删除教师
+     */
+    public int deleteTeacher(JSONObject requestJson);
 }

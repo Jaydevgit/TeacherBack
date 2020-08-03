@@ -39,6 +39,10 @@ public interface SchoolDao {
      * 学院列表
      */
     List<JSONObject> getUnitList(JSONObject jsonObject);
+    /**
+     * 学校管理员删除教师
+     */
+    int deleteTeacher(JSONObject jsonObject);
 
 
 }

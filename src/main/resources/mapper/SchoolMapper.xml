@@ -188,4 +188,7 @@
         WHERE
         s.school_domain = #{schoolDomain}
     </select>
+    <delete id="deleteTeacher">
+        delete from teacher_profile where id = #{teacherId}
+    </delete>
 </mapper>
