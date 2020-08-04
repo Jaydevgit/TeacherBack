@@ -487,6 +487,8 @@ public class AcademicServiceImpl implements AcademicService {
         return CommonUtil.successPage(projectByTeacher);
     }
 
+
+
     @Override
     public JSONObject identifyTeacher(JSONObject jsonObject) {
         String authors = jsonObject.getString("authors").replace(" ","").replace("，",",").replace("、",",");
@@ -572,6 +574,23 @@ public class AcademicServiceImpl implements AcademicService {
             System.out.println("id + list" + id + list);
             academicDao.addProjectTeacher(id, list);
         }
+        return CommonUtil.successJson();
+    }
+
+    @Override
+    public JSONObject addAllStatistic(JSONObject jsonObject) {
+        academicDao.addAllStatistic(jsonObject);
+        return CommonUtil.successJson();
+    }
+
+    @Override
+    public JSONObject getTotal(long unitId) {
+        return academicDao.getTotal(unitId);
+    }
+
+    @Override
+    public JSONObject deleteAllStatistic(int unitId) {
+        academicDao.deleteAllStatistic(unitId);
         return CommonUtil.successJson();
     }
 
@@ -1586,5 +1605,26 @@ public class AcademicServiceImpl implements AcademicService {
             map.put("message", "下载文件失败" + e.getMessage());
             response.getWriter().println(JSON.toJSONString(map));
         }
+    }
+
+    @Override
+    public int getPaperTotal(long id) {
+
+        return academicDao.countPaper(id);
+    }
+    @Override
+    public int getProjectTotal(long id) {
+
+        return academicDao.countProject(id);
+    }
+    @Override
+    public int getPatentTotal(long id) {
+
+        return academicDao.countPatent(id);
+    }
+    @Override
+    public int getPublicationTotal(long id) {
+
+        return academicDao.countPublication(id);
     }
 }

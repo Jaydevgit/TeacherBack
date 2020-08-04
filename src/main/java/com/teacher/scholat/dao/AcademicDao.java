@@ -92,4 +92,11 @@ public interface AcademicDao {
 
 
     List<Long> getPapersByTeacher(Long id);
+
+
+    void addAllStatistic(JSONObject jsonObject);
+
+    void deleteAllStatistic(int unitId);
+
+    JSONObject getTotal(Long unitId);
 }

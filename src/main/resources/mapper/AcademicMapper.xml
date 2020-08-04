@@ -123,6 +123,19 @@
         #{updateTime} ,0, #{scholat_patent_id} , #{scholat_username} ,#{research} ,#{summary})
     </insert>
 
+    <insert id="addAllStatistic" useGeneratedKeys="true" keyProperty="id" keyColumn="id"
+            parameterType="com.alibaba.fastjson.JSONObject">
+        INSERT INTO academic_statistic
+        (unit_id,paper_total,project_total,patent_total,publication_total)
+        VALUES
+        (#{unitId}, #{paperTotal},
+            #{projectTotal},#{patentTotal},#{publicationTotal})
+    </insert>
+
+    <delete id="deleteAllStatistic" >
+      DELETE FROM academic_statistic WHERE unit_id = #{unitId}
+    </delete>
+
     <resultMap id="paperTeacherMap" type="com.teacher.scholat.util.model.One2Many">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
@@ -429,6 +442,14 @@
 <!--    p.hot               hot,-->
 <!--    p.views             views,-->
 <!--    t.english_name englishName,-->
+
+    <select id="getTotal"  resultType="com.alibaba.fastjson.JSONObject">
+    SELECT a.paper_total paperTotal,
+    a.project_total projectTotal,
+    a.patent_total patentTotal,
+    a.publication_total publicationTotal
+    From academic_statistic a where unit_id=#{unitId}
+    </select>
 
     <delete id="deletePatentTeacher" >
       DELETE FROM patent_teacher WHERE id = #{id}
