@@ -22,6 +22,12 @@
       select * from teacher_profile u where u.domain_name=#{0}
     </select>
 
+    <select id="getTeacherInfoByScholatName" resultType="com.alibaba.fastjson.JSONObject">
+      select u.username tName,
+      u.avatar      tAvatar
+      from teacher_profile u where u.scholat_username=#{0}
+    </select>
+
     <select id="countKeyTeacher" resultType="Integer">
         SELECT count(0)
         FROM teacher_profile t

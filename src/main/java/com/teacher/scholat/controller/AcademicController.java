@@ -309,6 +309,11 @@ public class AcademicController {
         return academicService.getPatentByTeacher(CommonUtil.request2Json(request).getLongValue("id"));
     }
 
+    @GetMapping("/getAllCount/{unitId}")
+    public JSONObject getAllCount(@PathVariable("unitId") long unitId) {
+        return  CommonUtil.successJson(academicService.getAllCount(unitId));
+    }
+
     @RequestMapping(value ="/exportAcademic",method = RequestMethod.GET)
     public void exportAcademic(HttpServletRequest request, HttpServletResponse response) throws IOException {
         JSONObject json=CommonUtil.request2Json(request);

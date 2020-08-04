@@ -46,6 +46,15 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
+    public JSONObject getTeacherInfoByScholatName(String scholatName) {
+        System.out.println("....进到到获取教师信息阶段, 教师学者名为: "+scholatName);
+        JSONObject jsonObject = teacherDao.getTeacherInfoByScholatName(scholatName);
+        System.out.println("....获到到的教师信息为..."+jsonObject);
+        return jsonObject;
+    }
+
+    @Override
     public List<JSONObject> getUpdatedTeacherList(Long unitId) {
         List<JSONObject> jsonObject = teacherDao.getUpdatedTeacherList(unitId);
         return jsonObject;

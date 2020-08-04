@@ -83,6 +83,13 @@ public class TeacherController {
         System.out.println("通过域名查询教师信息: " + tDomainName);
         return CommonUtil.successJson(teacherService.getTeacherInfoByDomainName(tDomainName));
     }
+    @GetMapping("/getTeacherInfoByScholatName/{scholatName}")
+    public JSONObject getTeacherInfoByScholatName(@PathVariable("scholatName") String scholatName) {
+        // howHttpRequestContent(request);
+        System.out.println("通过学者网用户名查询教师信息: " + scholatName);
+        return CommonUtil.successJson(teacherService.getTeacherInfoByScholatName(scholatName));
+    }
+
 
     //  ------------------------------ 学者画像相关(数据来源于本地数据库) ----------------------------------------
     // 根据id检查是否已经绑定了学者网账号
