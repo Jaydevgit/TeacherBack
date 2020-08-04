@@ -13,6 +13,9 @@ public interface TeacherService {
     // 通过域名查询教师信息
     JSONObject getTeacherInfoByDomainName(String tDomainName);
 
+    // 通过域名查询教师信息
+    JSONObject getTeacherInfoByScholatName(String scholatName);
+
     // 获取最新更新教师List
     List<JSONObject> getUpdatedTeacherList(Long unitId);
 
