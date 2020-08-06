@@ -85,7 +85,7 @@ public class AcademicController {
         System.out.println("------scholat_username------" + requestJson);
         return academicService.getPublicationFromScholat(requestJson);
     }
-    //根据教师名、科研类别、日期查询论文信息
+    //根据教师名、科研类别、日期查询科研信息
     @RequestMapping("/getAchievement")
     public JSONObject getAchievement(@RequestBody JSONObject requestJson) {
        // System.out.println("查询科研信息请求参数为:" + requestJson+requestJson.getIntValue("type"));
@@ -100,6 +100,14 @@ public class AcademicController {
         }
         return CommonUtil.successJson();
     }
+
+    //根据教师名、论文类别、日期查询论文信息
+    @RequestMapping("/searchPaper")
+    public JSONObject searchPaper(@RequestBody JSONObject requestJson) {
+        System.out.println("查询科研信息请求参数为:" + requestJson);
+        return academicService.searchPaper(requestJson);
+    }
+
     @RequestMapping("/listPaper")
     public JSONObject listPaper(HttpServletRequest request){
         return academicService.listPaper(CommonUtil.request2Json(request));
