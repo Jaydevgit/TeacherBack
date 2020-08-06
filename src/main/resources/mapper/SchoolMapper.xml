@@ -182,11 +182,16 @@
         s.school_name schoolName,
         s.school_eng schoolEng,
         s.unit_name  unitName,
-        s.background_url backgroundUrl
+        s.background_url backgroundUrl,
+        s.college_url collegeUrl,
+        s.domain_name domainName,
+		GROUP_CONCAT(u.username ORDER BY u.id SEPARATOR ',') AS usernames
         FROM
-        school_unit s
+        school_unit s LEFT JOIN unit_profile u ON s.id = u.unit_id AND u.state = 1
         WHERE
         s.school_domain = #{schoolDomain}
+        GROUP BY s.unit_name
+        ORDER BY s.id
     </select>
     <delete id="deleteTeacher">
         delete from teacher_profile where id = #{teacherId}
