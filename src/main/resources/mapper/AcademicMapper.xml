@@ -39,6 +39,23 @@
         WHERE p.deleted = '0' AND p.unit_id = #{unitId}
     </select>
 
+    <select id="countSearchProject"  resultType="Integer">
+         SELECT count(0)
+        FROM project p
+        <if test="name != null and name != ''">
+				LEFT JOIN teacher_profile t
+				on t.username=#{name}
+        </if>
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+        <if test="beginTime != null">
+            And p.start_date 	&gt; #{beginTime}
+        </if>
+        <if test="endTime != null">
+            And p.start_date &lt; #{endTime}
+        </if>
+
+    </select>
+
     <select id="countPatent"  resultType="Integer">
         SELECT count(0)
         FROM patent p
@@ -748,6 +765,33 @@
         </if>
         ORDER BY start_date DESC
     </select>
+    <select id="searchProject" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        p.id                id,
+        p.title             title,
+        p.application       application,
+        p.project_type          projectType,
+        p.project_number        projectNumber,
+        p.funding           funding,
+        p.start_date            startDate,
+        p.end_date         endDate,
+        p.update_time          updateTime
+        FROM project p
+        <if test="name != null and name != ''">
+            LEFT JOIN teacher_profile t
+            on t.username=#{name}
+        </if>
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+        <if test="beginTime != null">
+            And p.start_date 	&gt; #{beginTime}
+        </if>
+        <if test="endTime != null">
+            And p.start_date &lt; #{endTime}
+        </if>
+        ORDER BY p.start_date DESC
+        LIMIT  #{offSet},#{pageRow}
+    </select>
+
     <select id="getPatentteacher" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
         p.id                id,

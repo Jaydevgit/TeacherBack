@@ -108,6 +108,13 @@ public class AcademicController {
         return academicService.searchPaper(requestJson);
     }
 
+    //根据教师名、日期查询项目信息
+    @RequestMapping("/searchProject")
+    public JSONObject searchProject(@RequestBody JSONObject requestJson) {
+        System.out.println("查询项目信息请求参数为:" + requestJson);
+        return academicService.searchProject(requestJson);
+    }
+
     @RequestMapping("/listPaper")
     public JSONObject listPaper(HttpServletRequest request){
         return academicService.listPaper(CommonUtil.request2Json(request));
