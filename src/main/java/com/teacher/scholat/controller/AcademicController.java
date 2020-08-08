@@ -340,6 +340,13 @@ public class AcademicController {
         }
     }
 
+    @GetMapping(value ="/exportPaper2")
+    public void exportPaper2(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        System.out.println("......导出论文参数为");
+        System.out.println(CommonUtil.request2Json(request));
+        academicService.exportPaper2(request, response);
+    }
+
 //    @GetMapping("/aiUnitPaper")
 //    public JSONObject aiUnitPaper(HttpServletRequest request){
 //        return academicService.aiUnitPaper(CommonUtil.request2Json(request));

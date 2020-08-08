@@ -317,10 +317,12 @@ public class ManagerController {
 //        ver2.setIntroduction(res.get(1));
 	}
 //	@RequiresPermissions("teacher:list")
-@RequestMapping(value ="/exportTeacher2",method = RequestMethod.GET)
-public void getExcel2(HttpServletRequest request,HttpServletResponse response) throws IOException {
-	managerService.exportTeacher2(request, response);
-}
+
+
+	@RequestMapping(value ="/exportTeacher2",method = RequestMethod.GET)
+	public void getExcel2(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		managerService.exportTeacher2(request, response);
+	}
 	@RequestMapping(value ="/exportTeacher",method = RequestMethod.GET)
 	public void getExcel(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		managerService.exportTeacher(request,response);

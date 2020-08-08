@@ -71,6 +71,7 @@ public interface AcademicService {
     JSONObject addProjectTeacher(JSONObject jsonObject);
 
     void exportPaper(HttpServletRequest request, HttpServletResponse response) throws IOException;
+    void exportPaper2(HttpServletRequest request, HttpServletResponse response) throws IOException;
     void exportProject(HttpServletRequest request, HttpServletResponse response) throws IOException;
     void exportPatent(HttpServletRequest request, HttpServletResponse response) throws IOException;
     void  exportPublication(HttpServletRequest request, HttpServletResponse response) throws IOException;
