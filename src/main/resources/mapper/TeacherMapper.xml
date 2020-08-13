@@ -25,7 +25,7 @@
     <select id="getTeacherInfoByScholatName" resultType="com.alibaba.fastjson.JSONObject">
       select u.username tName,
       u.avatar      tAvatar
-      from teacher_profile u where u.scholat_username=#{0}
+      from teacher_profile u where u.scholat_username=#{0} limit 1
     </select>
 
     <select id="countKeyTeacher" resultType="Integer">
