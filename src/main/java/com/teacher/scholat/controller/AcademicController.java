@@ -354,6 +354,12 @@ public class AcademicController {
         academicService.exportPaper2(request, response);
     }
 
+    @GetMapping(value ="/exportProject2")
+    public void exportProject2(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        System.out.println("......导出项目参数为");
+        academicService.exportProject2(request, response);
+    }
+
 //    @GetMapping("/aiUnitPaper")
 //    public JSONObject aiUnitPaper(HttpServletRequest request){
 //        return academicService.aiUnitPaper(CommonUtil.request2Json(request));

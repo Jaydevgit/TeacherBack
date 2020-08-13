@@ -15,7 +15,7 @@
         <if test="name != null and name != ''">
             and p.scholat_username = ( SELECT t.scholat_username
             FROM teacher_profile t
-            WHERE t.username = #{name} )
+            WHERE t.username = #{name} and t.unit_id=#{unitId} limit 1)
         </if>
         <if test="beginTime != null">
             And p.datetime 	&gt; #{beginTime}
@@ -42,18 +42,16 @@
     <select id="countSearchProject"  resultType="Integer">
          SELECT count(0)
         FROM project p
-        <if test="name != null and name != ''">
-				LEFT JOIN teacher_profile t
-				on t.username=#{name}
-        </if>
-        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+        WHERE p.scholat_username = ( SELECT t.scholat_username
+        FROM teacher_profile t
+        WHERE t.username = #{name} AND t.unit_id =#{unitId} limit 1)
         <if test="beginTime != null">
             And p.start_date 	&gt; #{beginTime}
         </if>
         <if test="endTime != null">
             And p.start_date &lt; #{endTime}
         </if>
-
+        ORDER BY start_date DESC
     </select>
 
     <select id="countPatent"  resultType="Integer">
@@ -697,7 +695,7 @@
         <if test="name != null and name != ''">
             and p.scholat_username = ( SELECT t.scholat_username
             FROM teacher_profile t
-            WHERE t.username = #{name})
+            WHERE t.username = #{name} and t.unit_id=#{unitId} limit 1)
         </if>
         <if test="beginTime != null">
             And p.datetime 	&gt; #{beginTime}
@@ -727,7 +725,7 @@
         <if test="name != null and name != ''">
         and p.scholat_username = ( SELECT t.scholat_username
         FROM teacher_profile t
-        WHERE t.username = #{name})
+        WHERE t.username = #{name} and t.unit_id=#{unitId} limit 1)
         </if>
         <if test="beginTime != null">
             And p.datetime 	&gt; #{beginTime}
@@ -765,6 +763,31 @@
         </if>
         ORDER BY start_date DESC
     </select>
+
+    <select id="getSearchProject" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        p.id                id,
+        p.title             title,
+        p.application       application,
+        p.project_type          project_type,
+        p.project_number        project_number,
+        p.funding           funding,
+        p.start_date            start_date,
+        p.end_date         end_date,
+        p.update_time          update_time
+        FROM project p
+        WHERE p.scholat_username = ( SELECT t.scholat_username
+        FROM teacher_profile t
+        WHERE t.username = #{name} AND t.unit_id =#{unitId} limit 1)
+        <if test="beginTime != null">
+            And p.start_date 	&gt; #{beginTime}
+        </if>
+        <if test="endTime != null">
+            And p.start_date &lt; #{endTime}
+        </if>
+        ORDER BY start_date DESC
+    </select>
+
     <select id="searchProject" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
         p.id                id,
@@ -777,18 +800,16 @@
         p.end_date         endDate,
         p.update_time          updateTime
         FROM project p
-        <if test="name != null and name != ''">
-            LEFT JOIN teacher_profile t
-            on t.username=#{name}
-        </if>
-        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+        WHERE p.scholat_username = ( SELECT t.scholat_username
+        FROM teacher_profile t
+        WHERE t.username = #{name} AND t.unit_id =#{unitId} limit 1)
         <if test="beginTime != null">
             And p.start_date 	&gt; #{beginTime}
         </if>
         <if test="endTime != null">
             And p.start_date &lt; #{endTime}
         </if>
-        ORDER BY p.start_date DESC
+        ORDER BY start_date DESC
         LIMIT  #{offSet},#{pageRow}
     </select>
 

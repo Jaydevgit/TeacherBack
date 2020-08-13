@@ -16,6 +16,7 @@ public interface AcademicDao {
     List<JSONObject> searchPaper(JSONObject jsonObject);
 
     List<JSONObject> getProjectteacher(JSONObject jsonObject);
+    List<JSONObject> getSearchProject(JSONObject jsonObject);
     List<JSONObject> searchProject(JSONObject jsonObject);
 
 
