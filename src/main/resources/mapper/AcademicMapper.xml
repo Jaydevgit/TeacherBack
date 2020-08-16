@@ -859,6 +859,34 @@
         ORDER BY datetime DESC
     </select>
 
+    <select id="getSearchPatent" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        p.id                id,
+        p.title             title,
+        p.authors           authors,
+        p.patent_number     patentNumber,
+        p.patent_type       patentType,
+        p.datetime          datetime,
+        p.update_time          update_time
+        FROM patent p
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        <if test="name != null and name != ''">
+            and p.scholat_username = ( SELECT t.scholat_username
+            FROM teacher_profile t
+            WHERE t.username = #{name} and t.unit_id=#{unitId} limit 1)
+        </if>
+        <if test="beginTime != null">
+            And p.datetime 	&gt; #{beginTime}
+        </if>
+        <if test="endTime != null">
+            And p.datetime &lt; #{endTime}
+        </if>
+        <if test="type != null and type != ''">
+            And p.papertype = #{type}
+        </if>
+        ORDER BY datetime DESC
+    </select>
+
     <select id="searchPatent" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
         p.id                id,
