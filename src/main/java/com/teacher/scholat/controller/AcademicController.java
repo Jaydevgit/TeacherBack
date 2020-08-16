@@ -115,6 +115,13 @@ public class AcademicController {
         return academicService.searchProject(requestJson);
     }
 
+    //根据教师名、日期查询专利信息
+    @RequestMapping("/searchPatent")
+    public JSONObject searchPatent(@RequestBody JSONObject requestJson) {
+        System.out.println("查询项目信息请求参数为:" + requestJson);
+        return academicService.searchPatent(requestJson);
+    }
+
     @RequestMapping("/listPaper")
     public JSONObject listPaper(HttpServletRequest request){
         return academicService.listPaper(CommonUtil.request2Json(request));

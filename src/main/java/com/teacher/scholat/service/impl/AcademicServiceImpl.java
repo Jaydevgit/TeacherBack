@@ -378,6 +378,29 @@ public class AcademicServiceImpl implements AcademicService {
     }
 
     @Override
+    public JSONObject searchPatent(JSONObject jsonObject) {
+        System.out.println("前端传过来的项目列表要求为: " + jsonObject);
+        String beginTime=jsonObject.getString("valueStart");
+        String endTime=jsonObject.getString("valueEnd");
+        // System.out.println("beginTime="+beginTime+endTime);
+        if(beginTime!=null&&beginTime.length()!=0){
+            beginTime = beginTime.replace("-", ".").substring(0,10);
+            jsonObject.put("beginTime", beginTime);
+        }
+        if(endTime!=null&&endTime.length()!=0){
+            endTime = endTime.replace("-", ".").substring(0,10);
+            jsonObject.put("endTime", endTime);
+        }
+        long unitId = jsonObject.getLongValue("unitId");
+        System.out.println("aaa="+jsonObject.getString("pageNum"));
+        CommonUtil.fillPageParam(jsonObject);
+        int count = academicDao.countSearchPatent(jsonObject);
+        List<JSONObject> list = academicDao.searchPatent(jsonObject);
+        System.out.println("-----------projectList-------"+list+"count="+count);
+        return CommonUtil.successPage(jsonObject, list , count);
+    }
+
+    @Override
     public JSONObject getProjectteacher(JSONObject jsonObject) {
 
         //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z");
@@ -398,6 +421,7 @@ public class AcademicServiceImpl implements AcademicService {
         System.out.println("listlist="+list);
         return CommonUtil.successPage(list);
     }
+
     @Override
     public JSONObject getPatentteacher(JSONObject jsonObject) {
 
@@ -419,6 +443,9 @@ public class AcademicServiceImpl implements AcademicService {
         System.out.println("listlist="+list);
         return CommonUtil.successPage(list);
     }
+
+
+
     @Override
     public JSONObject getPublicationteacher(JSONObject jsonObject) {
 
