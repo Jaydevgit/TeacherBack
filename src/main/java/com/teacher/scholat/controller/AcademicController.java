@@ -360,6 +360,12 @@ public class AcademicController {
         System.out.println(CommonUtil.request2Json(request));
         academicService.exportPaper2(request, response);
     }
+    @GetMapping(value ="/exportTeacherPaper")
+    public void exportTeacherPaper(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        System.out.println("......批量选择教师导出论文参数为");
+        System.out.println(CommonUtil.request2Json(request));
+        academicService.exportTeacherPaper(request, response);
+    }
 
     @GetMapping(value ="/exportProject2")
     public void exportProject2(HttpServletRequest request,HttpServletResponse response) throws IOException {

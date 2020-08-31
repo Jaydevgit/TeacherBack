@@ -1651,6 +1651,68 @@ public class AcademicServiceImpl implements AcademicService {
     }
 
     @Override
+    public void exportTeacherPaper(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        JSONObject json=CommonUtil.request2Json(request);
+        String aa = URLDecoder.decode(json.getString("data"), "utf-8");
+        JSONObject json2 =JSONObject.parseObject(new String(aa));//换成json格式
+        String beginTime=json2.getString("valueStart");
+        String endTime=json2.getString("valueEnd");
+        // System.out.println("beginTime="+beginTime+endTime);转换日期格式
+        if(beginTime!=null&&beginTime.length()!=0){
+            beginTime = beginTime.replace("-", ".").substring(0,10);
+            json2.put("beginTime", beginTime);
+        }
+        if(endTime!=null&&endTime.length()!=0){
+            endTime = endTime.replace("-", ".").substring(0,10);
+            json2.put("endTime", endTime);
+        }
+        Long unitId = json2.getLongValue("unitId");
+        json2.put("unitId", unitId);
+        String tIds=json2.getString("tIds");
+        String[] ArrIds = tIds.substring(1, tIds.length() - 1).split(",");
+        List<paperExcel> listPaper = new ArrayList<paperExcel>();
+        for (int i = 0; i <= ArrIds.length-1; i++) {
+            json2.put("id",Integer.parseInt(ArrIds[i]));
+            System.out.println( json2);
+            List<JSONObject> list=academicDao.getSearchTeacherPaper(json2);
+            for (int j = 0; j <list.size() ; j++) {
+                JSONObject paper=list.get(j);
+                paperExcel data = new paperExcel();
+                if((paper.getIntValue("papertype"))==0){
+                    data.setPapertype("期刊论文");
+                }else{
+                    data.setPapertype("会议论文");
+                }
+                data.setTitle(paper.getString("title"));
+                data.setAuthors(paper.getString("authors"));
+                data.setSource(paper.getString("source"));
+                data.setDatetime(paper.getString("datetime"));
+                data.setKeyword(paper.getString("keyword"));
+                listPaper.add(data);
+            }
+        }
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
+            String fileName = URLEncoder.encode("教师论文信息", "UTF-8");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
+            // 这里需要设置不关闭流
+            EasyExcel.write(response.getOutputStream(), paperExcel.class).autoCloseStream(Boolean.FALSE).sheet("模板")
+                    .doWrite(listPaper);
+        }  catch (Exception e) {
+            // 重置response
+            response.reset();
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("status", "failure");
+            map.put("message", "下载文件失败" + e.getMessage());
+            response.getWriter().println(JSON.toJSONString(map));
+        }
+    }
+
+    @Override
     public void exportProject2(HttpServletRequest request, HttpServletResponse response) throws IOException {
         JSONObject json=CommonUtil.request2Json(request);
         String aa = URLDecoder.decode(json.getString("data"), "utf-8");

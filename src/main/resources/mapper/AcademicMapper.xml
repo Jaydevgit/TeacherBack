@@ -730,6 +730,38 @@
         ORDER BY datetime DESC
     </select>
 
+    <select id="getSearchTeacherPaper" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        p.id                id,
+        p.title             title,
+        p.authors           authors,
+        p.summary           summary,
+        p.keyword           keyword,
+        p.source            source,
+        p.source_detail     sourceDetail,
+        p.papertype         papertype,
+        p.datetime          datetime
+        FROM paper p
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        <if test="id != null and id != ''">
+            and p.scholat_username = ( SELECT t.scholat_username
+            FROM teacher_profile t
+            WHERE t.id = #{id} and t.unit_id=#{unitId} limit 1)
+        </if>
+        <if test="beginTime != null">
+            And p.datetime 	&gt; #{beginTime}
+        </if>
+        <if test="endTime != null">
+            And p.datetime &lt; #{endTime}
+        </if>
+        <if test="type != null and type != ''">
+            And p.papertype = #{type}
+        </if>
+        ORDER BY datetime DESC
+    </select>
+
+
+
     <select id="searchPaper" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
         p.id                id,
