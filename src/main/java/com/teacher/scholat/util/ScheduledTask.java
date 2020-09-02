@@ -16,7 +16,7 @@ public class ScheduledTask {
         statisticController.total();
     }
 
-    @Scheduled(cron = "0 20 19 ? * *")
+    @Scheduled(cron = "0 0 1 ? * *")
     public void taskGetAllPaper() {
         statisticController.getAllPaper();
     }
