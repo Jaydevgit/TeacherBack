@@ -15,4 +15,9 @@ public class ScheduledTask {
     public void task1() {
         statisticController.total();
     }
+
+    @Scheduled(cron = "0 20 19 ? * *")
+    public void taskGetAllPaper() {
+        statisticController.getAllPaper();
+    }
 }

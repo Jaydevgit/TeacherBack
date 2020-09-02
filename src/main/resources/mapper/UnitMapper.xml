@@ -90,6 +90,8 @@
             u.id                id
         FROM
             school_unit u
+        WHERE u.domain_name!='' AND u.school_domain!=''
+
     </select>
 
     <select id="getUnitInfoByUnitId" resultType="com.alibaba.fastjson.JSONObject">

@@ -29,6 +29,9 @@ public interface TeacherService {
     //获取学院教师(不分页)
     JSONObject listTeacherAll(JSONObject jsonObject);
 
+    //获取所有教师(不分学院)
+    JSONObject listTeacherAllUnit();
+
     //获取首字母学院教师（分页）
     JSONObject letterTeacher(JSONObject jsonObject);
 

@@ -194,6 +194,19 @@
         FROM teacher_profile t
         WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY tPinyin
     </select>
+
+    <select id="listTeacherAllUnit" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          tId,
+                   t.unit_id          tUnitId,
+                  t.username    tName,
+                  t.domain_name tDomain_name,
+                  t.email       tEmail,
+                  t.scholat_username        tScholat_username
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.scholat_username != ''
+    </select>
+
     <!--注：此处和上面函数只是别名的区别-->
     <select id="listTeacherAllTWO" resultType="com.alibaba.fastjson.JSONObject">
         SELECT

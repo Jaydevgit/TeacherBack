@@ -1136,21 +1136,20 @@ public class AcademicServiceImpl implements AcademicService {
         }else{
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             jsonObject.put("updateTime" , df.format(new Date()));
-            String datetime = jsonObject.getString("datetime");
+            String datetime = jsonObject.getString("date");
             //"datetime" -> "2018-12-31"
 //        jsonObject.put("hot" ,1000);
-            System.out.println("--------datetime--------" + datetime);
+            jsonObject.put("datetime",datetime);
+         //   System.out.println("--------datetime--------" + datetime);
             //从新版本输入时间
-            if (datetime!=null && datetime.indexOf(".") == -1) {
-                String[] split = datetime.split("-");
-                StringBuilder sb = new StringBuilder();
-                sb.append(split[0]);
-                sb.append('.');
-                sb.append(split[1]);
-                datetime = sb.toString();
-
-                jsonObject.put("datetime",datetime);
-            }
+//            if (datetime!=null && datetime.indexOf(".") == -1) {
+//                String[] split = datetime.split("-");
+//                StringBuilder sb = new StringBuilder();
+//                sb.append(split[0]);
+//                sb.append('.');
+//                sb.append(split[1]);
+//                datetime = sb.toString();
+//            }
             academicDao.addPaper(jsonObject);
         }
 

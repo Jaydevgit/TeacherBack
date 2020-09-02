@@ -92,6 +92,12 @@ public class TeacherServiceImpl implements TeacherService {
         return CommonUtil.successPage(list);
     }
 
+    @Override
+    public JSONObject listTeacherAllUnit() {
+        List<JSONObject> list = teacherDao.listTeacherAllUnit();
+        return CommonUtil.successPage(list);
+    }
+
 
     @Override
     public JSONObject listTeacherByUnitDomain(JSONObject jsonObject) {
