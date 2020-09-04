@@ -1130,6 +1130,8 @@ public class AcademicServiceImpl implements AcademicService {
     public JSONObject addPaper(JSONObject jsonObject) {
 
         Long scholat_paper_id=jsonObject.getLongValue("scholat_paper_id");
+        if(academicDao.paperExitIf(scholat_paper_id)!=0)
+            return CommonUtil.successJson();
         int flagN = academicDao.paperDeleteExitIf(scholat_paper_id);//判断添加的论文是否原来删除过
         if(flagN!=0){
             academicDao.NoDeletePaper(scholat_paper_id);//将论文由删除状态改为已添加
