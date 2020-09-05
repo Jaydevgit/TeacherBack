@@ -93,6 +93,16 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public JSONObject listTeacherAllNoScholat(JSONObject jsonObject) {
+        System.out.println("前端传过来的教师列表要求为: "+jsonObject);
+
+        Long unitId = jsonObject.getLongValue("unitId");
+        jsonObject.put("unitId", unitId);
+        List<JSONObject> list = teacherDao.listTeacherAllNoScholat(jsonObject);
+        return CommonUtil.successPage(list);
+    }
+
+    @Override
     public JSONObject listTeacherAllUnit() {
         List<JSONObject> list = teacherDao.listTeacherAllUnit();
         return CommonUtil.successPage(list);

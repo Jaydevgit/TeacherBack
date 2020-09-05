@@ -151,4 +151,14 @@ public class CatalogueController {
         System.out.println(CommonUtil.request2Json(request));
         return teacherService.listTeacherAll(CommonUtil.request2Json(request));
     }
+
+    /**
+     * 查询教师列表 没有学者网关联账号
+     */
+    @GetMapping("/listTeacherAllNoScholat")
+    public JSONObject listTeacherAllNoScholat(HttpServletRequest request) {
+        System.out.println("......开始查询教师成员列表");
+        System.out.println(CommonUtil.request2Json(request));
+        return teacherService.listTeacherAllNoScholat(CommonUtil.request2Json(request));
+    }
 }

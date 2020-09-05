@@ -367,6 +367,13 @@ public class AcademicController {
         academicService.exportTeacherPaper(request, response);
     }
 
+    @GetMapping(value ="/exportTeacherProject")
+    public void exportTeacherProject(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        System.out.println("......批量选择教师导出项目参数为");
+        System.out.println(CommonUtil.request2Json(request));
+        academicService.exportTeacherProject(request, response);
+    }
+
     @GetMapping(value ="/exportProject2")
     public void exportProject2(HttpServletRequest request,HttpServletResponse response) throws IOException {
         System.out.println("......导出项目参数为");

@@ -195,6 +195,24 @@
         WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY tPinyin
     </select>
 
+    <select id="listTeacherAllNoScholat" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          tId,
+                  t.username    tName,
+                  t.post        tPost,
+                  t.avatar      tAvatar,
+                  t.pinyin      tPinyin,
+                  t.domain_name tDomain_name,
+                  t.post        tPost,
+                  t.email       tEmail,
+                  t.degree      tDegree,
+                  t.scholat_username        tScholat_username,
+                  t.duty        tDuty
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id = #{unitId}
+         AND t.scholat_username!='' ORDER BY tPinyin
+    </select>
+
     <select id="listTeacherAllUnit" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
                   t.id          tId,

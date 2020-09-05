@@ -817,6 +817,32 @@
         ORDER BY start_date DESC
     </select>
 
+    <select id="getSearchTeacherProject" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        p.id                id,
+        p.title             title,
+        p.application       application,
+        p.project_type          project_type,
+        p.project_number        project_number,
+        p.funding           funding,
+        p.start_date            start_date,
+        p.end_date         end_date,
+        p.update_time          update_time
+        FROM project p
+        WHERE  p.deleted = '0' AND p.unit_id =#{unitId}
+        <if test="id != null and id != ''">
+        AND p.scholat_username = ( SELECT t.scholat_username
+        FROM teacher_profile t
+        WHERE t.id = #{id} AND t.unit_id =#{unitId} limit 1)
+        </if>
+        <if test="beginTime != null">
+            And p.start_date 	&gt; #{beginTime}
+        </if>
+        <if test="endTime != null">
+            And p.start_date &lt; #{endTime}
+        </if>
+        ORDER BY start_date DESC
+    </select>
     <select id="getSearchProject" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
         p.id                id,

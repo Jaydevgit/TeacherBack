@@ -35,6 +35,9 @@ public interface TeacherDao {
     //获取所有学院教师(不分页)
     List<JSONObject> listTeacherAll(JSONObject jsonObject);
 
+    //获取所有学院教师(不分页，没有学者网关联账号)
+    List<JSONObject> listTeacherAllNoScholat(JSONObject jsonObject);
+
     //获取所有教师(不分学院)
     List<JSONObject> listTeacherAllUnit();
 
