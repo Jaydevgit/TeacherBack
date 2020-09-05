@@ -1739,7 +1739,7 @@ public class AcademicServiceImpl implements AcademicService {
             System.out.println( json2);
             List<JSONObject> list=academicDao.getSearchTeacherProject(json2);
             for (int j = 0; j <list.size() ; j++) {
-                JSONObject project=list.get(i);
+                JSONObject project=list.get(j);
                 projectExcel data = new projectExcel();
                 data.setTitle(project.getString("title"));
                 data.setApplication(project.getString("application"));
