@@ -20,4 +20,9 @@ public class ScheduledTask {
     public void taskGetAllPaper() {
         statisticController.getAllPaper();
     }
+
+    @Scheduled(cron = "0 20 1 * * ?")
+    public void taskGetAllProject() {
+        statisticController.getAllProject();
+    }
 }
