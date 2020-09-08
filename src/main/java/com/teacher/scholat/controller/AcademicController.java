@@ -374,6 +374,13 @@ public class AcademicController {
         academicService.exportTeacherProject(request, response);
     }
 
+    @GetMapping(value ="/exportTeacherPatent")
+    public void exportTeacherPatent(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        System.out.println("......批量选择教师导出专利参数为");
+        System.out.println(CommonUtil.request2Json(request));
+        academicService.exportTeacherPatent(request, response);
+    }
+
     @GetMapping(value ="/exportProject2")
     public void exportProject2(HttpServletRequest request,HttpServletResponse response) throws IOException {
         System.out.println("......导出项目参数为");

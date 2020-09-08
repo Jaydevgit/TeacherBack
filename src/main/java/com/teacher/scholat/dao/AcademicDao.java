@@ -23,6 +23,7 @@ public interface AcademicDao {
 
     List<JSONObject> getPatentteacher(JSONObject jsonObject);
     List<JSONObject> getSearchPatent(JSONObject jsonObject);
+    List<JSONObject> getSearchTeacherPatent(JSONObject jsonObject);
     List<JSONObject> searchPatent(JSONObject jsonObject);
 
     List<JSONObject> getPublicationteacher(JSONObject jsonObject);
