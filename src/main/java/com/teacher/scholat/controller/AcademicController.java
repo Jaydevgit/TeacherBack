@@ -122,6 +122,13 @@ public class AcademicController {
         return academicService.searchPatent(requestJson);
     }
 
+    //根据教师名、日期查询著作信息
+    @RequestMapping("/searchPublication")
+    public JSONObject searchPublication(@RequestBody JSONObject requestJson) {
+        System.out.println("查询著作信息请求参数为:" + requestJson);
+        return academicService.searchPublication(requestJson);
+    }
+
     @RequestMapping("/listPaper")
     public JSONObject listPaper(HttpServletRequest request){
         return academicService.listPaper(CommonUtil.request2Json(request));

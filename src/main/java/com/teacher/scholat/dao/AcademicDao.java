@@ -27,6 +27,7 @@ public interface AcademicDao {
     List<JSONObject> searchPatent(JSONObject jsonObject);
 
     List<JSONObject> getPublicationteacher(JSONObject jsonObject);
+    List<JSONObject> searchPublication(JSONObject jsonObject);
     List<JSONObject> listPatent(JSONObject jsonObject);
     List<JSONObject> listPatentAll(JSONObject jsonObject);
 
@@ -69,6 +70,7 @@ public interface AcademicDao {
     void updatePublication(JSONObject jsonObject);
     int countProject(long unitId);
     int countSearchProject(JSONObject jsonObject);
+    int countSearchPublication(JSONObject jsonObject);
 
     void addPatent(JSONObject jsonObject);
     JSONObject getPatent(Long id);

@@ -396,7 +396,28 @@ public class AcademicServiceImpl implements AcademicService {
         CommonUtil.fillPageParam(jsonObject);
         int count = academicDao.countSearchPatent(jsonObject);
         List<JSONObject> list = academicDao.searchPatent(jsonObject);
-        System.out.println("-----------projectList-------"+list+"count="+count);
+        return CommonUtil.successPage(jsonObject, list , count);
+    }
+
+    @Override
+    public JSONObject searchPublication(JSONObject jsonObject) {
+        System.out.println("前端传过来的项目列表要求为: " + jsonObject);
+        String beginTime=jsonObject.getString("valueStart");
+        String endTime=jsonObject.getString("valueEnd");
+        // System.out.println("beginTime="+beginTime+endTime);
+        if(beginTime!=null&&beginTime.length()!=0){
+            beginTime = beginTime.replace("-", ".").substring(0,10);
+            jsonObject.put("beginTime", beginTime);
+        }
+        if(endTime!=null&&endTime.length()!=0){
+            endTime = endTime.replace("-", ".").substring(0,10);
+            jsonObject.put("endTime", endTime);
+        }
+        long unitId = jsonObject.getLongValue("unitId");
+        System.out.println("aaa="+jsonObject.getString("pageNum"));
+        CommonUtil.fillPageParam(jsonObject);
+        int count = academicDao.countSearchPublication(jsonObject);
+        List<JSONObject> list = academicDao.searchPublication(jsonObject);
         return CommonUtil.successPage(jsonObject, list , count);
     }
 
