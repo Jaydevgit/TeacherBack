@@ -88,6 +88,7 @@ public interface AcademicService {
     void exportTeacherPatent(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
     void  exportPublication(HttpServletRequest request, HttpServletResponse response) throws IOException;
+    void exportPublication2(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
     int getPaperTotal(long id);
     int getProjectTotal(long id);

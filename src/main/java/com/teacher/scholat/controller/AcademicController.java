@@ -401,6 +401,13 @@ public class AcademicController {
         academicService.exportPatent2(request, response);
     }
 
+    @GetMapping(value ="/exportPublication2")
+    public void exportPublication2(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        System.out.println("......导出著作参为");
+        System.out.println(CommonUtil.request2Json(request));
+        academicService.exportPublication2(request, response);
+    }
+
 //    @GetMapping("/aiUnitPaper")
 //    public JSONObject aiUnitPaper(HttpServletRequest request){
 //        return academicService.aiUnitPaper(CommonUtil.request2Json(request));
