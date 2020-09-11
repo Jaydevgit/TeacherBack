@@ -2027,7 +2027,7 @@ public class AcademicServiceImpl implements AcademicService {
         json2.put("unitId", unitId);
         String tIds=json2.getString("tIds");
         String[] ArrIds = tIds.substring(1, tIds.length() - 1).split(",");
-        List<publicationExcel> listPatent = new ArrayList<publicationExcel>();
+        List<publicationExcel> listPublication = new ArrayList<publicationExcel>();
         for (int i = 0; i <= ArrIds.length-1; i++) {
             json2.put("id",Integer.parseInt(ArrIds[i]));
             System.out.println( json2);
@@ -2040,18 +2040,18 @@ public class AcademicServiceImpl implements AcademicService {
                 data.setPress(publication.getString("press"));
                 data.setCitation(publication.getString("citation"));
                 data.setDatetime(publication.getString("datetime"));
-                listPatent.add(data);
+                listPublication.add(data);
             }
         }
         try {
             response.setContentType("application/vnd.ms-excel");
             response.setCharacterEncoding("utf-8");
             // 这里URLEncoder.encode可以防止中文乱码 当然和easyexcel没有关系
-            String fileName = URLEncoder.encode("教师专利信息", "UTF-8");
+            String fileName = URLEncoder.encode("教师著作信息", "UTF-8");
             response.setHeader("Content-disposition", "attachment;filename=" + fileName + ".xlsx");
             // 这里需要设置不关闭流
-            EasyExcel.write(response.getOutputStream(), patentExcel.class).autoCloseStream(Boolean.FALSE).sheet("模板")
-                    .doWrite(listPatent);
+            EasyExcel.write(response.getOutputStream(), publicationExcel.class).autoCloseStream(Boolean.FALSE).sheet("模板")
+                    .doWrite(listPublication);
         }  catch (Exception e) {
             // 重置response
             response.reset();
