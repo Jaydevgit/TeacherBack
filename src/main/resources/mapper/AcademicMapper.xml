@@ -1067,6 +1067,31 @@
         ORDER BY datetime DESC
     </select>
 
+    <select id="getSearchTeacherPublication" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+        p.id                id,
+        p.title             title,
+        p.authors           authors,
+        p.press     press,
+        p.citation       citation,
+        p.datetime          datetime,
+        p.update_time          update_time
+        FROM publication p
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        <if test="id != null and id != ''">
+            and p.scholat_username = ( SELECT t.scholat_username
+            FROM teacher_profile t
+            WHERE t.id = #{id} AND t.unit_id =#{unitId} limit 1)
+        </if>
+        <if test="beginTime != null">
+            And p.datetime 	&gt; #{beginTime}
+        </if>
+        <if test="endTime != null">
+            And p.datetime &lt; #{endTime}
+        </if>
+        ORDER BY datetime DESC
+    </select>
+
     <select id="getPublicationteacher" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
         p.id                id,
