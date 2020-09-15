@@ -1250,7 +1250,7 @@ public class AcademicServiceImpl implements AcademicService {
     @Override
     public JSONObject addProject(JSONObject jsonObject) {
         Long scholat_project_id=jsonObject.getLongValue("scholat_project_id");
-        if(academicDao.paperExitIf(scholat_project_id)!=0)
+        if(academicDao.projectExitIf(scholat_project_id)!=0)
             return CommonUtil.successJson();
         int flagN = academicDao.projectDeleteExitIf(scholat_project_id);//判断添加的论文是否原来删除过
         if(flagN!=0){
