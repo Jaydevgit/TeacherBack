@@ -1160,6 +1160,7 @@ public class AcademicServiceImpl implements AcademicService {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             jsonObject.put("updateTime" , df.format(new Date()));
             String datetime = jsonObject.getString("date");
+            datetime=datetime.replace(".null","");
             //"datetime" -> "2018-12-31"
 //        jsonObject.put("hot" ,1000);
             jsonObject.put("datetime",datetime);
