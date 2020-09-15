@@ -1260,70 +1260,15 @@ public class AcademicServiceImpl implements AcademicService {
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
             jsonObject.put("updateTime", df.format(new Date()));
             System.out.println("-----test----" + jsonObject);
-            String startDate = jsonObject.getString("startDate");
+            String application=jsonObject.getString("application");
+            application = application.replace("项目成员：", "");
+            application=application.replace("*"," ");
+            jsonObject.put("application",application);
             String endDate = jsonObject.getString("endDate");
-            //"datetime" -> "2018-12-31"
-
+            endDate=endDate.replace("-","");
+           if(endDate.substring(0, 1).equals(".")){ endDate=endDate.replaceFirst(".","");}
+            endDate=endDate.replace("null.null","");
             System.out.println("--------datetime--------" + endDate);
-            //从新版本输入开始时间
-            if (startDate != null && startDate.indexOf(".") == -1) {
-                String[] split = startDate.split("-");
-                StringBuilder sb = new StringBuilder();
-                sb.append(split[0]);
-                sb.append('.');
-                sb.append(split[1]);
-                startDate = sb.toString();
-
-                jsonObject.put("startDate", startDate);
-            }
-
-            //从旧版本输入开始时间
-            if (startDate != null && startDate.indexOf(".") != -1) {
-                String[] split = startDate.split("\\.");
-                StringBuilder sb = new StringBuilder();
-                if (split[0] != "-")
-                    sb.append(split[0]);
-                else
-                    sb.append("1800");
-                sb.append('.');
-                if (split[1] != "-")
-                    sb.append(split[1]);
-                else
-                    sb.append("01");
-                startDate = sb.toString();
-                jsonObject.put("startDate", startDate);
-            }
-
-            //从新版本输入结束时间
-            if (endDate != null && endDate.indexOf(".") == -1) {
-                String[] split = endDate.split("-");
-                StringBuilder sb = new StringBuilder();
-                sb.append(split[0]);
-                sb.append('.');
-                sb.append(split[1]);
-                endDate = sb.toString();
-
-                jsonObject.put("endDate", endDate);
-            }
-            System.out.println("endDate:" + endDate);
-            //从旧版本输入结束时间
-            if (!endDate.equals(".") && endDate.indexOf(".") != -1) {
-                String[] split = endDate.split("\\.");
-                StringBuilder sb = new StringBuilder();
-                if (split[0] != "null" && split[0] != "-")
-                    sb.append(split[0]);
-                else
-                    sb.append("1800");
-                sb.append('.');
-                if (split[1] != "null" && split[1] != "-")
-                    sb.append(split[1]);
-                else
-                    sb.append("01");
-                endDate = sb.toString();
-            }
-
-            if (endDate.equals("."))
-                endDate = "1800.01";
             jsonObject.put("endDate", endDate);
             academicDao.addProject(jsonObject);
         }
