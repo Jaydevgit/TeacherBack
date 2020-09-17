@@ -4,7 +4,7 @@
 <mapper namespace="com.teacher.scholat.dao.TeacherDao">
 
     <select id="getTeacherInfo" resultType="com.alibaba.fastjson.JSONObject">
-      select u.*,s.domain_name unit_DomainName
+      select u.*,s.domain_name unit_DomainName,s.unit_name
       from teacher_profile u left join school_unit s on u.unit_id=s.id where u.id=#{0}
     </select>
 
@@ -226,7 +226,7 @@
     </select>
 
     <!--注：此处和上面函数只是别名的区别-->
-    <select id="listTeacherAllTWO" resultType="com.alibaba.fastjson.JSONObject">
+    <!--<select id="listTeacherAllTWO" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
                   t.id          id,
                   t.username    name,
@@ -234,7 +234,7 @@
                   t.avatar      avatar
         FROM teacher_profile t
         WHERE t.state = '1' AND t.unit_id = #{unitId} ORDER BY t.seq,CONVERT(t.username  USING gbk)
-    </select>
+    </select>-->
 
     <select id="getUnitIdBytId" resultType="Integer">
         SELECT  t.unit_id unitId
