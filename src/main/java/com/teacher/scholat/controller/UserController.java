@@ -23,12 +23,20 @@ public class UserController {
 	private UserService userService;
 
 	/**
-	 * 查询用户列表
+	 * 查询学院用户列表
 	 */
 	@RequiresPermissions("user:list")
 	@GetMapping("/list")
 	public JSONObject listUser(HttpServletRequest request) {
 		return userService.listUser(CommonUtil.request2Json(request));
+	}
+	/**
+	 * 查询学校用户列表
+	 */
+	@RequiresPermissions("schoolUser:list")
+	@GetMapping("/listSchoolUser")
+	public JSONObject listSchoolUser(HttpServletRequest request) {
+		return userService.listSchoolUser(CommonUtil.request2Json(request));
 	}
 
 
@@ -41,6 +49,16 @@ public class UserController {
 		requestJson.put("password",newPassword);
 		System.out.println("加密后："+requestJson.get("password").toString());
 		return userService.addUser(requestJson);
+	}
+	@RequiresPermissions("schoolUser:add")
+	@PostMapping("/addSchoolUser")
+	public JSONObject addSchoolUser(@RequestBody JSONObject requestJson) {
+		CommonUtil.hasAllRequired(requestJson, "username,nickname,password, roleId, schoolId");
+		System.out.println("加密前"+requestJson.get("password").toString());
+		String newPassword = MD5Util.toDb(requestJson.get("password").toString());
+		requestJson.put("password",newPassword);
+		System.out.println("加密后："+requestJson.get("password").toString());
+		return userService.addSchoolUser(requestJson);
 	}
 
 	@RequiresPermissions("user:update")
@@ -101,6 +119,15 @@ public class UserController {
 		long unitId = requestJson.getLongValue("unitId");
 		System.out.println(unitId);
 		return userService.getRolesByUnitId(unitId);
+	}
+	@RequiresPermissions(value = {"schoolUser:add", "schoolUser:update"}, logical = Logical.OR)
+	@PostMapping("/getRolesBySchoolId")
+	public JSONObject getRolesBySchoolId(@RequestBody JSONObject requestJson) {
+
+		CommonUtil.hasAllRequired(requestJson, "schoolId");
+		long schoolId = requestJson.getLongValue("schoolId");
+		System.out.println(schoolId);
+		return userService.getRolesBySchoolId(schoolId);
 	}
 
 	/**

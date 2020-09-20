@@ -37,6 +37,17 @@ public class UserServiceImpl implements UserService {
 		System.out.println(list);
 		return CommonUtil.successPage(jsonObject, list, count);
 	}
+	@Override
+	public JSONObject listSchoolUser(JSONObject jsonObject) {
+		CommonUtil.fillPageParam(jsonObject);
+		long schoolId = jsonObject.getLongValue("schoolId");
+		System.out.println("schoolId="+schoolId);
+		int count = userDao.countSchoolUser(schoolId);
+		System.out.println("........有"+count+"位子账号");
+		List<JSONObject> list = userDao.listSchoolUser(jsonObject);
+		System.out.println(list);
+		return CommonUtil.successPage(jsonObject, list, count);
+	}
 
 	/**
 	 * 添加用户
@@ -59,6 +70,24 @@ public class UserServiceImpl implements UserService {
 		userDao.addUserToLogin(jsonObject); // 添加用户到登录表
 		return CommonUtil.successJson();
 	}
+	@Override
+	public JSONObject addSchoolUser(JSONObject jsonObject) {
+		int exist = userDao.queryExistSchoolUsername(jsonObject);
+		if (exist > 0) {
+			return CommonUtil.errorJson(ErrorEnum.E_10009);
+		}
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+		jsonObject.put("updateTime",df.format(new Date()));
+		userDao.addSchoolUser(jsonObject); // 添加用户到用户表
+		int userId = Integer.parseInt(jsonObject.getString("userId"));
+		System.out.println("返回的userId为："+userId);
+		jsonObject.put("userId",userId);
+		System.out.println("刚刚加入了加入到用户表的userId，看看有没有加入到jsonObject");
+		System.out.println("jsonObject："+jsonObject);
+		userDao.addSchoolUserToLogin(jsonObject); // 添加用户到登录表
+		return CommonUtil.successJson();
+	}
 
 	/**
 	 * 查询所有的角色
@@ -74,6 +103,12 @@ public class UserServiceImpl implements UserService {
 	public JSONObject getRolesByUnitId(long unitId) {
 
 		List<JSONObject> roles = userDao.getRolesByUnitId(unitId);
+		return CommonUtil.successPage(roles);
+	}
+	@Override
+	public JSONObject getRolesBySchoolId(long schoolId) {
+
+		List<JSONObject> roles = userDao.getRolesBySchoolId(schoolId);
 		return CommonUtil.successPage(roles);
 	}
 

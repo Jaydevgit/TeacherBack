@@ -12,6 +12,7 @@ public interface UserService {
 	 * 用户列表
 	 */
 	JSONObject listUser(JSONObject jsonObject);
+	JSONObject listSchoolUser(JSONObject request2Json);
 
 	/**
 	 * 查询所有的角色
@@ -24,11 +25,13 @@ public interface UserService {
 	 * @return
 	 */
 	JSONObject getRolesByUnitId(long unitId);
+	JSONObject getRolesBySchoolId(long schoolId);
 
 	/**
 	 * 添加用户
 	 */
 	JSONObject addUser(JSONObject jsonObject);
+	JSONObject addSchoolUser(JSONObject requestJson);
 
 	/**
 	 * 修改用户,包括删除
@@ -71,6 +74,7 @@ public interface UserService {
 	JSONObject getSchoolUserInfo(JSONObject requestJson);
 	JSONObject updateInfo(JSONObject jsonObject);
 	JSONObject updateSchoolUserInfo(JSONObject requestJson);
+
 
 
 }

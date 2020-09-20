@@ -15,11 +15,13 @@ public interface UserDao {
 	 * 查询用户数量
 	 */
 	int countUser(Long unitId);
+	int countSchoolUser(Long schoolId);
 
 	/**
 	 * 查询用户列表
 	 */
 	List<JSONObject> listUser(JSONObject jsonObject);
+	List<JSONObject> listSchoolUser(JSONObject jsonObject);
 
 	/**
 	 * 查询所有的角色
@@ -33,19 +35,25 @@ public interface UserDao {
 	 */
 
 	List<JSONObject> getRolesByUnitId(long unitId);
-
+	List<JSONObject> getRolesBySchoolId(long schoolId);
 	/**
 	 * 校验用户名是否已存在
 	 */
 	int queryExistUsername(JSONObject jsonObject);
+	int queryExistSchoolUsername(JSONObject jsonObject);
+
 
 	/**
 	 * 新增用户
 	 */
-	int addUser(JSONObject jsonObject);	/**
+	int addUser(JSONObject jsonObject);
+	int addSchoolUser(JSONObject jsonObject);
+	/**
+
 	 * 新增用户到登录表
 	 */
 	int addUserToLogin(JSONObject jsonObject);
+	int addSchoolUserToLogin(JSONObject jsonObject);
 
 	/**
 	 * 修改用户
