@@ -59,10 +59,12 @@ public interface UserDao {
 	 * 修改用户
 	 */
 	int updateUser(JSONObject jsonObject);
+    int updateSchoolUser(JSONObject jsonObject);
 	/*
 	* 修改用户的登录表
 	* */
 	int updateUserToLogin(JSONObject jsonObject);
+    int updateSchoolUserToLogin(JSONObject jsonObject);
 	/**
 	 * 修改用户
 	 */

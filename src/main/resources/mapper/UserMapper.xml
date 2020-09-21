@@ -153,6 +153,18 @@
         , state = #{state}
         WHERE id = #{userId} and id != 10001
     </update>
+    <update id="updateSchoolUser">
+        UPDATE school_profile
+        SET
+        nickname = #{nickname}
+        <if test="password !='' and password !=null">
+            , password = #{password}
+        </if>
+
+        , role_id = #{roleId}
+        , state = #{state}
+        WHERE id = #{userId} and id != 10001
+    </update>
     <update id="updateSelfUser">
         UPDATE unit_profile
         SET
@@ -178,6 +190,16 @@
         </if>
         , state = #{state}
         WHERE user_id = #{userId} and role="unit"
+    </update>
+    <update id="updateSchoolUserToLogin">
+        UPDATE login
+        SET
+        nickname = #{nickname}
+        <if test="password !='' and password !=null">
+            , password = #{password}
+        </if>
+        , state = #{state}
+        WHERE user_id = #{userId} and role="school"
     </update>
 
     <update id="updateSelfUserToLogin">

@@ -123,6 +123,14 @@ public class UserServiceImpl implements UserService {
 		userDao.updateUserToLogin(jsonObject);
 		return CommonUtil.successJson();
 	}
+    @Override
+    public JSONObject updateSchoolUser(JSONObject jsonObject) {
+        System.out.println("updateSchoolUser........"+jsonObject);
+        userDao.updateSchoolUser(jsonObject);
+        System.out.println("现在准备更新学校用户信息到登录表");
+        userDao.updateSchoolUserToLogin(jsonObject);
+        return CommonUtil.successJson();
+    }
 
 	/**
 	 * 本用户,自己修改密码

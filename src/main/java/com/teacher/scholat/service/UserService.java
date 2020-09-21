@@ -37,6 +37,7 @@ public interface UserService {
 	 * 修改用户,包括删除
 	 */
 	JSONObject updateUser(JSONObject jsonObject);
+    JSONObject updateSchoolUser(JSONObject requestJson);
 
 	/**
 	 * 本用户,自己修改密码
