@@ -25,4 +25,14 @@ public class ScheduledTask {
     public void taskGetAllProject() {
         statisticController.getAllProject();
     }
+
+    @Scheduled(cron = "0 40 1 * * ?")
+    public void taskGetAllPatent() {
+        statisticController.getAllPatent();
+    }
+
+    @Scheduled(cron = "0 0 2 * * ?")
+    public void taskGetAllPublication() {
+        statisticController.getAllPublication();
+    }
 }

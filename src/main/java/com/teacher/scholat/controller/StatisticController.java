@@ -154,6 +154,81 @@ public class StatisticController {
         }
     }
 
+    //采集所有专利
+    @GetMapping("/getAllPatent")
+    @Transactional(rollbackFor = Exception.class)
+    public void getAllPatent(){
+        List<JSONObject> allTeacher= teacherDao.listTeacherAllUnit();
+        for (int i = 0; i < allTeacher.size(); i++) {
+            String scholatUsername=allTeacher.get(i).getString("tScholat_username");
+            Integer unitId=allTeacher.get(i).getIntValue("tUnitId");
+            JSONObject jsonObject=new JSONObject();
+            //获取所有教师学者网用户名及本地学院id
+            jsonObject.put("scholat_username",scholatUsername);
+            jsonObject.put("unitId",unitId);
+            //  System.out.println(jsonObject);
+            JSONArray jsonArray = GetScholatAcademic.getScholatPatentByUserName(scholatUsername);
+             System.out.println("patentArray"+jsonArray.toString());
+
+            List<JSONObject> list = new ArrayList<>();
+            if (jsonArray.toString().equals("[]"))
+            { continue;}
+
+            //遍历每一项目
+            for (int n = 0;n < jsonArray.size();n++){
+                JSONObject jsonObject1 = jsonArray.getJSONObject(n);
+                jsonObject1.put("application" , jsonObject1.getString("application"));
+                jsonObject1.put("scholat_username",scholatUsername);
+                jsonObject1.put("unitId",unitId);
+                jsonObject1.put("scholat_patent_id",jsonObject1.getLongValue("id"));
+                jsonObject1.put("title",jsonObject1.getString("name"));
+                jsonObject1.put("patentType",jsonObject1.getString("typeAndId"));
+
+              //  System.out.println("===="+jsonObject1);
+                academicService.addPatent(jsonObject1);
+                list.add(jsonObject1);
+            }
+
+        }
+    }
+
+    //采集所有著作
+    @GetMapping("/getAllPublication")
+    @Transactional(rollbackFor = Exception.class)
+    public void getAllPublication(){
+        List<JSONObject> allTeacher= teacherDao.listTeacherAllUnit();
+        for (int i = 0; i < allTeacher.size(); i++) {
+            String scholatUsername=allTeacher.get(i).getString("tScholat_username");
+            Integer unitId=allTeacher.get(i).getIntValue("tUnitId");
+            JSONObject jsonObject=new JSONObject();
+            //获取所有教师学者网用户名及本地学院id
+            jsonObject.put("scholat_username",scholatUsername);
+            jsonObject.put("unitId",unitId);
+            //  System.out.println(jsonObject);
+            JSONArray jsonArray = GetScholatAcademic.getScholatPublicationByUserName(scholatUsername);
+            System.out.println("publicationArray"+jsonArray.toString());
+
+            List<JSONObject> list = new ArrayList<>();
+            if (jsonArray.toString().equals("[]"))
+            { continue;}
+
+            //遍历每一项目
+            for (int n = 0;n < jsonArray.size();n++){
+                JSONObject jsonObject1 = jsonArray.getJSONObject(n);
+                jsonObject1.put("application" , jsonObject1.getString("application"));
+                jsonObject1.put("scholat_username",scholatUsername);
+                jsonObject1.put("unitId",unitId);
+                jsonObject1.put("scholat_publication_id",jsonObject1.getLongValue("id"));
+                jsonObject1.put("title",jsonObject1.getString("content"));
+
+                //  System.out.println("===="+jsonObject1);
+                academicService.addPublication(jsonObject1);
+                list.add(jsonObject1);
+            }
+
+        }
+    }
+
     //查询所有个数
     @GetMapping("/getTotal/{unitId}")
     public JSONObject getTotal(@PathVariable("unitId") long unitId){
