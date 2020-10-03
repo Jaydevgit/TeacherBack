@@ -206,7 +206,7 @@ public class StatisticController {
             jsonObject.put("unitId",unitId);
             //  System.out.println(jsonObject);
             JSONArray jsonArray = GetScholatAcademic.getScholatPublicationByUserName(scholatUsername);
-            System.out.println("publicationArray"+jsonArray.toString());
+          //  System.out.println("publicationArray"+jsonArray.toString());
 
             List<JSONObject> list = new ArrayList<>();
             if (jsonArray.toString().equals("[]"))
