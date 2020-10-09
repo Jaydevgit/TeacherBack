@@ -1320,7 +1320,7 @@ public class AcademicServiceImpl implements AcademicService {
     @Override
     public JSONObject addPatent(JSONObject jsonObject) {
         Long scholat_patent_id=jsonObject.getLongValue("scholat_patent_id");
-        if(academicDao.projectExitIf(scholat_patent_id)!=0)
+        if(academicDao.patentExitIf(scholat_patent_id)!=0)
             return CommonUtil.successJson();
         int flagN = academicDao.patentDeleteExitIf(scholat_patent_id);//判断添加的专利是否原来删除过
         if(flagN!=0){
