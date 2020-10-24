@@ -373,12 +373,12 @@ public class ManagerServiceImpl implements ManagerService {
         //count =managerDao.countScholat(jsonObject);
         System.out.println("编辑界面根据邮箱或姓名查询学者网账号结果: 有" + count + "位教师");
 
-/*		if(count!=0){
+		if(count!=0){
 			list = managerDao.searchScholat(jsonObject);
 			System.out.println("后台查询到的教师数据为: "+list);
 		}else{
 			System.out.println("并没有找到学者网对应的学者数据");
-		}*/
+		}
         return CommonUtil.successPage(jsonObject, list, count);
     }
 

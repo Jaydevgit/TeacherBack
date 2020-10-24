@@ -400,7 +400,7 @@ WHERE
 
 
 
-<!--    <select id="countScholat" resultType="Integer">
+    <select id="countScholat" resultType="Integer">
         SELECT count(0)
       from user_profile
       where acc_name=#{username} or chinese_name=#{name} or work_email=#{email}
@@ -419,6 +419,6 @@ WHERE
       u.scholar_title   post
       from user_profile u
       where u.acc_name=#{username} or u.chinese_name=#{name} or u.work_email=#{email}
-    </select>-->
+    </select>
 
 </mapper>
