@@ -92,5 +92,5 @@ public interface ScholatDao {
     int deleteSchool(Long id);
 
 
-
+    List<JSONObject> getAllUnit();
 }

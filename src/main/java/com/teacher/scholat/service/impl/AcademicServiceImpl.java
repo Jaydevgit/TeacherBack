@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.teacher.scholat.dao.AcademicDao;
+import com.teacher.scholat.dao.ScholatDao;
 import com.teacher.scholat.dao.TeacherDao;
 import com.teacher.scholat.dao.UnitDao;
 //import com.teacher.scholat.repository.PaperRepository;
@@ -25,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.Soundbank;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -36,6 +38,8 @@ import java.util.*;
 @Service
 public class AcademicServiceImpl implements AcademicService {
 
+    @Resource
+     ScholatDao scholatDao;
     @Resource
     AcademicDao academicDao;
     @Resource
@@ -107,6 +111,29 @@ public class AcademicServiceImpl implements AcademicService {
             list.add(jsonObject1);
         }
         return CommonUtil.successJson(list);
+    }
+
+    //论文模糊去重
+    @Override
+    public void deduplicationPaper(){
+        List<JSONObject> allUnit = scholatDao.getAllUnit();
+        System.out.println("去重论文学院集合为:"+allUnit);
+        for (int i = 0; i < allUnit.size(); i++) {
+            int UnitId=allUnit.get(i).getInteger("id");
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("unitId",UnitId);
+            List<JSONObject> paperAll = academicDao.listPaperAll(jsonObject);
+            HashMap<Integer,String> map=new HashMap<>();
+            for (int j = 0; j < paperAll.size(); j++) {
+                if(map.containsValue(paperAll.get(j).getString("title"))){
+                   // System.out.println("重复论文id为:"+paperAll.get(j).getIntValue("id"));
+                    //标签重复论文
+                    academicDao.siguDeduplicationPaper(paperAll.get(j).getIntValue("id"));
+                }
+                map.put(paperAll.get(j).getIntValue("id"),paperAll.get(j).getString("title"));
+            }
+        }
+
     }
 
     @Override

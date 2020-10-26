@@ -104,6 +104,8 @@ public interface AcademicService {
 
     JSONObject getAllCount(long unitId);
 
+    void deduplicationPaper();
+
 
 //    JSONObject aiPaper(Long id) throws IOException;
 //

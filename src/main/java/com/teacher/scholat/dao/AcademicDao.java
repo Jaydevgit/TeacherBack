@@ -119,4 +119,6 @@ public interface AcademicDao {
     void deleteAllStatistic(int unitId);
 
     JSONObject getTotal(Long unitId);
+
+    void siguDeduplicationPaper(int unitId);
 }

@@ -208,6 +208,10 @@
       DELETE FROM academic_statistic WHERE unit_id = #{unitId}
     </delete>
 
+    <update id="siguDeduplicationPaper" >
+      update paper p set p.deduplication=1  WHERE p.id = #{unitId}
+    </update>
+
     <resultMap id="paperTeacherMap" type="com.teacher.scholat.util.model.One2Many">
         <id column="id" property="id"/>
         <result column="name" property="name"/>

@@ -104,6 +104,14 @@ WHERE
         left join school_unit on school_unit.id = t.unit_id
         ORDER BY update_time desc LIMIT #{offSet},#{pageRow}
     </select>
+    <select id="getAllUnit" resultType="com.alibaba.fastjson.JSONObject">
+     SELECT
+        s.id                                        id
+      from  school_unit s
+      where  s.domain_name &lt;&gt; ''
+      and   s.school_domain &lt;&gt; ''
+    </select>
+
     <select id="listUnitBlack" resultType="com.alibaba.fastjson.JSONObject">
         SELECT
         t.id                                          id,
