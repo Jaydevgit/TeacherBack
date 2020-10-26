@@ -28,6 +28,15 @@ public class SchoolController {
         return schoolService.listTeacher(CommonUtil.request2Json(request));
     }
     /**
+     * 学校主页查询学校教师列表
+     */
+    @GetMapping("/listAllTeacher")
+    public JSONObject listAllTeacher(HttpServletRequest request) {
+        System.out.println("......开始查询学校主页教师成员列表");
+        System.out.println(CommonUtil.request2Json(request));
+        return schoolService.listAllTeacher(CommonUtil.request2Json(request));
+    }
+    /**
      * 查询学院教师列表
      */
     @RequiresPermissions("school:list")

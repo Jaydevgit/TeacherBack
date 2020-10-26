@@ -13,6 +13,10 @@ public interface SchoolService {
      */
     JSONObject listTeacher(JSONObject request2Json);
     /**
+     * 学校主页查询学校教师列表
+     */
+    JSONObject listAllTeacher(JSONObject request2Json);
+    /**
      * 学院教师列表
      */
     JSONObject listTeacherByUnit(JSONObject request2Json);
@@ -33,4 +37,6 @@ public interface SchoolService {
      * 学校管理员删除教师
      */
     public int deleteTeacher(JSONObject requestJson);
+
+
 }

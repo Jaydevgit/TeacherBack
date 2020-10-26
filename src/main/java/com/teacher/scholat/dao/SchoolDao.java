@@ -17,6 +17,7 @@ public interface SchoolDao {
      * 学校教师列表
      */
     List<JSONObject> listTeacherLocal(JSONObject jsonObject);
+    List<JSONObject> listAllTeacher(JSONObject jsonObject);
     /**
      * 学院教师列表
      */
