@@ -123,17 +123,65 @@ public class AcademicServiceImpl implements AcademicService {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("unitId",UnitId);
             List<JSONObject> paperAll = academicDao.listPaperAll(jsonObject);
+            //存储所有论文
             HashMap<Integer,String> map=new HashMap<>();
+            //存储无重复论文
+            HashMap<Integer,String> map2=new HashMap<>();
             for (int j = 0; j < paperAll.size(); j++) {
-                if(map.containsValue(paperAll.get(j).getString("title"))){
-                   // System.out.println("重复论文id为:"+paperAll.get(j).getIntValue("id"));
-                    //标签重复论文
-                    academicDao.siguDeduplicationPaper(paperAll.get(j).getIntValue("id"));
+                //论文题目 论文id
+                String title=paperAll.get(j).getString("title");
+                Integer id=paperAll.get(j).getIntValue("id");
+                if(map.containsValue(title)){
+                    String scholatName=paperAll.get(j).getString("scholatUsername");
+                   // System.out.println("重复论文id为:"+id);
+                    //标记重复论文
+                    academicDao.siguDeduplicationPaper(id);
+                    //获取保留论文id
+                    Integer svaeId=getKey(map2,title);
+                    System.out.println("保留论文id为:"+getKey(map2,title)+"学者网用户名:"+scholatName);
+                    //查询共同作者的学者网用户名集合
+                    JSONObject coAuScholatNameList = academicDao.getCoAuScholatName(svaeId);
+                    Set<String> set = new HashSet<>();
+                    if(coAuScholatNameList!=null){
+                        //保存无重复学者网共同用户集合
+                    String coAuScholatName=coAuScholatNameList.getString("coAuScholatName").replace(" ","");;
+                        if(!coAuScholatName.isEmpty()){
+                            String[] scholat_usernames = coAuScholatName.split(",");
+                            for(String name:scholat_usernames){
+                                System.out.println("共同作者的学者网用户名集合为:"+name);
+                                set.add(name);
+                            }
+                        }
+                    }
+                    set.add(scholatName);
+                    System.out.println("set=="+set.toString().substring(1,set.toString().length()-1).replace(" ",""));
+                    String scholatNameList=set.toString().substring(1,set.toString().length()-1);
+
+                    //共用关联论文Json数据
+                    JSONObject json = new JSONObject();
+                    json.put("id",svaeId);
+                    json.put("scholatNameList",scholatNameList);
+                    //添加共同作者的学者网用户名集合
+                    academicDao.updateCoAuScholatName(json);
+                }else{
+                    map2.put(id,title);
                 }
-                map.put(paperAll.get(j).getIntValue("id"),paperAll.get(j).getString("title"));
+                map.put(id,title);
             }
         }
 
+    }
+
+    //根据获取vaule得到key
+    public static Integer getKey(Map map, String value){
+        Integer keyList = null;
+      //  List<Object> keyList = new ArrayList<>();
+        for(Object key: map.keySet()){
+            if(map.get(key).equals(value)){
+                keyList= (Integer) key;
+            }
+        }
+        return keyList;
     }
 
     @Override

@@ -120,5 +120,9 @@ public interface AcademicDao {
 
     JSONObject getTotal(Long unitId);
 
-    void siguDeduplicationPaper(int unitId);
+    void  siguDeduplicationPaper(int unitId);
+
+    JSONObject getCoAuScholatName(int id);
+
+    void updateCoAuScholatName(JSONObject scholatNameList);
 }
