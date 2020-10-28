@@ -210,6 +210,19 @@ public class ManagerController {
 		}
 		return CommonUtil.successJson(jsonObject1);
 	}
+	// 通过用户名获取学者网原的个人简介的dom
+	@RequestMapping("/getScholatReviewProfileByUserName")
+		public JSONObject getScholartReviewProfile(@RequestBody JSONObject requestJson){
+			String username = requestJson.getString("username");
+		JSONArray jsonArray = GetScholatProfile.getScholatProfileByUserName(username);
+		JSONObject jsonObject1 = new JSONObject();
+		if(jsonArray!=null){
+			JSONObject jsonObject = jsonArray.getJSONObject(0);
+			String scholatIntro = jsonObject.getString("introduction");
+			jsonObject1.put("intro", scholatIntro);
+		}
+		return CommonUtil.successJson(jsonObject1);
+	}
 
 	// 绑定解绑学者网账号
 	@RequestMapping("/bindScholat")
