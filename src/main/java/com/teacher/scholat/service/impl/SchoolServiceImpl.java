@@ -69,11 +69,49 @@ public class SchoolServiceImpl implements SchoolService {
         return CommonUtil.successPage(jsonObject, listLocal, count);
     }
     /**
+     * 学校主页查询学校教师列表
+     */
+    @Override
+    public JSONObject listAllTeacher(JSONObject jsonObject) {
+        System.out.println("前端传过来的学校主页教师列表要求为: "+jsonObject);
+        int count = schoolDao.countTeacher(jsonObject);
+        System.out.println("学校主页........有"+count+"位教师");
+        List<JSONObject> listLocal = schoolDao.listAllTeacher(jsonObject);
+        for (JSONObject jsonObject1 : listLocal) {
+            String username = jsonObject1.getString("scholat_username");
+            String email = jsonObject1.getString("email"); // 通过email搜索
+            String updateTime = jsonObject1.getString("update_time");
+            JSONArray jsonArray = GetScholatProfile.getScholatProfileByUserName(username);
+            JSONObject jsonObject2 = new JSONObject();
+            if(jsonArray!= null && jsonArray.size()>0){
+                jsonObject2= jsonArray.getJSONObject(0);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                SimpleDateFormat strFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                String str = jsonObject2.getString("introUpdateTime");
+                Date date = new Date();
+                String time;
+                try {
+                    date = strFormat.parse(str);
+                    time = dateFormat.format(date); //可以把日期转换转指定格式的字符串
+                    int compareTo = time.compareTo(updateTime);
+                } catch (ParseException e) {
+                    time = str;
+                }
+                jsonObject1.put("scholat_update_time",time);
+            }else {
+                jsonObject1.put("scholat_update_time", "");
+                jsonObject1.put("real_scholat_username", "");
+            }
+        }
+        System.out.println("后台查询到的教师数据为: " + listLocal);
+        return CommonUtil.successPage(jsonObject, listLocal, count);
+    }
+    /**
      * 学院教师列表
      */
     @Override
     public JSONObject listTeacherByUnit(JSONObject jsonObject) {
-        System.out.println("前端传过来的学校教师列表要求为: ");
+        System.out.println("前端传过来的学校教师列表要求为: "+jsonObject);
         CommonUtil.fillPageParam(jsonObject);
         //long unitId = jsonObject.getLongValue("unitId");
         int count = schoolDao.countUnitTeacher(jsonObject);

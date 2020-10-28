@@ -1,5 +1,6 @@
 package com.teacher.scholat.util;
 
+import com.teacher.scholat.controller.DeduplicationController;
 import com.teacher.scholat.controller.StatisticController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -10,6 +11,9 @@ public class ScheduledTask {
 
     @Autowired
     private StatisticController statisticController;
+
+    @Autowired
+    private DeduplicationController seduplicationController;
 
     @Scheduled(cron = "0 0 0 * * ?")
     public void task1() {
@@ -34,5 +38,11 @@ public class ScheduledTask {
     @Scheduled(cron = "0 0 2 * * ?")
     public void taskGetAllPublication() {
         statisticController.getAllPublication();
+    }
+
+    //论文定时去重
+    @Scheduled(cron = "0 51 20 * * ?")
+    public void taskDeduplicationPaper() {
+        seduplicationController.deduplicationPaper();
     }
 }

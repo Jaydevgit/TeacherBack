@@ -204,9 +204,21 @@
             #{projectTotal},#{patentTotal},#{publicationTotal})
     </insert>
 
+    <update id="updateCoAuScholatName" parameterType="com.alibaba.fastjson.JSONObject">
+      update paper p set p.coAuScholatName=#{scholatNameList}  WHERE p.id = #{id}
+    </update>
+
     <delete id="deleteAllStatistic" >
       DELETE FROM academic_statistic WHERE unit_id = #{unitId}
     </delete>
+
+    <update id="siguDeduplicationPaper" >
+      update paper p set p.deduplication=1  WHERE p.id = #{unitId}
+    </update>
+
+    <select id="getCoAuScholatName"  resultType="com.alibaba.fastjson.JSONObject">
+      select p.coAuScholatName  coAuScholatName from paper p where p.id = #{id}
+    </select>
 
     <resultMap id="paperTeacherMap" type="com.teacher.scholat.util.model.One2Many">
         <id column="id" property="id"/>
@@ -686,6 +698,7 @@
                   p.summary           summary,
                   p.keyword           keyword,
                   p.source            source,
+                  p.scholat_username    scholatUsername,
                   p.papertype         papertype,
                   p.datetime          datetime
 --                   p.views             views,
