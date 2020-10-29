@@ -1678,6 +1678,7 @@ public class AcademicServiceImpl implements AcademicService {
             json2.put("id",Integer.parseInt(ArrIds[i]));
             System.out.println( json2);
             List<JSONObject> list=academicDao.getSearchTeacherPaper(json2);
+            //存储不重复论命题
             for (int j = 0; j <list.size() ; j++) {
                 JSONObject paper=list.get(j);
                 paperExcel data = new paperExcel();
@@ -1691,7 +1692,16 @@ public class AcademicServiceImpl implements AcademicService {
                 data.setSource(paper.getString("source"));
                 data.setDatetime(paper.getString("datetime"));
                 data.setKeyword(paper.getString("keyword"));
-                listPaper.add(data);
+                int flag=0;
+                for (int k = 0; k < listPaper.size()-1; k++) {
+                    if(listPaper.get(k).getTitle().equals(paper.getString("title"))){
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag==0){
+                    listPaper.add(data);
+                }
             }
         }
         try {
