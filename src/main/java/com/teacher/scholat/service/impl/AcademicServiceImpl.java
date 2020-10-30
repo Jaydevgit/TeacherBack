@@ -1693,6 +1693,7 @@ public class AcademicServiceImpl implements AcademicService {
                 data.setDatetime(paper.getString("datetime"));
                 data.setKeyword(paper.getString("keyword"));
                 int flag=0;
+                //论文导出去重
                 for (int k = 0; k < listPaper.size()-1; k++) {
                     if(listPaper.get(k).getTitle().equals(paper.getString("title"))){
                         flag=1;
