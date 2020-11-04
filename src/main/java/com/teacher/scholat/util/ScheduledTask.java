@@ -41,7 +41,7 @@ public class ScheduledTask {
     }
 
     //论文定时去重
-    @Scheduled(cron = "0 51 20 * * ?")
+    @Scheduled(cron = "0 0 3 * * ?")
     public void taskDeduplicationPaper() {
         seduplicationController.deduplicationPaper();
     }
