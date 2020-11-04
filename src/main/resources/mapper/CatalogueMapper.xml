@@ -200,7 +200,11 @@
             SET is_deleted = 1
             WHERE id = #{ctId}
         </update>
-
+       <update id="removeMultTeacher">
+            UPDATE catalogue_teacher
+            SET is_deleted = 1
+            WHERE id  in ${removeArrayId}
+        </update>
         <insert id="addSingleTeacher" useGeneratedKeys="true">
             INSERT INTO catalogue_teacher
             (teacher_id ,catalogue_id)
@@ -214,7 +218,7 @@
             VALUES
             (#{tId},#{cId})
         </insert>
-        
+
         <update id="sortUnitTeacher">
             UPDATE teacher_profile
             SET seq = #{seq}

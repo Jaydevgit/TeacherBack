@@ -102,6 +102,13 @@ public class CatalogueServiceImpl implements CatalogueService {
     }
 
     @Override
+    public JSONObject removeMultTeacher(JSONObject Object) {
+        System.out.println("删除的id:"+Object);
+        catalogueDao.removeMultTeacher(Object);
+        return CommonUtil.successJson();
+    }
+
+    @Override
     public JSONObject topTeacher(JSONObject object) {
         //添加時間
         Timestamp ts = new Timestamp(System.currentTimeMillis());

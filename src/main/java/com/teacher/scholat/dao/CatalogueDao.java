@@ -14,6 +14,7 @@ public interface CatalogueDao {
     void deleteCatalogue(JSONObject jsonObject);
     void addSubCatalogue(JSONObject jsonObject);
     void removeTeacher(JSONObject jsonObject);
+    void removeMultTeacher(JSONObject jsonObject);
     void topTeacher(JSONObject jsonObject);
     void topCatalogue(JSONObject jsonObject);
     void addSingleTeacher(JSONObject object);

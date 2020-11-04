@@ -63,6 +63,12 @@ public interface CatalogueService {
 	JSONObject removeTeacher(JSONObject Object);
 
 	/**
+	 * 移除栏目中选中的教师
+	 */
+	JSONObject removeMultTeacher(JSONObject Object);
+
+
+	/**
 	 * 置顶栏目中的教师
 	 */
 	JSONObject topTeacher(JSONObject Object);
