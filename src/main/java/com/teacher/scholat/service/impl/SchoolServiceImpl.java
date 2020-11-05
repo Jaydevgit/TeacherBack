@@ -77,7 +77,7 @@ public class SchoolServiceImpl implements SchoolService {
         int count = schoolDao.countTeacher(jsonObject);
         System.out.println("学校主页........有"+count+"位教师");
         List<JSONObject> listLocal = schoolDao.listAllTeacher(jsonObject);
-        for (JSONObject jsonObject1 : listLocal) {
+        /*for (JSONObject jsonObject1 : listLocal) {
             String username = jsonObject1.getString("scholat_username");
             String email = jsonObject1.getString("email"); // 通过email搜索
             String updateTime = jsonObject1.getString("update_time");
@@ -102,9 +102,10 @@ public class SchoolServiceImpl implements SchoolService {
                 jsonObject1.put("scholat_update_time", "");
                 jsonObject1.put("real_scholat_username", "");
             }
-        }
+        }*/
         System.out.println("后台查询到的教师数据为: " + listLocal);
-        return CommonUtil.successPage(jsonObject, listLocal, count);
+        return CommonUtil.successPage( listLocal);
+        /*return CommonUtil.successPage(jsonObject, listLocal, count);*/
     }
     /**
      * 学院教师列表
