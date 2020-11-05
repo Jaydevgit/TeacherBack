@@ -95,7 +95,12 @@ public class CatalogueController {
         CommonUtil.hasAllRequired(requestJson,"removeArrayId");
         return catalogueService.removeMultTeacher(requestJson);
     }
-
+    @PostMapping("/addMultTeacher")
+    public JSONObject addMultTeacher(@RequestBody JSONObject requestJson){
+        CommonUtil.hasAllRequired(requestJson,"addArrayValues");
+        System.out.println(requestJson.getString("addArrayValues"));
+        return catalogueService.addMultTeacher(requestJson);
+    }
     @PostMapping("/addSingleTeacher")
     public JSONObject addSingleTeacher(@RequestBody JSONObject requestJson){
         CommonUtil.hasAllRequired(requestJson,"tId,cId");

@@ -202,6 +202,12 @@ public class CatalogueServiceImpl implements CatalogueService {
     }
 
     @Override
+    public JSONObject addMultTeacher(JSONObject object) {
+        catalogueDao.addMultTeacher(object);
+        return CommonUtil.successJson();
+    }
+
+    @Override
     public JSONObject addSingleTeacher(JSONObject object){
         catalogueDao.addSingleTeacher(object);
         return CommonUtil.successJson();

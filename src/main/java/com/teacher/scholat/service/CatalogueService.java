@@ -102,6 +102,12 @@ public interface CatalogueService {
 	 * @param object
 	 * @return
 	 */
+	JSONObject addMultTeacher(JSONObject object);
+	/**
+	 * 添加栏目教师
+	 * @param object
+	 * @return
+	 */
 	JSONObject addCatalogueTeacher(JSONObject object);
 
 	/**
