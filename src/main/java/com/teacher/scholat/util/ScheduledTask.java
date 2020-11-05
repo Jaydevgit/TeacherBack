@@ -40,9 +40,15 @@ public class ScheduledTask {
         statisticController.getAllPublication();
     }
 
-    //论文定时去重
-    @Scheduled(cron = "0 0 3 * * ?")
+    //论文定时去重,每周凌晨3点执行一次
+    @Scheduled(cron = "0 0 3 ? * MON")
     public void taskDeduplicationPaper() {
         seduplicationController.deduplicationPaper();
+    }
+
+    //专利定时去重
+    @Scheduled(cron = "0 32 12 * * ?")
+    public void taskDeduplicationPatent() {
+        seduplicationController.deduplicationPatent();
     }
 }

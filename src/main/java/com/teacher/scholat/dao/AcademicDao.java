@@ -122,7 +122,13 @@ public interface AcademicDao {
 
     void  siguDeduplicationPaper(int unitId);
 
+    void  siguDeduplicationPatent(int unitId);
+
     JSONObject getCoAuScholatName(int id);
 
+    JSONObject getPatentCoAuScholatName(int id);
+
     void updateCoAuScholatName(JSONObject scholatNameList);
+
+    void updatePatentCoAuScholatName(JSONObject scholatNameList);
 }
