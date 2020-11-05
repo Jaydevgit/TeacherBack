@@ -47,7 +47,7 @@ public class ScheduledTask {
     }
 
     //专利定时去重
-    @Scheduled(cron = "0 32 12 * * ?")
+    @Scheduled(cron = "0 10 3 ? * MON")
     public void taskDeduplicationPatent() {
         seduplicationController.deduplicationPatent();
     }
