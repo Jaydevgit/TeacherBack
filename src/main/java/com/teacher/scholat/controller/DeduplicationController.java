@@ -21,4 +21,10 @@ public class DeduplicationController {
         academicService.deduplicationPaper();
     }
 
+    @RequestMapping("/deduplicationPatent")
+    public void deduplicationPatent(){
+        System.out.println("专利去重标记启动...");
+        academicService.deduplicationPatent();
+    }
+
 }

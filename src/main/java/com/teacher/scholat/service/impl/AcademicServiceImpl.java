@@ -133,7 +133,7 @@ public class AcademicServiceImpl implements AcademicService {
                 Integer id=paperAll.get(j).getIntValue("id");
                 if(map.containsValue(title)){
                     String scholatName=paperAll.get(j).getString("scholatUsername");
-                   // System.out.println("重复论文id为:"+id);
+                    // System.out.println("重复论文id为:"+id);
                     //标记重复论文
                     academicDao.siguDeduplicationPaper(id);
                     //获取保留论文id
@@ -144,7 +144,7 @@ public class AcademicServiceImpl implements AcademicService {
                     Set<String> set = new HashSet<>();
                     if(coAuScholatNameList!=null){
                         //保存无重复学者网共同用户集合
-                    String coAuScholatName=coAuScholatNameList.getString("coAuScholatName").replace(" ","");;
+                        String coAuScholatName=coAuScholatNameList.getString("coAuScholatName").replace(" ","");;
                         if(!coAuScholatName.isEmpty()){
                             String[] scholat_usernames = coAuScholatName.split(",");
                             for(String name:scholat_usernames){
@@ -156,7 +156,6 @@ public class AcademicServiceImpl implements AcademicService {
                     set.add(scholatName);
                     System.out.println("set=="+set.toString().substring(1,set.toString().length()-1).replace(" ",""));
                     String scholatNameList=set.toString().substring(1,set.toString().length()-1);
-
                     //共用关联论文Json数据
                     JSONObject json = new JSONObject();
                     json.put("id",svaeId);
@@ -169,7 +168,63 @@ public class AcademicServiceImpl implements AcademicService {
                 map.put(id,title);
             }
         }
+    }
 
+    //专利模糊去重
+    @Override
+    public void deduplicationPatent(){
+        List<JSONObject> allUnit = scholatDao.getAllUnit();
+        System.out.println("去重专利学院集合为:"+allUnit);
+        for (int i = 0; i < allUnit.size(); i++) {
+            int UnitId=allUnit.get(i).getInteger("id");
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("unitId",UnitId);
+            List<JSONObject> patentAll = academicDao.listPatentAll(jsonObject);
+            //存储所有专利
+            HashMap<Integer,String> map=new HashMap<>();
+            //存储无重复专利
+            HashMap<Integer,String> map2=new HashMap<>();
+            for (int j = 0; j < patentAll.size(); j++) {
+                //专利题目 专利id
+                String title=patentAll.get(j).getString("title");
+                Integer id=patentAll.get(j).getIntValue("id");
+                if(map.containsValue(title)){
+                    String scholatName=patentAll.get(j).getString("scholatUsername");
+                     System.out.println("重复专利id为:"+id);
+                    //标记重复专利
+                    academicDao.siguDeduplicationPatent(id);
+                    //获取保留专利id
+                    Integer svaeId=getKey(map2,title);
+                    System.out.println("保留专利id为:"+getKey(map2,title)+"学者网用户名:"+scholatName);
+                    //查询共同作者的学者网用户名集合
+                    JSONObject coAuScholatNameList = academicDao.getPatentCoAuScholatName(svaeId);
+                    Set<String> set = new HashSet<>();
+                    if(coAuScholatNameList!=null){
+                        //保存无重复学者网共同用户集合
+                        String coAuScholatName=coAuScholatNameList.getString("coAuScholatName").replace(" ","");;
+                        if(!coAuScholatName.isEmpty()){
+                            String[] scholat_usernames = coAuScholatName.split(",");
+                            for(String name:scholat_usernames){
+                                System.out.println("共同作者的学者网用户名集合为:"+name);
+                                set.add(name);
+                            }
+                        }
+                    }
+                    set.add(scholatName);
+                    System.out.println("set=="+set.toString().substring(1,set.toString().length()-1).replace(" ",""));
+                    String scholatNameList=set.toString().substring(1,set.toString().length()-1);
+                    //共用关联论文Json数据
+                    JSONObject json = new JSONObject();
+                    json.put("id",svaeId);
+                    json.put("scholatNameList",scholatNameList);
+                    //添加共同作者的学者网用户名集合
+                    academicDao.updatePatentCoAuScholatName(json);
+                }else{
+                    map2.put(id,title);
+                }
+                map.put(id,title);
+            }
+        }
     }
 
     //根据获取vaule得到key

@@ -11,7 +11,7 @@
     <select id="countSearchPaper"  resultType="Integer">
         SELECT count(0)
         FROM paper p
-        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId} AND p.deduplication is null
         <if test="name != null and name != ''">
             and p.scholat_username = ( SELECT t.scholat_username
             FROM teacher_profile t
@@ -83,7 +83,7 @@
     <select id="countSearchPatent"  resultType="Integer">
         SELECT count(0)
         FROM patent p
-        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId} AND p.deduplication is null
         <if test="name != null and name != ''">
             and p.scholat_username = ( SELECT t.scholat_username
             FROM teacher_profile t
@@ -208,6 +208,10 @@
       update paper p set p.coAuScholatName=#{scholatNameList}  WHERE p.id = #{id}
     </update>
 
+    <update id="updatePatentCoAuScholatName" parameterType="com.alibaba.fastjson.JSONObject">
+      update patent p set p.coAuScholatName=#{scholatNameList}  WHERE p.id = #{id}
+    </update>
+
     <delete id="deleteAllStatistic" >
       DELETE FROM academic_statistic WHERE unit_id = #{unitId}
     </delete>
@@ -216,8 +220,16 @@
       update paper p set p.deduplication=1  WHERE p.id = #{unitId}
     </update>
 
+    <update id="siguDeduplicationPatent" >
+      update patent p set p.deduplication=1  WHERE p.id = #{unitId}
+    </update>
+
     <select id="getCoAuScholatName"  resultType="com.alibaba.fastjson.JSONObject">
       select p.coAuScholatName  coAuScholatName from paper p where p.id = #{id}
+    </select>
+
+    <select id="getPatentCoAuScholatName"  resultType="com.alibaba.fastjson.JSONObject">
+      select p.coAuScholatName  coAuScholatName from patent p where p.id = #{id}
     </select>
 
     <resultMap id="paperTeacherMap" type="com.teacher.scholat.util.model.One2Many">
@@ -804,7 +816,9 @@
         p.papertype         papertype,
         p.datetime          datetime
         FROM paper p
-        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        WHERE p.deleted = '0'
+        AND p.unit_id =#{unitId}
+        AND p.deduplication is null
         <if test="name != null and name != ''">
         and p.scholat_username = ( SELECT t.scholat_username
         FROM teacher_profile t
@@ -1013,7 +1027,7 @@
         p.datetime          datetime,
         p.update_time          update_time
         FROM patent p
-        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId} AND p.deduplication is null
         <if test="name != null and name != ''">
             and p.scholat_username = ( SELECT t.scholat_username
             FROM teacher_profile t
@@ -1148,6 +1162,7 @@
                   p.authors           authors,
                   p.patent_number     patentNumber,
                   p.patent_type       patentType,
+                  p.scholat_username    scholatUsername,
                   p.datetime          datetime
         FROM patent p
         WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY datetime DESC
