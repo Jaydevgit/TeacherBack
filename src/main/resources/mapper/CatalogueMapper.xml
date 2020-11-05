@@ -219,6 +219,13 @@
             (#{tId},#{cId})
         </insert>
 
+        <insert id="addMultTeacher" useGeneratedKeys="true">
+            INSERT INTO catalogue_teacher
+            (teacher_id ,catalogue_id)
+            VALUES
+            ${addArrayValues}
+        </insert>
+
         <update id="sortUnitTeacher">
             UPDATE teacher_profile
             SET seq = #{seq}
