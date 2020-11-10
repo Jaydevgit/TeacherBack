@@ -1816,7 +1816,17 @@ public class AcademicServiceImpl implements AcademicService {
                 data.setProjectNumber(project.getString("project_number"));
                 data.setStartDate(project.getString("start_date"));
                 data.setEndDate(project.getString("end_date"));
-                listProject.add(data);
+                int flag=0;
+                //论文导出去重
+                for (int k = 0; k < listProject.size(); k++) {
+                    if(listProject.get(k).getTitle().equals(project.getString("title"))){
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag==0){
+                    listProject.add(data);
+                }
             }
         }
         try {
@@ -1878,7 +1888,6 @@ public class AcademicServiceImpl implements AcademicService {
                 for (int k = 0; k < listPatent.size(); k++) {
                     if(listPatent.get(k).getTitle().equals(patent.getString("title"))){
                         flag=1;
-                        System.out.println("aaabbb"+patent.getString("title"));
                         break;
                     }
                 }
@@ -2096,7 +2105,17 @@ public class AcademicServiceImpl implements AcademicService {
                 data.setPress(publication.getString("press"));
                 data.setCitation(publication.getString("citation"));
                 data.setDatetime(publication.getString("datetime"));
-                listPublication.add(data);
+                int flag=0;
+                //论文导出去重
+                for (int k = 0; k < listPublication.size(); k++) {
+                    if(listPublication.get(k).getTitle().equals(publication.getString("title"))){
+                        flag=1;
+                        break;
+                    }
+                }
+                if(flag==0){
+                    listPublication.add(data);
+                }
             }
         }
         try {
