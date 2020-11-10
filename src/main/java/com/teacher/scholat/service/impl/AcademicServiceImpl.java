@@ -1749,7 +1749,7 @@ public class AcademicServiceImpl implements AcademicService {
                 data.setKeyword(paper.getString("keyword"));
                 int flag=0;
                 //论文导出去重
-                for (int k = 0; k < listPaper.size()-1; k++) {
+                for (int k = 0; k < listPaper.size(); k++) {
                     if(listPaper.get(k).getTitle().equals(paper.getString("title"))){
                         flag=1;
                         break;
@@ -1866,14 +1866,25 @@ public class AcademicServiceImpl implements AcademicService {
             System.out.println( json2);
             List<JSONObject> list=academicDao.getSearchTeacherPatent(json2);
             for (int j = 0; j <list.size() ; j++) {
-                JSONObject project=list.get(j);
+                JSONObject patent=list.get(j);
                 patentExcel data = new patentExcel();
-                data.setTitle(project.getString("title"));
-                data.setAuthors(project.getString("authors"));
-                data.setPatent_type(project.getString("patentType"));
-                data.setPatent_number(project.getString("patentNumber"));
-                data.setDatetime(project.getString("datetime"));
-                listPatent.add(data);
+                data.setTitle(patent.getString("title"));
+                data.setAuthors(patent.getString("authors"));
+                data.setPatent_type(patent.getString("patentType"));
+                data.setPatent_number(patent.getString("patentNumber"));
+                data.setDatetime(patent.getString("datetime"));
+                int flag=0;
+                //专利导出去重
+                for (int k = 0; k < listPatent.size(); k++) {
+                    if(listPatent.get(k).getTitle().equals(patent.getString("title"))){
+                        flag=1;
+                        System.out.println("aaabbb"+patent.getString("title"));
+                        break;
+                    }
+                }
+                if(flag==0){
+                    listPatent.add(data);
+                }
             }
         }
         try {
