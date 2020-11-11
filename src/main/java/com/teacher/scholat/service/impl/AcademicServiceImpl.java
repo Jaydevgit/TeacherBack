@@ -1312,6 +1312,8 @@ public class AcademicServiceImpl implements AcademicService {
     @Override
     public JSONObject addPublication(JSONObject jsonObject) {
         Long scholat_publication_id=jsonObject.getLongValue("scholat_publication_id");
+        if(academicDao.publicationExitIf(scholat_publication_id)!=0)
+            return CommonUtil.successJson();
         int flagN = academicDao.publicationDeleteExitIf(scholat_publication_id);//判断添加的著作是否原来删除过
         if(flagN!=0){
             academicDao.NoDeletePublication(scholat_publication_id);//将著作由删除状态改为已添加
