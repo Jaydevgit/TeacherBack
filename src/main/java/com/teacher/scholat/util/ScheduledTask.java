@@ -46,9 +46,21 @@ public class ScheduledTask {
         seduplicationController.deduplicationPaper();
     }
 
+    //项目定时去重
+    @Scheduled(cron = "0 20 3 ? * MON")
+    public void taskDeduplicationProject() {
+        seduplicationController.deduplicationProject();
+    }
+
     //专利定时去重
-    @Scheduled(cron = "0 10 3 ? * MON")
+    @Scheduled(cron = "0 40 3 ? * MON")
     public void taskDeduplicationPatent() {
         seduplicationController.deduplicationPatent();
+    }
+
+    //著作定时去重
+    @Scheduled(cron = "0 45 10 * * ?")
+    public void taskDeduplicationPublication() {
+        seduplicationController.deduplicationPublication();
     }
 }

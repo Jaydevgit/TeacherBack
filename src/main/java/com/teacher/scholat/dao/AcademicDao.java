@@ -9,8 +9,11 @@ public interface AcademicDao {
 
 
     List<JSONObject> listPaper(JSONObject jsonObject);
-    List<JSONObject> listPublication(JSONObject jsonObject);
     List<JSONObject> listPaperAll(JSONObject jsonObject);
+
+    List<JSONObject> listPublication(JSONObject jsonObject);
+    List<JSONObject> listPublicationAll(JSONObject jsonObject);
+
     List<JSONObject> getPaperteacher(JSONObject jsonObject);
     List<JSONObject> getSearchPaper(JSONObject jsonObject);
     List<JSONObject> getSearchTeacherPaper(JSONObject jsonObject);
@@ -122,13 +125,25 @@ public interface AcademicDao {
 
     void  siguDeduplicationPaper(int unitId);
 
+    void  siguDeduplicationProject(int unitId);
+
     void  siguDeduplicationPatent(int unitId);
+
+    void  siguDeduplicationPublication(int unitId);
 
     JSONObject getCoAuScholatName(int id);
 
+    JSONObject getProjectCoAuScholatName(int id);
+
     JSONObject getPatentCoAuScholatName(int id);
+
+    JSONObject getPublicationCoAuScholatName(int id);
 
     void updateCoAuScholatName(JSONObject scholatNameList);
 
+    void updateProjectCoAuScholatName(JSONObject scholatNameList);
+
     void updatePatentCoAuScholatName(JSONObject scholatNameList);
+
+    void updatePublicationCoAuScholatName(JSONObject scholatNameList);
 }

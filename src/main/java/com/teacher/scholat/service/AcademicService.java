@@ -106,7 +106,11 @@ public interface AcademicService {
 
     void deduplicationPaper();
 
+    void deduplicationProject();
+
     void deduplicationPatent();
+
+    void deduplicationPublication();
 
 
 //    JSONObject aiPaper(Long id) throws IOException;

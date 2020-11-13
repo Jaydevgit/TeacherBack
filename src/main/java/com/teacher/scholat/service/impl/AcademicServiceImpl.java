@@ -170,6 +170,63 @@ public class AcademicServiceImpl implements AcademicService {
         }
     }
 
+    //项目模糊去重
+    @Override
+    public void deduplicationProject(){
+        List<JSONObject> allUnit = scholatDao.getAllUnit();
+        System.out.println("去重项目学院集合为:"+allUnit);
+        for (int i = 0; i < allUnit.size(); i++) {
+            int UnitId=allUnit.get(i).getInteger("id");
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("unitId",UnitId);
+            List<JSONObject> projectAll = academicDao.listProjectAll(jsonObject);
+            //存储所有项目
+            HashMap<Integer,String> map=new HashMap<>();
+            //存储无重复项目
+            HashMap<Integer,String> map2=new HashMap<>();
+            for (int j = 0; j < projectAll.size(); j++) {
+                //项目题目 项目id
+                String title=projectAll.get(j).getString("title");
+                Integer id=projectAll.get(j).getIntValue("id");
+                if(map.containsValue(title)){
+                    String scholatName=projectAll.get(j).getString("scholatUsername");
+                    // System.out.println("重复论文id为:"+id);
+                    //标记重复项目
+                    academicDao.siguDeduplicationProject(id);
+                    //获取保留项目id
+                    Integer svaeId=getKey(map2,title);
+                 //   System.out.println("保留论文id为:"+getKey(map2,title)+"学者网用户名:"+scholatName);
+                    //查询共同作者的学者网用户名集合
+                    JSONObject coAuScholatNameList = academicDao.getProjectCoAuScholatName(svaeId);
+                    Set<String> set = new HashSet<>();
+                    if(coAuScholatNameList!=null){
+                        //保存无重复学者网共同用户集合
+                        String coAuScholatName=coAuScholatNameList.getString("coAuScholatName").replace(" ","");;
+                        if(!coAuScholatName.isEmpty()){
+                            String[] scholat_usernames = coAuScholatName.split(",");
+                            for(String name:scholat_usernames){
+                             //   System.out.println("共同作者的学者网用户名集合为:"+name);
+                                set.add(name);
+                            }
+                        }
+                    }
+                    set.add(scholatName);
+                 //   System.out.println("set=="+set.toString().substring(1,set.toString().length()-1).replace(" ",""));
+                    String scholatNameList=set.toString().substring(1,set.toString().length()-1);
+                    //共用关联项目Json数据
+                    JSONObject json = new JSONObject();
+                    json.put("id",svaeId);
+                    json.put("scholatNameList",scholatNameList);
+                    //添加共同作者的学者网用户名集合
+                    academicDao.updateProjectCoAuScholatName(json);
+                }else{
+                    map2.put(id,title);
+                }
+                map.put(id,title);
+            }
+        }
+    }
+
     //专利模糊去重
     @Override
     public void deduplicationPatent(){
@@ -226,6 +283,64 @@ public class AcademicServiceImpl implements AcademicService {
             }
         }
     }
+
+    //著作模糊去重
+    @Override
+    public void deduplicationPublication(){
+        List<JSONObject> allUnit = scholatDao.getAllUnit();
+        System.out.println("去重著作学院集合为:"+allUnit);
+        for (int i = 0; i < allUnit.size(); i++) {
+            int UnitId=allUnit.get(i).getInteger("id");
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("unitId",UnitId);
+            List<JSONObject> publicationAll = academicDao.listPublicationAll(jsonObject);
+            //存储所有著作
+            HashMap<Integer,String> map=new HashMap<>();
+            //存储无重复著作
+            HashMap<Integer,String> map2=new HashMap<>();
+            for (int j = 0; j < publicationAll.size(); j++) {
+                //著作题目 著作id
+                String title=publicationAll.get(j).getString("title");
+                Integer id=publicationAll.get(j).getIntValue("id");
+                if(map.containsValue(title)){
+                    String scholatName=publicationAll.get(j).getString("scholatUsername");
+                    System.out.println("重复著作id为:"+id);
+                    //标记重复著作
+                    academicDao.siguDeduplicationPublication(id);
+                    //获取保留著作id
+                    Integer svaeId=getKey(map2,title);
+                    System.out.println("保留著作id为:"+getKey(map2,title)+"学者网用户名:"+scholatName);
+                    //查询共同作者的学者网用户名集合
+                    JSONObject coAuScholatNameList = academicDao.getPublicationCoAuScholatName(svaeId);
+                    Set<String> set = new HashSet<>();
+                    if(coAuScholatNameList!=null){
+                        //保存无重复学者网共同用户集合
+                        String coAuScholatName=coAuScholatNameList.getString("coAuScholatName").replace(" ","");;
+                        if(!coAuScholatName.isEmpty()){
+                            String[] scholat_usernames = coAuScholatName.split(",");
+                            for(String name:scholat_usernames){
+                           //     System.out.println("共同作者的学者网用户名集合为:"+name);
+                                set.add(name);
+                            }
+                        }
+                    }
+                    set.add(scholatName);
+                  //  System.out.println("set=="+set.toString().substring(1,set.toString().length()-1).replace(" ",""));
+                    String scholatNameList=set.toString().substring(1,set.toString().length()-1);
+                    //共用关联论文Json数据
+                    JSONObject json = new JSONObject();
+                    json.put("id",svaeId);
+                    json.put("scholatNameList",scholatNameList);
+                    //添加共同作者的学者网用户名集合
+                    academicDao.updatePublicationCoAuScholatName(json);
+                }else{
+                    map2.put(id,title);
+                }
+                map.put(id,title);
+            }
+        }
+    }
+
 
     //根据获取vaule得到key
     public static Integer getKey(Map map, String value){

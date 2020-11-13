@@ -208,8 +208,16 @@
       update paper p set p.coAuScholatName=#{scholatNameList}  WHERE p.id = #{id}
     </update>
 
+    <update id="updateProjectCoAuScholatName" parameterType="com.alibaba.fastjson.JSONObject">
+      update project p set p.coAuScholatName=#{scholatNameList}  WHERE p.id = #{id}
+    </update>
+
     <update id="updatePatentCoAuScholatName" parameterType="com.alibaba.fastjson.JSONObject">
       update patent p set p.coAuScholatName=#{scholatNameList}  WHERE p.id = #{id}
+    </update>
+
+    <update id="updatePublicationCoAuScholatName" parameterType="com.alibaba.fastjson.JSONObject">
+      update publication p set p.coAuScholatName=#{scholatNameList}  WHERE p.id = #{id}
     </update>
 
     <delete id="deleteAllStatistic" >
@@ -220,16 +228,32 @@
       update paper p set p.deduplication=1  WHERE p.id = #{unitId}
     </update>
 
+    <update id="siguDeduplicationProject" >
+      update project p set p.deduplication=1  WHERE p.id = #{unitId}
+    </update>
+
     <update id="siguDeduplicationPatent" >
       update patent p set p.deduplication=1  WHERE p.id = #{unitId}
+    </update>
+
+    <update id="siguDeduplicationPublication" >
+      update publication p set p.deduplication=1  WHERE p.id = #{unitId}
     </update>
 
     <select id="getCoAuScholatName"  resultType="com.alibaba.fastjson.JSONObject">
       select p.coAuScholatName  coAuScholatName from paper p where p.id = #{id}
     </select>
 
+    <select id="getProjectCoAuScholatName"  resultType="com.alibaba.fastjson.JSONObject">
+      select p.coAuScholatName  coAuScholatName from project p where p.id = #{id}
+    </select>
+
     <select id="getPatentCoAuScholatName"  resultType="com.alibaba.fastjson.JSONObject">
       select p.coAuScholatName  coAuScholatName from patent p where p.id = #{id}
+    </select>
+
+    <select id="getPublicationCoAuScholatName"  resultType="com.alibaba.fastjson.JSONObject">
+      select p.coAuScholatName  coAuScholatName from publication p where p.id = #{id}
     </select>
 
     <resultMap id="paperTeacherMap" type="com.teacher.scholat.util.model.One2Many">
@@ -671,6 +695,19 @@
         FROM publication p
         WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY datetime DESC  LIMIT
             #{offSet},#{pageRow}
+    </select>
+
+    <select id="listPublicationAll" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  p.id                id,
+                  p.title             title,
+                  p.authors           authors,
+                  p.citation            citation,
+                  p.scholat_username    scholatUsername,
+                  p.press         press,
+                  p.datetime          datetime
+        FROM publication p
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY datetime DESC
     </select>
 
     <select id="listProject" resultType="com.alibaba.fastjson.JSONObject">
@@ -1146,6 +1183,7 @@
                   p.title             title,
                   p.funding           funding,
                   p.project_number    projectNumber,
+                   p.scholat_username    scholatUsername,
                   p.project_type      projectType,
                   p.start_date        startDate,
                   p.end_date          endDate,
