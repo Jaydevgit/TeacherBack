@@ -6,7 +6,7 @@
     <select id="countPaper"  resultType="Integer">
         SELECT count(0)
         FROM paper p
-        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} AND p.deduplication is null
     </select>
     <select id="countSearchPaper"  resultType="Integer">
         SELECT count(0)
@@ -30,19 +30,19 @@
     <select id="countPublication"  resultType="Integer">
         SELECT count(0)
         FROM publication p
-        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} AND p.deduplication is null
     </select>
 
     <select id="countProject"  resultType="Integer">
         SELECT count(0)
         FROM project p
-        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} AND p.deduplication is null
     </select>
 
     <select id="countSearchProject"  resultType="Integer">
          SELECT count(0)
         FROM project p
-        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId} AND p.deduplication is null
         <if test="name != null and name != ''">
         and p.scholat_username = ( SELECT t.scholat_username
         FROM teacher_profile t
@@ -77,7 +77,7 @@
     <select id="countPatent"  resultType="Integer">
         SELECT count(0)
         FROM patent p
-        WHERE p.deleted = '0' AND p.unit_id = #{unitId}
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} AND p.deduplication is null
     </select>
 
     <select id="countSearchPatent"  resultType="Integer">
@@ -693,7 +693,8 @@
                   p.press         press,
                   p.datetime          datetime
         FROM publication p
-        WHERE p.deleted = '0' AND p.unit_id = #{unitId} ORDER BY datetime DESC  LIMIT
+        WHERE p.deleted = '0' AND p.unit_id = #{unitId} AND p.deduplication is null
+        ORDER BY datetime DESC  LIMIT
             #{offSet},#{pageRow}
     </select>
 
@@ -791,7 +792,7 @@
         p.papertype         papertype,
         p.datetime          datetime
         FROM paper p
-        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId} AND p.deduplication is null
         <if test="name != null and name != ''">
             and p.scholat_username = ( SELECT t.scholat_username
             FROM teacher_profile t
@@ -936,9 +937,12 @@
         p.end_date         end_date,
         p.update_time          update_time
         FROM project p
-        WHERE p.scholat_username = ( SELECT t.scholat_username
-        FROM teacher_profile t
-        WHERE t.username = #{name} AND t.unit_id =#{unitId} limit 1)
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId} AND p.deduplication is null
+        <if test="name != null and name != ''">
+            and p.scholat_username = ( SELECT t.scholat_username
+            FROM teacher_profile t
+            WHERE t.username = #{name} AND t.unit_id =#{unitId} limit 1)
+        </if>
         <if test="beginTime != null">
             And p.start_date 	&gt; #{beginTime}
         </if>
@@ -960,7 +964,7 @@
         p.end_date         endDate,
         p.update_time          updateTime
         FROM project p
-        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId} AND p.deduplication is null
         <if test="name != null and name != ''">
             and p.scholat_username = ( SELECT t.scholat_username
             FROM teacher_profile t
@@ -1008,7 +1012,7 @@
         p.datetime          datetime,
         p.update_time          update_time
         FROM patent p
-        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId} AND p.deduplication is null
         <if test="name != null and name != ''">
             and p.scholat_username = ( SELECT t.scholat_username
             FROM teacher_profile t
@@ -1116,7 +1120,7 @@
         p.datetime          datetime,
         p.update_time          update_time
         FROM publication p
-        WHERE p.deleted = '0' AND p.unit_id =#{unitId}
+        WHERE p.deleted = '0' AND p.unit_id =#{unitId} AND p.deduplication is null
         <if test="name != null and name != ''">
             and p.scholat_username = ( SELECT t.scholat_username
             FROM teacher_profile t

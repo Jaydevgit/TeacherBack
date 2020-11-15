@@ -364,7 +364,7 @@ public class AcademicController {
     @GetMapping(value ="/exportPaper2")
     public void exportPaper2(HttpServletRequest request,HttpServletResponse response) throws IOException {
         System.out.println("......导出论文参数为");
-        System.out.println(CommonUtil.request2Json(request));
+        //System.out.println(CommonUtil.request2Json(request));
         academicService.exportPaper2(request, response);
     }
     @GetMapping(value ="/exportTeacherPaper")
@@ -404,14 +404,14 @@ public class AcademicController {
     @GetMapping(value ="/exportPatent2")
     public void exportPatent2(HttpServletRequest request,HttpServletResponse response) throws IOException {
         System.out.println("......导出专利参数为");
-        System.out.println(CommonUtil.request2Json(request));
+      //  System.out.println(CommonUtil.request2Json(request));
         academicService.exportPatent2(request, response);
     }
 
     @GetMapping(value ="/exportPublication2")
     public void exportPublication2(HttpServletRequest request,HttpServletResponse response) throws IOException {
         System.out.println("......导出著作参为");
-        System.out.println(CommonUtil.request2Json(request));
+      //  System.out.println(CommonUtil.request2Json(request));
         academicService.exportPublication2(request, response);
     }
 
