@@ -16,12 +16,14 @@ public interface UserDao {
 	 */
 	int countUser(Long unitId);
 	int countSchoolUser(Long schoolId);
+	int countAllUnitUser(Long schoolId);
 
 	/**
 	 * 查询用户列表
 	 */
 	List<JSONObject> listUser(JSONObject jsonObject);
 	List<JSONObject> listSchoolUser(JSONObject jsonObject);
+	List<JSONObject> listAllUnitUser(JSONObject jsonObject);
 
 	/**
 	 * 查询所有的角色

@@ -13,6 +13,11 @@
         FROM school_profile sp
         WHERE sp.state = '1' AND sp.school_id = #{schoolId} AND sp.role_id != 50
     </select>
+    <select id="countAllUnitUser" resultType="Integer">
+        SELECT count(0)
+        FROM unit_profile up
+        WHERE up.state = '1' AND up.school_domain in (SELECT school_domain FROM school WHERE id=#{schoolId})
+    </select>
 
     <!--<resultMap id="userMap" type="One2Many">
         <id column="userId" property="userId"/>
@@ -88,6 +93,17 @@
     LEFT JOIN sys_role s ON t.role_id = s.id) a join mysql.help_topic b
     on b.help_topic_id &lt; (length(a.permission_ids) - length(replace(a.permission_ids,',',''))+1)
     order by a.id) y LEFT JOIN sys_permission p ON y.pId = p.id
+    </select>
+    <select id="listAllUnitUser" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT up.nickname nickname,
+				up.username username,
+				up.role_id roleId,
+				up.email email,
+				up.phone phone,
+				up.state state,
+				su.unit_name unitName
+        FROM unit_profile up,school_unit su
+        WHERE up.school_domain in (SELECT school_domain FROM school WHERE id=#{schoolId}) and up.domain_name=su.domain_name
     </select>
 
     <select id="getAllRoles" resultType="com.alibaba.fastjson.JSONObject">

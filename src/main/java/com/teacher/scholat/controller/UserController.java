@@ -38,6 +38,14 @@ public class UserController {
 	public JSONObject listSchoolUser(HttpServletRequest request) {
 		return userService.listSchoolUser(CommonUtil.request2Json(request));
 	}
+	/**
+	 * 查询学校各个学院用户列表
+	 */
+	/*@RequiresPermissions("schoolUser:list")*/
+	@GetMapping("/listAllUnitUser")
+	public JSONObject listAllUnitUser(HttpServletRequest request) {
+		return userService.listAllUnitUser(CommonUtil.request2Json(request));
+	}
 
 
 	@RequiresPermissions("user:add")

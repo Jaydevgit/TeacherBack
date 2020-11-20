@@ -48,6 +48,17 @@ public class UserServiceImpl implements UserService {
 		System.out.println(list);
 		return CommonUtil.successPage(jsonObject, list, count);
 	}
+	@Override
+	public JSONObject listAllUnitUser(JSONObject jsonObject) {
+		CommonUtil.fillPageParam(jsonObject);
+		long schoolId = jsonObject.getLongValue("schoolId");
+		System.out.println("schoolId="+schoolId);
+		int count = userDao.countAllUnitUser(schoolId);
+		System.out.println("........有"+count+"位学校层面学院账号");
+		List<JSONObject> list = userDao.listAllUnitUser(jsonObject);
+		System.out.println("学校层面学院账号:"+list);
+		return CommonUtil.successPage(jsonObject, list, count);
+	}
 
 	/**
 	 * 添加用户

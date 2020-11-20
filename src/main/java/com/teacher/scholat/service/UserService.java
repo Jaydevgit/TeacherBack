@@ -13,6 +13,7 @@ public interface UserService {
 	 */
 	JSONObject listUser(JSONObject jsonObject);
 	JSONObject listSchoolUser(JSONObject request2Json);
+	JSONObject listAllUnitUser(JSONObject request2Json);
 
 	/**
 	 * 查询所有的角色
