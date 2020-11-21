@@ -97,6 +97,8 @@
         t.pinyin                                  tPinyin,
         t.domain_name                             tDomain_name,
         t.edit_name                               editName,
+        t.department_name                         tDepartmentName,
+        t.duty                                    tDuty,
         date_format(t.update_time, '%Y.%m.%d %T') update_time,
         date_format(t.create_time, '%Y.%m.%d %T') create_time,
         su.domain_name                            school_unit_domainName,
