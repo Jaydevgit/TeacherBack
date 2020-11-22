@@ -53,13 +53,13 @@ public class ScheduledTask {
     }
 
     //专利定时去重
-    @Scheduled(cron = "0 0 1 ? * SUN")
+    @Scheduled(cron = "0 0 4 ? * MON")
     public void taskDeduplicationPatent() {
         seduplicationController.deduplicationPatent();
     }
 
     //著作定时去重
-    @Scheduled(cron = "0 0 2 ? * SUN")
+    @Scheduled(cron = "0 30 4 ? * MON")
     public void taskDeduplicationPublication() {
         seduplicationController.deduplicationPublication();
     }

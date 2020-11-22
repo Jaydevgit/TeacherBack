@@ -478,6 +478,23 @@ public class AcademicServiceImpl implements AcademicService {
         return CommonUtil.successJson(list);
     }
 
+
+    //学术雷达图
+    @Override
+    public JSONObject Raddar(String scholatUsername) {
+        int countScholatPaper=academicDao.countScholatPaper(scholatUsername);
+        int countScholatPatent=academicDao.countScholatPatent(scholatUsername);
+        int countScholatProject=academicDao.countScholatProject(scholatUsername);
+        int countScholatPublication=academicDao.countScholatPublication(scholatUsername);
+        JSONObject RaddarNumber = new JSONObject();
+//        int[] RaddarNumber={};
+        RaddarNumber.put("countScholatPaper",countScholatPaper);
+        RaddarNumber.put("countScholatPatent",countScholatPaper);
+        RaddarNumber.put("countScholatProject",countScholatPaper);
+        RaddarNumber.put("countScholatPublication",countScholatPaper);
+        return RaddarNumber;
+    }
+
     @Override
     public JSONObject getPaper(Long id) {
         JSONObject paper = academicDao.getPaper(id);

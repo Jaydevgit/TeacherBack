@@ -13,6 +13,9 @@ public interface AcademicService {
     JSONObject getProjectFromScholat(JSONObject jsonObject);
     JSONObject getPublicationFromScholat(JSONObject jsonObject);
 
+
+    JSONObject Raddar(String  scholatUsername);
+
     JSONObject getPaper(Long id);
     JSONObject deletePaper(JSONObject jsonObject);
     JSONObject deletePubilcation(JSONObject jsonObject);

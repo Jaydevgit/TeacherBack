@@ -146,4 +146,9 @@ public interface AcademicDao {
     void updatePatentCoAuScholatName(JSONObject scholatNameList);
 
     void updatePublicationCoAuScholatName(JSONObject scholatNameList);
+
+    int countScholatPaper(String  scholatUsername);
+    int countScholatPatent(String  scholatUsername);
+    int countScholatProject(String  scholatUsername);
+    int countScholatPublication(String  scholatUsername);
 }

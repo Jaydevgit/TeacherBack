@@ -1323,6 +1323,28 @@
         SELECT paper_id paperId FROM paper_teacher WHERE teacher_id = #{id}
     </select>
 
+    <select id="countScholatPaper"  resultType="Integer">
+        SELECT count(0)
+        FROM paper p
+        WHERE p.deleted = '0' AND p.scholat_username = #{scholatUsername} AND p.deduplication is null
+    </select>
+    <select id="countScholatPatent"  resultType="Integer">
+        SELECT count(0)
+        FROM patent p
+        WHERE p.deleted = '0' AND p.scholat_username = #{scholatUsername} AND p.deduplication is null
+    </select>
+    <select id="countScholatProject"  resultType="Integer">
+        SELECT count(0)
+        FROM project p
+        WHERE p.deleted = '0' AND p.scholat_username = #{scholatUsername} AND p.deduplication is null
+    </select>
+    <select id="countScholatPublication"  resultType="Integer">
+        SELECT count(0)
+        FROM publication p
+        WHERE p.deleted = '0' AND p.scholat_username = #{scholatUsername} AND p.deduplication is null
+    </select>
+
+
 
 
 </mapper>

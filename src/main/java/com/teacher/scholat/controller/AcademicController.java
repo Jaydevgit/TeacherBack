@@ -24,6 +24,13 @@ public class AcademicController {
         return academicService.identifyTeacher(CommonUtil.request2Json(request));
     }
 
+    @GetMapping("/Raddar/{scholatUsername}")
+    public JSONObject Raddar(@PathVariable("scholatUsername") String scholatUsername){
+        // howHttpRequestContent(request);
+        System.out.println("学术雷达查询启动。。。"+scholatUsername);
+        return CommonUtil.successJson(academicService.Raddar(scholatUsername));
+    }
+
     @GetMapping("/paperInfo/{id}")
     public JSONObject getPaperInfo(@PathVariable("id") long id){
         // howHttpRequestContent(request);
