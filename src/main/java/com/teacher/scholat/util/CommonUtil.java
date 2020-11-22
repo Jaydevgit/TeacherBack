@@ -75,6 +75,14 @@ public class CommonUtil {
 		result.put("info", info);
 		return result;
 	}
+	public static JSONObject successPage(List<JSONObject> list, int totalCount) {
+		JSONObject result = successJson();
+		JSONObject info = new JSONObject();
+		info.put("list", list);
+		info.put("totalCount", totalCount);
+		result.put("info", info);
+		return result;
+	}
 
 	/**
 	 * 查询分页结果后的封装工具方法

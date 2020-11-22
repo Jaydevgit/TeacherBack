@@ -104,7 +104,7 @@ public class SchoolServiceImpl implements SchoolService {
             }
         }*/
         System.out.println("后台查询到的教师数据为: " + listLocal);
-        return CommonUtil.successPage( listLocal);
+        return CommonUtil.successPage( listLocal,count);
         /*return CommonUtil.successPage(jsonObject, listLocal, count);*/
     }
     /**

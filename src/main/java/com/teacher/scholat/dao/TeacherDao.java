@@ -51,6 +51,7 @@ public interface TeacherDao {
     // 统计返回的教师数量
     Integer countKeyTeacher(JSONObject jsonObject);
     Integer countKeyTeacherInSchoolDomain(JSONObject jsonObject);
+    Integer getUpdateCount(JSONObject jsonObject);
 
 
     //获取学院ID
@@ -108,6 +109,8 @@ public interface TeacherDao {
     List<JSONObject> getRecentUpdateTeacher(JSONObject jsonObject);
 
     Integer countTeacher(JSONObject jsonObject);
+
+
 
 
     //  -------------------------------------

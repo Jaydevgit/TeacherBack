@@ -128,8 +128,9 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public JSONObject getRecentUpdateTeacher(JSONObject jsonObject) {
+        int count=teacherDao.getUpdateCount(jsonObject);
         List<JSONObject> list = teacherDao.getRecentUpdateTeacher(jsonObject);
-        return CommonUtil.successJson(list);
+        return CommonUtil.successPage(list,count);
     }
 
     @Override
