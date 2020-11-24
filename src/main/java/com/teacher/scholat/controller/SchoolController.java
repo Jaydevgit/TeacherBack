@@ -53,6 +53,12 @@ public class SchoolController {
         System.out.println("requestJson-----"+jsonObject);
         return schoolService.getSchoolInfo(jsonObject);
     }
+    @GetMapping("/getSchoolInfo2")
+    public JSONObject getSchoolInfo2(HttpServletRequest request) {
+        JSONObject jsonObject = CommonUtil.request2Json(request);
+        System.out.println("requestJson-----"+jsonObject);
+        return schoolService.getSchoolInfo2(jsonObject);
+    }
     /**
      * 模糊搜索教师
      */

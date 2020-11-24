@@ -24,6 +24,7 @@ public interface SchoolDao {
     List<JSONObject> listTeacherByUnit(JSONObject jsonObject);
     //获取学院基本信息
     JSONObject getSchoolInfo(JSONObject object);
+    JSONObject getSchoolInfo2(JSONObject object);
     /**
      * 统计搜索结果
      * @param object

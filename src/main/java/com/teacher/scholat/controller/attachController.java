@@ -59,6 +59,9 @@ public class attachController {
     // 文件在服务器端保存的主目录
     @Value("${FTP.BACKGROUND.BASEPATH}")
     private String backgroundPath;
+    // 学校主页背景文件在服务器端保存的主目录
+    @Value("${FTP.SCHOOLBACKGROUND.BASEPATH}")
+    private String schoolBackgroundPath;
     // 文件在服务器端保存的主目录
     @Value("${FTP.TEACHER_EXCEL.BASEPATH}")
     private String teacherExcelPath;
@@ -223,9 +226,13 @@ public class attachController {
         System.out.println("==================== 成功进入申请界面上传证明文件功能");
         String oldFileName = file.getOriginalFilename(); //获取上传文件的原名
         System.out.println("旧文件名为: " + oldFileName);
-        if(!(oldFileName.equals("front.png")||oldFileName.equals("back.png")||oldFileName.equals("working.png")||oldFileName.equals("logo.png")||oldFileName.equals("unit.png"))){
+        if(oldFileName.equals("schoolBackground.png")){
+            oldFileName="schoolBackground.png";
+        }
+        else if(!(oldFileName.equals("front.png")||oldFileName.equals("back.png")||oldFileName.equals("working.png")||oldFileName.equals("logo.png")||oldFileName.equals("unit.png"))){
             oldFileName="backgroundHome.png";
         }
+
       //  System.out.println("旧文件名为: " + oldFileName);
 
         String newfileName = getFileName(file);
@@ -258,6 +265,9 @@ public class attachController {
         }else  if (oldFileName.equals("background.png")||oldFileName.equals("backgroundHome.png")){
             System.out.println("上传到: "+host+port+backgroundPath+filePath+newfileName);
             result = FTPUtil.uploadFile(host, port, userName, passWord, backgroundPath, filePath, newfileName, input);
+        }else if(oldFileName.equals("schoolBackground.png")){
+            System.out.println("上传到: "+host+port+schoolBackgroundPath+filePath+newfileName);
+            result = FTPUtil.uploadFile(host, port, userName, passWord, schoolBackgroundPath, filePath, newfileName, input);
         }
 
 
@@ -267,6 +277,7 @@ public class attachController {
         if (result) {
             return newfileName;
         } else {
+            System.out.println("result="+result);
             return "false";
         }
 

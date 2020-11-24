@@ -159,6 +159,12 @@ public class SchoolServiceImpl implements SchoolService {
         System.out.println("获取到的school------"+school);
         return CommonUtil.successJson(school);
     }
+    @Override
+    public JSONObject getSchoolInfo2(JSONObject object) {
+        JSONObject school = schoolDao.getSchoolInfo2(object);
+        System.out.println("获取到的school------"+school);
+        return CommonUtil.successJson(school);
+    }
     /**
      * 模糊搜索教师
      */

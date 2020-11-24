@@ -21,6 +21,7 @@ public interface SchoolService {
      */
     JSONObject listTeacherByUnit(JSONObject request2Json);
     JSONObject getSchoolInfo(JSONObject jsonObject);
+    JSONObject getSchoolInfo2(JSONObject jsonObject);
 
     /**
      * 模糊搜索教师
