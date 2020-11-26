@@ -78,7 +78,7 @@ public class EsTest {
     @Test
     public void testAddDocument() throws IOException {
         //创建对象
-        User user = new User("狂神说", 3);
+        User user = new User("昆昆说", 3);
         //创建请求
         IndexRequest request = new IndexRequest("kuang_index");
         request.id("1");
@@ -117,7 +117,7 @@ public class EsTest {
     public void testUpdateDocument() throws IOException {
         UpdateRequest updateRequest = new UpdateRequest("kuang_index", "1");
         updateRequest.timeout("1s");
-        User user = new User("狂神说java",18);
+        User user = new User("昆昆说java",18);
         updateRequest.doc(JSON.toJSONString(user),XContentType.JSON);
         UpdateResponse updateResponse = client.update(updateRequest, RequestOptions.DEFAULT);
         System.out.println(updateResponse.status());
@@ -140,11 +140,11 @@ public class EsTest {
         BulkRequest bulkRequest = new BulkRequest();
         bulkRequest.timeout("10s");
         ArrayList<User> userList = new ArrayList<>();
-        userList.add(new User("狂神说java",18));
-        userList.add(new User("狂神说java2",11));
-        userList.add(new User("狂神说java3",12));
-        userList.add(new User("狂神说java4",13));
-        userList.add(new User("狂神说java5",14));
+        userList.add(new User("昆昆说java",18));
+        userList.add(new User("昆昆说java",11));
+        userList.add(new User("昆昆说java",12));
+        userList.add(new User("昆昆说java",13));
+        userList.add(new User("昆昆说java",14));
         for (int i = 0; i < userList.size(); i++) {
             bulkRequest.add(new IndexRequest("kuang_index")
                     .id(""+(i+1)).source(JSON.toJSONString(userList.get(i)),XContentType.JSON));
