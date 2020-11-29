@@ -110,6 +110,9 @@ public interface TeacherDao {
 
     Integer countTeacher(JSONObject jsonObject);
 
+    Integer countSchoolTeacherByLetter(JSONObject object);
+    List<JSONObject> changeSchoolTeacherByLetter(JSONObject object);
+
 
 
 

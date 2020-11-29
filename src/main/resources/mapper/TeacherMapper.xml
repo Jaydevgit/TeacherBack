@@ -436,5 +436,28 @@
             FROM teacher_profile t
              where t.id = #{s}
     </select>
-
+    <select id="countSchoolTeacherByLetter" resultType="Integer">
+         SELECT count(1)
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id IN (SELECT id FROM school WHERE school_domain=#{schoolDomain})
+        AND t.pinyin LIKE #{letter}"%"
+    </select>
+    <select id="changeSchoolTeacherByLetter" resultType="com.alibaba.fastjson.JSONObject">
+        SELECT
+                  t.id          tId,
+                  t.username    tName,
+                  t.post        tPost,
+                  t.avatar      tAvatar,
+                  t.email       tEmail,
+                  t.department_name     tDepartment_name,
+                  t.work_place      tWork_place,
+                  t.scholat_username        tScholat_username,
+                  t.degree      tDegree
+        FROM teacher_profile t
+        WHERE t.state = '1' AND t.unit_id IN (SELECT id FROM school WHERE school_domain=#{schoolDomain})
+        AND t.pinyin LIKE #{letter}"%" ORDER BY t.pinyin, update_time
+        DESC
+         LIMIT
+            #{offSet},#{pageRow}
+    </select>
 </mapper>

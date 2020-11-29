@@ -80,6 +80,8 @@ public interface TeacherService {
     JSONObject getRecommendTeacher(JSONObject request2Json);
 
     JSONObject getRecentUpdateTeacher(JSONObject request2Json);
-
-
+    /**
+     * 学校层面获取所有学院姓名首字母的教师
+     */
+    JSONObject changeSchoolTeacherByLetter(JSONObject request2Json);
 }

@@ -190,6 +190,7 @@ public class TeacherServiceImpl implements TeacherService {
         schoalt_profile.put("scholat_profile",profile);
         return schoalt_profile;
     }
+
     // ------------------- [学者画像]   获取本地数据库学者关系 ----------------
     @Override
     public List<JSONObject> getLocalScholatFriends(String username,Long scholatID) {
@@ -384,5 +385,15 @@ public class TeacherServiceImpl implements TeacherService {
 
 
     // ------------------- [学者画像]   获取本地数据库学者关系 [end] ----------------
-
+    @Override
+    public JSONObject changeSchoolTeacherByLetter(JSONObject object) {
+        System.out.println("前端传过来的教师列表要求为: "+object);
+        CommonUtil.fillPageParam(object);
+        System.out.println("检查offset"+object);
+        int count = teacherDao.countSchoolTeacherByLetter(object);
+        System.out.println("........有"+count+"位教师");
+        List<JSONObject> list = teacherDao.changeSchoolTeacherByLetter(object);
+        System.out.println(list);
+        return CommonUtil.successPage(list, count);
+    }
 }

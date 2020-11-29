@@ -55,4 +55,11 @@ public class HomeController {
         return teacherService.getRecentUpdateTeacher(CommonUtil.request2Json(request));
     }
 
+    @GetMapping("/changeSchoolTeacherByLetter")
+    public JSONObject changeSchoolTeacherByLetter(HttpServletRequest request) {
+        System.out.println("......开始查询教师成员列表");
+        System.out.println(CommonUtil.request2Json(request));
+        return teacherService.changeSchoolTeacherByLetter(CommonUtil.request2Json(request));
+    }
+
 }
