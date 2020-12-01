@@ -3,6 +3,18 @@ package com.teacher.scholat.model.pojoEs;
 public class PaperEs {
     private Long id;
 
+    private String degree;
+
+    private String post;
+
+    private String intro;
+
+    private String research_direction;
+
+    private String update_time;
+
+    private String graduateFrom;
+
     private String title; //标题
 
     private String authors;// 作者
@@ -20,4 +32,6 @@ public class PaperEs {
     private Integer papertype; // 论文类型
 
     private Long unitId; // 学院ID
+
+
 }
