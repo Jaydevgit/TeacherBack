@@ -41,6 +41,10 @@ public interface CatalogueService {
 	 * 添加主栏目信息
 	 */
 	JSONObject addCatalogue(JSONObject object);
+	/**
+	 * 添加多个主栏目信息
+	 */
+	JSONObject addMulCatalogue(JSONObject object);
 
 	/**
 	 * 删除主栏目信息
@@ -56,6 +60,11 @@ public interface CatalogueService {
 	 * 添加子栏目信息
 	 */
 	JSONObject addSubCatalogue(JSONObject object);
+
+	/**
+	 * 添加子栏目信息
+	 */
+	JSONObject addSMulubCatalogue(JSONObject object);
 
 	/**
 	 * 移除栏目中的教师

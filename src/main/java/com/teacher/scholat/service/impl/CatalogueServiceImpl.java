@@ -1,11 +1,14 @@
 package com.teacher.scholat.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.teacher.scholat.dao.CatalogueDao;
 import com.teacher.scholat.dao.TeacherDao;
 import com.teacher.scholat.service.CatalogueService;
 import com.teacher.scholat.util.CommonUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
@@ -76,6 +79,25 @@ public class CatalogueServiceImpl implements CatalogueService {
     }
 
     @Override
+    @Transactional
+    public JSONObject addMulCatalogue(JSONObject object) {
+        String string=object.getString("list");
+        String unitId=object.getString("unitId");
+        string=string.substring(1,string.length()-1);
+        String[] list=string.split(",");
+        for(String item : list )
+        {
+            item=item.trim();
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("unitId",unitId);
+            jsonObject.put("catalogue",item);
+            catalogueDao.addCatalogue(jsonObject);
+        }
+        List<JSONObject> catalogue = catalogueDao.findCatalogueByUnit(object);
+        return CommonUtil.successPage(catalogue);
+    }
+
+    @Override
     public JSONObject deleteCatalogue(JSONObject object) {
         catalogueDao.deleteCatalogue(object);
         return CommonUtil.successJson();
@@ -98,6 +120,28 @@ public class CatalogueServiceImpl implements CatalogueService {
     public JSONObject removeTeacher(JSONObject object)
     {
         catalogueDao.removeTeacher(object);
+        return CommonUtil.successJson();
+    }
+
+    @Override
+    public JSONObject addSMulubCatalogue(JSONObject object) {
+        String string=object.getString("list");
+        String unitId=object.getString("unitId");
+        String parentId="";
+        string=string.substring(1,string.length()-1);
+        String[] list=string.split(",");
+
+        for(String item : list )
+        {
+            item=item.trim();
+            String[] list_child=item.split("@加@");
+            JSONObject jsonObject=new JSONObject();
+            jsonObject.put("unitId",unitId);
+            jsonObject.put("catalogue",list_child[1].trim());
+            jsonObject.put("parentId",list_child[0].trim());
+            System.out.println(jsonObject);
+            catalogueDao.addSubCatalogue(jsonObject);
+        }
         return CommonUtil.successJson();
     }
 

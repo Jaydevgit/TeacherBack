@@ -64,7 +64,11 @@ public class CatalogueController {
         CommonUtil.hasAllRequired(requestJson, "unitId,catalogue");
         return  catalogueService.addCatalogue(requestJson);
     }
-
+    @PostMapping("/addMulCatalogue")
+    public JSONObject addMulCatalogue(@RequestBody JSONObject requestJson){
+        CommonUtil.hasAllRequired(requestJson, "unitId,list");
+        return  catalogueService.addMulCatalogue(requestJson);
+    }
     @PostMapping("/deleteCatalogue")
     public JSONObject deleteCatalogue(@RequestBody JSONObject requestJson){
         CommonUtil.hasAllRequired(requestJson, "cId");
@@ -82,6 +86,11 @@ public class CatalogueController {
     public JSONObject addSubCatalogue(@RequestBody JSONObject requestJson){
         CommonUtil.hasAllRequired(requestJson, "unitId,catalogue,parentId");
         return  catalogueService.addSubCatalogue(requestJson);
+    }
+    @PostMapping("/addSMulubCatalogue")
+    public JSONObject addMulSubCatalogue(@RequestBody JSONObject requestJson){
+        CommonUtil.hasAllRequired(requestJson, "unitId,list");
+        return  catalogueService.addSMulubCatalogue(requestJson);
     }
 
     @PostMapping("/removeTeacher")
